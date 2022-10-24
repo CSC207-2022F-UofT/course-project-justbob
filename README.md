@@ -6,7 +6,7 @@ It also contains workflow documents that give instructions on how to manage your
 
 ## Checklist For Your Project
 - [X] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
+- [X] Set up Github Projects
 - [ ] Create the implementation plan using issues and Github Projects
 - [ ] Create deveopment branches for your features
 - [ ] Use pull requests to merge finished features into main branch
