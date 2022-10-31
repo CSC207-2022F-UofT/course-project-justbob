@@ -2,9 +2,9 @@ package weightScheme;
 
 public class Weight {
     private int numberOfInstances;
-    private float weightOfEachInstance;
+    private double weightOfEachInstance;
 
-    public Weight(int numberOfInstances, float weightOfEachInstance) {
+    public Weight(int numberOfInstances, double weightOfEachInstance) {
         this.numberOfInstances = numberOfInstances;
         this.weightOfEachInstance = weightOfEachInstance;
     }
@@ -12,11 +12,11 @@ public class Weight {
     public int getNumberOfInstances() {
         return numberOfInstances;
     }
-    public float getWeightOfEachInstance() {
+    public double getWeightOfEachInstance() {
         return weightOfEachInstance;
     }
 
-    public float getTotalWeight() {
+    public double getTotalWeight() {
         return numberOfInstances * weightOfEachInstance;
     }
 }
