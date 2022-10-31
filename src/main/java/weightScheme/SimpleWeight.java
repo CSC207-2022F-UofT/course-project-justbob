@@ -1,7 +1,6 @@
 package weightScheme;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.DoubleStream;
 
 public class SimpleWeight implements WeightScheme {
     private Weight weight;
@@ -10,9 +9,9 @@ public class SimpleWeight implements WeightScheme {
         this.weight = new Weight(numberOfInstances, weightOfEachInstance);
     }
     @Override
-    public double computeWeight(List<Double> marks) {
-        return new ArrayList<>(marks).stream()
-                .mapToDouble(mark -> mark * weight.getWeightOfEachInstance())
+    public double computeWeight(double[] marks) {
+        return DoubleStream.of(marks)
+                .map(mark -> mark * weight.getWeightOfEachInstance())
                 .sum();
     }
 
