@@ -15,4 +15,16 @@ class WeightSchemeTest {
         WeightScheme simpleWeight = new SimpleWeight(marks.length, weightOfEachInstance);
         Assertions.assertEquals(0.8755, simpleWeight.computeWeight(marks));
     }
+
+    @Test
+    public void OrderedWeightNumberOfInstances() {
+    }
+
+    @Test
+    public void OrderedWeightTotalWeight() {
+    }
+
+    @Test
+    public void OrderedWeightComputation() {
+    }
 }
