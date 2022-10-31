@@ -10,14 +10,14 @@ public class SimpleWeight implements weightScheme {
         this.weight = new Weight(numberOfInstances, weightOfEachInstance);
     }
     @Override
-    public float computeWeight(List<Float> marks) {
-        return (float) new ArrayList<>(marks).stream()
+    public double computeWeight(List<Double> marks) {
+        return new ArrayList<>(marks).stream()
                 .mapToDouble(mark -> mark * weight.getWeightOfEachInstance())
                 .sum();
     }
 
     @Override
-    public float getTotalWeight() {
+    public double getTotalWeight() {
         return weight.getTotalWeight();
     }
 

@@ -10,7 +10,7 @@ public interface weightScheme {
      * @param marks
      * @return
      */
-    public float computeWeight(List<Float> marks);
-    public float getTotalWeight();
+    public double computeWeight(List<Double> marks);
+    public double getTotalWeight();
     public int getNumberOfInstances();
 }
