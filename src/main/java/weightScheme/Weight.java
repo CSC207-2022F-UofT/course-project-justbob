@@ -9,10 +9,14 @@ public class Weight {
         this.weightOfEachInstance = weightOfEachInstance;
     }
 
-    public float getNumberOfInstances() {
+    public int getNumberOfInstances() {
         return numberOfInstances;
     }
     public float getWeightOfEachInstance() {
         return weightOfEachInstance;
+    }
+
+    public float getTotalWeight() {
+        return numberOfInstances * weightOfEachInstance;
     }
 }
