@@ -6,7 +6,7 @@ import java.util.List;
 public class SimpleWeight implements weightScheme {
     private Weight weight;
 
-    public SimpleWeight(int numberOfInstances, int weightOfEachInstance) {
+    public SimpleWeight(int numberOfInstances, double weightOfEachInstance) {
         this.weight = new Weight(numberOfInstances, weightOfEachInstance);
     }
     @Override
