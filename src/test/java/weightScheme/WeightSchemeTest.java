@@ -3,7 +3,6 @@ package weightScheme;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 class WeightSchemeTest {
@@ -13,7 +12,7 @@ class WeightSchemeTest {
     @Test
     public void SimpleWeightComputation() {
         double weightOfEachInstance = 0.25;
-        weightScheme simpleWeight = new SimpleWeight(marks.length, weightOfEachInstance);
+        WeightScheme simpleWeight = new SimpleWeight(marks.length, weightOfEachInstance);
         Assertions.assertEquals(0.8755, simpleWeight.computeWeight(Arrays.asList(marks)));
     }
 }
