@@ -1,5 +1,6 @@
 package weightScheme;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleWeight implements weightScheme {
@@ -8,10 +9,11 @@ public class SimpleWeight implements weightScheme {
     public SimpleWeight(int numberOfInstances, int weightOfEachInstance) {
         this.weight = new Weight(numberOfInstances, weightOfEachInstance);
     }
-
     @Override
     public float computeWeight(List<Float> marks) {
-        return 0;
+        return (float) new ArrayList<>(marks).stream()
+                .mapToDouble(mark -> mark * weight.getWeightOfEachInstance())
+                .sum();
     }
 
     @Override
