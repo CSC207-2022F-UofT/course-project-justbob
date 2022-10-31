@@ -1,5 +1,7 @@
 package weightScheme;
 
+import java.util.stream.Stream;
+
 public class OrderedWeight implements WeightScheme {
     private Weight[] orderedWeights;
 
@@ -10,7 +12,9 @@ public class OrderedWeight implements WeightScheme {
 
     @Override
     public int getNumberOfInstances() {
-        return 0;
+        return Stream.of(orderedWeights)
+                .mapToInt(weight -> weight.getNumberOfInstances())
+                .sum();
     }
 
     @Override
