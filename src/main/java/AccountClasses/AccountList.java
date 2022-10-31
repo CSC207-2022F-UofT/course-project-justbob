@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountList {
-    List<Account> accounts;
+    List<Account> accounts = new ArrayList<Account>();
 
     public AccountList(){}
 
