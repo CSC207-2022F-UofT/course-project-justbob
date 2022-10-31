@@ -16,11 +16,11 @@ public class SimpleWeight implements weightScheme {
 
     @Override
     public float getTotalWeight() {
-        return 0;
+        return weight.getTotalWeight();
     }
 
     @Override
     public int getNumberOfInstances() {
-        return 0;
+        return weight.getNumberOfInstances();
     }
 }
