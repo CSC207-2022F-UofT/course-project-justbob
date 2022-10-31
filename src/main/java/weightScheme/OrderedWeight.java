@@ -19,6 +19,8 @@ public class OrderedWeight implements WeightScheme {
 
     @Override
     public double getTotalWeight() {
-        return 0;
+        return Stream.of(orderedWeights)
+                .mapToDouble(weight -> weight.getTotalWeight())
+                .sum();
     }
 }
