@@ -10,7 +10,7 @@ public class Archive {
 
     public Archive(List<Course> pastCourses){
         this.archived = pastCourses;
-        /** this.pastGpa = call of CGPA calculator. **/
+        /** this.pastGpa = call of CGPA calculator with archived inputs **/
     }
 
     @Override
@@ -23,7 +23,7 @@ public class Archive {
     }
 
     public CGPA getPastGpa(){
-        /**call CGPA calculator with archived courses inputs**/
+        return pastGpa;
     }
 
     public void addArchivedCourse(Course course){
