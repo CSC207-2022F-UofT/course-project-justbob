@@ -8,11 +8,6 @@ public class Archive {
 
     public Archive(){}
 
-    public Archive(List<Course> pastCourses){
-        this.archived = pastCourses;
-        /** this.pastGpa = call of CGPA calculator with archived inputs **/
-    }
-
     @Override
     public String toString() {
         StringBuilder pastCourses = new StringBuilder();
@@ -28,6 +23,9 @@ public class Archive {
 
     public void addArchivedCourse(Course course){
         archived.add(Course);
+    }
+    public void removeArchivedCourse(Course course){
+        archived.remove(Course);
     }
 }
 
