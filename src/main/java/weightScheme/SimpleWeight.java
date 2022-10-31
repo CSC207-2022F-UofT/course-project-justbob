@@ -3,7 +3,7 @@ package weightScheme;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SimpleWeight implements weightScheme {
+public class SimpleWeight implements WeightScheme {
     private Weight weight;
 
     public SimpleWeight(int numberOfInstances, double weightOfEachInstance) {

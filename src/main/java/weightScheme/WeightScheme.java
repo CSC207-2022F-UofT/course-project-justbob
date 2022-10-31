@@ -2,7 +2,7 @@ package weightScheme;
 
 import java.util.List;
 
-public interface weightScheme {
+public interface WeightScheme {
     /**
      * Compute the weight earned with (marks) according to this weightScheme.
      *
