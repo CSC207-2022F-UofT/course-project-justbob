@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface WeightScheme {
     /**
-     * Compute the weight earned with (marks) according to this weightScheme.
+     * Compute the average mark earned with (marks) according to this weightScheme.
      *
      * Precondition: marks.length == getNumberOfInstances()
      * @param marks
      * @return
      */
-    public double computeWeight(double[] marks);
+    public double computeWeighted(double[] marks);
     public double getTotalWeight();
     public int getNumberOfInstances();
 }
