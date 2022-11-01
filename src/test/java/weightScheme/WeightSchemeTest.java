@@ -17,8 +17,8 @@ class WeightSchemeTest {
 
     @Test
     public void SimpleWeightComputation() {
-        double weightOfEachInstance = 0.05;
-        WeightScheme simpleWeight = new SimpleWeight(marks.length, weightOfEachInstance);
+        Weight weight = new Weight(marks.length, 0.05);
+        WeightScheme simpleWeight = new SimpleWeight(weight);
         Assertions.assertEquals(25.685, simpleWeight.computeWeighted(marks), 0.001);
     }
 
