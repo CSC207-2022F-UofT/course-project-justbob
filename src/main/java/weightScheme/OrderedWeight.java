@@ -7,6 +7,10 @@ import java.util.stream.DoubleStream;
 public class OrderedWeight implements WeightScheme {
     private Weight[] orderedWeights;
 
+    public OrderedWeight(Weight[] orderedWeights) {
+        this.orderedWeights = orderedWeights;
+    }
+
     @Override
     public double computeWeight(double[] marks) {
         double result = 0;
