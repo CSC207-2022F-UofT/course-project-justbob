@@ -1,13 +1,17 @@
 package CourseManager;
 
+
+import java.sql.Time;
+import java.time.LocalDate;
+
 public class AssessmentInstance {
     private String assessmentInstanceName;
-    private String date;
+    private LocalDate date;
     private double mark;
-    public boolean isCommitted;
-    public boolean isSubmitted;
+    private boolean isCommitted;
+    private boolean isSubmitted;
 
-    public AssessmentInstance(String assessmentInstanceName, String deadline) {
+    public AssessmentInstance(String assessmentInstanceName, LocalDate date) {
         this.assessmentInstanceName = assessmentInstanceName;
         this.date = date;
         this.isCommitted = false;
@@ -27,6 +31,14 @@ public class AssessmentInstance {
         isSubmitted = false;
     }
 
+    public boolean isCommitted() {
+        return isCommitted;
+    }
+
+    public boolean isSubmitted() {
+        return isSubmitted;
+    }
+
     public String getName() {
         return assessmentInstanceName;
     }
@@ -35,12 +47,12 @@ public class AssessmentInstance {
         this.assessmentInstanceName = name;
     }
 
-    public String getDeadline() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDeadline(String deadline) {
-        this.date = deadline;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public void setMark(double mark) {
