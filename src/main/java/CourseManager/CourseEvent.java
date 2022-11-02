@@ -1,3 +1,4 @@
+package CourseManager;
 
 public class CourseEvent {
     private String type;
