@@ -1,7 +1,5 @@
 package CourseManager;
 
-
-import java.sql.Time;
 import java.time.LocalDate;
 
 public class AssessmentInstance {
@@ -10,6 +8,12 @@ public class AssessmentInstance {
     private double mark;
     private boolean isCommitted;
     private boolean isSubmitted;
+
+    /**
+     * Create a new AssessmentInstance object with the given name and date
+     * @param assessmentInstanceName the name of the assessment instance
+     * @param date the date of the assessment instance
+     */
 
     public AssessmentInstance(String assessmentInstanceName, LocalDate date) {
         this.assessmentInstanceName = assessmentInstanceName;
