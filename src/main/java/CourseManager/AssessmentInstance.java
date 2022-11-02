@@ -1,15 +1,15 @@
 package CourseManager;
 
 public class AssessmentInstance {
-    private String name;
-    private String deadline;
+    private String assessmentInstanceName;
+    private String date;
     private double mark;
-    private boolean isCommitted;
-    private boolean isSubmitted;
+    public boolean isCommitted;
+    public boolean isSubmitted;
 
-    public AssessmentInstance(String name, String deadline) {
-        this.name = name;
-        this.deadline = deadline;
+    public AssessmentInstance(String assessmentInstanceName, String deadline) {
+        this.assessmentInstanceName = assessmentInstanceName;
+        this.date = date;
         this.isCommitted = false;
         this.isSubmitted = false;
     }
@@ -26,7 +26,28 @@ public class AssessmentInstance {
     public void unsubmit() {
         isSubmitted = false;
     }
+
+    public String getName() {
+        return assessmentInstanceName;
+    }
+
+    public void setName(String name) {
+        this.assessmentInstanceName = name;
+    }
+
+    public String getDeadline() {
+        return date;
+    }
+
+    public void setDeadline(String deadline) {
+        this.date = deadline;
+    }
+
     public void setMark(double mark) {
         this.mark = mark;
+    }
+
+    public double getMark() {
+        return mark;
     }
 }
