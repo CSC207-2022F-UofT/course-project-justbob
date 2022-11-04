@@ -13,6 +13,18 @@ public class Course {
 
     private ArrayList<CourseEvent> courseEvents;
 
+    /**
+     * Create a new AssessmentInstance object with the given name and date
+     * @param courseCode the code of the course
+     *                   e.g. 'CSC207'
+     * @param courseName the name of the course
+     *                   e.g. 'Software Design'
+     * @param semester the semester the course is offered in
+     *                   e.g. 'Fall 2022'
+     * @param credit the number of credits the course is worth; must be either 0.5 or 1.0
+     * @param archived whether the course is archived or not
+     */
+
     public Course(String courseCode, String courseName, String semester, boolean archived, float credit) {
         this.courseCode = courseCode;
         this.courseName = courseName;
@@ -55,6 +67,7 @@ public class Course {
     }
 
     public String toString() {
+        /*just for preliminary purposes*/
         if (archived) {
             return this.courseCode + ": " + this.courseName + " took place in " + this.semester + " and was worth " + this.credit +
                     " credit(s). It had the following course events:" + this.courseEvents;
