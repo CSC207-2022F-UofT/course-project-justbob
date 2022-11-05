@@ -2,6 +2,10 @@ package CourseManager;
 
 import java.util.ArrayList;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+
+
 public class Course {
     private String courseCode;
     private String courseName;
@@ -14,7 +18,7 @@ public class Course {
     private ArrayList<CourseEvent> courseEvents;
 
     /**
-     * Create a new AssessmentInstance object with the given name and date
+     * Create a new Course object with the given parameters
      * @param courseCode the code of the course
      *                   e.g. 'CSC207'
      * @param courseName the name of the course
@@ -85,8 +89,10 @@ public class Course {
 
     public static void main(String[] args) {
         Course course = new Course("CSC207", "Software Design", "Fall 2022", false, 0.5f);
-        CourseEvent csc207lecture = new CourseEvent("Lecture", "Tuesday", "18:00", "20:00", "BA 1200");
-        CourseEvent csc207tutorial = new CourseEvent("Tutorial", "Monday", "12:00", "14:00", "BA 1200");
+        CourseEvent csc207lecture = new CourseEvent("Lecture", DayOfWeek.TUESDAY,
+                LocalTime.of(18,00), LocalTime.of(20,00), "BA 1200");
+        CourseEvent csc207tutorial = new CourseEvent("Tutorial", DayOfWeek.MONDAY,
+                LocalTime.of(12,00), LocalTime.of(14,00), "BA 1200");
         course.addCourseEvent(csc207lecture);
         course.addCourseEvent(csc207tutorial);
         System.out.println(course);
