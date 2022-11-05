@@ -69,38 +69,20 @@ public class Outline {
         return numberOfAssessmentsCompleted;
     }
 
-    /*public void computeRunningGrade() {
+    public void computeRunningGrade() {
         float rgrade = 0.0f;
-
-        *//*use only committed assessment instances to calculate this course's running grade average
-
-        iterate through each Assessment and each of its instances*//*
-
         for (Assessment assessment : assessments) {
-            for (AssessmentInstance instance : Assessment.getInstanceList()) {
-                if (instance.isCommitted()) {
-                    rgrade += instance.getWeightedGrade();
-                }
-            }
+            rgrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getCommittedMarks());
         }
-
-        *//*for each instance, calculate the weighted grade and add it to the running grade
-        divide the running grade by the total number of committed instances
-
-        set the running grade to the calculated value*//*
-        this.setRunningGrade(rgrade);
-    }*/
+        setRunningGrade(rgrade);
+    }
 
     public void computeHypotheticalGrade() {
         float hgrade = 0.0f;
-        /*use all assessment instances with a mark to calculate this course's running grade average*/
-
-        /*iterate through each Assessment and each of its instances*/
-        /*for each instance, calculate the weighted grade and add it to the running grade*/
-        /*divide the running grade by the total number of instances*/
-
-        /*set the running grade to the calculated value*/
-        this.setHypothethicalGrade(hgrade);
+        for (Assessment assessment : assessments) {
+            hgrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getAllMarks());
+        }
+        setHypothethicalGrade(hgrade);
     }
 
     public float getRunningGrade() {
