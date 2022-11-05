@@ -43,6 +43,27 @@ public class InstanceList {
         return numberOfSubmittedInstances;
     }
 
+    public double[] getAllMarks() {
+        double[] allMarks = new double[totalNumberOfInstances];
+        for (int i = 0; i < totalNumberOfInstances; i++) {
+            allMarks[i] = listOfAssessmentInstances.get(i).getMark();
+        }
+        return allMarks;
+    }
+
+
+    public double[] getCommittedMarks() {
+        double[] committedMarks = new double[getNumberOfCommittedInstances()];
+        int i = 0;
+        for (AssessmentInstance instance : listOfAssessmentInstances) {
+            if (instance.isCommitted()) {
+                committedMarks[i] = instance.getMark();
+                i++;
+            }
+        }
+        return committedMarks;
+    }
+
     public void addInstance(String name, LocalDate date) {
         AssessmentInstance instance = new AssessmentInstance(name, date);
         listOfAssessmentInstances.add(instance);
