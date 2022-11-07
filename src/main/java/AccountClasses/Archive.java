@@ -20,7 +20,6 @@ public class Archive {
     public CGPA getPastGpa(){
         return pastGpa;
     }
-
     public void addArchivedCourse(Course course){
         archived.add(Course);
     }

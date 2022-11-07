@@ -8,11 +8,7 @@ public class AccountList {
 
     public AccountList(){}
 
-    public void addAccount(Account account){
+    public static void addAccount(Account account){
         accounts.add(account);
-    }
-
-    public void removeAccount(Account account){
-        accounts.remove(account);
     }
 }
