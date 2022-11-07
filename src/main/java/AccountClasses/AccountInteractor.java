@@ -19,18 +19,18 @@ public class AccountInteractor{
 
     }
 
-    public String idInput(){
+    private String idInput(){
         Scanner input = new Scanner(System.in);
         System.out.println("Enter Username");
         return input.nextLine();
     }
-    public String passwordInput(){
+    private String passwordInput(){
         Scanner input = new Scanner(System.in);
         System.out.println("Enter Password (8-16 characters, alphabets and numbers only)");
         return input.nextLine();
     }
 
-    public String passwordCheck(){
+    private String passwordCheck(){
         String password = passwordInput();
         if(8 <= password.length() && password.length() <= 16){
             return password;
@@ -42,6 +42,6 @@ public class AccountInteractor{
     }
 
     public void removeAccount(Account account){
-        AccountList.accounts.remove(account);
+        AccountList.removeAccount(account);
     }
 }
