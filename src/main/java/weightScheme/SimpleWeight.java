@@ -11,9 +11,10 @@ public class SimpleWeight implements WeightScheme {
 
     @Override
     public double computeWeighted(double[] marks) {
-        return DoubleStream.of(marks)
-                .map(mark -> mark * (weight.getTotalWeight() / marks.length))
+        double exactWeightEarned = DoubleStream.of(marks)
+                .map(mark -> mark * weight.getWeightOfEachInstance())
                 .sum();
+        return exactWeightEarned * (getTotalWeight() / (marks.length * weight.getWeightOfEachInstance()));
     }
 
     @Override
