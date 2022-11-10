@@ -23,6 +23,14 @@ class WeightSchemeTest {
     }
 
     @Test
+    public void SimpleWeightRunningComputation() {
+        double[] test_marks = {75, 50};
+        Weight weight = new Weight(test_marks.length, 0.10);
+        WeightScheme simpleWeight = new SimpleWeight(weight);
+        Assertions.assertEquals(0.125, simpleWeight.computeWeighted(test_marks), 0.001);
+    }
+
+    @Test
     public void OrderedWeightNumberOfInstances() {
         Assertions.assertEquals(new OrderedWeight(weights).getNumberOfInstances(), 7);
     }
