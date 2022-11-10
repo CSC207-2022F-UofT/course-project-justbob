@@ -44,4 +44,19 @@ class WeightSchemeTest {
     public void OrderedWeightComputation() {
         Assertions.assertEquals(51.1225, new OrderedWeight(weights).computeWeighted(marks), 0.001);
     }
+
+    @Test
+    public void OrderedWeightRunningComputation() {
+        double[] test_marks = {
+                100, 80, 50
+        };
+        // Top Mark: 20%, Next 3 highest: each 10%, Lowest mark: 5%. Total marks: 5. Total Weight: 55%.
+        Weight[] test_weights = {
+                new Weight(1, 0.2),
+                new Weight(3, 0.1),
+                new Weight(1, 0.05)
+        };
+        Assertions.assertEquals(44.5, new OrderedWeight(test_weights).computeWeighted(test_marks), 0.001);
+
+    }
 }
