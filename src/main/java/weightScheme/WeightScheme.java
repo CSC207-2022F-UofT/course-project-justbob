@@ -7,7 +7,7 @@ public interface WeightScheme {
      * Compute the average mark earned with (marks) according to this weightScheme.
      *
      * Preconditions:
-     *      marks.length == getNumberOfInstances()
+     *      marks.length <= getNumberOfInstances()
      *      for each mark in marks, 0 <= mark <= 100
      * @param marks
      * @return
