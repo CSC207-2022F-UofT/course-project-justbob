@@ -67,7 +67,10 @@ public class Course {
     }
 
     public void addCourseEvent(CourseEvent courseEvent) {
-        this.courseEvents.add(courseEvent);
+        if (courseEvents.contains(courseEvent)) {
+            throw new IllegalArgumentException("Course event already exists");
+        }
+        courseEvents.add(courseEvent);
     }
 
     public String toString() {
