@@ -73,6 +73,42 @@ public class GPA {
 
         return gpalist;
     }
+    public List showGrade(){
+        List<Double> list1 = courseMarks.getList();
+        List<String> gradeList = new ArrayList<>();
+
+        for(int i = 0; i < list1.size(); i ++){
+            if(list1.get(i) >= 90){
+                gradeList.add("A+");
+            }else if(list1.get(i) >= 85){
+                gradeList.add("A");
+            }else if(list1.get(i) >= 80){
+                gradeList.add("A-");
+            }else if(list1.get(i) >= 77){
+                gradeList.add("B+");
+            }else if(list1.get(i) >= 73){
+                gradeList.add("B");
+            }else if(list1.get(i) >= 70){
+                gradeList.add("B-");
+            }else if(list1.get(i) >= 67){
+                gradeList.add("C+");
+            }else if(list1.get(i) >= 63){
+                gradeList.add("C");
+            }else if(list1.get(i) >= 60){
+                gradeList.add("C-");
+            }else if(list1.get(i) >= 57){
+                gradeList.add("D+");
+            }else if(list1.get(i) >= 55){
+                gradeList.add("D");
+            }else if(list1.get(i) >= 50){
+                gradeList.add("D-");
+            }else {
+                gradeList.add("F");
+            }
+        }
+        return gradeList;
+
+    }
 
 /*
     if(percentage >= 90.0){
