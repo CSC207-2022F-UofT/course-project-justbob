@@ -1,4 +1,4 @@
-package CourseManager;
+package courseManager;
 
 import java.util.ArrayList;
 
@@ -60,6 +60,10 @@ public class Course {
 
     public float getCredit() {
         return credit;
+    }
+
+    public Outline getOutline() {
+        return outline;
     }
 
     public ArrayList<CourseEvent> getCourseEvents() {

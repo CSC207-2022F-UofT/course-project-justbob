@@ -2,6 +2,8 @@ package weightScheme;
 
 import java.util.stream.DoubleStream;
 
+import static java.lang.Math.round;
+
 public class SimpleWeight implements WeightScheme {
     private Weight weight;
 
@@ -14,7 +16,8 @@ public class SimpleWeight implements WeightScheme {
         double exactWeightEarned = DoubleStream.of(marks)
                 .map(mark -> mark * weight.getWeightOfEachInstance())
                 .sum();
-        return exactWeightEarned * (getTotalWeight() / (marks.length * weight.getWeightOfEachInstance()));
+        return exactWeightEarned / (marks.length * weight.getWeightOfEachInstance());
+
     }
 
     @Override

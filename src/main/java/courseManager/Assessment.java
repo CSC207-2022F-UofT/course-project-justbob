@@ -1,8 +1,9 @@
-package CourseManager;
+package courseManager;
 
 import weightScheme.WeightScheme;
 
 import java.util.ArrayList;
+
 public class Assessment {
     private String title;
     private InstanceList instanceList;
@@ -19,7 +20,8 @@ public class Assessment {
     public Assessment(String title, WeightScheme weightScheme) {
         this.title = title;
         this.weightScheme = weightScheme;
-        this.instanceList = new InstanceList();
+        this.instanceList = new InstanceList(this.title, weightScheme.getNumberOfInstances());
+
     }
 
     public float getTotalWeight() {

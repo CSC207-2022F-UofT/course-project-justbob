@@ -1,4 +1,4 @@
-package CourseManager;
+package courseManager;
 
 
 import java.time.DayOfWeek;

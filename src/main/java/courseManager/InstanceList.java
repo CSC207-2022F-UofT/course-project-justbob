@@ -1,24 +1,41 @@
-package CourseManager;
+package courseManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class InstanceList {
     private ArrayList<AssessmentInstance> listOfAssessmentInstances;
 
+    private String pluralTitle;
+    private String singularTitle;
     private int totalNumberOfInstances;
     private int numberOfCommittedInstances;
     private int numberOfSubmittedInstances;
 
     /**
-     * Create a new InstanceList object with an empty list of AssessmentInstances
+     * Create a new InstanceList object with a list of AssessmentInstances
+     * @param pluralTitle the plural title of the assessment
+     *              e.g. "Quizzes", "Midterm", "Homework Assignments"
+     * @param totalNumberOfInstances the total number of instances of the assessment
      */
 
-    public InstanceList() {
+    public InstanceList(String pluralTitle, int totalNumberOfInstances) {
         this.listOfAssessmentInstances = new ArrayList<>();
-        this.totalNumberOfInstances = 0;
-        this.numberOfCommittedInstances = 0;
-        this.numberOfSubmittedInstances = 0;
+        this.singularTitle = toSingular(pluralTitle);
+        for (int i = 0, j = 1; i < totalNumberOfInstances; i++, j++){
+            this.addInstance(this.singularTitle + " #" + j);
+        }
+    }
+
+    public String toSingular(String pluralTitle){
+        if (pluralTitle == "Quizzes"){
+            return "Quiz";
+        }
+        if (pluralTitle.charAt(pluralTitle.length()-1) == 's'){
+            return singularTitle.substring(0, pluralTitle.length()-1);
+        }
+        return singularTitle;
     }
 
     public int getTotalNumberOfInstances() {
@@ -26,6 +43,7 @@ public class InstanceList {
     }
 
     public int getNumberOfCommittedInstances() {
+        int numberOfCommittedInstances = 0;
         for (AssessmentInstance instance : listOfAssessmentInstances) {
             if (instance.isCommitted()) {
                 numberOfCommittedInstances++;
@@ -35,6 +53,7 @@ public class InstanceList {
     }
 
     public int getNumberOfSubmittedInstances() {
+        int numberOfSubmittedInstances = 0;
         for (AssessmentInstance instance : listOfAssessmentInstances) {
             if (instance.isSubmitted()) {
                 numberOfSubmittedInstances++;
@@ -64,8 +83,8 @@ public class InstanceList {
         return committedMarks;
     }
 
-    public void addInstance(String name, LocalDate date) {
-        AssessmentInstance instance = new AssessmentInstance(name, date);
+    public void addInstance(String name) {
+        AssessmentInstance instance = new AssessmentInstance(name);
         listOfAssessmentInstances.add(instance);
         totalNumberOfInstances++;
     }

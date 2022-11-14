@@ -1,4 +1,4 @@
-package CourseManager;
+package courseManager;
 
 import java.time.LocalDate;
 
@@ -12,12 +12,10 @@ public class AssessmentInstance {
     /**
      * Create a new AssessmentInstance object with the given name and date
      * @param assessmentInstanceName the name of the assessment instance
-     * @param date the date of the assessment instance
      */
 
-    public AssessmentInstance(String assessmentInstanceName, LocalDate date) {
+    public AssessmentInstance(String assessmentInstanceName) {
         this.assessmentInstanceName = assessmentInstanceName;
-        this.date = date;
         this.isCommitted = false;
         this.isSubmitted = false;
     }
