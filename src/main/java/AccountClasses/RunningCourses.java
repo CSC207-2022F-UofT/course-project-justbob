@@ -6,15 +6,20 @@ public class RunningCourses {
     List<Course> runningCourses = new ArrayList<Course>();
     Calendar calendar;
     Checklist checklist;
-    GPATrendOverall semesterGPA;
+    CGPA semesterGPA;
 
-    public RunningCourses(){}
+    public RunningCourses(){
+    }
 
     public void addRunningCourse(Course course){
         runningCourses.add(course);
     }
     public void removeRunningCourse(Course course){
         runningCourses.remove(course);
+    }
+
+    public CGPA getOverallGpa(){
+        return /**call CGPA calculator**/
     }
 }
 

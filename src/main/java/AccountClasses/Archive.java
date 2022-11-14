@@ -6,7 +6,9 @@ public class Archive {
     List<Course> archived = new ArrayList<Course>();
     CGPA pastGpa;
 
-    public Archive(){}
+    public Archive(){
+        pastGpa = /****/
+    }
 
     @Override
     public String toString() {
