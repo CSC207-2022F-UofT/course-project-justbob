@@ -17,7 +17,9 @@ public class RunningCourses {
     public void removeRunningCourse(Course course){
         runningCourses.remove(course);
     }
+    public List<Double> getGradesList(){
 
+    }
     public CGPA getOverallGpa(){
         return /**call CGPA calculator**/
     }
