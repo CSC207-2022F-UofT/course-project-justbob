@@ -6,12 +6,14 @@ public class GPA {
     private double gpa;
     private String grade = "";
     private outline courseMarks;
+    private runningCourse semester;
 
-    public GPA(double percentage, double gpa, String grade, outline courseMarks){
+    public GPA(double percentage, double gpa, String grade, outline courseMarks, runningCourse semester){
         this.percentage = percentage;
         this.gpa = gpa;
         this.grade = grade;
         this.courseMarks = courseMarks;
+        this.runningCourse = semester;
     }
 
     public double getPercentage() {
@@ -107,6 +109,19 @@ public class GPA {
             }
         }
         return gradeList;
+
+    }
+
+    public double showSemester(){
+        List<Double> semlist = semester.getList();
+        int average = 0;
+        int sum = 0;
+        for(int i = 0; i < semlist.size(); i++){
+            sum += semlist.get(i);
+        }
+        average = (sum / semlist.size());
+        return average;
+
 
     }
 
