@@ -36,10 +36,7 @@ public class Course {
         this.archived = archived;
         this.credit = credit;
         this.courseEvents = new ArrayList<>();
-    }
-
-    public void setOutline(Outline outline) {
-        this.outline = outline;
+        this.outline = new Outline();
     }
 
     public String getCourseCode() {
@@ -70,7 +67,7 @@ public class Course {
         return courseEvents;
     }
 
-    public void addCourseEvent(CourseEvent courseEvent) {
+    public void addCourseEvent(CourseEvent courseEvent) throws IllegalArgumentException{
         if (courseEvents.contains(courseEvent)) {
             throw new IllegalArgumentException("Course event already exists");
         }
