@@ -12,8 +12,7 @@ public class CredentialsChecker {
         return true;
     }
 
-    public static boolean checkLength(String input){
-        //check if the username or password is within 8 to 16 characters, inclusive
+    public static boolean requirementsCheck(String input) {
         return !(8 <= input.length() && input.length() <= 16);
     }
 }

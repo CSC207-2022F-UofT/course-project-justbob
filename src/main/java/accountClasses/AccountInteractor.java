@@ -17,7 +17,7 @@ public class AccountInteractor {
         if (!(CredentialsChecker.checkDuplicateId(id))) {
             System.out.println("Username already exists, please choose another username");
             createAccount();
-        } else if (!(CredentialsChecker.checkLength(id))) {
+        } else if (!(CredentialsChecker.requirementsCheck(id))) {
             System.out.println("Username too short or too long, username must be 8-16 characters");
             createAccount();
         }
@@ -59,7 +59,7 @@ public class AccountInteractor {
 
     private String passwordCheck() {
         String password = passwordInput();
-        if (!(CredentialsChecker.checkLength(password))) {
+        if (!(CredentialsChecker.requirementsCheck(password))) {
             System.out.println("Invalid password,password must be between 8 to 16 characters");
             passwordCheck();
         }
