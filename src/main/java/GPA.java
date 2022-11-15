@@ -40,36 +40,40 @@ public class GPA {
         this.grade = grade;
     }
 
-    public List calculateCourseGPA(){
+    public double percentToGPA(double percent){
+        if(percent >= 85){
+            return 4.0;
+        }else if(percent >= 80){
+            return 3.7;
+        }else if(percent >= 77){
+            return 3.3;
+        }else if(percent >= 73){
+            return 3.0;
+        }else if(percent >= 70){
+            return 2.7;
+        }else if(percent >= 67){
+            return 2.3;
+        }else if(percent >= 63){
+            return 2.0;
+        }else if (percent >=60){
+            return 1.7;
+        }else if (percent >= 57){
+            return 1.3;
+        }else if (percent >= 53){
+            return 1.0;
+        }else if (percent >= 50){
+            return 0.7;
+        }else {
+            return 0.0;
+        }
+
+    }
+    public List<Double> calculateCourseGPA(){
         List<Double> list = courseMarks.getList();
         List<Double> gpalist = new ArrayList<>();
 
-        for(int i = 0; i < list.size(); i ++){
-            if(list.get(i) >= 85){
-                gpalist.add(4.0);
-            }else if(list.get(i) >= 80){
-                gpalist.add(3.7);
-            }else if(list.get(i) >= 77){
-                gpalist.add(3.3);
-            }else if(list.get(i) >= 73){
-                gpalist.add(3.0);
-            }else if(list.get(i) >= 70){
-                gpalist.add(2.7);
-            }else if(list.get(i) >= 67){
-                gpalist.add(2.3);
-            }else if(list.get(i) >= 63){
-                gpalist.add(2.0);
-            }else if (list.get(i) >=60){
-                gpalist.add(1.7);
-            }else if (list.get(i) >= 57){
-                gpalist.add(1.3);
-            }else if (list.get(i) >= 53){
-                gpalist.add(1.0);
-            }else if (list.get(i) >= 50){
-                gpalist.add(0.7);
-            }else {
-                gpalist.add(0.0);
-            }
+        for(int i = 0; i < list.size(); i ++) {
+            gpalist.add(percentToGPA(list.get(i)));
         }
 
 
@@ -111,16 +115,25 @@ public class GPA {
         return gradeList;
 
     }
-
-    public double showSemester(){
+    public double showPercentSemester(){
         List<Double> semlist = semester.getList();
-        int average = 0;
-        int sum = 0;
+        double average;
+        double sum = 0;
         for(int i = 0; i < semlist.size(); i++){
             sum += semlist.get(i);
         }
         average = (sum / semlist.size());
         return average;
+
+    }
+    public double showGPASemester(){
+        calculateCourseGPA();
+        double sumGPA = 0;
+        double semesterGPA = 0;
+        for(int i = 0; i < calculateCourseGPA().size(); i ++){
+            sumGPA += calculateCourseGPA().get(i);
+        }
+        semesterGPA = (sumGPA / calculateCourseGPA().size());
 
 
     }
