@@ -1,6 +1,4 @@
-package AccountClasses;
-
-import java.util.List;
+package accountClasses;
 
 public class Account {
     public String username;

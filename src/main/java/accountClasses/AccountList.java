@@ -1,4 +1,4 @@
-package AccountClasses;
+package accountClasses;
 
 import java.util.ArrayList;
 import java.util.List;
