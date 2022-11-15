@@ -136,6 +136,7 @@ public class GPA {
             sumGPA += calculateCourseGPA().get(i);
         }
         semesterGPA = (sumGPA / calculateCourseGPA().size());
+        return semesterGPA;
 
 
     }
