@@ -11,8 +11,13 @@ public class AccountList {
         accounts.add(account);
     }
 
-    public static void removeAccount(Account account) {
-        //Remove an account from accounts
-        accounts.remove(account);
+    public boolean checkDuplicateId(String id){
+        //Check if the given username matches an existing username in accounts
+        for(Account account : accounts){
+            if(account.username.equals(id)){
+                return false;
+            }
+        }
+        return true;
     }
 }
