@@ -14,12 +14,12 @@ public class AccountInteractor {
 
     public void createAccount() {
         String id = idInput();
-        for (Account account : AccountList.accounts) {
-            if (Objects.equals(account.username, id)) {
-                System.out.println("Username already exists, please choose another username");
-                createAccount();
-                return;
-            }
+        if (!(AccountList.checkDuplicateId(id))) {
+            System.out.println("Username already exists, please choose another username");
+            createAccount();
+        } else if (!(AccountList.checkIdLength(id))) {
+            System.out.println("Username too short or too long, username must be 8-16 characters");
+            createAccount();
         }
         String password = passwordCheck();
         Account newAcc = new Account(id, password);
@@ -31,16 +31,16 @@ public class AccountInteractor {
         String username = idInput();
         String password = passwordInput();
         for (Account account : AccountList.accounts) {
-            if (Objects.equals(account.username, username)) {
-                if (Objects.equals(account.password, password)) {
+            if (Objects.equals(account.getUsername(), username)) {
+                if (Objects.equals(account.getPassword(), password)) {
                     closeScanner();
                     System.out.println("Login is successful");
                     return; //need to make this line direct user into account interface
-                }else{
+                } else {
                     System.out.println("Incorrect password");
                     login();
                 }
-            }else{
+            } else {
                 System.out.println("Username does not exist");
                 login();
             }

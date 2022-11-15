@@ -11,13 +11,18 @@ public class AccountList {
         accounts.add(account);
     }
 
-    public boolean checkDuplicateId(String id){
+    public static boolean checkDuplicateId(String id){
         //Check if the given username matches an existing username in accounts
         for(Account account : accounts){
-            if(account.username.equals(id)){
+            if(account.getUsername().equals(id)){
                 return false;
             }
         }
         return true;
+    }
+
+    public static boolean checkIdLength(String id){
+        //check if the username is within 8 to 16 characters, inclusive
+        return !(8 <= id.length() && id.length() <= 16);
     }
 }

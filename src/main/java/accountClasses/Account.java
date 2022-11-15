@@ -1,10 +1,10 @@
 package accountClasses;
 
 public class Account {
-    public String username;
-    public String password;
-    public RunningCourses runningCourses;
-    public Archive archive;
+    private String username;
+    private String password;
+    private RunningCourses runningCourses;
+    private Archive archive;
 
     /**
      * Creates an account object
@@ -18,6 +18,22 @@ public class Account {
         this.password = password;
         this.runningCourses = new RunningCourses();
         this.archive = new Archive();
+    }
+
+    public String getUsername(){
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Archive getArchive() {
+        return archive;
+    }
+
+    public RunningCourses getRunningCourses() {
+        return runningCourses;
     }
 }
 
