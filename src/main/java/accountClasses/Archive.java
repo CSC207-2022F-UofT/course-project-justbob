@@ -9,8 +9,10 @@ public class Archive {
     private List<Course> archived;  // List of archived courses, which were completed in the past
     private CGPA pastGpa;   // The combined GPA of all archived courses
 
+    /**
+     * Initiate the archive with an empty archived course list
+     */
     public Archive(){
-        // Initiate the archive with an empty archived course list
         this.archived = new ArrayList<Course>();
     }
 
@@ -31,7 +33,7 @@ public class Archive {
 
     @Override
     public String toString() {
-        // An optional method that tells shows the user all the archived courses.
+        //An optional method that tells shows the user all the archived courses.
         StringBuilder pastCourses = new StringBuilder();
         for(Course course : archived){
             pastCourses.append(course.toString());
