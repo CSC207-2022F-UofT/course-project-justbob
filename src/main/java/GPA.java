@@ -75,42 +75,44 @@ public class GPA {
         for(int i = 0; i < list.size(); i ++) {
             gpalist.add(percentToGPA(list.get(i)));
         }
-
-
         return gpalist;
     }
-    public List showGrade(){
+    public String percentToGrade(double percent){
+        if(percent >= 90){
+            return "A+";
+        }else if(percent >= 85){
+            return "A";
+        }else if(percent >= 80){
+            return "A-";
+        }else if(percent >= 77){
+            return "B+";
+        }else if(percent >= 73){
+            return "B";
+        }else if(percent >= 70){
+            return "B-";
+        }else if(percent >= 67){
+            return "C+";
+        }else if(percent >= 63){
+            return "C";
+        }else if(percent >= 60){
+            return "C-";
+        }else if(percent >= 57){
+            return "D+";
+        }else if(percent >= 55){
+            return "D";
+        }else if(percent >= 50){
+            return "D-";
+        }else {
+            return "F";
+        }
+
+    }
+    public List<String> showGrade(){
         List<Double> list1 = courseMarks.getList();
         List<String> gradeList = new ArrayList<>();
 
         for(int i = 0; i < list1.size(); i ++){
-            if(list1.get(i) >= 90){
-                gradeList.add("A+");
-            }else if(list1.get(i) >= 85){
-                gradeList.add("A");
-            }else if(list1.get(i) >= 80){
-                gradeList.add("A-");
-            }else if(list1.get(i) >= 77){
-                gradeList.add("B+");
-            }else if(list1.get(i) >= 73){
-                gradeList.add("B");
-            }else if(list1.get(i) >= 70){
-                gradeList.add("B-");
-            }else if(list1.get(i) >= 67){
-                gradeList.add("C+");
-            }else if(list1.get(i) >= 63){
-                gradeList.add("C");
-            }else if(list1.get(i) >= 60){
-                gradeList.add("C-");
-            }else if(list1.get(i) >= 57){
-                gradeList.add("D+");
-            }else if(list1.get(i) >= 55){
-                gradeList.add("D");
-            }else if(list1.get(i) >= 50){
-                gradeList.add("D-");
-            }else {
-                gradeList.add("F");
-            }
+            gradeList.add(percentToGrade(list1.get(i)));
         }
         return gradeList;
 
