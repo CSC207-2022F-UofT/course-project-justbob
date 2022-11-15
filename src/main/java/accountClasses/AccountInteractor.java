@@ -3,8 +3,11 @@ package accountClasses;
 import java.util.*;
 
 public class AccountInteractor {
-    public Scanner scanner;
+    private Scanner scanner;
 
+    /**
+     * Initiate an Account interactor with a scanner for user inputs
+     */
     public AccountInteractor() {
         scanner = new Scanner(System.in);
     }
@@ -32,7 +35,7 @@ public class AccountInteractor {
                 if (Objects.equals(account.password, password)) {
                     closeScanner();
                     System.out.println("Login is successful");
-                    return;
+                    return; //need to make this line direct user into account interface
                 }else{
                     System.out.println("Incorrect password");
                     login();
@@ -64,11 +67,7 @@ public class AccountInteractor {
         return password;
     }
 
-    public void closeScanner() {
+    private void closeScanner() {
         scanner.close();
-    }
-
-    public void removeAccount(Account account) {
-        AccountList.removeAccount(account);
     }
 }
