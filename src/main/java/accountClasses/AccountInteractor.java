@@ -14,10 +14,10 @@ public class AccountInteractor {
 
     public void createAccount() {
         String id = idInput();
-        if (!(AccountList.checkDuplicateId(id))) {
+        if (!(CredentialsChecker.checkDuplicateId(id))) {
             System.out.println("Username already exists, please choose another username");
             createAccount();
-        } else if (!(AccountList.checkIdLength(id))) {
+        } else if (!(CredentialsChecker.checkLength(id))) {
             System.out.println("Username too short or too long, username must be 8-16 characters");
             createAccount();
         }
@@ -59,7 +59,7 @@ public class AccountInteractor {
 
     private String passwordCheck() {
         String password = passwordInput();
-        if (!(8 <= password.length() && password.length() <= 16)) {
+        if (!(CredentialsChecker.checkLength(password))) {
             System.out.println("Invalid password,password must be between 8 to 16 characters");
             passwordCheck();
         }
