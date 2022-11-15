@@ -25,6 +25,10 @@ public class Archive {
         return pastGpa;
     }
 
+    public List<Course> getArchived(){
+        return archived;
+    }
+
     public void addArchivedCourse(Course course){
         //Add given course to archived
         archived.add(course);
