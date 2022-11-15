@@ -4,13 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountList {
-    static List<Account> accounts = new ArrayList<Account>();
+    /**
+     * The list of registered accounts.
+     * This is static since there will only be one accountList for the app +
+     */
+    static List<Account> accounts;
 
-    public static void addAccount(Account account){
+    /**
+     * This method adds a new account to accounts
+     */
+    static public void addAccount(Account account) {
         accounts.add(account);
     }
 
-    public static void removeAccount(Account account){
+    /**
+     * This method removes an existing account in accounts
+     */
+    public static void removeAccount(Account account) {
+        //Remove an account from accounts
         accounts.remove(account);
     }
 }
