@@ -3,12 +3,9 @@ package accountClasses;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class AccountListTest {
+public class accountClassesTest {
     private Account goodAccount1 = new Account("Bobby001", "goodbob1998");
     private Account duplicateAccount = new Account("Bobby001", "goodbob1997");
     private Account shortIdAccount = new Account("Bob", "goodbob1996");
@@ -16,23 +13,22 @@ public class AccountListTest {
     private Account getGoodAccount2 = new Account("Jimmy001", "badjim2022");
 
     @Test
-    public void addAccount(){
-        AccountList.addAccount(goodAccount1);
-        Assertions.assertEquals(AccountList.accounts, List.of(new Account("Bobby001", "goodbob1998")));
+    public void addGoodAccount() {
     }
 
     @Test
-    public void duplicateCheckTrue()
+    public void addBadAccount() {
+    }
 
     @Test
-    public void duplicateCheckFalse()
+    public void loginCorrect() {
+    }
 
     @Test
-    public void idCheckTrue()
+    public void loginIncorrect() {
+    }
 
     @Test
-    public void idCheckFalseLong()
-
-    @Test
-    public void idCheckFalseShort()
+    public void () {
+    }
 }

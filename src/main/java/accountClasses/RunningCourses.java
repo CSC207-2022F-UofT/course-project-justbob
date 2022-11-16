@@ -13,8 +13,8 @@ public class RunningCourses {
 
     public RunningCourses(){
         this.semester = new ArrayList<Course>();
-        this.calendar
-        this.checklist
+        this.calendar = new Calendar();
+        this.checklist = new Checklist();
     }
 
     public void addRunningCourse(Course course){
