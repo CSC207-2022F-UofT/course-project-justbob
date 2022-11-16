@@ -19,4 +19,6 @@ public class CredentialsChecker {
     public static boolean passwordLengthCheck(String input) {
         return !(8 <= input.length() && input.length() <= 16);
     }
+
+
 }

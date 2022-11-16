@@ -2,11 +2,11 @@ package accountClasses;
 
 import java.util.*;
 
-public class AccountInteractor {
+public class AccountInteractor{
     private Scanner scanner;
 
     /**
-     * Initiate an Account interactor with a scanner for user inputs
+     * Initiate an account creator with a scanner for user inputs
      */
     public AccountInteractor() {
         scanner = new Scanner(System.in);
@@ -37,11 +37,11 @@ public class AccountInteractor {
                     System.out.println("Login is successful");
                     return; //need to make this line direct user into account interface
                 } else {
-                    System.out.println("Incorrect password");
+                    System.out.println("Incorrect password, please try again");
                     login();
                 }
             } else {
-                System.out.println("Username does not exist");
+                System.out.println("Username does not exist, please re-enter");
                 login();
             }
         }
