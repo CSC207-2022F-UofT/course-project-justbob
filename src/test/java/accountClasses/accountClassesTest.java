@@ -29,6 +29,18 @@ public class accountClassesTest {
     }
 
     @Test
-    public void () {
+    public void archiveArchived() {
+    }
+
+    @Test
+    public void archiveRunning() {
+    }
+
+    @Test
+    public void addRunningCourse() {
+    }
+
+    @Test
+    public void addRunningCourseDuplicate() {
     }
 }
