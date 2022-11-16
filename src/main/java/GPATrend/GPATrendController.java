@@ -11,6 +11,7 @@ public class GPATrendController {
 
     public void setHypothetical(boolean value) {
         this.model.setHypothetical(value);
+        this.updateView();
     }
 
     public void updateView() {
