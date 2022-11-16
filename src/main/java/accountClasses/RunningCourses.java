@@ -21,17 +21,20 @@ public class RunningCourses {
         //Add new course to the current semester
         if (semester.contains(course)) {
             System.out.println("Course already in semester");
+            //report to controller
         } else {
             semester.add(course);
+            //report to controller
         }
     }
 
     public void removeRunningCourse(Course course) {
         if(semester.contains(course)){
             semester.remove(course);
+            //report to controller
         }else{
             System.out.println(course.getCourseCode() + course.getCourseName() + "not found in current semester");
-            //report to controller?
+            //report to controller
         }
     }
 

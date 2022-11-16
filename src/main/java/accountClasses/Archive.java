@@ -34,9 +34,11 @@ public class Archive {
         //Add given course to archived
         if (course.isArchived()) {
             System.out.println("Course already in archive");
+            //report to controller
         } else {
             archived.add(course);
             course.archiveCourse();
+            //report to controller
         }
     }
 
