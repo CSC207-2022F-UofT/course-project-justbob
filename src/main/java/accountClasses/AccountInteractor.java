@@ -12,10 +12,15 @@ public class AccountInteractor {
             System.out.println("Username too short or too long, username must be 8-16 characters");
             //report to controller
         } else {
-            Account newAcc = new Account(id, password);
-            AccountList.addAccount(newAcc);
-            System.out.println("Account has been successfully created");
-            //report to controller
+            if(CredentialsChecker.passwordLengthCheck(password)){
+                Account newAcc = new Account(id, password);
+                AccountList.addAccount(newAcc);
+                System.out.println("Account has been successfully created");
+                //report to controller
+            }else{
+                System.out.println("password too short or too long, password must be 8-16 characters");
+                //report to controller
+            }
         }
     }
 
