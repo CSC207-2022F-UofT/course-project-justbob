@@ -41,15 +41,5 @@ public class Archive {
             //report to controller
         }
     }
-
-    @Override
-    public String toString() {
-        //An optional method that tells shows the user all the archived courses.
-        StringBuilder pastCourses = new StringBuilder();
-        for (Course course : archived) {
-            pastCourses.append(course.toString());
-        }
-        return pastCourses.toString();
-    }
 }
 
