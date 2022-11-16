@@ -15,6 +15,19 @@ public class GPATrendView {
         sw.displayChart();
     }
 
+    public static void showGraph(GPATrendInterface t) {
+        String name = t.toString();
+        t.calculateGPATrend();
+        List<String> xData = t.getXData();
+        List<Double> yData = t.getYData();
+
+        CategoryChart chart = new CategoryChart(1000, 500);
+        chart.addSeries(name, xData, yData);
+
+        SwingWrapper<CategoryChart> sw = new SwingWrapper<>(chart);
+        sw.displayChart();
+    }
+
     public static void main(String[] args) {
         List<String> xData = new ArrayList<>();
         List<Double> yData = new ArrayList<>();
