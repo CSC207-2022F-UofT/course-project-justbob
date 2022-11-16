@@ -9,6 +9,7 @@ public class GPATrendOverall implements GPATrendInterface{
     final private List<Course> courses;
     private List<String> course_names;
     private List<Double> grades;
+    private boolean isHypothetical = false;
 
     public GPATrendOverall(List<Course> courses)
     {
@@ -23,7 +24,13 @@ public class GPATrendOverall implements GPATrendInterface{
         List<String> course_names = new ArrayList<>();
         List<Double> grades = new ArrayList<>();
         for (Course course : this.courses) {
-            double grade = course.getOutline().getRunningGrade();
+            double grade;
+            if(this.isHypothetical) {
+                grade = course.getOutline().getHypothethicalGrade();
+            }
+            else {
+                grade = course.getOutline().getRunningGrade();
+            }
             course_names.add(course.getCourseName());
             grades.add(grade);
         }
@@ -55,5 +62,9 @@ public class GPATrendOverall implements GPATrendInterface{
             return true;
         }
         return false;
+    }
+
+    public void setHypothetical(boolean value) {
+        this.isHypothetical = value;
     }
 }

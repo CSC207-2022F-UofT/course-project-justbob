@@ -15,9 +15,8 @@ public class GPATrendView {
         sw.displayChart();
     }
 
-    public static void showGraph(GPATrendInterface t) {
+    public void showGraph(GPATrendInterface t) {
         String name = t.toString();
-        t.calculateGPATrend();
         List<String> xData = t.getXData();
         List<Double> yData = t.getYData();
 

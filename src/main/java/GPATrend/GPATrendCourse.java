@@ -10,6 +10,7 @@ public class GPATrendCourse implements GPATrendInterface{
     final private Course course;
     private List<String> assessment_names;
     private List<Double> grades;
+    private boolean isHypothetical = false;
 
     public GPATrendCourse(Course course)
     {
@@ -21,7 +22,12 @@ public class GPATrendCourse implements GPATrendInterface{
         List<String> assessment_names = new ArrayList<>();
         List<Double> grades = new ArrayList<>();
         for (Assessment assessment: assessments) {
-            double[] part_marks = assessment.getInstanceList().getAllMarks();
+            double[] part_marks;
+            if(this.isHypothetical) {
+                part_marks = assessment.getInstanceList().getAllMarks();
+            } else {
+                part_marks = assessment.getInstanceList().getCommittedMarks();
+            }
             double grade = 0;
             for(double part_mark : part_marks) {
                 grade += part_mark;
@@ -39,5 +45,9 @@ public class GPATrendCourse implements GPATrendInterface{
 
     public List<Double> getYData() {
         return this.grades;
+    }
+
+    public void setHypothetical(boolean value) {
+        this.isHypothetical = value;
     }
 }
