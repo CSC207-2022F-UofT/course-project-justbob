@@ -20,5 +20,4 @@ public class CredentialsChecker {
         return !(8 <= input.length() && input.length() <= 16);
     }
 
-
 }

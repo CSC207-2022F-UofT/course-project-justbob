@@ -31,6 +31,7 @@ public class RunningCourses {
             semester.remove(course);
         }else{
             System.out.println(course.getCourseCode() + course.getCourseName() + "not found in current semester");
+            //report to controller?
         }
     }
 
