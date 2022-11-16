@@ -3,6 +3,7 @@ package courseManager;
 import weightScheme.WeightScheme;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Outline {
     private double runningGrade;
@@ -10,7 +11,7 @@ public class Outline {
 
     private double percentageCompleted;
     private int numberOfAssessmentsCompleted; /*do these need to be their own instance variables?*/
-    private ArrayList<Assessment> assessments;
+    final private ArrayList<Assessment> assessments;
 
     public Outline () {
         this.runningGrade = 0.0f;
@@ -51,6 +52,9 @@ public class Outline {
 
     public Assessment getAssessmentData(int index) {
         return assessments.get(index);
+    }
+    public List<Assessment> getAssessments() {
+        return assessments;
     }
 
     public double getPercentageCompleted() {
