@@ -23,7 +23,6 @@ public class AccountInteractor {
         for (Account account : AccountList.accounts) {
             if (Objects.equals(account.getUsername(), id)) {
                 if (Objects.equals(account.getPassword(), password)) {
-                    closeScanner();
                     System.out.println("Login is successful");
                     //report to controller
                 } else {
