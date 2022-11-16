@@ -43,4 +43,20 @@ public class accountClassesTest {
     @Test
     public void addRunningCourseDuplicate() {
     }
+
+    @Test
+    public void removeRunningCourse() {
+    }
+
+    @Test
+    public void removeRunningCourseMissing() {
+    }
+
+    @Test
+    public void calcArchiveGpa() {
+    }
+
+    @Test
+    public void calcSemesterGpa() {
+    }
 }
