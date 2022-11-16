@@ -36,19 +36,4 @@ public class AccountInteractor {
             }
         }
     }
-
-    // the below code should be in a new AccountController class
-    private String idInput() {
-        System.out.println("Enter Username");
-        return scanner.nextLine();
-    }
-
-    private String passwordInput() {
-        System.out.println("Enter Password (8-16 characters, alphabets and numbers only)");
-        return scanner.nextLine();
-    }
-
-    private void closeScanner() {
-        scanner.close();
-    }
 }
