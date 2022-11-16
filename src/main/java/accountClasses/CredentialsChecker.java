@@ -12,7 +12,11 @@ public class CredentialsChecker {
         return true;
     }
 
-    public static boolean requirementsCheck(String input) {
+    public static boolean idLengthCheck(String input) {
+        return !(8 <= input.length() && input.length() <= 16);
+    }
+
+    public static boolean passwordLengthCheck(String input) {
         return !(8 <= input.length() && input.length() <= 16);
     }
 }
