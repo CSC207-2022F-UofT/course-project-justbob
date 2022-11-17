@@ -82,9 +82,9 @@ public class AccountGui implements ActionListener {
             password = passwordBox.getText();
 
             if(isLogin){
-                AccountInteractor.login(username, password);
+                AccountController.loginStatus(username, password);
             }else{
-                AccountInteractor.createAccount(username, password);
+                AccountController.registerStatus(username, password);
             }
         }
     }
