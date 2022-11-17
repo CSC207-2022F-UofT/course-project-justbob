@@ -50,4 +50,13 @@ public class GPATrendCourse implements GPATrendInterface{
     public void setHypothetical(boolean value) {
         this.isHypothetical = value;
     }
+
+    @Override
+    public String toString() {
+        String name = this.course.getCourseName() + " GPA";
+        if (this.isHypothetical) {
+            name += " - Hypothetical";
+        }
+        return name;
+    }
 }

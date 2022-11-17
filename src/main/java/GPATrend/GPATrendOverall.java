@@ -57,7 +57,7 @@ public class GPATrendOverall implements GPATrendInterface{
 
     public boolean removeCourse(Course course)
     {
-        if(this.courses.contains(course)) {
+        if (this.courses.contains(course)) {
             this.courses.remove(course);
             return true;
         }
@@ -66,5 +66,14 @@ public class GPATrendOverall implements GPATrendInterface{
 
     public void setHypothetical(boolean value) {
         this.isHypothetical = value;
+    }
+
+    @Override
+    public String toString() {
+        String name = "Overall GPA";
+        if (this.isHypothetical) {
+            name += " - Hypothetical";
+        }
+        return name;
     }
 }

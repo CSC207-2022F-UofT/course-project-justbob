@@ -1,7 +1,7 @@
 package GPATrend;
 
-import javax.swing.*;
-import org.knowm.xchart.*;
+import org.knowm.xchart.CategoryChart;
+import org.knowm.xchart.SwingWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ public class GPATrendView {
         CategoryChart chart = new CategoryChart(1000, 500);
         chart.addSeries(name, xData, yData);
 
+        // XChartPanel<CategoryChart> chartPanel = new XChartPanel<>(chart);
         SwingWrapper<CategoryChart> sw = new SwingWrapper<>(chart);
         sw.displayChart();
     }
