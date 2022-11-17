@@ -7,19 +7,19 @@ import java.util.List;
 
 public class RunningCourses {
     List<Course> semester;
-    Calendar calendar;
-    Checklist checklist;
-    CGPA semesterGPA;
+    //Calendar calendar;
+    //Checklist checklist;
+    //CGPA semesterGPA;
 
     /**
      * Creates a new RunningCourses object, where courses of the current semester can be added, as well as a semester
      * calendar, a checklist, and a semester GPA.
      */
-    public RunningCourses() {
+    /*public RunningCourses() {
         this.semester = new ArrayList<Course>();
         this.calendar = new Calendar();
         this.checklist = new Checklist();
-    }
+    } */
 
     public void addRunningCourse(Course course) {
         //Add new course to the current semester
@@ -42,10 +42,10 @@ public class RunningCourses {
         }
     }
 
-    public CGPA getOverallGpa() {
+    /*public CGPA getOverallGpa() {
         //Show the OverallGpa for the current semester
         return semesterGPA;
-    }
+    }*/
 
     public void updateOverallGpa() {
         //Calculate the current Gpa for the semester

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Archive {
-    private List<Course> archived;  // List of archived courses, which were completed in the past
-    private CGPA pastGpa;   // The combined GPA of all archived courses
+    private static List<Course> archived;  // List of archived courses, which were completed in the past
+    //private CGPA pastGpa;   // The combined GPA of all archived courses
 
     /**
      * Initiate the archive with an empty archived course list
@@ -18,15 +18,15 @@ public class Archive {
 
     public void updateGpa() {
         //Calculate the current CGPA in the archive and store the value in pastGpa
-        this.pastGpa = //call cgpa calculator
+        //this.pastGpa = //call cgpa calculator
     }
 
-    public CGPA getPastGpa() {
+   /* public CGPA getPastGpa() {
         // Show the calculated pastGpa
-        return pastGpa;
-    }
+        //return pastGpa;
+    }*/
 
-    public List<Course> getArchived() {
+    public static List<Course> getArchived() {
         return archived;
     }
 
