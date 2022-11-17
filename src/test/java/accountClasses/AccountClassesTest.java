@@ -78,12 +78,4 @@ public class AccountClassesTest {
         testSemster.removeRunningCourse(course1);
         //need controller to complete test
     }
-
-    @Test
-    public void calcArchiveGpa() {
-    }
-
-    @Test
-    public void calcSemesterGpa() {
-    }
 }
