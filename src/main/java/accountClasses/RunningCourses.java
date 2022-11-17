@@ -11,6 +11,10 @@ public class RunningCourses {
     Checklist checklist;
     CGPA semesterGPA;
 
+    /**
+     * Creates a new RunningCourses object, where courses of the current semester can be added, as well as a semester
+     * calendar, a checklist, and a semester GPA.
+     */
     public RunningCourses() {
         this.semester = new ArrayList<Course>();
         this.calendar = new Calendar();

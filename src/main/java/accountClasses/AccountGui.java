@@ -17,19 +17,23 @@ public class AccountGui implements ActionListener {
     private String password;
     private Boolean isLogin;
 
+    /**
+     * Creates a GUI for the login/register process
+     */
     public AccountGui() {
         frame = new JFrame("Uoft Score Tracking App");
 
         registerBtn = new JButton("Register account");
         registerBtn.setBounds(220, 200, 150, 40);
-        registerBtn.addActionListener(this);
+        registerBtn.addActionListener(this); //This is the register account button
 
         loginBtn = new JButton("Login");
         loginBtn.setBounds(420, 200, 150, 40);
-        loginBtn.addActionListener(this);
+        loginBtn.addActionListener(this);  //Login button
 
         instruction = new JLabel("Please login or register account");
         instruction.setBounds(300, 250, 300, 30);
+        //this label guides the user telling the user what to do
 
         frame.add(registerBtn);
         frame.add(loginBtn);
@@ -42,7 +46,8 @@ public class AccountGui implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginBtn) {
+        if (e.getSource() == loginBtn) { //the if branch statements creates a new interface where the user can
+            // enter username and password
             isLogin = Boolean.TRUE;
 
             registerBtn.setVisible(false);
@@ -71,7 +76,8 @@ public class AccountGui implements ActionListener {
             frame.add(userLabel);
             frame.add(passwordLabel);
             frame.add(confirmBtn);
-        } else {
+        } else { //The else branch activates when the confirm button on the new interface is clicked, which then stores
+            // the user inputs and send them to AccountInteractor for credential checks.
             username = usernameBox.getText();
             password = passwordBox.getText();
 
