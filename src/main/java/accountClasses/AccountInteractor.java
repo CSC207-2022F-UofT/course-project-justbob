@@ -4,39 +4,32 @@ import java.util.*;
 
 public class AccountInteractor {
 
-    public void createAccount(String id, String password) {
+    public static void createAccount(String id, String password) {
         if (!(CredentialsChecker.checkDuplicateId(id))) {
-            System.out.println("Username already exists, please choose another username");
-            //report to controller
+            AccountGui.instruction.setText("Username already exists, please choose another username");
         } else if (!(CredentialsChecker.idLengthCheck(id))) {
-            System.out.println("Username too short or too long, username must be 8-16 characters");
-            //report to controller
+            AccountGui.instruction.setText("Username too short or too long, username must be 8-16 characters");
         } else {
             if(CredentialsChecker.passwordLengthCheck(password)){
                 Account newAcc = new Account(id, password);
                 AccountList.addAccount(newAcc);
-                System.out.println("Account has been successfully created");
-                //report to controller
+                AccountGui.instruction.setText("Account has been successfully created");
             }else{
-                System.out.println("password too short or too long, password must be 8-16 characters");
-                //report to controller
+                AccountGui.instruction.setText("password too short or too long, password must be 8-16 characters");
             }
         }
     }
 
-    public void login(String id, String password) {
+    public static void login(String id, String password) {
         for (Account account : AccountList.accounts) {
             if (Objects.equals(account.getUsername(), id)) {
                 if (Objects.equals(account.getPassword(), password)) {
-                    System.out.println("Login is successful");
-                    //report to controller
+                    AccountGui.instruction.setText("Login is successful");
                 } else {
-                    System.out.println("Incorrect password, please try again");
-                    //report to controller
+                    AccountGui.instruction.setText("Incorrect password, please try again");
                 }
             } else {
-                System.out.println("Username does not exist, please re-enter");
-                //report to controller
+                AccountGui.instruction.setText("Username does not exist, please re-enter");
             }
         }
     }
