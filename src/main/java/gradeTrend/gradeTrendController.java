@@ -11,7 +11,6 @@ public class gradeTrendController {
 
     public void setHypothetical(boolean value) {
         this.model.setHypothetical(value);
-        this.updateView();
     }
 
     public void updateView() {
