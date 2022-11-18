@@ -85,30 +85,30 @@ public class GPA {
         }
         return gpalist;
     }
-    public String percentToGrade(double percent){
-        if(percent >= 90){
+    public String percentToGrade(){
+        if(percentage >= 90){
             return "A+";
-        }else if(percent >= 85){
+        }else if(percentage >= 85){
             return "A";
-        }else if(percent >= 80){
+        }else if(percentage >= 80){
             return "A-";
-        }else if(percent >= 77){
+        }else if(percentage >= 77){
             return "B+";
-        }else if(percent >= 73){
+        }else if(percentage >= 73){
             return "B";
-        }else if(percent >= 70){
+        }else if(percentage >= 70){
             return "B-";
-        }else if(percent >= 67){
+        }else if(percentage >= 67){
             return "C+";
-        }else if(percent >= 63){
+        }else if(percentage >= 63){
             return "C";
-        }else if(percent >= 60){
+        }else if(percentage >= 60){
             return "C-";
-        }else if(percent >= 57){
+        }else if(percentage >= 57){
             return "D+";
-        }else if(percent >= 55){
+        }else if(percentage >= 55){
             return "D";
-        }else if(percent >= 50){
+        }else if(percentage >= 50){
             return "D-";
         }else {
             return "F";
