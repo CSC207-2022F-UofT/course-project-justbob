@@ -8,6 +8,14 @@ public class GPA {
     private outline courseMarks;
     private runningCourse semester;
 
+    /**
+     * Construct a GPA, giving them the semster list from runningCourse and courseMarks from the outline.
+     * @param percentage
+     * @param gpa
+     * @param grade
+     * @param courseMarks
+     * @param semester
+     */
     public GPA(double percentage, double gpa, String grade, outline courseMarks, runningCourse semester){
         this.percentage = percentage;
         this.gpa = gpa;
@@ -40,28 +48,28 @@ public class GPA {
         this.grade = grade;
     }
 
-    public double percentToGPA(double percent){
-        if(percent >= 85){
+    public double percentToGPA(){
+        if(percentage >= 85){
             return 4.0;
-        }else if(percent >= 80){
+        }else if(percentage >= 80){
             return 3.7;
-        }else if(percent >= 77){
+        }else if(percentage >= 77){
             return 3.3;
-        }else if(percent >= 73){
+        }else if(percentage >= 73){
             return 3.0;
-        }else if(percent >= 70){
+        }else if(percentage >= 70){
             return 2.7;
-        }else if(percent >= 67){
+        }else if(percentage >= 67){
             return 2.3;
-        }else if(percent >= 63){
+        }else if(percentage >= 63){
             return 2.0;
-        }else if (percent >=60){
+        }else if (percentage >=60){
             return 1.7;
-        }else if (percent >= 57){
+        }else if (percentage >= 57){
             return 1.3;
-        }else if (percent >= 53){
+        }else if (percentage >= 53){
             return 1.0;
-        }else if (percent >= 50){
+        }else if (percentage >= 50){
             return 0.7;
         }else {
             return 0.0;
@@ -115,7 +123,6 @@ public class GPA {
             gradeList.add(percentToGrade(list1.get(i)));
         }
         return gradeList;
-
     }
     public double showPercentSemester(){
         List<Double> semlist = semester.getList();
@@ -137,34 +144,6 @@ public class GPA {
         }
         semesterGPA = (sumGPA / calculateCourseGPA().size());
         return semesterGPA;
-
-
     }
-
-/*
-    if(percentage >= 90.0){
-        grade = "A+";
-        gpa = 4.0;
-    }else if(85 <= percentage <= 89){
-        grade = "A";
-        gpa = 4.0;
-    }else if(80 <= percentage <= 84){
-        grade = "A-";
-        gpa = 3.7;
-    }else if(77 <= percentage <= 79){
-        grade = "B+";
-        gpa = 3.3;
-    }else if(73 <= percentage <= 76){
-        grade = "B";
-        gpa = 3.0;
-    }else if(70 <= percentage <= 72){
-        grade = "B-";
-        gpa = 2.7;
-    }else if(67 <= percentage <= 69){
-        grade = "C+";
-        gpa =
-    }
-*/
-
     ;
 }
