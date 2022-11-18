@@ -69,7 +69,7 @@ public class gradeTrendOverall implements gradeTrendInterface {
 
     @Override
     public String toString() {
-        String name = "Overall GPA";
+        String name = "Overall Grade";
         if (this.isHypothetical) {
             name += " - Hypothetical";
         }

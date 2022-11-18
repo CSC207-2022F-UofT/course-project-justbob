@@ -52,7 +52,7 @@ public class gradeTrendCourse implements gradeTrendInterface {
 
     @Override
     public String toString() {
-        String name = this.course.getCourseName() + " GPA";
+        String name = this.course.getCourseName() + " Grade";
         if (this.isHypothetical) {
             name += " - Hypothetical";
         }
