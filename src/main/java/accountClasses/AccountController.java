@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountController {
-    public static void registerStatus(String username, String password){
+    public static void registerStatus(String username, String password, MyPanel panel){
         String status = AccountInteractor.createAccount(username, password);
         if(status.equals("good")){
             panel.instruction.setText("Account has been successfully created"); //notify user of successful creation
@@ -21,7 +21,7 @@ public class AccountController {
         }
     }
 
-    public static void loginStatus(String username, String password){
+    public static void loginStatus(String username, String password, MyPanel panel){
         String status = AccountInteractor.login(username, password);
         if(status.equals("good")){
             panel.instruction.setText("Login is successful");

@@ -182,11 +182,11 @@ public class MyPanel extends JPanel implements ActionListener {
             username = usernameBox.getText();
             password = passwordBox.getText();
             this.isAccountPage();
-            AccountController.loginStatus(username, password);
+            AccountController.loginStatus(username, password, this);
         } else if (e.getSource() == confirmButton2) {
             username = usernameBox.getText();
             password = passwordBox.getText();
-            AccountController.registerStatus(username, password);
+            AccountController.registerStatus(username, password, this);
         } else if (e.getSource() == intoArchive) {
             this.isArchivePage();
         } else if (e.getSource() == backToAccount) {
