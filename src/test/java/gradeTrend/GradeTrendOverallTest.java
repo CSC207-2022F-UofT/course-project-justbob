@@ -11,9 +11,9 @@ import java.util.List;
 
 import static java.lang.Math.round;
 
-public class GradeTrendCourseTest {
+public class GradeTrendOverallTest {
     @Test
-    public void gradeTrendCourseCommitted() {
+    public void gradeTrendOverallCommitted() {
         Course csc207 = new Course("CSC207", "Software Design", "Fall 2022", false, 1.0f);
 
         Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
@@ -40,13 +40,16 @@ public class GradeTrendCourseTest {
 
         csc207.setOutline(csc207Outline);
 
-        gradeTrendCourse csc207GPATrend = new gradeTrendCourse(csc207);
+        List<Course> courses = new ArrayList<>();
+        courses.add(csc207);
+
+        gradeTrendOverall csc207GPATrend = new gradeTrendOverall(courses);
         csc207GPATrend.calculateGPATrend();
         List<String> xData = csc207GPATrend.getXData();
         List<Double> yData = csc207GPATrend.getYData();
 
         List<String> expectedXData = new ArrayList<>();
-        expectedXData.add("Quizzes");
+        expectedXData.add("Software Design");
 
 
         Assertions.assertArrayEquals(expectedXData.toArray(), xData.toArray());
@@ -81,14 +84,16 @@ public class GradeTrendCourseTest {
 
         csc207.setOutline(csc207Outline);
 
-        gradeTrendCourse csc207GPATrend = new gradeTrendCourse(csc207);
-        csc207GPATrend.setHypothetical(true);
+        List<Course> courses = new ArrayList<>();
+        courses.add(csc207);
+
+        gradeTrendOverall csc207GPATrend = new gradeTrendOverall(courses);
         csc207GPATrend.calculateGPATrend();
         List<String> xData = csc207GPATrend.getXData();
         List<Double> yData = csc207GPATrend.getYData();
 
         List<String> expectedXData = new ArrayList<>();
-        expectedXData.add("Quizzes");
+        expectedXData.add("Software Design");
 
 
         Assertions.assertArrayEquals(expectedXData.toArray(), xData.toArray());
