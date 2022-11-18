@@ -16,6 +16,6 @@ public class gradeTrendController {
 
     public void updateView() {
         this.model.calculateGPATrend();
-        this.view.showGraph(this.model);
+        this.view.updateFrame(this.model);
     }
 }
