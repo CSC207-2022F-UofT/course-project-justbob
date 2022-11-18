@@ -30,7 +30,7 @@ public class gradeTrendOverall implements gradeTrendInterface {
             else {
                 grade = course.getOutline().computeRunningGrade();
             }
-            course_names.add(course.getCourseName());
+            course_names.add(course.getCourseCode());
             grades.add(grade);
         }
         this.course_names = course_names;
@@ -69,7 +69,7 @@ public class gradeTrendOverall implements gradeTrendInterface {
 
     @Override
     public String toString() {
-        String name = "Overall Grade";
+        String name = "Overall Grades";
         if (this.isHypothetical) {
             name += " - Hypothetical";
         }
