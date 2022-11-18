@@ -1,8 +1,9 @@
 package courseManager;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Objects;
+
 
 public class InstanceList {
     private ArrayList<AssessmentInstance> listOfAssessmentInstances;
@@ -10,6 +11,8 @@ public class InstanceList {
     private String pluralTitle;
     private String singularTitle;
     private int totalNumberOfInstances;
+
+    private int currentNumberOfInstances;
     private int numberOfCommittedInstances;
     private int numberOfSubmittedInstances;
 
@@ -19,27 +22,44 @@ public class InstanceList {
      *              e.g. "Quizzes", "Midterm", "Homework Assignments"
      * @param totalNumberOfInstances the total number of instances of the assessment
      */
-
     public InstanceList(String pluralTitle, int totalNumberOfInstances) {
         this.listOfAssessmentInstances = new ArrayList<>();
+        this.totalNumberOfInstances = totalNumberOfInstances;
+        this.currentNumberOfInstances = 0;
         this.singularTitle = toSingular(pluralTitle);
         for (int i = 0, j = 1; i < totalNumberOfInstances; i++, j++){
             this.addInstance(this.singularTitle + " #" + j);
         }
     }
 
-    public String toSingular(String pluralTitle){
-        if (pluralTitle == "Quizzes"){
-            return "Quiz";
+    public void addInstance(String name) {
+        if (currentNumberOfInstances < totalNumberOfInstances) {
+            listOfAssessmentInstances.add(new AssessmentInstance(name));
+            currentNumberOfInstances++;
         }
-        if (pluralTitle.charAt(pluralTitle.length()-1) == 's'){
-            return singularTitle.substring(0, pluralTitle.length()-1);
+        else{
+            System.out.println("You have reached the maximum number of instances for this assessment");
+            /*we could maybe define a new Exception class for this*/
         }
-        return singularTitle;
+    }
+
+    public void removeInstance(int index) {
+        if (listOfAssessmentInstances.get(index).isCommitted()) {
+            numberOfCommittedInstances--;
+        }
+        if (listOfAssessmentInstances.get(index).isSubmitted()) {
+            numberOfSubmittedInstances--;
+        }
+        listOfAssessmentInstances.remove(index);
+        currentNumberOfInstances--;
     }
 
     public int getTotalNumberOfInstances() {
         return totalNumberOfInstances;
+    }
+
+    public int getCurrentNumberOfInstances() {
+        return currentNumberOfInstances;
     }
 
     public int getNumberOfCommittedInstances() {
@@ -62,10 +82,27 @@ public class InstanceList {
         return numberOfSubmittedInstances;
     }
 
+    public int getNumberOfMarkedInstances(){
+        int numberOfMarkedInstances = 0;
+        for (AssessmentInstance instance : listOfAssessmentInstances) {
+            if (instance.getMark() != null) {
+                numberOfMarkedInstances++;
+            }
+        }
+        return numberOfMarkedInstances;
+    }
+
     public double[] getAllMarks() {
         double[] allMarks = new double[totalNumberOfInstances];
-        for (int i = 0; i < totalNumberOfInstances; i++) {
-            allMarks[i] = listOfAssessmentInstances.get(i).getMark();
+        int i = 0;
+        for (AssessmentInstance instance : listOfAssessmentInstances) {
+            if (instance.getMark() == null) {
+                allMarks[i] = -1.0;
+            }
+            else{
+                allMarks[i] = instance.getMark();
+            }
+            i++;
         }
         return allMarks;
     }
@@ -83,61 +120,39 @@ public class InstanceList {
         return committedMarks;
     }
 
-    public void addInstance(String name) {
-        AssessmentInstance instance = new AssessmentInstance(name);
-        listOfAssessmentInstances.add(instance);
-        totalNumberOfInstances++;
-    }
-
-    public void removeInstance(int index) {
-        if (listOfAssessmentInstances.get(index).isCommitted()) {
-            numberOfCommittedInstances--;
+    public AssessmentInstance getInstanceData(int index) throws IndexOutOfBoundsException {
+        try {
+            return listOfAssessmentInstances.get(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
         }
-        if (listOfAssessmentInstances.get(index).isSubmitted()) {
-            numberOfSubmittedInstances--;
-        }
-        listOfAssessmentInstances.remove(index);
-        totalNumberOfInstances--;
-    }
-
-    public AssessmentInstance getInstanceData(int index) {
-        return listOfAssessmentInstances.get(index);
     }
 
     /*overloaded methods to edit particular data points*/
     /*if there is a more elegant solution to this, feel free to change it! I really don't like this lol*/
-    public void editInstance(int index, String name) {
+    public void editInstanceName(int index, String name) {
         listOfAssessmentInstances.get(index).setName(name);
     }
 
-    public void editInstance(int index, LocalDate date) {
-        listOfAssessmentInstances.get(index).setDate(date);
+    public void editInstanceDate(int index, LocalDate date) {
+        listOfAssessmentInstances.get(index).setDueDate(date);
     }
 
-    public void editInstance(int index, double mark) {
+    public void editInstanceTime(int index, LocalTime time) {
+        listOfAssessmentInstances.get(index).setDueTime(time);
+    }
+
+    public void editInstanceMark(int index, double mark) {
         listOfAssessmentInstances.get(index).setMark(mark);
     }
 
-    public void editInstance(int index, String name, LocalDate date) {
-        listOfAssessmentInstances.get(index).setName(name);
-        listOfAssessmentInstances.get(index).setDate(date);
+    public String toSingular(String pluralTitle){
+        if (pluralTitle == "Quizzes"){
+            return "Quiz";
+        }
+        if (pluralTitle.charAt(pluralTitle.length()-1) == 's'){
+            return singularTitle.substring(0, pluralTitle.length()-1);
+        }
+        return pluralTitle;
     }
-
-    public void editInstance(int index, LocalDate date, double mark) {
-        listOfAssessmentInstances.get(index).setDate(date);
-        listOfAssessmentInstances.get(index).setMark(mark);
-    }
-
-    public void editInstance(int index, String name, double mark) {
-        listOfAssessmentInstances.get(index).setName(name);
-        listOfAssessmentInstances.get(index).setMark(mark);
-    }
-
-    public void editInstance(int index, String name, LocalDate date, double mark) {
-        listOfAssessmentInstances.get(index).setName(name);
-        listOfAssessmentInstances.get(index).setDate(date);
-        listOfAssessmentInstances.get(index).setMark(mark);
-    }
-
-
 }

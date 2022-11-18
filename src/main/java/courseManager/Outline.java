@@ -3,30 +3,13 @@ package courseManager;
 import weightScheme.WeightScheme;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Outline {
-    private double runningGrade;
-    private double hypothethicalGrade;
 
-    private double percentageCompleted;
-    private int numberOfAssessmentsCompleted; /*do these need to be their own instance variables?*/
-    final private ArrayList<Assessment> assessments;
+    private ArrayList<Assessment> assessments;
 
     public Outline () {
-        this.runningGrade = 0.0f;
-        this.hypothethicalGrade = 0.0f;
         this.assessments = new ArrayList<>();
-    }
-
-    public void setRunningGrade(double runningGrade) {
-
-        this.runningGrade = runningGrade;
-    }
-
-    public void setHypothethicalGrade(double hypothethicalGrade) {
-
-        this.hypothethicalGrade = hypothethicalGrade;
     }
 
     public void addAssessment(Assessment assessment) {
@@ -39,21 +22,16 @@ public class Outline {
         assessments.remove(assessment);
     }
 
-    public void editAssessment(int index, String title) {
-        assessments.get(index).setTitle(title);
-    }
-    public void editAssessment(int index, WeightScheme scheme) {
-        assessments.get(index).setWeightScheme(scheme);
-    }
-    public void editAssessment(int index, String title, WeightScheme scheme) {
-        assessments.get(index).setTitle(title);
-        assessments.get(index).setWeightScheme(scheme);
+
+    public Assessment getAssessment(int index) throws IndexOutOfBoundsException {
+            try {
+                return assessments.get(index);
+            } catch (IndexOutOfBoundsException e) {
+                throw new IndexOutOfBoundsException("Index out of bounds");
+            }
     }
 
-    public Assessment getAssessmentData(int index) {
-        return assessments.get(index);
-    }
-    public List<Assessment> getAssessments() {
+    public ArrayList<Assessment> getAssessments() {
         return assessments;
     }
 
@@ -65,7 +43,7 @@ public class Outline {
         return percentageCompleted;
     }
 
-    public int getNumberOfAssessmentsCompleted() {
+    public int getNumberOfAssessmentInstancesCompleted() {
         int numberOfAssessmentsCompleted = 0;
         for (Assessment assessment : assessments) {
             numberOfAssessmentsCompleted += assessment.getInstanceList().getNumberOfSubmittedInstances();
@@ -73,30 +51,38 @@ public class Outline {
         return numberOfAssessmentsCompleted;
     }
 
-    public void computeRunningGrade() {
+    public double getTotalCommmittedWeight() {
+        double totalCompletedWeight = 0.0f;
+        for (Assessment assessment : assessments) {
+            totalCompletedWeight += assessment.getCommittedWeight();
+        }
+        return totalCompletedWeight;
+    }
+    public double getTotalHypotheticalWeight() {
+        double totalHypotheticalWeight = 0.0f;
+        for (Assessment assessment : assessments) {
+            totalHypotheticalWeight += assessment.getHypotheticalWeight();
+        }
+        return totalHypotheticalWeight;
+    }
+
+    public double computeRunningGrade() {
         double rgrade = 0.0;
         for (Assessment assessment : assessments) {
             rgrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getCommittedMarks());
         }
-        setRunningGrade(rgrade);
+        return rgrade/this.getTotalCommmittedWeight();
     }
 
-    public void computeHypotheticalGrade() {
+    public double computeHypotheticalGrade() {
         double hgrade = 0.0;
         for (Assessment assessment : assessments) {
             hgrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getAllMarks());
         }
-        setHypothethicalGrade(hgrade);
-    }
-
-    public double getRunningGrade() {
-        computeRunningGrade();
-        return runningGrade;
-    }
-
-    public double getHypothethicalGrade() {
-        computeHypotheticalGrade();
-        return hypothethicalGrade;
+        if (this.getTotalHypotheticalWeight() == 0) {
+            return 0;
+        }
+        return hgrade/this.getTotalHypotheticalWeight();
     }
 }
 
