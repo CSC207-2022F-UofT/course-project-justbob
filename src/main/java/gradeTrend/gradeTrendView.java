@@ -36,8 +36,6 @@ public class gradeTrendView {
         CategoryChart chart = new CategoryChart(1000, 500);
         chart.addSeries(name, xData, yData);
 
-        JPanel chartPanel = new XChartPanel<>(chart);
-
         SwingWrapper<CategoryChart> sw = new SwingWrapper<>(chart);
         sw.displayChart();
     }
