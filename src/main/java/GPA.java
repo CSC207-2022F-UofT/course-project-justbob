@@ -10,11 +10,11 @@ public class GPA {
 
     /**
      * Construct a GPA, giving them the semster list from runningCourse and courseMarks from the outline.
-     * @param percentage
-     * @param gpa
-     * @param grade
-     * @param courseMarks
-     * @param semester
+     * @param percentage The course mark in terms of percentage scale from 0% to 100%
+     * @param gpa The course mark in terms of point scale varying from 0 to 4.0
+     * @param grade The course mark in tersms of lettered Grades ranging from F to A+
+     * @param courseMarks List of the course marks in terms of percentage
+     * @param semester List of the course marks for the semester in terms of percentage
      */
     public GPA(double percentage, double gpa, String grade, outline courseMarks, runningCourse semester){
         this.percentage = percentage;
@@ -48,6 +48,11 @@ public class GPA {
         this.grade = grade;
     }
 
+    /**
+     * Converts the mark from in terms of percentage (double) to GPA value in terms of
+     * UofT GPA scale (double)
+     * @return a double of in terms of GPA scale
+     */
     public double percentToGPA(){
         if(percentage >= 85){
             return 4.0;
@@ -76,6 +81,14 @@ public class GPA {
         }
 
     }
+
+    /**
+     * Takes a list of the courseMarks from the outline class (in terms of pecentage) and then
+     * loops through list converting it into the GPA scale using helper function above. GPA scale
+     * added to new Arraylist called gpalist
+     *
+     * @return an Arraylist of double consisting of marks in GPA scale
+     */
     public List<Double> calculateCourseGPA(){
         List<Double> list = courseMarks.getList();
         List<Double> gpalist = new ArrayList<>();
@@ -85,6 +98,12 @@ public class GPA {
         }
         return gpalist;
     }
+
+    /**
+     * Converts percentage (double) to a lettered Grade (String)
+     * @return a String of a lettered Grade ranging from F to A+
+     */
+
     public String percentToGrade(){
         if(percentage >= 90){
             return "A+";
@@ -115,6 +134,14 @@ public class GPA {
         }
 
     }
+
+    /**
+     * Take a list of courseMarks from the outline class (in terms of pecentage) and then
+     * loops through list converting it from percentage to lettered Grade using helper function
+     * above. Lettered Grades added to new arraylist called gradeList
+     *
+     * @return Arraylist (gradeList) of Strings of lettered Grades
+     */
     public List<String> showGrade(){
         List<Double> list1 = courseMarks.getList();
         List<String> gradeList = new ArrayList<>();
@@ -124,6 +151,14 @@ public class GPA {
         }
         return gradeList;
     }
+
+    /**
+     * Takes list of doubles called semlist which is list of percentages for courses in semester.
+     * Calculates the total average of the courses in terms of percentage by dividing sum of
+     * all courses by the size of list
+     *
+     * @return a double of average
+     */
     public double showPercentSemester(){
         List<Double> semlist = semester.getList();
         double average;
@@ -135,6 +170,12 @@ public class GPA {
         return average;
 
     }
+
+    /**
+     * Calls calculateCourseGPA() to receive list of marks in GPA scale.
+     * Takes list and take sum of all GPAs and outputs the average GPA for semester
+     * @return a double of semester GPA
+     */
     public double showGPASemester(){
         calculateCourseGPA();
         double sumGPA = 0;
