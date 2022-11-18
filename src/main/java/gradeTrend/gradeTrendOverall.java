@@ -25,10 +25,10 @@ public class gradeTrendOverall implements gradeTrendInterface {
         for (Course course : this.courses) {
             double grade;
             if(this.isHypothetical) {
-                grade = course.getOutline().getHypothethicalGrade();
+                grade = course.getOutline().computeHypotheticalGrade();
             }
             else {
-                grade = course.getOutline().getRunningGrade();
+                grade = course.getOutline().computeRunningGrade();
             }
             course_names.add(course.getCourseName());
             grades.add(grade);
