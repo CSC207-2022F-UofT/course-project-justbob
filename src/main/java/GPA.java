@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class GPA {
+public class GPA extends mathGpaCgpa{
     private double percentage;
     private double gpa;
     private String grade = "";
@@ -17,7 +17,7 @@ public class GPA {
      * @param semester List of the course marks for the semester in terms of percentage
      */
     public GPA(double percentage, double gpa, String grade, outline courseMarks, runningCourse semester){
-        this.percentage = percentage;
+        super(percentage);
         this.gpa = gpa;
         this.grade = grade;
         this.courseMarks = courseMarks;
@@ -53,6 +53,8 @@ public class GPA {
      * UofT GPA scale (double)
      * @return a double of in terms of GPA scale
      */
+
+    /**
     public double percentToGPA(){
         if(percentage >= 85){
             return 4.0;
@@ -79,8 +81,9 @@ public class GPA {
         }else {
             return 0.0;
         }
-
     }
+     */
+
 
     /**
      * Takes a list of the courseMarks from the outline class (in terms of pecentage) and then
@@ -103,7 +106,7 @@ public class GPA {
      * Converts percentage (double) to a lettered Grade (String)
      * @return a String of a lettered Grade ranging from F to A+
      */
-
+/**
     public String percentToGrade(){
         if(percentage >= 90){
             return "A+";
@@ -134,6 +137,8 @@ public class GPA {
         }
 
     }
+ *
+ */
 
     /**
      * Take a list of courseMarks from the outline class (in terms of pecentage) and then
