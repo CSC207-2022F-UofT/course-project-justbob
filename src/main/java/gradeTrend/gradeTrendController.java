@@ -1,10 +1,10 @@
-package GPATrend;
+package gradeTrend;
 
-public class GPATrendController {
-    final private GPATrendInterface model;
-    final private GPATrendView view;
+public class gradeTrendController {
+    final private gradeTrendInterface model;
+    final private gradeTrendView view;
 
-    public GPATrendController(GPATrendInterface model, GPATrendView view) {
+    public gradeTrendController(gradeTrendInterface model, gradeTrendView view) {
         this.model = model;
         this.view = view;
     }

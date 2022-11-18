@@ -1,4 +1,4 @@
-package GPATrend;
+package gradeTrend;
 
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.SwingWrapper;
@@ -6,24 +6,12 @@ import org.knowm.xchart.SwingWrapper;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GPATrendView {
+public class gradeTrendView {
     public static void showGraph(String name, List<String> xData, List<Double> yData) {
         CategoryChart chart = new CategoryChart(1000, 500);
         chart.addSeries(name, xData, yData);
 
         // XChartPanel<CategoryChart> chartPanel = new XChartPanel<>(chart);
-        SwingWrapper<CategoryChart> sw = new SwingWrapper<>(chart);
-        sw.displayChart();
-    }
-
-    public void showGraph(GPATrendInterface t) {
-        String name = t.toString();
-        List<String> xData = t.getXData();
-        List<Double> yData = t.getYData();
-
-        CategoryChart chart = new CategoryChart(1000, 500);
-        chart.addSeries(name, xData, yData);
-
         SwingWrapper<CategoryChart> sw = new SwingWrapper<>(chart);
         sw.displayChart();
     }
@@ -38,6 +26,18 @@ public class GPATrendView {
         yData.add(1.5);
         yData.add(2.75);
 
-        GPATrendView.showGraph("Example Graph", xData, yData);
+        gradeTrendView.showGraph("Example Graph", xData, yData);
+    }
+
+    public void showGraph(gradeTrendInterface t) {
+        String name = t.toString();
+        List<String> xData = t.getXData();
+        List<Double> yData = t.getYData();
+
+        CategoryChart chart = new CategoryChart(1000, 500);
+        chart.addSeries(name, xData, yData);
+
+        SwingWrapper<CategoryChart> sw = new SwingWrapper<>(chart);
+        sw.displayChart();
     }
 }

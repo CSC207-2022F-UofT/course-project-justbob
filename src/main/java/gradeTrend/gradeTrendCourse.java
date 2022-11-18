@@ -1,4 +1,4 @@
-package GPATrend;
+package gradeTrend;
 
 import courseManager.Assessment;
 import courseManager.Course;
@@ -6,14 +6,13 @@ import courseManager.Course;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GPATrendCourse implements GPATrendInterface{
+public class gradeTrendCourse implements gradeTrendInterface {
     final private Course course;
     private List<String> assessment_names;
     private List<Double> grades;
     private boolean isHypothetical = false;
 
-    public GPATrendCourse(Course course)
-    {
+    public gradeTrendCourse(Course course) {
         this.course = course;
     }
 
@@ -33,7 +32,7 @@ public class GPATrendCourse implements GPATrendInterface{
                 grade += part_mark;
             }
             assessment_names.add(assessment.getTitle());
-            grades.add(grade);
+            grades.add(grade / part_marks.length);  // Average
         }
         this.assessment_names = assessment_names;
         this.grades = grades;

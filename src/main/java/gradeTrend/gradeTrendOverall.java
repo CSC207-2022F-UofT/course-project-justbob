@@ -1,18 +1,17 @@
-package GPATrend;
+package gradeTrend;
 
 import courseManager.Course;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GPATrendOverall implements GPATrendInterface{
+public class gradeTrendOverall implements gradeTrendInterface {
     final private List<Course> courses;
     private List<String> course_names;
     private List<Double> grades;
     private boolean isHypothetical = false;
 
-    public GPATrendOverall(List<Course> courses)
-    {
+    public gradeTrendOverall(List<Course> courses) {
         this.courses = courses;
     }
     /* public GPATrendOverall(Account account) {

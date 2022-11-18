@@ -1,11 +1,13 @@
-package GPATrend;
+package gradeTrend;
 
-import java.util.HashMap;
 import java.util.List;
 
-public interface GPATrendInterface {
+public interface gradeTrendInterface {
     void calculateGPATrend();
+
     List<String> getXData();
+
     List<Double> getYData();
+
     void setHypothetical(boolean value);
 }
