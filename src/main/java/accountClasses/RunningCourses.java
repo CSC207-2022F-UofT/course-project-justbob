@@ -9,7 +9,6 @@ public class RunningCourses {
     static List<Course> semester;
     //Calendar calendar;
     //Checklist checklist;
-    //CGPA semesterGPA;
 
     /**
      * Creates a new RunningCourses object, where courses of the current semester can be added, as well as a semester
@@ -38,16 +37,6 @@ public class RunningCourses {
         }else{
             System.out.println(course.getCourseCode() + course.getCourseName() + "not found in current semester");
         }
-    }
-
-    /*public CGPA getOverallGpa() {
-        //Show the OverallGpa for the current semester
-        return semesterGPA;
-    }*/
-
-    public void updateOverallGpa() {
-        //Calculate the current Gpa for the semester
-        //call gpa calculator
     }
 }
 

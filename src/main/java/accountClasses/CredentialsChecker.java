@@ -8,11 +8,11 @@ public class CredentialsChecker {
     public static boolean checkDuplicateId(String id) throws IOException {
         //Check if the given username matches an existing username in accounts
         File file = new File("C:\\Users\\alanc\\IdeaProjects\\" +
-                "course-project-justbob\\src\\main\\java\\accountClasses\\accountsStorage");
+                "course-project-justbob\\src\\main\\java\\accountClasses\\accountsStorage"); //file where all credentials are stored
         FileReader fReader = new FileReader(file);
         BufferedReader bReader = new BufferedReader(fReader);
         String line;
-        while((line = bReader.readLine()) != null){
+        while((line = bReader.readLine()) != null){ //checks each line, where each line is username + password, to see if any duplicates exist
             String[] sepLine = line.split(" ");
             if(Objects.equals(sepLine[0], id)){
                 return true;
