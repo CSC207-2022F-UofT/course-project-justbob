@@ -1,10 +1,14 @@
 package main;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Assignment {
     private String courseName;
     private String name;
-    private myDate ddl;
-    private double weight;
+    private LocalDate ddl;
+    private LocalTime ddlTime;
+    private double weight = 0;
     private boolean finished = false;
     private boolean haveMark = false;
     private double mark = 0;
@@ -30,12 +34,19 @@ public class Assignment {
         return weight;
     }
 
-    public void setDdl(myDate ddl) {
+    public void setDdl(LocalDate ddl) {
         this.ddl = ddl;
     }
 
-    public myDate getDdl() {
+    public void setDdlTime(LocalTime ddlTime){
+        this.ddlTime = ddlTime;
+    }
+    public LocalDate getDdl() {
         return ddl;
+    }
+
+    public LocalTime getDdlTime(){
+        return this.ddlTime;
     }
 
     public void markAsFinished(){
@@ -95,13 +106,17 @@ public class Assignment {
     public String toString() {
         String result = this.courseName + " " + this.name;
         if (this.isShowDetail()){
-            result += "  DDL: " + this.ddl.toString() + "  "
-                    + "Worth: " + this.weight + " percent";
+            if (this.getDdl() != null){
+                result += "  DDL: " + this.ddl.toString() + " " + this.ddlTime.toString();
+            }
+            if (this.getWeight() != 0){
+                result += "  " + "Worth: " + this.weight + " percent";
+            }
             if (this.getFinished()){
                 result = result + "\n" + "Finished!!!  :)";
             }
             if (this.isHaveMark()){
-                result = result + "  Mark is: " + this.mark;
+                result = result + "  Mark: " + this.mark + "  Contribution:" + this.getContribution();
             }
         }
         return result;

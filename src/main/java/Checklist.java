@@ -20,6 +20,18 @@ public class Checklist {
         this.showDetail = true;
     }
 
+    public void toNotShowDetail(){
+        this.showDetail = false;
+    }
+
+    public void toShowPast(){
+        this.showPast = true;
+    }
+
+    public void  toNotShowPast(){
+        this.showPast = false;
+    }
+
     public void addAssignment(Assignment assignment){
         if (assignment.getFinished()){
             this.taskFinished.add(assignment);
@@ -57,6 +69,7 @@ public class Checklist {
     public void refresher(){
         this.taskToDo = new ArrayList<>();
         this.taskFinished = new ArrayList<>();
+        this.allTasks = new ArrayList<>();
     }
 
 
@@ -93,7 +106,9 @@ public class Checklist {
     public void sortInDdl(List<Assignment> assignmentList){
         for (int i = 0; i < assignmentList.size(); i++){
             for (int j = i + 1; j < assignmentList.size(); j++){
-                if (assignmentList.get(j).getDdl().before(assignmentList.get(j).getDdl())){
+                if (assignmentList.get(j).getDdl().isBefore(assignmentList.get(i).getDdl())
+                        || (assignmentList.get(j).getDdl().isEqual(assignmentList.get(i).getDdl()) &&
+                        assignmentList.get(j).getDdlTime().isBefore(assignmentList.get(i).getDdlTime()))){
                     Assignment temp;
                     temp = assignmentList.get(j);
                     assignmentList.set(j, assignmentList.get(i));
@@ -106,7 +121,7 @@ public class Checklist {
     public void sortInWeight(List<Assignment> assignmentList){
         for (int i = 0; i < assignmentList.size(); i++) {
             for (int j = i + 1; j < assignmentList.size(); j++) {
-                if (assignmentList.get(j).getWeight() < assignmentList.get(i).getWeight()){
+                if (assignmentList.get(j).getWeight() > assignmentList.get(i).getWeight()){
                     Assignment temp;
                     temp = assignmentList.get(j);
                     assignmentList.set(j, assignmentList.get(i));
@@ -119,7 +134,7 @@ public class Checklist {
     public void sortInContribution(List<Assignment> assignmentList){
         for (int i = 0; i < assignmentList.size(); i++) {
             for (int j = i + 1; j < assignmentList.size(); j++) {
-                if (assignmentList.get(j).getContribution() < assignmentList.get(i).getContribution()){
+                if (assignmentList.get(j).getContribution() > assignmentList.get(i).getContribution()){
                     Assignment temp;
                     temp = assignmentList.get(j);
                     assignmentList.set(j, assignmentList.get(i));
