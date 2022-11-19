@@ -1,15 +1,24 @@
 package accountClasses;
 
+import java.io.*;
+import java.util.Objects;
+
 public class CredentialsChecker {
 
-    public static boolean checkDuplicateId(String id){
+    public static boolean checkDuplicateId(String id) throws IOException {
         //Check if the given username matches an existing username in accounts
-        for(Account account : AccountList.accounts){
-            if(account.getUsername().equals(id)){
-                return false;
+        File file = new File("C:\\Users\\alanc\\IdeaProjects\\" +
+                "course-project-justbob\\src\\main\\java\\accountClasses\\accountsStorage");
+        FileReader fReader = new FileReader(file);
+        BufferedReader bReader = new BufferedReader(fReader);
+        String line;
+        while((line = bReader.readLine()) != null){
+            String[] sepLine = line.split(" ");
+            if(Objects.equals(sepLine[0], id)){
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static boolean idLengthCheck(String input) {

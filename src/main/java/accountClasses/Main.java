@@ -1,6 +1,7 @@
 package accountClasses;
 
 public class Main {
+
     public static void main(String[] args) {
 
         MyFrame f = new MyFrame();
@@ -9,5 +10,6 @@ public class Main {
         panel.isFrontPage();
 
         f.add(panel);
+
     }
 }

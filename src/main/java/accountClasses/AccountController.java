@@ -2,11 +2,12 @@ package accountClasses;
 
 import courseManager.Course;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AccountController {
-    public static void registerStatus(String username, String password, MyPanel panel){
+    public static void registerStatus(String username, String password, MyPanel panel) throws IOException {
         String status = AccountInteractor.createAccount(username, password);
         if(status.equals("good")){
             panel.isAccountPage();
@@ -20,7 +21,7 @@ public class AccountController {
         }
     }
 
-    public static void loginStatus(String username, String password, MyPanel panel){
+    public static void loginStatus(String username, String password, MyPanel panel) throws IOException {
         String status = AccountInteractor.login(username, password);
         if(status.equals("good")){
             panel.instruction.setText("Login is successful");

@@ -4,6 +4,8 @@ import courseManager.Course;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 public class AccountClassesTest {
     private final Account goodAccount1 = new Account("Bobby001", "goodbob1998");
     private final Account duplicateAccount = new Account("Bobby001", "goodbob1997");
@@ -14,20 +16,20 @@ public class AccountClassesTest {
     private RunningCourses testSemester = new RunningCourses();
 
     @Test
-    public void addGoodAccount() {
+    public void addGoodAccount() throws IOException {
         AccountInteractor.createAccount(goodAccount1.getUsername(), goodAccount1.getPassword());
         Assertions.assertEquals(AccountList.accounts.get(0).getUsername(), goodAccount1.getUsername());
     }
 
     @Test
-    public void addDuplicateAccount() {
+    public void addDuplicateAccount() throws IOException {
         AccountInteractor.createAccount(goodAccount1.getUsername(), goodAccount1.getPassword());
         AccountInteractor.createAccount(duplicateAccount.getUsername(), duplicateAccount.getPassword());
         Assertions.assertEquals(AccountList.accounts.size(), 1);
     }
 
     @Test
-    public void addBadAccount() {
+    public void addBadAccount() throws IOException {
         AccountInteractor.createAccount(goodAccount1.getUsername(), goodAccount1.getPassword());
         AccountInteractor.createAccount(badAccount.getUsername(), badAccount.getPassword());
         Assertions.assertEquals(AccountList.accounts.size(), 1);

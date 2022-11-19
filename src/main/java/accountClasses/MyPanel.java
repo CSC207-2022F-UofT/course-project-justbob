@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MyPanel extends JPanel implements ActionListener {
     private String username;
@@ -73,7 +74,7 @@ public class MyPanel extends JPanel implements ActionListener {
         backToFront.addActionListener(this);
 
         instruction = new JLabel("Please enter your credentials");
-        instruction.setBounds(100, 200, 200, 20);
+        instruction.setBounds(100, 200, 400, 20);
 
         this.add(usernameLabel);
         this.add(passwordLabel);
@@ -181,11 +182,19 @@ public class MyPanel extends JPanel implements ActionListener {
         } else if (e.getSource() == confirmButton1) {
             username = usernameBox.getText();
             password = passwordBox.getText();
-            AccountController.loginStatus(username, password, this);
+            try {
+                AccountController.loginStatus(username, password, this);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } else if (e.getSource() == confirmButton2) {
             username = usernameBox.getText();
             password = passwordBox.getText();
-            AccountController.registerStatus(username, password, this);
+            try {
+                AccountController.registerStatus(username, password, this);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } else if (e.getSource() == intoArchive) {
             this.isArchivePage();
         } else if (e.getSource() == backToAccount) {
