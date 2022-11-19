@@ -89,7 +89,7 @@ public class ChecklistTest {
                 "CSC236 Term Test 3\n" +
                 "Finished!!!  :)\n" +
                 "CSC207 Final Exam  DDL: 2022-12-16 09:00  Worth: 45.0 percent\n" +
-                "Finished!!!  :)  Mark is: 86.0\n" +
+                "Finished!!!  :)  Mark: 86.0  Contribution:38.7\n" +
                 "CSC207 Project\n" +
                 "CSC236 Final Exam\n" +
                 "CSC236 Term Test 1\n", checklist.toString());
@@ -101,7 +101,7 @@ public class ChecklistTest {
                 "CSC236 Term Test 3\n" +
                 "Finished!!!  :)\n" +
                 "CSC207 Final Exam  DDL: 2022-12-16 09:00  Worth: 45.0 percent\n" +
-                "Finished!!!  :)  Mark is: 86.0\n" +
+                "Finished!!!  :)  Mark: 86.0  Contribution:38.7\n" +
                 "CSC207 Project  DDL: 2022-11-16 09:00  Worth: 45.0 percent\n" +
                 "CSC236 Final Exam\n" +
                 "CSC236 Term Test 1\n", checklist.toString());
