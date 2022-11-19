@@ -9,10 +9,10 @@ public class GPA extends mathGpaCgpa{
     private runningCourse semester;
 
     /**
-     * Construct a GPA, giving them the semster list from runningCourse and courseMarks from the outline.
+     * Construct a GPA, giving them the semester list from runningCourse and courseMarks from the outline.
      * @param percentage The course mark in terms of percentage scale from 0% to 100%
      * @param gpa The course mark in terms of point scale varying from 0 to 4.0
-     * @param grade The course mark in tersms of lettered Grades ranging from F to A+
+     * @param grade The course mark in terms of lettered Grades ranging from F to A+
      * @param courseMarks List of the course marks in terms of percentage
      * @param semester List of the course marks for the semester in terms of percentage
      */

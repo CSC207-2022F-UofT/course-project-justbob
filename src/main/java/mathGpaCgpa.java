@@ -1,6 +1,10 @@
 public class mathGpaCgpa {
     private double percentage;
 
+    /**
+     * Construct a mathGpaCgpa class which consists of methods needed in GPA and CGPA class
+     * @param percentage number in terms of percentage for course between 0% to 100%
+     */
     public mathGpaCgpa(double percentage){
         this.percentage = percentage;
     }
