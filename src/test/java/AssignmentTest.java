@@ -3,6 +3,9 @@ package main;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class AssignmentTest {
     private Assignment CsFinal = new Assignment("CSC207", "Final Exam");
 
@@ -24,9 +27,12 @@ public class AssignmentTest {
 
     @Test
     public void test_setGetDdl(){
-        myDate newDate = new myDate(2022, 12, 16);
+        LocalDate newDate = LocalDate.of(2022, 12, 16);
+        LocalTime newDateTime = LocalTime.of(9, 0);
         CsFinal.setDdl(newDate);
+        CsFinal.setDdlTime(newDateTime);
         Assertions.assertEquals(newDate, CsFinal.getDdl());
+        Assertions.assertEquals(newDateTime, CsFinal.getDdlTime());
     }
 
     @Test
@@ -79,14 +85,15 @@ public class AssignmentTest {
         CsFinal.setWeight(45);
         CsFinal.markAsFinished();
         CsFinal.toShowDetail();
-        CsFinal.setDdl(new myDate(2022, 12,16));
-        Assertions.assertEquals("CSC207 Final Exam  DDL: 2022-12-16  Worth: 45.0 percent" +
-                "\nFinished!!!  :)  Mark is: 86.0", CsFinal.toString());
+        CsFinal.setDdl(LocalDate.of(2022, 12, 16));
+        CsFinal.setDdlTime(LocalTime.of(9, 0));
+        Assertions.assertEquals("CSC207 Final Exam  DDL: 2022-12-16 09:00  Worth: 45.0 percent" +
+                "\nFinished!!!  :)  Mark: 86.0  Contribution:38.7", CsFinal.toString());
         CsFinal.removeMark();
-        Assertions.assertEquals("CSC207 Final Exam  DDL: 2022-12-16  Worth: 45.0 percent" +
+        Assertions.assertEquals("CSC207 Final Exam  DDL: 2022-12-16 09:00  Worth: 45.0 percent" +
                 "\nFinished!!!  :)", CsFinal.toString());
         CsFinal.markAsNotFinished();
-        Assertions.assertEquals("CSC207 Final Exam  DDL: 2022-12-16  Worth: 45.0 percent"
+        Assertions.assertEquals("CSC207 Final Exam  DDL: 2022-12-16 09:00  Worth: 45.0 percent"
                 , CsFinal.toString());
         CsFinal.toNotShowDetail();
         Assertions.assertEquals("CSC207 Final Exam", CsFinal.toString());
