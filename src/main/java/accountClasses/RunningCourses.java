@@ -35,10 +35,8 @@ public class RunningCourses {
     public static void removeRunningCourse(Course course) {
         if(semester.contains(course)){
             semester.remove(course);
-            //report to controller
         }else{
             System.out.println(course.getCourseCode() + course.getCourseName() + "not found in current semester");
-            //report to controller
         }
     }
 
