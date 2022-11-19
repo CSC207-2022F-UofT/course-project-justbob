@@ -9,14 +9,13 @@ public class AccountController {
     public static void registerStatus(String username, String password, MyPanel panel){
         String status = AccountInteractor.createAccount(username, password);
         if(status.equals("good")){
-            panel.instruction.setText("Account has been successfully created"); //notify user of successful creation
             panel.isAccountPage();
         } else if (status.equals("illegal id")) {
-            panel.instruction.setText("Username too short or too long, username must be 8-16 characters");
+            panel.instruction.setText("<html>" + "Username too short or too long, username must be 8-16 characters" + "<html>");
         } else if (status.equals("illegal password")) {
-            panel.instruction.setText("password too short or too long, password must be 8-16 characters");
+            panel.instruction.setText("<html>" + "password too short or too long, password must be 8-16 characters" + "<html>");
         } else{
-            panel.instruction.setText("Username already exists, please choose another username");
+            panel.instruction.setText("<html>" + "Username already exists, please choose another username" + "<html>");
             //notify user of duplicate username
         }
     }
@@ -27,9 +26,9 @@ public class AccountController {
             panel.instruction.setText("Login is successful");
             panel.isAccountPage();
         } else if (status.equals("false password")) {
-            panel.instruction.setText("Incorrect password, please try again");
+            panel.instruction.setText("<html>" + "Incorrect password, please try again" + "<html>");
         } else {
-            panel.instruction.setText("Username does not exist, please re-enter");
+            panel.instruction.setText("<html>" + "Username does not exist, please re-enter" + "<html>");
         }
     }
 

@@ -110,7 +110,7 @@ public class MyPanel extends JPanel implements ActionListener {
         backToFront.setBounds(20, 20, 90, 30);
         backToFront.addActionListener(this);
 
-        instruction = new JLabel("Please enter username and password, both must be 8-16 characters");
+        instruction = new JLabel("<html>" + "Please enter username and password, both must be 8-16 characters"+ "<html>");
         instruction.setBounds(5, 185, 400, 20);
 
         this.add(usernameLabel);
@@ -181,7 +181,6 @@ public class MyPanel extends JPanel implements ActionListener {
         } else if (e.getSource() == confirmButton1) {
             username = usernameBox.getText();
             password = passwordBox.getText();
-            this.isAccountPage();
             AccountController.loginStatus(username, password, this);
         } else if (e.getSource() == confirmButton2) {
             username = usernameBox.getText();

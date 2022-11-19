@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RunningCourses {
-    List<Course> semester;
+    static List<Course> semester;
     //Calendar calendar;
     //Checklist checklist;
     //CGPA semesterGPA;
@@ -21,7 +21,7 @@ public class RunningCourses {
         this.checklist = new Checklist();
     } */
 
-    public void addRunningCourse(Course course) {
+    public static void addRunningCourse(Course course) {
         //Add new course to the current semester
         if (semester.contains(course)) {
             System.out.println("Course already in semester");
@@ -32,7 +32,7 @@ public class RunningCourses {
         }
     }
 
-    public void removeRunningCourse(Course course) {
+    public static void removeRunningCourse(Course course) {
         if(semester.contains(course)){
             semester.remove(course);
             //report to controller
