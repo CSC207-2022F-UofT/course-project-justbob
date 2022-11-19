@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.util.List;
 
 public class gradeTrendView {
+    private JPanel currentPanel;
     private final JFrame frame;
 
     public gradeTrendView(JFrame frame) {
@@ -24,8 +25,11 @@ public class gradeTrendView {
 
         JPanel chartPanel = new XChartPanel<>(chart);
 
-        this.frame.removeAll();
+        if (this.currentPanel != null) {
+            this.frame.remove(this.currentPanel);
+        }
         this.frame.add(chartPanel);
+        this.currentPanel = chartPanel;
     }
 
     public static void showGraph(gradeTrendInterface t) {
