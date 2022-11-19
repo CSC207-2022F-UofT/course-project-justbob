@@ -28,7 +28,7 @@ public class gradeTrendView {
         this.frame.add(chartPanel);
     }
 
-    public void showGraph(gradeTrendInterface t) {
+    public static void showGraph(gradeTrendInterface t) {
         String name = t.toString();
         List<String> xData = t.getXData();
         List<Double> yData = t.getYData();
