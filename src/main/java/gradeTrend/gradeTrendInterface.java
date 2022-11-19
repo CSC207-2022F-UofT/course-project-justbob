@@ -10,4 +10,6 @@ public interface gradeTrendInterface {
     List<Double> getYData();
 
     void setHypothetical(boolean value);
+
+    String toString();
 }
