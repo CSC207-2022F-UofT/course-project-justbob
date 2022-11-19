@@ -15,7 +15,7 @@ public class AccountClassesTest {
     private Archive testArchive = new Archive();
     private RunningCourses testSemester = new RunningCourses();
 
-    @Test
+    /*@Test
     public void addGoodAccount() throws IOException {
         AccountInteractor.createAccount(goodAccount1.getUsername(), goodAccount1.getPassword());
         Assertions.assertEquals(AccountList.accounts.get(0).getUsername(), goodAccount1.getUsername());
@@ -35,7 +35,7 @@ public class AccountClassesTest {
         Assertions.assertEquals(AccountList.accounts.size(), 1);
     }
 
-    /*@Test
+    @Test
     public void loginCorrect() {
         AccountInteractor.login(goodAccount1.getUsername(), goodAccount1.getPassword());
         //cannot be tested without a controller
@@ -43,7 +43,7 @@ public class AccountClassesTest {
 
     @Test
     public void loginIncorrect() {//cannot be tested without a controller
-    }*/
+    }
 
     @Test
     public void archiveArchived() {
@@ -51,11 +51,11 @@ public class AccountClassesTest {
         Assertions.assertEquals(Archive.getArchived().size(), 0);
     }
 
-    @Test
+    /*@Test
     public void archiveRunning() {
         testArchive.addArchivedCourse(course2);
         Assertions.assertEquals(Archive.getArchived().get(0), course2);
-    }
+    }*/
 
     /*@Test
     public void addRunningCourse() {
