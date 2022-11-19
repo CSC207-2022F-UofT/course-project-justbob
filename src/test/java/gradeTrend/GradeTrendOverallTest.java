@@ -48,7 +48,7 @@ public class GradeTrendOverallTest {
         List<Double> yData = csc207GPATrend.getYData();
 
         List<String> expectedXData = new ArrayList<>();
-        expectedXData.add("Software Design");
+        expectedXData.add("CSC207");
 
 
         Assertions.assertArrayEquals(expectedXData.toArray(), xData.toArray());
@@ -74,12 +74,13 @@ public class GradeTrendOverallTest {
         courses.add(csc207);
 
         gradeTrendOverall csc207GPATrend = new gradeTrendOverall(courses);
+        csc207GPATrend.setHypothetical(true);
         csc207GPATrend.calculateGPATrend();
         List<String> xData = csc207GPATrend.getXData();
         List<Double> yData = csc207GPATrend.getYData();
 
         List<String> expectedXData = new ArrayList<>();
-        expectedXData.add("Software Design");
+        expectedXData.add("CSC207");
 
 
         Assertions.assertArrayEquals(expectedXData.toArray(), xData.toArray());
