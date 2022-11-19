@@ -155,17 +155,22 @@ public class MyPanel extends JPanel implements ActionListener {
         backToAccount.setBounds(20, 20, 80, 30);
         backToAccount.addActionListener(this);
 
-        archiveGpa = new JButton("Update GPA");
-        archiveGpa.setBounds(650, 20, 120, 30);
-        archiveGpa.addActionListener(this);
+        this.add(backToAccount);
 
-        // List<JLabel> courseLabels = new Arraylist<>();
-        // for(String course : AccountController.extractArchived()){
-        //     courselabels.add(new JLabel(course))
-        // }
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void isSemesterPage(){
+        this.removeAll();
+
+        this.setBounds(0, 0, 800, 800);
+
+        backToAccount = new JButton("Back");
+        backToAccount.setBounds(20, 20, 80, 30);
+        backToAccount.addActionListener(this);
 
         this.add(backToAccount);
-        this.add(archiveGpa);
 
         this.revalidate();
         this.repaint();
@@ -199,6 +204,8 @@ public class MyPanel extends JPanel implements ActionListener {
             this.isArchivePage();
         } else if (e.getSource() == backToAccount) {
             this.isAccountPage();
+        } else if (e.getSource() == intoSemester) {
+            this.isSemesterPage();
         }
     }
 }

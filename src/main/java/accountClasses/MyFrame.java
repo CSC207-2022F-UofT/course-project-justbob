@@ -13,5 +13,9 @@ public class MyFrame extends JFrame {
 
         this.getContentPane().setBackground(new Color(80, 20, 200));
     }
+
+    public void addPanel(JPanel panel){
+        this.add(panel);
+    }
 }
 
