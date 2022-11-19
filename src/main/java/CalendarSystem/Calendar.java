@@ -1,4 +1,4 @@
-package calendarSystem;
+package CalendarSystem;
 
 import java.util.*;
 import java.time.*;
@@ -56,7 +56,7 @@ public class Calendar {
     }
 
     public void removeStickyNote(StickyNote post) {
-        File f = new File(System.getProperty("user.dir"), "src/main/java/CalendarSystem/StickyNotes\\UserDirectoryFilePathTest.txt");
+        File f = new File(System.getProperty("user.dir"), "src/main/java/CalendarSystem/StickyNotes\\" + post.getTitle() + ".txt");
         if (f.exists()/* && !f.isDirectory()*/) {
             f.delete();
         }
