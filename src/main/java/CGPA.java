@@ -7,4 +7,9 @@ public class CGPA extends mathGpaCgpa {
     public CGPA(double percentage) {
         super(percentage);
     }
+    public double CGPAofArchieve(){
+        archivepast = new Archieve();
+
+
+    }
 }
