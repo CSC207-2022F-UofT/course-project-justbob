@@ -1,8 +1,10 @@
+package Calculations;
+
 public class mathGpaCgpa {
     private double percentage;
 
     /**
-     * Construct a mathGpaCgpa class which consists of methods needed in GPA and CGPA class
+     * Construct a Calculations.mathGpaCgpa class which consists of methods needed in Calculations.GPA and CGPA class
      * @param percentage number in terms of percentage for course between 0% to 100%
      */
     public mathGpaCgpa(double percentage){
@@ -17,9 +19,9 @@ public class mathGpaCgpa {
         this.percentage = percentage;
     }
     /**
-     * Converts the mark from in terms of percentage (double) to GPA value in terms of
-     * UofT GPA scale (double)
-     * @return a double of in terms of GPA scale
+     * Converts the mark from in terms of percentage (double) to Calculations.GPA value in terms of
+     * UofT Calculations.GPA scale (double)
+     * @return a double of in terms of Calculations.GPA scale
      */
     public double percentToGPA(){
         if(percentage >= 85){

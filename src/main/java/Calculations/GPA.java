@@ -1,7 +1,9 @@
+package Calculations;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class GPA extends mathGpaCgpa{
+public class GPA extends mathGpaCgpa  {
     private double percentage;
     private double gpa;
     private String grade = "";
@@ -9,7 +11,7 @@ public class GPA extends mathGpaCgpa{
     private runningCourse semester;
 
     /**
-     * Construct a GPA, giving them the semester list from runningCourse and courseMarks from the outline.
+     * Construct a Calculations.GPA, giving them the semester list from runningCourse and courseMarks from the outline.
      * @param percentage The course mark in terms of percentage scale from 0% to 100%
      * @param gpa The course mark in terms of point scale varying from 0 to 4.0
      * @param grade The course mark in terms of lettered Grades ranging from F to A+
@@ -49,9 +51,9 @@ public class GPA extends mathGpaCgpa{
     }
 
     /**
-     * Converts the mark from in terms of percentage (double) to GPA value in terms of
-     * UofT GPA scale (double)
-     * @return a double of in terms of GPA scale
+     * Converts the mark from in terms of percentage (double) to Calculations.GPA value in terms of
+     * UofT Calculations.GPA scale (double)
+     * @return a double of in terms of Calculations.GPA scale
      */
 
     /**
@@ -87,10 +89,10 @@ public class GPA extends mathGpaCgpa{
 
     /**
      * Takes a list of the courseMarks from the outline class (in terms of pecentage) and then
-     * loops through list converting it into the GPA scale using helper function above. GPA scale
+     * loops through list converting it into the Calculations.GPA scale using helper function above. Calculations.GPA scale
      * added to new Arraylist called gpalist
      *
-     * @return an Arraylist of double consisting of marks in GPA scale
+     * @return an Arraylist of double consisting of marks in Calculations.GPA scale
      */
     public List<Double> calculateCourseGPA(){
         List<Double> list = courseMarks.getList();
@@ -177,9 +179,9 @@ public class GPA extends mathGpaCgpa{
     }
 
     /**
-     * Calls calculateCourseGPA() to receive list of marks in GPA scale.
-     * Takes list and take sum of all GPAs and outputs the average GPA for semester
-     * @return a double of semester GPA
+     * Calls calculateCourseGPA() to receive list of marks in Calculations.GPA scale.
+     * Takes list and take sum of all GPAs and outputs the average Calculations.GPA for semester
+     * @return a double of semester Calculations.GPA
      */
     public double showGPASemester(){
         calculateCourseGPA();
