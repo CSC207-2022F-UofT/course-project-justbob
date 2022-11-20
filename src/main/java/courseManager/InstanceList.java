@@ -82,27 +82,22 @@ public class InstanceList {
         return numberOfSubmittedInstances;
     }
 
-    public int getNumberOfMarkedInstances(){
-        int numberOfMarkedInstances = 0;
+    public ArrayList<AssessmentInstance> getListOfMarkedInstances(){
+        ArrayList<AssessmentInstance> listOfMarkedInstances = new ArrayList<>();
         for (AssessmentInstance instance : listOfAssessmentInstances) {
             if (instance.getMark() != null) {
-                numberOfMarkedInstances++;
+                listOfMarkedInstances.add(instance);
             }
         }
-        return numberOfMarkedInstances;
+        return listOfMarkedInstances;
     }
 
     public double[] getAllMarks() {
-        double[] allMarks = new double[totalNumberOfInstances];
+        double[] allMarks = new double[this.getListOfMarkedInstances().size()];
         int i = 0;
-        for (AssessmentInstance instance : listOfAssessmentInstances) {
-            if (instance.getMark() == null) {
-                allMarks[i] = -1.0;
-            }
-            else{
+        for (AssessmentInstance instance : this.getListOfMarkedInstances()) {
                 allMarks[i] = instance.getMark();
-            }
-            i++;
+                i++;
         }
         return allMarks;
     }
