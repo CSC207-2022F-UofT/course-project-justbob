@@ -1,4 +1,4 @@
-package accountClasses.entities;
+package entities.archive;
 
 import courseManager.Course;
 

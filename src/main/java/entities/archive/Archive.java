@@ -1,6 +1,5 @@
-package accountClasses.entities;
+package entities.archive;
 
-import accountClasses.entities.ArchiveInterface;
 import courseManager.Course;
 
 import java.util.ArrayList;

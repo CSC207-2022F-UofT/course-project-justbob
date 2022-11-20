@@ -1,10 +1,10 @@
-package accountClasses.entities;
+package entities.semester;
 
 import courseManager.Course;
 
 import java.util.List;
 
-public class Semester implements SemesterInterface{
+public class Semester implements SemesterInterface {
     public static List<Course> semester;
     //Calendar calendar;
     //Checklist checklist;

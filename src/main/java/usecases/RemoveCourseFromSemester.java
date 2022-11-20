@@ -1,8 +1,8 @@
-package accountClasses.usecases;
+package usecases;
 
 import courseManager.Course;
 
-import static accountClasses.entities.Semester.semester;
+import static entities.semester.Semester.semester;
 
 public class RemoveCourseFromSemester {
 

@@ -1,6 +1,6 @@
-package accountClasses.usecases;
+package usecases;
 
-import accountClasses.entities.Account;
+import entities.account.Account;
 
 import java.io.BufferedWriter;
 import java.io.File;

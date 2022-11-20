@@ -1,4 +1,7 @@
-package accountClasses.entities;
+package entities.account;
+
+import entities.archive.Archive;
+import entities.semester.Semester;
 
 public class Account implements AccountInterface {
     private final String username;

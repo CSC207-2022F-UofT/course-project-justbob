@@ -1,4 +1,4 @@
-package accountClasses.entities;
+package entities.account;
 
 public class AccountFactory implements AccountFactoryInterface {
 

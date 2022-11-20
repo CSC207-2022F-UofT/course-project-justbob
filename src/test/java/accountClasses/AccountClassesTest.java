@@ -1,8 +1,8 @@
 package accountClasses;
 
-import accountClasses.entities.Account;
-import accountClasses.entities.Archive;
-import accountClasses.entities.Semester;
+import entities.account.Account;
+import entities.archive.Archive;
+import entities.semester.Semester;
 import courseManager.Course;
 
 public class AccountClassesTest {

@@ -1,6 +1,6 @@
-package accountClasses.entities;
+package entities.account;
 
-import accountClasses.entities.Account;
+import entities.account.Account;
 
 public interface AccountFactoryInterface {
     static Account create(String username, String password) {

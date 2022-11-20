@@ -1,8 +1,8 @@
-package accountClasses.usecases;
+package usecases;
 
 import courseManager.Course;
 
-import static accountClasses.entities.Archive.archived;
+import static entities.archive.Archive.archived;
 
 public class RemoveCourseFromArchive {
 
