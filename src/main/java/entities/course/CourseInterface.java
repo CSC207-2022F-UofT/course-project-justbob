@@ -1,6 +1,6 @@
 package entities.course;
 
-import courseManager.CourseEvent;
+import entities.courseEvent.CourseEvent;
 import courseManager.Outline;
 
 import java.util.ArrayList;

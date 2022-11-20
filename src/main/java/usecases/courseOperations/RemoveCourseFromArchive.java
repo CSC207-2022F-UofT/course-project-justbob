@@ -1,4 +1,4 @@
-package usecases;
+package usecases.courseOperations;
 
 import entities.course.Course;
 

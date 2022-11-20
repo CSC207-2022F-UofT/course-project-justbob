@@ -1,13 +1,9 @@
 package entities.course;
 
-import courseManager.CourseEvent;
+import entities.courseEvent.CourseEvent;
 import courseManager.Outline;
-import entities.course.CourseInterface;
 
 import java.util.ArrayList;
-
-import java.time.DayOfWeek;
-import java.time.LocalTime;
 
 
 public class Course implements CourseInterface {

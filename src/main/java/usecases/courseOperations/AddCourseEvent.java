@@ -1,6 +1,6 @@
-package usecases;
+package usecases.courseOperations;
 
-import courseManager.CourseEvent;
+import entities.courseEvent.CourseEvent;
 import entities.course.Course;
 
 public class AddCourseEvent {

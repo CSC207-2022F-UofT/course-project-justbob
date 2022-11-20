@@ -1,9 +1,9 @@
 package courseManager;
 
 import entities.course.Course;
+import entities.courseEvent.CourseEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import usecases.AddCourseEvent;
 import weightScheme.SimpleWeight;
 import weightScheme.Weight;
 
