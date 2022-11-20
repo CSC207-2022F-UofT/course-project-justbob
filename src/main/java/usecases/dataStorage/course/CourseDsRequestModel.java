@@ -1,4 +1,6 @@
-package usecases.dataStorage;
+package usecases.dataStorage.course;
+
+import usecases.dataStorage.account.AccountDsRequestModel;
 
 public class CourseDsRequestModel extends AccountDsRequestModel {
     private String courseCode;

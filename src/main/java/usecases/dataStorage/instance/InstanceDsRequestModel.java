@@ -1,4 +1,6 @@
-package usecases.dataStorage;
+package usecases.dataStorage.instance;
+
+import usecases.dataStorage.assessment.AssessmentDsRequestModel;
 
 public class InstanceDsRequestModel extends AssessmentDsRequestModel {
     private int instanceIndex;

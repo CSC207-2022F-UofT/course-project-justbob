@@ -1,4 +1,7 @@
-package usecases.dataStorage;
+package usecases.dataStorage.assessment;
+
+import usecases.dataStorage.instance.InstanceDsResponseModel;
+import usecases.dataStorage.weightScheme.WeightSchemeDsModel;
 
 public class AssessmentDsResponseModel {
     private String title;

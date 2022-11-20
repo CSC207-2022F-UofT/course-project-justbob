@@ -1,4 +1,4 @@
-package usecases.dataStorage;
+package usecases.dataStorage.account;
 
 public class AccountDsRequestModel {
     private String username;

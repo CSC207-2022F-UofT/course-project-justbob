@@ -1,4 +1,6 @@
-package usecases.dataStorage;
+package usecases.dataStorage.account;
+
+import usecases.dataStorage.course.CourseDsResponseModel;
 
 public class AccountDsResponseModel {
     private String username;

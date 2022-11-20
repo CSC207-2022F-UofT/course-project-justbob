@@ -1,4 +1,6 @@
-package usecases.dataStorage;
+package usecases.dataStorage.assessment;
+
+import usecases.dataStorage.course.CourseDsRequestModel;
 
 public class AssessmentDsRequestModel extends CourseDsRequestModel {
     private String assessmentTitle;

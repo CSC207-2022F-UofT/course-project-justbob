@@ -1,4 +1,4 @@
-package usecases.dataStorage;
+package usecases.dataStorage.course;
 
 import java.time.DayOfWeek;
 import java.time.Duration;

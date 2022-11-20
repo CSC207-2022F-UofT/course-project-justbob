@@ -1,4 +1,4 @@
-package usecases.dataStorage;
+package usecases.dataStorage.instance;
 
 public interface InstanceDsGateway {
     boolean existsInstance(InstanceDsRequestModel requestModel);

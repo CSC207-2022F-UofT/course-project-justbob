@@ -1,4 +1,6 @@
-package usecases.dataStorage;
+package usecases.dataStorage.course;
+
+import usecases.dataStorage.assessment.AssessmentDsResponseModel;
 
 public class CourseDsResponseModel {
     private String courseCode;

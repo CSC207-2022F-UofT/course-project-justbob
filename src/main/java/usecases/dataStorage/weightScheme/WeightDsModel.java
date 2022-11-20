@@ -1,4 +1,4 @@
-package usecases.dataStorage;
+package usecases.dataStorage.weightScheme;
 
 public class WeightDsModel {
     private int numberOfInstances;

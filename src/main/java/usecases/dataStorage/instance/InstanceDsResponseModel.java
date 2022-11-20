@@ -1,4 +1,4 @@
-package usecases.dataStorage;
+package usecases.dataStorage.instance;
 
 import java.time.LocalDate;
 
