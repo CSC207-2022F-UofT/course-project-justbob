@@ -8,6 +8,6 @@ public class AddCourseToArchive {
 
     public void addArchivedCourse(Course course) {
         archived.add(course);
-        course.archiveCourse();
+        course.archived = true;
     }
 }

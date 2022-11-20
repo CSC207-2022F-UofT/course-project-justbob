@@ -2,7 +2,7 @@ package accountClasses;
 
 import accountClasses.entities.Account;
 import accountClasses.entities.Archive;
-import accountClasses.entities.RunningCourses;
+import accountClasses.entities.Semester;
 import courseManager.Course;
 
 public class AccountClassesTest {
@@ -12,7 +12,7 @@ public class AccountClassesTest {
     private final Course course1 = new Course("CSC101", "Intro to CS", "Fall 2021", true, 1.0F);
     private final Course course2 = new Course("CSC207", "Software Design", "Fall 2022", false, 0.5F);
     private Archive testArchive = new Archive();
-    private RunningCourses testSemester = new RunningCourses();
+    private Semester testSemester = new Semester();
 
     /*@Test
     public void addGoodAccount() throws IOException {

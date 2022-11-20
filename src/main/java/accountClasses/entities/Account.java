@@ -3,7 +3,7 @@ package accountClasses.entities;
 public class Account implements AccountInterface {
     private final String username;
     private final String password;
-    private RunningCourses runningCourses;
+    private Semester semester;
     private Archive archive;
 
     /**
@@ -16,7 +16,7 @@ public class Account implements AccountInterface {
     public Account(String id, String password) {
         this.username = id;
         this.password = password;
-        this.runningCourses = new RunningCourses();
+        this.semester = new Semester();
         this.archive = new Archive();
     }
     @Override
@@ -26,6 +26,16 @@ public class Account implements AccountInterface {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public Archive getArchive() {
+        return archive;
+    }
+
+    @Override
+    public Semester getSemester() {
+        return semester;
     }
 }
 

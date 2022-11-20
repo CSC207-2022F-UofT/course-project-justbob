@@ -10,7 +10,7 @@ public class Course {
     private String courseCode;
     private String courseName;
     private String semester;
-    private boolean archived;
+    public boolean archived;
     private float credit;
 
     private Outline outline;
@@ -86,16 +86,6 @@ public class Course {
             return this.courseCode + ": " + this.courseName + " takes place in " + this.semester +
                     " and is worth " + this.credit + " credit(s). It has the following course events: " + this.courseEvents;
         }
-    }
-
-    public void archiveCourse() {
-        this.archived = true;
-        /*Archive.addArchivedCourse(this);*/
-        /*RunningCourses.removeCourse(this);*/
-    }
-
-    public void unarchiveCourse(){
-        this.archived = false;
     }
 
     public static void main(String[] args) {

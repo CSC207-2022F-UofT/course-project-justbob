@@ -8,7 +8,7 @@ public class RemoveCourseFromArchive {
 
     public void RemoveCourse(Course course) {
         if (course.isArchived()) {
-            course.unarchiveCourse();
+            course.archived = false;
             archived.remove(course);
         }
     }
