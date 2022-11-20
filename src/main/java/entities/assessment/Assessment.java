@@ -3,7 +3,7 @@ package entities.assessment;
 import entities.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
-public class Assessment {
+public class Assessment implements AssessmentInterface{
     public String title;
     public final InstanceList instanceList;
     public WeightScheme weightScheme;
@@ -21,19 +21,22 @@ public class Assessment {
         this.weightScheme = weightScheme;
         this.instanceList = new InstanceList(this.title, weightScheme.getNumberOfInstances());
     }
-
+    @Override
     public double getTotalWeight() {
         return weightScheme.getTotalWeight();
     }
 
+    @Override
     public InstanceList getInstanceList() {
-
         return instanceList;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
+
+    @Override
 
     public WeightScheme getWeightScheme() {
         return weightScheme;
