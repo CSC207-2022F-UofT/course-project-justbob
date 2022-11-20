@@ -1,10 +1,10 @@
 package usecases.markOperations.addMark;
 
 public class AddMarkRequestModel {
-    String username;
-    String courseCode;
-    String assignmentTitle;
-    int instanceIndex;
+    private String username;
+    private String courseCode;
+    private String assignmentTitle;
+    private int instanceIndex;
 
     public AddMarkRequestModel(String username, String courseCode, String assignmentTitle, int instanceIndex) {
         this.username = username;
