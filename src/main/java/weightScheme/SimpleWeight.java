@@ -16,7 +16,7 @@ public class SimpleWeight implements WeightScheme {
         double exactWeightEarned = DoubleStream.of(marks)
                 .map(mark -> mark * weight.getWeightOfEachInstance())
                 .sum();
-        return exactWeightEarned / (marks.length * weight.getWeightOfEachInstance());
+        return exactWeightEarned * (weight.getTotalWeight() / (marks.length * weight.getWeightOfEachInstance()));
 
     }
 
