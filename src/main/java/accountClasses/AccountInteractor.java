@@ -1,5 +1,8 @@
 package accountClasses;
 
+import accountClasses.entities.Account;
+import accountClasses.entities.AccountFactory;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,7 +18,7 @@ public class AccountInteractor {
             return "illegal id"; //tell the controller that the input username is illegal
         } else {
             if (CredentialsChecker.passwordLengthCheck(password)) { //checks for illegal passwords
-                Account newAcc = new Account(id, password);
+                Account newAcc = AccountFactory.create(id, password);
                 AccountRecorder.addAccount(newAcc);
                 return "good"; //tell the controller that account is created
                 /*need to direct user to the Account GUI*/

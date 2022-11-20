@@ -1,9 +1,9 @@
-package accountClasses;
+package accountClasses.entities;
 
 public class AccountFactory implements AccountFactoryInterface {
 
     @Override
-    public Account create(String username, String password) {
+    public static Account create(String username, String password) {
         return new Account(username, password);
     }
 }

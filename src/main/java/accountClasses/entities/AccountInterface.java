@@ -1,4 +1,4 @@
-package accountClasses;
+package accountClasses.entities;
 
 public interface AccountInterface {
     String getUsername();
