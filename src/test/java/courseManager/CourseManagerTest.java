@@ -4,6 +4,7 @@ import entities.course.Course;
 import entities.courseEvent.CourseEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import usecases.courseOperations.AddCourseEvent;
 import weightScheme.SimpleWeight;
 import weightScheme.Weight;
 
@@ -25,17 +26,16 @@ public class CourseManagerTest {
 
     //@Test
     public void addCourseEvent() {
-        csc207.addCourseEvent(csc207Lecture);
+        AddCourseEvent adder = new AddCourseEvent();
+        adder.addCourseEvent(csc207, csc207Lecture);
         Assertions.assertEquals(csc207Lecture, csc207.getCourseEvents().get(0));
     }
 
     //@Test
     public void addCourseEventWithSameName() {
-        /*replace with these lines:
         AddCourseEvent adder = new AddCourseEvent();
-        adder.addCourseEvent(csc207, csc207Lecture); */
-        csc207.addCourseEvent(csc207Lecture);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> csc207.addCourseEvent(csc207Lecture));
+        adder.addCourseEvent(csc207, csc207Lecture);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> adder.addCourseEvent(csc207, csc207Lecture));
     }
 
     //@Test
