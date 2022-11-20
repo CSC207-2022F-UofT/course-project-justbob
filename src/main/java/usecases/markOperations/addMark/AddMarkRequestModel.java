@@ -9,7 +9,7 @@ public class AddMarkRequestModel {
     public AddMarkRequestModel(String username, String courseCode, String assignmentTitle, int instanceIndex) {
         this.username = username;
         this.courseCode = courseCode;
-        this.assignmentTitle = assignmentTitle;
+        this.assessmentTitle = assignmentTitle;
         this.instanceIndex = instanceIndex;
     }
 
@@ -22,7 +22,7 @@ public class AddMarkRequestModel {
     }
 
     public String getAssignmentTitle() {
-        return assignmentTitle;
+        return assessmentTitle;
     }
 
     public int getInstanceIndex() {
