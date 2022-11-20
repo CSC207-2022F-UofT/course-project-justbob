@@ -1,7 +1,7 @@
 package usecases.markOperations.addMark;
 
-import usecases.dataStorage.InstanceDsGateway;
-import usecases.dataStorage.InstanceDsRequestModel;
+import usecases.dataStorage.instance.InstanceDsGateway;
+import usecases.dataStorage.instance.InstanceDsRequestModel;
 
 public class AddMarkInteractor implements AddMarkInputBoundary {
     private InstanceDsGateway instanceDsGateway;
