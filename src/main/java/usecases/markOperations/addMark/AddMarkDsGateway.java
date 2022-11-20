@@ -1,7 +1,11 @@
 package usecases.markOperations.addMark;
 
 public interface AddMarkDsGateway {
-    boolean existsInstance(String username, String courseCode, String assessmentTitle, int instanceIndex);
-    boolean existsInstanceMark(String username, String courseCode, String assessmentTitle, int instanceIndex);
-    void saveInstanceMark(String username, String courseCode, String assessmentTitle, int instanceIndex, double mark);
+    boolean existsInstance(AddMarkDsRequestModel requestModel);
+    boolean existsInstanceMark(AddMarkDsRequestModel requestModel);
+
+    /**
+     * @param requestModel The request model to use. Requires that the mark is set.
+     */
+    void saveInstanceMark(AddMarkDsRequestModel requestModel);
 }
