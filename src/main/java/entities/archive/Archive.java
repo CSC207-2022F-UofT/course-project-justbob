@@ -15,7 +15,6 @@ public class Archive implements ArchiveInterface {
         archived = new ArrayList<Course>();
     }
 
-    @Override
     public static List<Course> getCourses() {
         return archived;
     }

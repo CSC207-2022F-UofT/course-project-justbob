@@ -10,12 +10,12 @@ public class Course implements CourseInterface {
     private String courseCode;
     private String courseName;
     private String semester;
-    private boolean archived;
+    public boolean archived;
     private float credit;
 
-    private Outline outline;
+    public Outline outline;
 
-    private ArrayList<CourseEvent> courseEvents;
+    public ArrayList<CourseEvent> courseEvents;
 
     /**
      * Create a new Course object with the given parameters
@@ -37,6 +37,7 @@ public class Course implements CourseInterface {
         this.archived = archived;
         this.credit = credit;
         this.courseEvents = new ArrayList<>();
+        this.outline = new Outline();
     }
 
     @Override
