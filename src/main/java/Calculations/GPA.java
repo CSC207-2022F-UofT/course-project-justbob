@@ -1,29 +1,21 @@
 package Calculations;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GPA extends mathGpaCgpa  {
     private double percentage;
     private double gpa;
     private String grade = "";
-    private outline courseMarks;
-    private runningCourse semester;
+
 
     /**
      * Construct a Calculations.GPA, giving them the semester list from runningCourse and courseMarks from the outline.
      * @param percentage The course mark in terms of percentage scale from 0% to 100%
      * @param gpa The course mark in terms of point scale varying from 0 to 4.0
      * @param grade The course mark in terms of lettered Grades ranging from F to A+
-     * @param courseMarks List of the course marks in terms of percentage
-     * @param semester List of the course marks for the semester in terms of percentage
      */
-    public GPA(double percentage, double gpa, String grade, outline courseMarks, runningCourse semester){
+    public GPA(double percentage, double gpa, String grade){
         super(percentage);
         this.gpa = gpa;
         this.grade = grade;
-        this.courseMarks = courseMarks;
-        this.runningCourse = semester;
     }
 
     public double getPercentage() {
@@ -53,38 +45,29 @@ public class GPA extends mathGpaCgpa  {
     /**
      * Converts the mark from in terms of percentage (double) to Calculations.GPA value in terms of
      * UofT Calculations.GPA scale (double)
+     *
      * @return a double of in terms of Calculations.GPA scale
      */
+    // ArrayList<ArrayList<Double>> percentage
+    public static Double[][] convertPercentToGPA(){
+        /**
+         * Take a 2D array consisting of first element being weight and then element being percentage
+         * and then converting the list to showcase weight and GPA
+         */
+        Double marks[][]= {{0.5, 85.0}, {1.0, 78.0}, {0.5, 72.0}, {1.0, 77.0}};
 
-    /**
-    public double percentToGPA(){
-        if(percentage >= 85){
-            return 4.0;
-        }else if(percentage >= 80){
-            return 3.7;
-        }else if(percentage >= 77){
-            return 3.3;
-        }else if(percentage >= 73){
-            return 3.0;
-        }else if(percentage >= 70){
-            return 2.7;
-        }else if(percentage >= 67){
-            return 2.3;
-        }else if(percentage >= 63){
-            return 2.0;
-        }else if (percentage >=60){
-            return 1.7;
-        }else if (percentage >= 57){
-            return 1.3;
-        }else if (percentage >= 53){
-            return 1.0;
-        }else if (percentage >= 50){
-            return 0.7;
-        }else {
-            return 0.0;
+        for (int i = 0; i < marks.length; i++) {
+            for (int j = 0; j < marks[i].length; j++) {
+                marks[i][1] = percentToGPA(marks[i][1]);
+            }
         }
+        for (Double[] x: marks) {
+            System.out.println(x[0] + ", " + x[1]);
+
+        }
+        return marks;
     }
-     */
+
 
 
     /**
@@ -94,6 +77,8 @@ public class GPA extends mathGpaCgpa  {
      *
      * @return an Arraylist of double consisting of marks in Calculations.GPA scale
      */
+
+    /**
     public List<Double> calculateCourseGPA(){
         List<Double> list = courseMarks.getList();
         List<Double> gpalist = new ArrayList<>();
@@ -149,15 +134,18 @@ public class GPA extends mathGpaCgpa  {
      *
      * @return Arraylist (gradeList) of Strings of lettered Grades
      */
-    public List<String> showGrade(){
-        List<Double> list1 = courseMarks.getList();
-        List<String> gradeList = new ArrayList<>();
 
-        for(int i = 0; i < list1.size(); i ++){
-            gradeList.add(percentToGrade(list1.get(i)));
-        }
-        return gradeList;
-    }
+
+
+//    public List<String> showGrade(){
+//        List<Double> list1 = courseMarks.getList();
+//        List<String> gradeList = new ArrayList<>();
+//
+//        for(int i = 0; i < list1.size(); i ++){
+//            gradeList.add(percentToGrade(list1.get(i)));
+//        }
+//        return gradeList;
+//    }
 
     /**
      * Takes list of doubles called semlist which is list of percentages for courses in semester.
@@ -166,32 +154,39 @@ public class GPA extends mathGpaCgpa  {
      *
      * @return a double of average
      */
-    public double showPercentSemester(){
-        List<Double> semlist = semester.getList();
-        double average;
-        double sum = 0;
-        for(int i = 0; i < semlist.size(); i++){
-            sum += semlist.get(i);
-        }
-        average = (sum / semlist.size());
-        return average;
-
-    }
+//    public double showPercentSemester(){
+//        List<Double> semlist = semester.getList();
+//        double average;
+//        double sum = 0;
+//        for(int i = 0; i < semlist.size(); i++){
+//            sum += semlist.get(i);
+//        }
+//        average = (sum / semlist.size());
+//        return average;
+//
+//    }
 
     /**
      * Calls calculateCourseGPA() to receive list of marks in Calculations.GPA scale.
      * Takes list and take sum of all GPAs and outputs the average Calculations.GPA for semester
      * @return a double of semester Calculations.GPA
      */
-    public double showGPASemester(){
-        calculateCourseGPA();
-        double sumGPA = 0;
-        double semesterGPA = 0;
-        for(int i = 0; i < calculateCourseGPA().size(); i ++){
-            sumGPA += calculateCourseGPA().get(i);
-        }
-        semesterGPA = (sumGPA / calculateCourseGPA().size());
-        return semesterGPA;
-    }
+//    public double showGPASemester(){
+//        calculateCourseGPA();
+//        double sumGPA = 0;
+//        double semesterGPA = 0;
+//        for(int i = 0; i < calculateCourseGPA().size(); i ++){
+//            sumGPA += calculateCourseGPA().get(i);
+//        }
+//        semesterGPA = (sumGPA / calculateCourseGPA().size());
+//        return semesterGPA;
+//    }
     ;
+    public static void main(String[] args)
+    {
+
+        System.out.println("2D ArrayList :");
+        convertPercentToGPA();
+    }
 }
+
