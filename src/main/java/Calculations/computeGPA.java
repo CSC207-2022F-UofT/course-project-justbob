@@ -15,7 +15,7 @@ public class computeGPA {
         this.percentage = percentage;
     }
 
-    public double computationGPA(double percentage){
+    public static double computationGPA(double percentage){
         if(percentage >= 85.0){
             return 4.0;
         }else if(percentage >= 80.0){

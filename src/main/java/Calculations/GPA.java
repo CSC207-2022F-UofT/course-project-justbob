@@ -53,24 +53,24 @@ public class GPA extends mathGpaCgpa  {
      * @return a double of in terms of Calculations.GPA scale
      */
     // ArrayList<ArrayList<Double>> percentage
-    public double convertPercentToGPA(Semester runningCourses){
-        /**
-         * Take a 2D array consisting of first element being weight and then element being percentage
-         * and then converting the list to showcase weight and GPA
-         */
-        List<Course> runningCoursesToGPAs = new List<Course>[semester.size()];
-
-        for (int i = 0; i < course.size(); i++) {
-            course.getOutline().computeRunningGrade();
-            }
-        }
-        for (Double[] x: marks) {
-            System.out.println(x[0] + ", " + x[1]);
-
-        }
-        return marks;
-    }
-
+//    public double convertPercentToGPA(Semester runningCourses){
+//        /**
+//         * Take a 2D array consisting of first element being weight and then element being percentage
+//         * and then converting the list to showcase weight and GPA
+//         */
+//        List<Course> runningCoursesToGPAs = new List<Course>[semester.size()];
+//
+//        for (int i = 0; i < course.size(); i++) {
+//            course.getOutline().computeRunningGrade();
+//            }
+//        }
+//        for (Double[] x: marks) {
+//            System.out.println(x[0] + ", " + x[1]);
+//
+//        }
+//        return marks;
+//    }
+//
 
 
     /**
@@ -185,11 +185,11 @@ public class GPA extends mathGpaCgpa  {
 //        return semesterGPA;
 //    }
     ;
-    public static void main(String[] args)
-    {
-
-        System.out.println("2D ArrayList :");
-        convertPercentToGPA();
-    }
+//    public static void main(String[] args)
+//    {
+//
+//        System.out.println("2D ArrayList :");
+//        convertPercentToGPA();
+//    }
 }
 
