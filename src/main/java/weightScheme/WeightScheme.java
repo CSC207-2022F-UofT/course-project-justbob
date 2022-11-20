@@ -15,6 +15,4 @@ public interface WeightScheme {
     public double computeWeighted(double[] marks);
     public double getTotalWeight();
     public int getNumberOfInstances();
-
-    public double getWeightOfEachInstance();
 }
