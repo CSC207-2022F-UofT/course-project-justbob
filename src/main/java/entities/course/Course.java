@@ -1,7 +1,7 @@
 package entities.course;
 
-import entities.courseEvent.CourseEvent;
 import courseManager.Outline;
+import entities.courseEvent.CourseEvent;
 
 import java.util.ArrayList;
 
@@ -10,23 +10,24 @@ public class Course implements CourseInterface {
     private String courseCode;
     private String courseName;
     private String semester;
-    public boolean archived;
+    private boolean archived;
     private float credit;
 
-    public Outline outline;
+    private Outline outline;
 
-    public ArrayList<CourseEvent> courseEvents;
+    private ArrayList<CourseEvent> courseEvents;
 
     /**
      * Create a new Course object with the given parameters
+     *
      * @param courseCode the code of the course
      *                   e.g. 'CSC207'
      * @param courseName the name of the course
      *                   e.g. 'Software Design'
-     * @param semester the semester the course is offered in
+     * @param semester   the semester the course is offered in
      *                   e.g. 'Fall 2022'
-     * @param credit the number of credits the course is worth; must be either 0.5 or 1.0
-     * @param archived whether the course is archived or not
+     * @param credit     the number of credits the course is worth; must be either 0.5 or 1.0
+     * @param archived   whether the course is archived or not
      */
 
     public Course(String courseCode, String courseName, String semester, boolean archived, float credit) {
@@ -36,10 +37,6 @@ public class Course implements CourseInterface {
         this.archived = archived;
         this.credit = credit;
         this.courseEvents = new ArrayList<>();
-    }
-
-    public void setOutline(Outline outline) {
-        this.outline = outline;
     }
 
     @Override
@@ -77,15 +74,8 @@ public class Course implements CourseInterface {
         return courseEvents;
     }
 
-    public void addCourseEvent(CourseEvent courseEvent) {
-        if (courseEvents.contains(courseEvent)) {
-            throw new IllegalArgumentException("Course event already exists");
-        }
-        courseEvents.add(courseEvent);
-    }
-
     /*public String toString() {
-        //just for preliminary purposes
+
         if (archived) {
             return this.courseCode + ": " + this.courseName + " took place in " + this.semester + " and was worth " + this.credit +
                     " credit(s). It had the following course events:" + this.courseEvents;
@@ -94,6 +84,7 @@ public class Course implements CourseInterface {
                     " and is worth " + this.credit + " credit(s). It has the following course events: " + this.courseEvents;
         }
     }*/
+
 
     /*public static void main(String[] args) {
         Course course = new Course("CSC207", "Software Design", "Fall 2022", false, 0.5f);
