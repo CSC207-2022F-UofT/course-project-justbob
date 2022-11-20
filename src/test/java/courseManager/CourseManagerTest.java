@@ -1,16 +1,14 @@
 package courseManager;
 
+import entities.course.Course;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import weightScheme.SimpleWeight;
 import weightScheme.Weight;
-import weightScheme.WeightScheme;
 
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.Arrays;
 
 public class CourseManagerTest {
     private Course csc207 = new Course("CSC207", "Software Design", "Fall 2022", false, 1.0f);

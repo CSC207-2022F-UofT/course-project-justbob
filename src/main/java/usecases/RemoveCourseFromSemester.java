@@ -1,6 +1,6 @@
 package usecases;
 
-import courseManager.Course;
+import entities.course.Course;
 
 import static entities.semester.Semester.semester;
 

@@ -1,4 +1,8 @@
-package courseManager;
+package entities.course;
+
+import courseManager.CourseEvent;
+import courseManager.Outline;
+import entities.course.CourseInterface;
 
 import java.util.ArrayList;
 
@@ -6,16 +10,16 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 
-public class Course {
+public class Course implements CourseInterface {
     private String courseCode;
     private String courseName;
     private String semester;
     public boolean archived;
     private float credit;
 
-    private Outline outline;
+    public Outline outline;
 
-    private ArrayList<CourseEvent> courseEvents;
+    public ArrayList<CourseEvent> courseEvents;
 
     /**
      * Create a new Course object with the given parameters
@@ -42,30 +46,37 @@ public class Course {
         this.outline = outline;
     }
 
+    @Override
     public String getCourseCode() {
         return courseCode;
     }
 
+    @Override
     public String getCourseName() {
         return courseName;
     }
 
+    @Override
     public String getSemester() {
         return semester;
     }
 
+    @Override
     public boolean isArchived() {
         return archived;
     }
 
+    @Override
     public float getCredit() {
         return credit;
     }
 
+    @Override
     public Outline getOutline() {
         return outline;
     }
 
+    @Override
     public ArrayList<CourseEvent> getCourseEvents() {
         return courseEvents;
     }
@@ -77,8 +88,8 @@ public class Course {
         courseEvents.add(courseEvent);
     }
 
-    public String toString() {
-        /*just for preliminary purposes*/
+    /*public String toString() {
+        //just for preliminary purposes
         if (archived) {
             return this.courseCode + ": " + this.courseName + " took place in " + this.semester + " and was worth " + this.credit +
                     " credit(s). It had the following course events:" + this.courseEvents;
@@ -86,9 +97,9 @@ public class Course {
             return this.courseCode + ": " + this.courseName + " takes place in " + this.semester +
                     " and is worth " + this.credit + " credit(s). It has the following course events: " + this.courseEvents;
         }
-    }
+    }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Course course = new Course("CSC207", "Software Design", "Fall 2022", false, 0.5f);
         CourseEvent csc207lecture = new CourseEvent("Lecture", DayOfWeek.TUESDAY,
                 LocalTime.of(18,00), LocalTime.of(20,00), "BA 1200");
@@ -97,7 +108,7 @@ public class Course {
         course.addCourseEvent(csc207lecture);
         course.addCourseEvent(csc207tutorial);
         System.out.println(course);
-    }
+    }*/
 
 
 }

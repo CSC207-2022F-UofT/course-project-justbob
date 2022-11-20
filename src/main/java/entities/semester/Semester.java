@@ -1,6 +1,6 @@
 package entities.semester;
 
-import courseManager.Course;
+import entities.course.Course;
 
 import java.util.List;
 

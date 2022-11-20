@@ -3,7 +3,7 @@ package accountClasses;
 import entities.account.Account;
 import entities.archive.Archive;
 import entities.semester.Semester;
-import courseManager.Course;
+import entities.course.Course;
 
 public class AccountClassesTest {
     private final Account goodCommonAccount1 = new Account("Bobby001", "goodbob1998");
