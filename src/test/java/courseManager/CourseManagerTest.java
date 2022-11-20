@@ -3,6 +3,7 @@ package courseManager;
 import entities.course.Course;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import usecases.AddCourseEvent;
 import weightScheme.SimpleWeight;
 import weightScheme.Weight;
 
@@ -27,6 +28,9 @@ public class CourseManagerTest {
 
     @Test
     public void addCourseEventWithSameName() {
+        /*replace with these lines:
+        AddCourseEvent adder = new AddCourseEvent();
+        adder.addCourseEvent(csc207, csc207Lecture); */
         csc207.addCourseEvent(csc207Lecture);
         Assertions.assertThrows(IllegalArgumentException.class, () -> csc207.addCourseEvent(csc207Lecture));
     }
