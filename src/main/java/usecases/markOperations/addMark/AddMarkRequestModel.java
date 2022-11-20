@@ -5,12 +5,15 @@ public class AddMarkRequestModel {
     private String courseCode;
     private String assessmentTitle;
     private int instanceIndex;
+    private double mark;
 
-    public AddMarkRequestModel(String username, String courseCode, String assignmentTitle, int instanceIndex) {
+    public AddMarkRequestModel(String username, String courseCode, String assignmentTitle,
+                               int instanceIndex, double mark) {
         this.username = username;
         this.courseCode = courseCode;
         this.assessmentTitle = assignmentTitle;
         this.instanceIndex = instanceIndex;
+        this.mark = mark;
     }
 
     public String getUsername() {
@@ -27,5 +30,9 @@ public class AddMarkRequestModel {
 
     public int getInstanceIndex() {
         return instanceIndex;
+    }
+
+    public double getMark() {
+        return mark;
     }
 }
