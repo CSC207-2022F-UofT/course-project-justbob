@@ -26,33 +26,6 @@ public class Assessment {
         return weightScheme.getTotalWeight();
     }
 
-    public double getSubmittedWeight() {
-        double[] submittedMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
-        for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
-            if (this.instanceList.getInstanceData(i).isSubmitted()) {
-                submittedMarksForWeight[i] = 100;
-            }
-            else {
-                submittedMarksForWeight[i] = 0;
-            }
-        }
-        return weightScheme.computeWeighted(submittedMarksForWeight) / 100;
-    }
-
-    public double getHypotheticalWeight() {
-        double[] hypotheticalMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
-        for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
-            if (this.instanceList.getInstanceData(i).getMark() != null) {
-                hypotheticalMarksForWeight[i] = 100;
-            }
-            else {
-                hypotheticalMarksForWeight[i] = 0;
-            }
-        }
-        return weightScheme.computeWeighted(hypotheticalMarksForWeight) / 100;
-
-    }
-
     public InstanceList getInstanceList() {
 
         return instanceList;

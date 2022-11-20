@@ -1,6 +1,9 @@
 package entities.outline;
 
 import entities.assessment.Assessment;
+import usecases.assessmentOperations.AssessmentCommitedWeightCalculator;
+import usecases.assessmentOperations.AssessmentHypotheticalWeightCalculator;
+import usecases.assessmentOperations.AssessmentSubmittedWeightCalculator;
 
 import java.util.ArrayList;
 
@@ -38,7 +41,8 @@ public class Outline {
     public double getPercentageCompleted() {
         double percentageCompleted = 0.0f;
         for (Assessment assessment : assessments) {
-            percentageCompleted += assessment.getSubmittedWeight();
+            AssessmentSubmittedWeightCalculator calculator = new AssessmentSubmittedWeightCalculator();
+            percentageCompleted += calculator.calcSubmittedWeight(assessment);
         }
         return percentageCompleted;
     }
@@ -54,14 +58,16 @@ public class Outline {
     public double getTotalCommmittedWeight() {
         double totalCompletedWeight = 0.0f;
         for (Assessment assessment : assessments) {
-            totalCompletedWeight += assessment.getCommittedWeight();
+            AssessmentCommitedWeightCalculator calculator = new AssessmentCommitedWeightCalculator();
+            totalCompletedWeight += calculator.calcCommittedWeight(assessment);
         }
         return totalCompletedWeight;
     }
     public double getTotalHypotheticalWeight() {
         double totalHypotheticalWeight = 0.0f;
         for (Assessment assessment : assessments) {
-            totalHypotheticalWeight += assessment.getHypotheticalWeight();
+            AssessmentHypotheticalWeightCalculator calculator = new AssessmentHypotheticalWeightCalculator();
+            totalHypotheticalWeight += calculator.calcHypotheticalWeight(assessment);
         }
         return totalHypotheticalWeight;
     }

@@ -2,9 +2,9 @@ package usecases.assessmentOperations;
 
 import entities.assessment.Assessment;
 
-public class CalcAssessmentSubmittedWeight {
+public class AssessmentSubmittedWeightCalculator {
 
-    public double getSubmittedWeight(Assessment assessment) {
+    public double calcSubmittedWeight(Assessment assessment) {
         double[] submittedMarksForWeight = new double[assessment.instanceList.getTotalNumberOfInstances()];
         for (int i = 0; i < assessment.instanceList.getTotalNumberOfInstances(); i++) {
             if (assessment.instanceList.getInstanceData(i).isSubmitted()) {
