@@ -27,7 +27,7 @@ public class AddMarkInteractor implements AddMarkInputBoundary {
 
         // factory a new instance
 
-
+        // somehow find the new hypothetical grade
 
         return new AddMarkResponseModel(0.0);
     }
