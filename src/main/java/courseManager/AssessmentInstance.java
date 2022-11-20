@@ -1,26 +1,33 @@
 package courseManager;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class AssessmentInstance {
     private String assessmentInstanceName;
-    private LocalDate date;
-    private double mark;
+    private LocalDate dueDate;
+    private LocalTime dueTime;
+    private Double mark;
     private boolean isCommitted;
     private boolean isSubmitted;
 
     /**
      * Create a new AssessmentInstance object with the given name and date
      * @param assessmentInstanceName the name of the assessment instance
+     *                               e.g. "Quiz #1", "Midterm #1", "Homework Assignment #1"
      */
 
     public AssessmentInstance(String assessmentInstanceName) {
         this.assessmentInstanceName = assessmentInstanceName;
         this.isCommitted = false;
         this.isSubmitted = false;
+        this.dueDate = null;
+        this.dueTime = null;
+        this.mark = null;
     }
 
     public void commit() {
+        isSubmitted = true;
         isCommitted = true;
     }
     public void uncommit() {
@@ -29,8 +36,13 @@ public class AssessmentInstance {
     public void submit() {
         isSubmitted = true;
     }
-    public void unsubmit() {
-        isSubmitted = false;
+    public void unsubmit() throws IllegalStateException {
+        if (!isCommitted) {
+            isSubmitted = false;
+        }
+        else{
+            throw new IllegalStateException("Cannot unsubmit a committed instance. Instance must be uncommitted first.");
+        }
     }
 
     public boolean isCommitted() {
@@ -49,19 +61,31 @@ public class AssessmentInstance {
         this.assessmentInstanceName = name;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
     }
 
-    public void setMark(double mark) {
-        this.mark = mark;
+    public LocalTime getDueTime() {
+        return dueTime;
+    }
+    public void setDueTime(LocalTime dueTime) {
+        this.dueTime = dueTime;
     }
 
-    public double getMark() {
+    public void setMark(double mark) throws IllegalArgumentException {
+        if (mark >= 0 && mark <= 1) {
+            this.mark = mark;
+        }
+        else {
+            throw new IllegalArgumentException("Mark must be between 0 and 1");
+        }
+    }
+
+    public Double getMark() {
         return mark;
     }
 }

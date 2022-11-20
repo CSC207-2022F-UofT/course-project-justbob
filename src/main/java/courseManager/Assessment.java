@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Assessment {
     private String title;
-    private InstanceList instanceList;
+    private final InstanceList instanceList;
     private WeightScheme weightScheme;
 
     /**
@@ -21,31 +21,23 @@ public class Assessment {
         this.title = title;
         this.weightScheme = weightScheme;
         this.instanceList = new InstanceList(this.title, weightScheme.getNumberOfInstances());
-
     }
 
-    public float getTotalWeight() {
-        float totalWeight = 0.0f;
-        /*iterate through each instance in the instance list and add its weight to the total weight*/
-        return totalWeight;
+    public double getTotalWeight() {
+        return weightScheme.getTotalWeight();
     }
 
-    public float getCommittedWeight() {
-        float committedWeight = 0.0f;
-        /*iterate through the instance list and add committed instances' weight*/
-        return committedWeight;
+    public double getCommittedWeight() {;
+        return this.instanceList.getNumberOfCommittedInstances() * weightScheme.getWeightOfEachInstance();
     }
 
-    public float getSubmittedWeight() {
-        float submittedWeight = 0.0f;
-        /*iterate through the instance list and add submitted instances' weight*/
-        return submittedWeight;
+    public double getSubmittedWeight() {
+        return this.instanceList.getNumberOfSubmittedInstances() * weightScheme.getWeightOfEachInstance();
     }
 
-    public float getHypotheticalWeight() {
-        float hypotheticalWeight = 0.0f;
-        /*iterate through the instance list and add all submitted weights together*/
-        return hypotheticalWeight;
+    public double getHypotheticalWeight() {
+        return this.instanceList.getNumberOfMarkedInstances() * weightScheme.getWeightOfEachInstance();
+
     }
 
     public InstanceList getInstanceList() {
