@@ -1,18 +1,14 @@
 package usecases.dataStorage;
 
-public class InstanceDsRequestModel {
-    private String username;
-    private String courseCode;
-    private String assessmentTitle;
+public class InstanceDsRequestModel extends AssessmentDsRequestModel {
     private int instanceIndex;
 
-    public InstanceDsRequestModel(String username,
-                                  String courseCode,
-                                  String assessmentTitle,
-                                  int instanceIndex) {
-        this.username = username;
-        this.courseCode = courseCode;
-        this.assessmentTitle = assessmentTitle;
+    public InstanceDsRequestModel(String username, String courseCode, String assessmentTitle, int instanceIndex) {
+        super(username, courseCode, assessmentTitle);
         this.instanceIndex = instanceIndex;
+    }
+
+    public int getInstanceIndex() {
+        return instanceIndex;
     }
 }
