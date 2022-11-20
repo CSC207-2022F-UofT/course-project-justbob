@@ -1,13 +1,12 @@
-package courseManager;
+package entities.assessment;
 
+import entities.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
-import java.util.ArrayList;
-
 public class Assessment {
-    private String title;
-    private final InstanceList instanceList;
-    private WeightScheme weightScheme;
+    public String title;
+    public final InstanceList instanceList;
+    public WeightScheme weightScheme;
 
     /**
      * Create a new Assessment object with a title and an associated WeightScheme
@@ -25,19 +24,6 @@ public class Assessment {
 
     public double getTotalWeight() {
         return weightScheme.getTotalWeight();
-    }
-
-    public double getCommittedWeight() {
-        double[] committedMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
-        for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
-            if (this.instanceList.getInstanceData(i).isCommitted()) {
-                committedMarksForWeight[i] = 100;
-            }
-            else {
-                committedMarksForWeight[i] = 0;
-            }
-        }
-        return weightScheme.computeWeighted(committedMarksForWeight) / 100;
     }
 
     public double getSubmittedWeight() {
@@ -72,16 +58,10 @@ public class Assessment {
         return instanceList;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
     public String getTitle() {
         return title;
     }
 
-    public void setWeightScheme(WeightScheme weightScheme) {
-        this.weightScheme = weightScheme;
-    }
     public WeightScheme getWeightScheme() {
         return weightScheme;
     }

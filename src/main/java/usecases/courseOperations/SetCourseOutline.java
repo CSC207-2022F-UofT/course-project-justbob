@@ -1,6 +1,6 @@
 package usecases.courseOperations;
 
-import courseManager.Outline;
+import entities.outline.Outline;
 import entities.course.Course;
 
 public class SetCourseOutline {

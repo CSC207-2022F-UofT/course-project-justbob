@@ -1,6 +1,6 @@
-package courseManager;
+package entities.outline;
 
-import weightScheme.WeightScheme;
+import entities.assessment.Assessment;
 
 import java.util.ArrayList;
 
