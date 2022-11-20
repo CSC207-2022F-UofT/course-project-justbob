@@ -1,5 +1,7 @@
 package Calculations;
 
+import java.util.ArrayList;
+
 public class GPA extends mathGpaCgpa  {
     private double percentage;
     private double gpa;
@@ -49,13 +51,14 @@ public class GPA extends mathGpaCgpa  {
      * @return a double of in terms of Calculations.GPA scale
      */
     // ArrayList<ArrayList<Double>> percentage
-    public static Double[][] convertPercentToGPA(){
+    public double convertPercentToGPA(){
         /**
          * Take a 2D array consisting of first element being weight and then element being percentage
          * and then converting the list to showcase weight and GPA
          */
-        Double marks[][]= {{0.5, 85.0}, {1.0, 78.0}, {0.5, 72.0}, {1.0, 77.0}};
+        List
 
+        course.getOutline().computeRunningGrade();
         for (int i = 0; i < marks.length; i++) {
             for (int j = 0; j < marks[i].length; j++) {
                 marks[i][1] = percentToGPA(marks[i][1]);
