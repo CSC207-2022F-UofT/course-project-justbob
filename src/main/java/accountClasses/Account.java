@@ -1,6 +1,6 @@
 package accountClasses;
 
-public class Account {
+public class Account implements AccountInterface {
     private final String username;
     private final String password;
     private RunningCourses runningCourses;
@@ -19,21 +19,13 @@ public class Account {
         this.runningCourses = new RunningCourses();
         this.archive = new Archive();
     }
-
+    @Override
     public String getUsername(){
         return username;
     }
-
+    @Override
     public String getPassword() {
         return password;
-    }
-
-    public Archive getArchive() {
-        return archive;
-    }
-
-    public RunningCourses getRunningCourses() {
-        return runningCourses;
     }
 }
 

@@ -1,15 +1,11 @@
 package accountClasses;
 
 import courseManager.Course;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 
 public class AccountClassesTest {
-    private final Account goodAccount1 = new Account("Bobby001", "goodbob1998");
-    private final Account duplicateAccount = new Account("Bobby001", "goodbob1997");
-    private final Account badAccount = new Account("Bob", "goodbob1996");
+    private final Account goodCommonAccount1 = new Account("Bobby001", "goodbob1998");
+    private final Account duplicateCommonAccount = new Account("Bobby001", "goodbob1997");
+    private final Account badCommonAccount = new Account("Bob", "goodbob1996");
     private final Course course1 = new Course("CSC101", "Intro to CS", "Fall 2021", true, 1.0F);
     private final Course course2 = new Course("CSC207", "Software Design", "Fall 2022", false, 0.5F);
     private Archive testArchive = new Archive();
