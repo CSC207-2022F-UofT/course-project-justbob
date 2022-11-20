@@ -1,6 +1,8 @@
 package accountClasses;
 
 import accountClasses.entities.Account;
+import accountClasses.entities.Archive;
+import accountClasses.entities.RunningCourses;
 import courseManager.Course;
 
 public class AccountClassesTest {

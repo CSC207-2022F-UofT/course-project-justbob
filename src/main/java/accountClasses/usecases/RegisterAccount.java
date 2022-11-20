@@ -1,4 +1,4 @@
-package accountClasses;
+package accountClasses.usecases;
 
 import accountClasses.entities.Account;
 
@@ -7,9 +7,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class AccountRecorder {
+public class RegisterAccount {
 
-    static public void addAccount(Account account) throws IOException {
+    static public void register(Account account) throws IOException {
         //This method adds a new account to the file that stores all accounts
         BufferedWriter out = new BufferedWriter(new FileWriter(new File("C:\\Users\\alanc\\IdeaProjects\\" +
                 "course-project-justbob\\src\\main\\java\\accountClasses\\accountsStorage"), true));

@@ -1,8 +1,5 @@
 package accountClasses.entities;
 
-import accountClasses.Archive;
-import accountClasses.RunningCourses;
-
 public class Account implements AccountInterface {
     private final String username;
     private final String password;

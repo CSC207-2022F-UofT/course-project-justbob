@@ -2,6 +2,7 @@ package accountClasses;
 
 import accountClasses.entities.Account;
 import accountClasses.entities.AccountFactory;
+import accountClasses.usecases.RegisterAccount;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,7 +20,7 @@ public class AccountInteractor {
         } else {
             if (CredentialsChecker.passwordLengthCheck(password)) { //checks for illegal passwords
                 Account newAcc = AccountFactory.create(id, password);
-                AccountRecorder.addAccount(newAcc);
+                RegisterAccount.register(newAcc);
                 return "good"; //tell the controller that account is created
                 /*need to direct user to the Account GUI*/
             } else {

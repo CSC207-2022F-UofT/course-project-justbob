@@ -94,6 +94,10 @@ public class Course {
         /*RunningCourses.removeCourse(this);*/
     }
 
+    public void unarchiveCourse(){
+        this.archived = false;
+    }
+
     public static void main(String[] args) {
         Course course = new Course("CSC207", "Software Design", "Fall 2022", false, 0.5f);
         CourseEvent csc207lecture = new CourseEvent("Lecture", DayOfWeek.TUESDAY,
