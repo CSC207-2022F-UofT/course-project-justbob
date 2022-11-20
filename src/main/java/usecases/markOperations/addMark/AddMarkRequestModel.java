@@ -3,7 +3,7 @@ package usecases.markOperations.addMark;
 public class AddMarkRequestModel {
     private String username;
     private String courseCode;
-    private String assignmentTitle;
+    private String assessmentTitle;
     private int instanceIndex;
 
     public AddMarkRequestModel(String username, String courseCode, String assignmentTitle, int instanceIndex) {
