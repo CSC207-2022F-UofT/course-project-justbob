@@ -1,10 +1,8 @@
 package weightScheme;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 
 class WeightSchemeTest {
     private double[] marks = {100, 95, 80, 75.2, 64, 0, 99.5};
@@ -56,7 +54,7 @@ class WeightSchemeTest {
                 new Weight(3, 0.1),
                 new Weight(1, 0.2),
         };
-        Assertions.assertEquals(45.375, new OrderedWeight(test_weights).computeWeighted(test_marks), 0.001);
+        Assertions.assertEquals(33, new OrderedWeight(test_weights).computeWeighted(test_marks), 0.001);
 
     }
 }
