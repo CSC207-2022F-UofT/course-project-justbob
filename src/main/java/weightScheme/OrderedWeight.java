@@ -71,4 +71,9 @@ public class OrderedWeight implements WeightScheme {
                 .mapToDouble(weight -> weight.getTotalWeight())
                 .sum();
     }
+
+    @Override
+    public double getWeightOfEachInstance() {
+        return orderedWeights[0].getWeightOfEachInstance();
+    }
 }
