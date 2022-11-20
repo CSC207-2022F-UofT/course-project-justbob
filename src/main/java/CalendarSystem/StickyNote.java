@@ -1,5 +1,6 @@
-package calendarSystem;
+package CalendarSystem;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.io.*;
 import java.time.*;
@@ -25,7 +26,7 @@ public class StickyNote {
     private int typeNum;
     private String date;
     private String time;
-    private String location;
+    private String location = "N/A";
     private ArrayList<LocalDate> dates = new ArrayList<>();
     private ArrayList<Notification> notifications = new ArrayList<>();
     private File stickyNoteFile;
@@ -35,9 +36,14 @@ public class StickyNote {
         setType(type);
     }
 
-    public void writeToStickyNote() {
+    public void writeToStickyNote(String[] dotJots) {
         try {
-            stickyNoteFile = new File(System.getProperty("user.dir"), "src/main/java/CalendarSystem/StickyNotes\\" + "rememberToEditStickyNoteFileNames" + ".txt");
+            File stickyNotesDirectory = new File(System.getProperty("user.dir"), "src/main/java/CalendarSystem/StickyNotes");
+            if (!stickyNotesDirectory.exists()) {
+                stickyNotesDirectory.mkdirs();
+            }
+
+            stickyNoteFile = new File(System.getProperty("user.dir"), "src/main/java/CalendarSystem/StickyNotes\\" + getTitle() + ".txt");
             BufferedWriter out = new BufferedWriter(new FileWriter(stickyNoteFile));
             out.write(title + ": " + time);
             if (!(location.equals("N/A") || location == null)) {
@@ -45,14 +51,18 @@ public class StickyNote {
                 out.write(location);
             }
             out.newLine();
-            Scanner sc = new Scanner(System.in);
+            for (int i = 0; i < dotJots.length; i++) {
+                out.newLine();
+                out.write("\t· " + dotJots[i]);
+            }
+/*            Scanner sc = new Scanner(System.in);
             dotJot = sc.nextLine();
             while (!dotJot.equals("---POST---")) {
                 out.write("\t· " + dotJot);
                 out.newLine();
                 dotJot = sc.nextLine();
             }
-            sc.close();
+            sc.close();*/
             out.close();
         } catch (IOException io) {
             IOException();
@@ -60,6 +70,22 @@ public class StickyNote {
     }
 
     public void setTitle(String title) {
+        File stickyNoteFile = new File(System.getProperty("user.dir"), "src/main/java/CalendarSystem/StickyNotes\\" + this.title + ".txt");
+        if (stickyNoteFile.exists()) {
+            try {
+                File stickyNoteFile2 = new File(System.getProperty("user.dir"), "src/main/java/CalendarSystem/StickyNotes\\" + title + ".txt");
+                BufferedReader in = new BufferedReader(new FileReader(stickyNoteFile));
+                BufferedWriter out = new BufferedWriter(new FileWriter(stickyNoteFile2));
+                String line = in.readLine();
+                while (line != null) {
+                    out.write(line);
+                    out.newLine();
+                    line = in.readLine();
+                }
+            } catch (IOException io) {
+                IOException();
+            }
+        }
         this.title = title;
     }
 
@@ -165,7 +191,9 @@ public class StickyNote {
 
     public void setNotification(String date, String time) {
         //add time formatter
-        LocalDateTime alarm = LocalDateTime.parse(date + " " + time);
+        //Locale.CANADA uses "a.m." and "p.m." while Locale.ENGLISH uses "AM" and "PM"
+        String formattedTime = LocalTime.parse(time, DateTimeFormatter.ofPattern("hh:mm a", Locale.ENGLISH)).format(DateTimeFormatter.ofPattern("HH:mm"));
+        LocalDateTime alarm = LocalDateTime.parse(date + " " + formattedTime, DateTimeFormatter.ofPattern("MMMM dd, yyyy HH:mm"));
 
         int count = 0;
         if (sundayPost > 0) {
@@ -195,33 +223,35 @@ public class StickyNote {
             notifications.add(dailyNotification);
         }
 
-        if (sundayPost > 0) {
-            Notification sundayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() % 7), WEEKLY_MILLISECONDS);
-            notifications.add(sundayNotification);
-        }
-        if (mondayPost > 0) {
-            Notification mondayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 1), WEEKLY_MILLISECONDS);
-            notifications.add(mondayNotification);
-        }
-        if (tuesdayPost > 0) {
-            Notification tuesdayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 2), WEEKLY_MILLISECONDS);
-            notifications.add(tuesdayNotification);
-        }
-        if (wednesdayPost > 0) {
-            Notification wednesdayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 3), WEEKLY_MILLISECONDS);
-            notifications.add(wednesdayNotification);
-        }
-        if (thursdayPost > 0) {
-            Notification thursdayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 4), WEEKLY_MILLISECONDS);
-            notifications.add(thursdayNotification);
-        }
-        if (fridayPost > 0) {
-            Notification fridayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 5), WEEKLY_MILLISECONDS);
-            notifications.add(fridayNotification);
-        }
-        if (saturdayPost > 0) {
-            Notification saturdayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 6), WEEKLY_MILLISECONDS);
-            notifications.add(saturdayNotification);
+        if (sundayPost > 0 || mondayPost > 0 || tuesdayPost > 0 || wednesdayPost > 0 || thursdayPost > 0 || fridayPost > 0 || saturdayPost > 0) {
+            if (sundayPost > 0) {
+                Notification sundayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() % 7), WEEKLY_MILLISECONDS);
+                notifications.add(sundayNotification);
+            }
+            if (mondayPost > 0) {
+                Notification mondayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 1), WEEKLY_MILLISECONDS);
+                notifications.add(mondayNotification);
+            }
+            if (tuesdayPost > 0) {
+                Notification tuesdayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 2), WEEKLY_MILLISECONDS);
+                notifications.add(tuesdayNotification);
+            }
+            if (wednesdayPost > 0) {
+                Notification wednesdayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 3), WEEKLY_MILLISECONDS);
+                notifications.add(wednesdayNotification);
+            }
+            if (thursdayPost > 0) {
+                Notification thursdayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 4), WEEKLY_MILLISECONDS);
+                notifications.add(thursdayNotification);
+            }
+            if (fridayPost > 0) {
+                Notification fridayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 5), WEEKLY_MILLISECONDS);
+                notifications.add(fridayNotification);
+            }
+            if (saturdayPost > 0) {
+                Notification saturdayNotification = new Notification(alarm.minusDays(alarm.getDayOfWeek().getValue() - 6), WEEKLY_MILLISECONDS);
+                notifications.add(saturdayNotification);
+            }
         }
         else {
             Notification notification = new Notification(alarm);
@@ -229,7 +259,43 @@ public class StickyNote {
         }
     }
 
+    public void removeAllNotifications() {
+        notifications.removeAll(notifications);
+    }
+
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
+    }
+
     public void IOException() {
         System.out.println("Error.");
+    }
+
+    public int getSundayPost() {
+        return sundayPost;
+    }
+
+    public int getMondayPost() {
+        return mondayPost;
+    }
+
+    public int getTuesdayPost() {
+        return tuesdayPost;
+    }
+
+    public int getWednesdayPost() {
+        return wednesdayPost;
+    }
+
+    public int getThursdayPost() {
+        return thursdayPost;
+    }
+
+    public int getFridayPost() {
+        return fridayPost;
+    }
+
+    public int getSaturdayPost() {
+        return saturdayPost;
     }
 }
