@@ -139,8 +139,7 @@ public class InstanceList implements InstanceListInterface{
         listOfAssessmentInstances.get(index).setMark(mark);
     }
 
-    @Override
-    public String toSingular(String pluralTitle){
+    private static String toSingular(String pluralTitle){
         if (pluralTitle == "Quizzes"){
             return "Quiz";
         }
