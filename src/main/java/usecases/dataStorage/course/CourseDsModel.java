@@ -28,27 +28,55 @@ public class CourseDsModel {
         return courseCode;
     }
 
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
+    }
+
     public String getCourseName() {
         return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public String getSemester() {
         return semester;
     }
 
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
     public boolean isArchived() {
         return archived;
+    }
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
     }
 
     public float getCredit() {
         return credit;
     }
 
+    public void setCredit(float credit) {
+        this.credit = credit;
+    }
+
     public List<AssessmentDsModel> getAssessmentData() {
         return assessmentData;
     }
 
+    public void setAssessmentData(List<AssessmentDsModel> assessmentData) {
+        this.assessmentData = assessmentData;
+    }
+
     public List<CourseEventDsModel> getCourseEventData() {
         return courseEventData;
+    }
+
+    public void setCourseEventData(List<CourseEventDsModel> courseEventData) {
+        this.courseEventData = courseEventData;
     }
 }

@@ -21,11 +21,23 @@ public class AssessmentDsModel {
         return title;
     }
 
-    public List<InstanceDsModel>  getInstanceData() {
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<InstanceDsModel> getInstanceData() {
         return instanceData;
+    }
+
+    public void setInstanceData(List<InstanceDsModel> instanceData) {
+        this.instanceData = instanceData;
     }
 
     public WeightSchemeDsModel getWeightSchemeModel() {
         return weightSchemeModel;
+    }
+
+    public void setWeightSchemeModel(WeightSchemeDsModel weightSchemeModel) {
+        this.weightSchemeModel = weightSchemeModel;
     }
 }

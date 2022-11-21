@@ -22,15 +22,31 @@ public class AccountDsModel {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<CourseDsModel> getSemesterData() {
         return semesterData;
     }
 
+    public void setSemesterData(List<CourseDsModel> semesterData) {
+        this.semesterData = semesterData;
+    }
+
     public List<CourseDsModel> getArchiveData() {
         return archiveData;
+    }
+
+    public void setArchiveData(List<CourseDsModel> archiveData) {
+        this.archiveData = archiveData;
     }
 }
