@@ -4,7 +4,7 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalTime;
 
-public class CourseEvent {
+public class CourseEvent implements CourseEventInterface{
     private String type;
 
     private DayOfWeek day;

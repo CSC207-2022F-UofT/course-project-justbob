@@ -9,4 +9,12 @@ public interface SemesterInterface {
     //Calendar getCalendar();
     //Checklist getChecklist();
     List<Course> getSemester();
+
+    static void addCourse(Course course) {
+
+    }
+
+    static void removeCourse(Course course) {
+
+    }
 }
