@@ -1,8 +1,8 @@
 package gradeTrend;
 
-import courseManager.Assessment;
-import courseManager.Course;
-import courseManager.InstanceList;
+import entities.assessment.Assessment;
+import entities.course.Course;
+import entities.instanceList.InstanceList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import weightScheme.SimpleWeight;

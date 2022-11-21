@@ -1,6 +1,7 @@
 package gradeTrend;
 
-import courseManager.Course;
+
+import entities.course.Course;
 
 import java.util.ArrayList;
 import java.util.List;
