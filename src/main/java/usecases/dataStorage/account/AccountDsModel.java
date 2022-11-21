@@ -7,15 +7,12 @@ import java.util.List;
 public class AccountDsModel {
     private String username;
     private String password;
-    private List<CourseDsModel> semesterData;
-    private List<CourseDsModel> archiveData;
+    private List<CourseDsModel> courseData;
 
-    public AccountDsModel(String username, String password, List<CourseDsModel> semesterData,
-                          List<CourseDsModel> archiveData) {
+    public AccountDsModel(String username, String password, List<CourseDsModel> courseData) {
         this.username = username;
         this.password = password;
-        this.semesterData = semesterData;
-        this.archiveData = archiveData;
+        this.courseData = courseData;
     }
 
     public String getUsername() {
@@ -34,19 +31,11 @@ public class AccountDsModel {
         this.password = password;
     }
 
-    public List<CourseDsModel> getSemesterData() {
-        return semesterData;
+    public List<CourseDsModel> getCourseData() {
+        return courseData;
     }
 
-    public void setSemesterData(List<CourseDsModel> semesterData) {
-        this.semesterData = semesterData;
-    }
-
-    public List<CourseDsModel> getArchiveData() {
-        return archiveData;
-    }
-
-    public void setArchiveData(List<CourseDsModel> archiveData) {
-        this.archiveData = archiveData;
+    public void setCourseData(List<CourseDsModel> courseData) {
+        this.courseData = courseData;
     }
 }
