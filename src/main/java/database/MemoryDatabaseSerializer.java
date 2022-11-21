@@ -1,5 +1,7 @@
 package database;
 
 public class MemoryDatabaseSerializer {
-    public MemoryDatabaseSerializer(MemoryDatabase)
+    public MemoryDatabaseSerializer(MemoryDatabase memoryDatabase) {
+
+    }
 }
