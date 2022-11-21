@@ -9,9 +9,6 @@ import java.util.ArrayList;
 
 public class InstanceList implements InstanceListInterface{
     private ArrayList<AssessmentInstance> listOfAssessmentInstances;
-
-    private String pluralTitle;
-    private String singularTitle;
     private int totalNumberOfInstances;
 
     /**
@@ -20,12 +17,12 @@ public class InstanceList implements InstanceListInterface{
      *              e.g. "Quizzes", "Midterm", "Homework Assignments"
      * @param totalNumberOfInstances the total number of instances of the assessment
      */
+
     public InstanceList(String pluralTitle, int totalNumberOfInstances) {
         this.listOfAssessmentInstances = new ArrayList<>();
         this.totalNumberOfInstances = totalNumberOfInstances;
-        this.singularTitle = toSingular(pluralTitle);
         for (int i = 0, j = 1; i < totalNumberOfInstances; i++, j++){
-            this.addInstance(this.singularTitle + " #" + j);
+            this.addInstance(toSingular(pluralTitle) + " #" + j);
         }
     }
     @Override
@@ -148,7 +145,7 @@ public class InstanceList implements InstanceListInterface{
             return "Quiz";
         }
         if (pluralTitle.charAt(pluralTitle.length()-1) == 's'){
-            return singularTitle.substring(0, pluralTitle.length()-1);
+            return pluralTitle.substring(0, pluralTitle.length()-1);
         }
         return pluralTitle;
     }
