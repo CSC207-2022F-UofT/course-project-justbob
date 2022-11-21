@@ -1,4 +1,4 @@
-package Calculations;
+package usecases.Calculations;
 
 import java.util.ArrayList;
 import java.util.List;
