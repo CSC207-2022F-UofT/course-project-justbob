@@ -24,21 +24,21 @@ public class Account implements AccountInterface {
     }
     @Override
     public String getUsername(){
-        return username;
+        return this.username;
     }
     @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     @Override
     public Archive getArchive() {
-        return archive;
+        return this.archive;
     }
 
     @Override
     public Semester getSemester() {
-        return semester;
+        return this.semester;
     }
 }
 

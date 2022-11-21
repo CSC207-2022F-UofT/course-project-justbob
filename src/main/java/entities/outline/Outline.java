@@ -8,7 +8,7 @@ public class Outline implements OutlineInterface{
 
     private ArrayList<Assessment> assessments;
 
-    Outline() {
+    public Outline() {
         this.assessments = new ArrayList<>();
     }
 

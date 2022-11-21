@@ -21,15 +21,13 @@ public class Archive implements ArchiveInterface {
 
     @Override
     public void addCourse(Course course) {
-        archived.add(course);
+        this.archived.add(course);
         course.archiveCourse();
     }
     @Override
     public void RemoveCourse(Course course) {
-        if (course.isArchived()) {
             course.unarchiveCourse();
-            archived.remove(course);
+            this.archived.remove(course);
         }
-    }
 }
 
