@@ -33,7 +33,7 @@ public class computewholegpa extends computeGPA{
         System.out.println(gpalist);
         System.out.println(overallGrade);
 
-        totalGpa = Math.round((sumGPA / sumCredits) * 100.0)/100.0;
+        totalGpa = Math.round((sumGPA / sumCredits) * 100.0) / 100.0;
         System.out.println(totalGpa);
         return totalGpa;
 
