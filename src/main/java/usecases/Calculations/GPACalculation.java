@@ -8,7 +8,7 @@ import java.lang.Math;
  * Construct GPACalculations that consist of different methods for various functionality ranging from computation
  * of percentage to GPA, converting list marks to list of GPA marks, computing the average of marks,
  * computation of percentage to lettered Grade, converting list marks to list of lettered Grades, and overall GPA
- * consisting of GPA and weight. GPA scale and lettered Grade are representive of UofT grading scheme.
+ * consisting of GPA and weight. GPA scale and lettered Grade are representative of UofT grading scheme.
  */
 
 public class GPACalculation {
@@ -49,7 +49,7 @@ public class GPACalculation {
 
     /**
      * Takes list of double consisting of course marks (in terms percentage) and converting values to list of double
-     * of GPA with assistance of helper.
+     * of GPA
      * @param marksPercentage list of double consisting of course marks in percentage
      * @return gpalist which is a list of double of marks in terms of GPA point scale UofT
      */
@@ -117,7 +117,6 @@ public class GPACalculation {
 
     /**
      * Takes list of double consisting of course marks in terms of percentage and converts to list of lettered Grades
-     * using helper function percentToGrade
      * @param marksPercentage2 a list of double
      * @return gradelist which is a list of string consisting of lettered Grade
      */
