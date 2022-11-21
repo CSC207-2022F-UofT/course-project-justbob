@@ -8,7 +8,7 @@ It also contains workflow documents that give instructions on how to manage your
 - [X] Verify the correct settings for your project repository
 - [X] Set up Github Projects
 - [X] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
+- [X] Create deveopment branches for your features
 - [ ] Use pull requests to merge finished features into main branch
 - [ ] Conduct code reviews
 
