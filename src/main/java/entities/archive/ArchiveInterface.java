@@ -8,4 +8,8 @@ public interface ArchiveInterface {
     static List<Course> getCourses() {
         return null;
     }
+
+    void addCourse(Course course);
+
+    void RemoveCourse(Course course);
 }

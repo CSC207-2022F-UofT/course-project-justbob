@@ -11,5 +11,15 @@ public interface AssessmentInterface {
 
     String getTitle();
 
+    void setWeightScheme(WeightScheme weightScheme);
+
     WeightScheme getWeightScheme();
+
+    double getCommittedWeight();
+
+    double getSubmittedWeight();
+
+    double getHypotheticalWeight();
+
+    void setTitle(String title);
 }

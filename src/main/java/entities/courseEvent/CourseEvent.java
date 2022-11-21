@@ -1,11 +1,10 @@
 package entities.courseEvent;
 
-
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalTime;
 
-public class CourseEvent implements CourseEventInterface{
+public class CourseEvent {
     private String type;
 
     private DayOfWeek day;
@@ -44,27 +43,27 @@ public class CourseEvent implements CourseEventInterface{
         this.duration = Duration.between(startTime, endTime);
         this.location = location;
     }
-    @Override
+
     public String getType() {
         return type;
     }
-    @Override
+
     public DayOfWeek getDay() {
         return day;
     }
-    @Override
+
     public LocalTime getStartTime() {
         return startTime;
     }
-    @Override
+
     public LocalTime getEndTime() {
         return endTime;
     }
-    @Override
+
     public String getLocation() {
         return location;
     }
-    @Override
+
     public String toString() {
         return this.type + " on " + this.day + " from " + this.startTime + " to " + this.endTime + " at " + this.location;
     }

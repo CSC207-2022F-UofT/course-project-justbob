@@ -18,5 +18,18 @@ public class Archive implements ArchiveInterface {
     public static List<Course> getCourses() {
         return archived;
     }
+
+    @Override
+    public void addCourse(Course course) {
+        archived.add(course);
+        course.archiveCourse();
+    }
+    @Override
+    public void RemoveCourse(Course course) {
+        if (course.isArchived()) {
+            course.unarchiveCourse();
+            archived.remove(course);
+        }
+    }
 }
 

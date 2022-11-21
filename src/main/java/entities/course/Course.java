@@ -1,33 +1,35 @@
 package entities.course;
 
-import entities.outline.Outline;
 import entities.courseEvent.CourseEvent;
+import entities.outline.Outline;
 
 import java.util.ArrayList;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 
-public class Course implements CourseInterface {
+
+public class Course {
     private String courseCode;
     private String courseName;
     private String semester;
-    public boolean archived;
+    private boolean archived;
     private float credit;
 
-    public Outline outline;
+    private Outline outline;
 
-    public ArrayList<CourseEvent> courseEvents;
+    private ArrayList<CourseEvent> courseEvents;
 
     /**
      * Create a new Course object with the given parameters
-     *
      * @param courseCode the code of the course
      *                   e.g. 'CSC207'
      * @param courseName the name of the course
      *                   e.g. 'Software Design'
-     * @param semester   the semester the course is offered in
+     * @param semester the semester the course is offered in
      *                   e.g. 'Fall 2022'
-     * @param credit     the number of credits the course is worth; must be either 0.5 or 1.0
-     * @param archived   whether the course is archived or not
+     * @param credit the number of credits the course is worth; must be either 0.5 or 1.0
+     * @param archived whether the course is archived or not
      */
 
     public Course(String courseCode, String courseName, String semester, boolean archived, float credit) {
@@ -40,43 +42,43 @@ public class Course implements CourseInterface {
         this.outline = new Outline();
     }
 
-    @Override
     public String getCourseCode() {
         return courseCode;
     }
 
-    @Override
     public String getCourseName() {
         return courseName;
     }
 
-    @Override
     public String getSemester() {
         return semester;
     }
 
-    @Override
     public boolean isArchived() {
         return archived;
     }
 
-    @Override
     public float getCredit() {
         return credit;
     }
 
-    @Override
     public Outline getOutline() {
         return outline;
     }
 
-    @Override
     public ArrayList<CourseEvent> getCourseEvents() {
         return courseEvents;
     }
 
-    /*public String toString() {
+    public void addCourseEvent(CourseEvent courseEvent) throws IllegalArgumentException{
+        if (courseEvents.contains(courseEvent)) {
+            throw new IllegalArgumentException("Course event already exists");
+        }
+        courseEvents.add(courseEvent);
+    }
 
+    public String toString() {
+        /*just for preliminary purposes*/
         if (archived) {
             return this.courseCode + ": " + this.courseName + " took place in " + this.semester + " and was worth " + this.credit +
                     " credit(s). It had the following course events:" + this.courseEvents;
@@ -84,10 +86,19 @@ public class Course implements CourseInterface {
             return this.courseCode + ": " + this.courseName + " takes place in " + this.semester +
                     " and is worth " + this.credit + " credit(s). It has the following course events: " + this.courseEvents;
         }
-    }*/
+    }
 
+    public void archiveCourse() {
+        this.archived = true;
+        /*Archive.addArchivedCourse(this);*/
+        /*RunningCourses.removeCourse(this);*/
+    }
 
-    /*public static void main(String[] args) {
+    public void unarchiveCourse() {
+        this.archived = false;
+    }
+
+    public static void main(String[] args) {
         Course course = new Course("CSC207", "Software Design", "Fall 2022", false, 0.5f);
         CourseEvent csc207lecture = new CourseEvent("Lecture", DayOfWeek.TUESDAY,
                 LocalTime.of(18,00), LocalTime.of(20,00), "BA 1200");
@@ -96,7 +107,7 @@ public class Course implements CourseInterface {
         course.addCourseEvent(csc207lecture);
         course.addCourseEvent(csc207tutorial);
         System.out.println(course);
-    }*/
+    }
 
 
 }

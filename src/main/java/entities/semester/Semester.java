@@ -33,5 +33,19 @@ public class Semester implements SemesterInterface {
      * public Checklist getChecklist() {
      *   return checklist
      * }*/
+
+    public static void addCourse(Course course) {
+        //Add new course to the current semester
+        if (semester.contains(course)) {
+            System.out.println("Course already in semester");
+            //report to controller
+        } else {
+            semester.add(course);
+        }
+    }
+
+    public static void removeCourse(Course course) {
+        semester.remove(course);
+    }
 }
 
