@@ -4,13 +4,13 @@ import java.util.List;
 
 public class generalAverage {
 
-    public static double computeAverage(List<Double> marks){
+    public static double computeAverage(List<Double> markspercentage){
         double average;
         double sum = 0;
-        for(int i = 0; i < marks.size(); i++){
-            sum += marks.get(i);
+        for(int i = 0; i < markspercentage.size(); i++){
+            sum += markspercentage.get(i);
         }
-        average = (sum / marks.size());
+        average = (sum / markspercentage.size());
         System.out.println(average);
         return average;
     }
