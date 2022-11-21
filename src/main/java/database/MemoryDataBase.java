@@ -3,13 +3,19 @@ package database;
 import usecases.dataStorage.account.AccountDsGateway;
 import usecases.dataStorage.account.AccountDsRequestModel;
 import usecases.dataStorage.account.AccountDsModel;
+import usecases.dataStorage.assessment.AssessmentDsGateway;
+import usecases.dataStorage.assessment.AssessmentDsModel;
+import usecases.dataStorage.assessment.AssessmentDsRequestModel;
 import usecases.dataStorage.course.CourseDsGateway;
 import usecases.dataStorage.course.CourseDsModel;
 import usecases.dataStorage.course.CourseDsRequestModel;
+import usecases.dataStorage.instance.InstanceDsGateway;
+import usecases.dataStorage.instance.InstanceDsModel;
+import usecases.dataStorage.instance.InstanceDsRequestModel;
 
 import java.util.ArrayList;
 
-public class MemoryDataBase implements AccountDsGateway, CourseDsGateway {
+public class MemoryDataBase implements AccountDsGateway, CourseDsGateway, AssessmentDsGateway, InstanceDsGateway {
     ArrayList<AccountDsModel> Accounts;
 
     /**
@@ -40,27 +46,12 @@ public class MemoryDataBase implements AccountDsGateway, CourseDsGateway {
 
     /**
      * @param requestModel
-     * @return whether this course is part of a semester in this database.
+     * @return whether this course is part of an account in this database.
      */
     @Override
-    public boolean existsSemesterCourse(CourseDsRequestModel requestModel) {
+    public boolean existsCourse(CourseDsRequestModel requestModel) {
         try {
-            return 0 < loadAccount(requestModel).getSemesterData().stream()
-                    .filter(courseDsModel -> courseDsModel.getCourseCode() == requestModel.getCourseCode())
-                    .count();
-        } catch (NoSuchFieldException exception) {
-            return false;
-        }
-    }
-
-    /**
-     * @param requestModel
-     * @return whether this course is part of an archive in this database.
-     */
-    @Override
-    public boolean existsArchivedCourse(CourseDsRequestModel requestModel) {
-        try {
-            return 0 < loadAccount(requestModel).getArchiveData().stream()
+            return 0 < loadAccount(requestModel).getCourseData().stream()
                     .filter(courseDsModel -> courseDsModel.getCourseCode() == requestModel.getCourseCode())
                     .count();
         } catch (NoSuchFieldException exception) {
@@ -74,27 +65,59 @@ public class MemoryDataBase implements AccountDsGateway, CourseDsGateway {
      * @throws NoSuchFieldException if this course is not a part of a user's semester.
      */
     @Override
-    public CourseDsModel loadSemesterCourse(CourseDsRequestModel requestModel) throws NoSuchFieldException {
-        if (!existsSemesterCourse(requestModel)) {
+    public CourseDsModel loadCourse(CourseDsRequestModel requestModel) throws NoSuchFieldException {
+        if (!existsCourse(requestModel)) {
             throw new NoSuchFieldException("The specified course does not exist.");
         }
-        return (CourseDsModel) loadAccount(requestModel).getSemesterData().stream()
+        return (CourseDsModel) loadAccount(requestModel).getCourseData().stream()
                 .filter(courseDsModel -> courseDsModel.getCourseCode() == requestModel.getCourseCode())
                 .toArray()[0];
     }
 
     /**
      * @param requestModel
-     * @return the course data in this database
-     * @throws NoSuchFieldException if this course is not a part of a user's archive.
+     * @return whether the assessment exists in this database.
      */
     @Override
-    public CourseDsModel loadArchivedCourse(CourseDsRequestModel requestModel) throws NoSuchFieldException {
-        if (!existsArchivedCourse(requestModel)) {
-            throw new NoSuchFieldException("The specified course does not exist.");
+    public boolean existsAssessment(AssessmentDsRequestModel requestModel) {
+        try {
+            return 0 < loadCourse(requestModel).getAssessmentData().stream()
+                    .filter(assessmentDsModel -> assessmentDsModel.getTitle() == requestModel.getAssessmentTitle())
+                    .count();
+        } catch (NoSuchFieldException exception) {
+            return false;
         }
-        return (CourseDsModel) loadAccount(requestModel).getArchiveData().stream()
-                .filter(courseDsModel -> courseDsModel.getCourseCode() == requestModel.getCourseCode())
+    }
+
+    @Override
+    public AssessmentDsModel loadAssessment(AssessmentDsRequestModel requestModel) throws NoSuchFieldException {
+        if (!existsAssessment(requestModel)) {
+            throw new NoSuchFieldException("The specified assessment does not exist.");
+        }
+        return (AssessmentDsModel) loadCourse(requestModel).getAssessmentData().stream()
+                .filter(assessmentDsModel -> assessmentDsModel.getTitle() == requestModel.getAssessmentTitle())
                 .toArray()[0];
+    }
+
+    @Override
+    public boolean existsInstance(InstanceDsRequestModel requestModel) {
+        try {
+            return requestModel.getInstanceIndex() < loadAssessment(requestModel).getInstanceData().size();
+        } catch (NoSuchFieldException exception) {
+            return false;
+        }
+    }
+
+    @Override
+    public InstanceDsModel loadInstance(InstanceDsRequestModel requestModel) throws NoSuchFieldException {
+        if (!existsInstance(requestModel)) {
+            throw new NoSuchFieldException("The specified instance does not exist.");
+        }
+        return (InstanceDsModel) loadAssessment(requestModel).getInstanceData().get(requestModel.getInstanceIndex());
+    }
+
+    @Override
+    public void saveInstanceMark(InstanceDsRequestModel requestModel, double mark) throws NoSuchFieldException {
+        loadInstance(requestModel).setMark(mark);
     }
 }
