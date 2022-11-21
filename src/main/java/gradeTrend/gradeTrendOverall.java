@@ -1,7 +1,9 @@
 package gradeTrend;
 
 
+import entities.account.Account;
 import entities.course.Course;
+import entities.semester.Semester;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,17 +17,21 @@ public class gradeTrendOverall implements gradeTrendInterface {
     public gradeTrendOverall(List<Course> courses) {
         this.courses = courses;
     }
-    /* public GPATrendOverall(Account account) {
-        this.courses = account.getRunningCourses();
-    }*/
 
-    public void calculateGPATrend()
-    {
+    public gradeTrendOverall(Semester semester) {
+        this.courses = semester.getSemester();
+    }
+
+    public gradeTrendOverall(Account account) {
+        this.courses = account.getSemester().getSemester();
+    }
+
+    public void calculateGPATrend() {
         List<String> course_names = new ArrayList<>();
         List<Double> grades = new ArrayList<>();
         for (Course course : this.courses) {
             double grade;
-            if(this.isHypothetical) {
+            if (this.isHypothetical) {
                 grade = course.getOutline().computeHypotheticalGrade();
             }
             else {
