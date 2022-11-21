@@ -1,4 +1,7 @@
-package courseManager;
+package entities.course;
+
+import entities.courseEvent.CourseEvent;
+import entities.outline.Outline;
 
 import java.util.ArrayList;
 
@@ -6,7 +9,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 
-public class Course {
+public class Course implements CourseInterface{
     private String courseCode;
     private String courseName;
     private String semester;
@@ -36,47 +39,52 @@ public class Course {
         this.archived = archived;
         this.credit = credit;
         this.courseEvents = new ArrayList<>();
+        this.outline = new Outline();
     }
-
-    public void setOutline(Outline outline) {
-        this.outline = outline;
-    }
-
+    @Override
     public String getCourseCode() {
         return courseCode;
     }
 
+    @Override
     public String getCourseName() {
         return courseName;
     }
 
+    @Override
     public String getSemester() {
         return semester;
     }
 
+    @Override
     public boolean isArchived() {
         return archived;
     }
 
+    @Override
     public float getCredit() {
         return credit;
     }
 
+    @Override
     public Outline getOutline() {
         return outline;
     }
 
+    @Override
     public ArrayList<CourseEvent> getCourseEvents() {
         return courseEvents;
     }
 
-    public void addCourseEvent(CourseEvent courseEvent) {
+    @Override
+    public void addCourseEvent(CourseEvent courseEvent) throws IllegalArgumentException{
         if (courseEvents.contains(courseEvent)) {
             throw new IllegalArgumentException("Course event already exists");
         }
         courseEvents.add(courseEvent);
     }
 
+    @Override
     public String toString() {
         /*just for preliminary purposes*/
         if (archived) {
@@ -88,10 +96,16 @@ public class Course {
         }
     }
 
+    @Override
     public void archiveCourse() {
         this.archived = true;
         /*Archive.addArchivedCourse(this);*/
         /*RunningCourses.removeCourse(this);*/
+    }
+
+    @Override
+    public void unarchiveCourse() {
+        this.archived = false;
     }
 
     public static void main(String[] args) {
