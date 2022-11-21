@@ -1,4 +1,4 @@
-package usecases;
+package usecases.accountOperations;
 
 import entities.account.Account;
 
