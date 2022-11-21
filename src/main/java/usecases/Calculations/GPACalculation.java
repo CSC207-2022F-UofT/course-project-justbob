@@ -48,9 +48,8 @@ public class GPACalculation {
     }
 
     /**
-     * Takes list of double consisting of course marks in terms of percentage and iterate through the list and
-     * converting values in terms of GPA using helper function of computationGPA. New converted values added to new
-     * list called gpalist.
+     * Takes list of double consisting of course marks (in terms percentage) and converting values to list of double
+     * of GPA with assistance of helper.
      * @param marksPercentage list of double consisting of course marks in percentage
      * @return gpalist which is a list of double of marks in terms of GPA point scale UofT
      */
@@ -133,9 +132,7 @@ public class GPACalculation {
 
     /**
      * Takes a list of double of markpercentage (course marks) and a list of courseCredit (0.5 or 1 depending on
-     * half-year or full-year). Computes overall GPA accounting for course credit. GPA is calculated by first
-     * taking sum of credits, then converting markpercentage into gpalist, then creating a new list consisting of
-     * gpa x course credit, and taking sum of this and dividing by sum of credits.
+     * half-year or full-year). Computes overall GPA accounting for course credit.
      *
      * @param markpercentage is a list of double consisting of course marks
      * @param courseCredits is a list of double consisting of course credits
