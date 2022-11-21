@@ -1,4 +1,9 @@
 package entities.outline;
 
-public class OutlineFactory {
+public class OutlineFactory implements OutlineFactoryInterface{
+
+    @Override
+    public Outline create() {
+        return new Outline();
+    }
 }

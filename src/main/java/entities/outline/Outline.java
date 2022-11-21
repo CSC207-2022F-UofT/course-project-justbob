@@ -1,13 +1,10 @@
 package entities.outline;
 
 import entities.assessment.Assessment;
-import usecases.assessmentOperations.AssessmentCommitedWeightCalculator;
-import usecases.assessmentOperations.AssessmentHypotheticalWeightCalculator;
-import usecases.assessmentOperations.AssessmentSubmittedWeightCalculator;
 
 import java.util.ArrayList;
 
-public class Outline {
+public class Outline implements OutlineInterface{
 
     private ArrayList<Assessment> assessments;
 
@@ -15,17 +12,19 @@ public class Outline {
         this.assessments = new ArrayList<>();
     }
 
+    @Override
     public void addAssessment(Assessment assessment) {
 
         assessments.add(assessment);
     }
 
+    @Override
     public void removeAssessment(Assessment assessment) {
 
         assessments.remove(assessment);
     }
 
-
+    @Override
     public Assessment getAssessment(int index) throws IndexOutOfBoundsException {
             try {
                 return assessments.get(index);
@@ -34,19 +33,21 @@ public class Outline {
             }
     }
 
+    @Override
     public ArrayList<Assessment> getAssessments() {
         return assessments;
     }
 
+    @Override
     public double getPercentageCompleted() {
         double percentageCompleted = 0.0f;
         for (Assessment assessment : assessments) {
-            AssessmentSubmittedWeightCalculator calculator = new AssessmentSubmittedWeightCalculator();
-            percentageCompleted += calculator.calcSubmittedWeight(assessment);
+            percentageCompleted += assessment.getSubmittedWeight();
         }
         return percentageCompleted;
     }
 
+    @Override
     public int getNumberOfAssessmentInstancesCompleted() {
         int numberOfAssessmentsCompleted = 0;
         for (Assessment assessment : assessments) {
@@ -55,23 +56,25 @@ public class Outline {
         return numberOfAssessmentsCompleted;
     }
 
+    @Override
     public double getTotalCommmittedWeight() {
         double totalCompletedWeight = 0.0f;
         for (Assessment assessment : assessments) {
-            AssessmentCommitedWeightCalculator calculator = new AssessmentCommitedWeightCalculator();
-            totalCompletedWeight += calculator.calcCommittedWeight(assessment);
+            totalCompletedWeight += assessment.getCommittedWeight();
         }
         return totalCompletedWeight;
     }
+
+    @Override
     public double getTotalHypotheticalWeight() {
         double totalHypotheticalWeight = 0.0f;
         for (Assessment assessment : assessments) {
-            AssessmentHypotheticalWeightCalculator calculator = new AssessmentHypotheticalWeightCalculator();
-            totalHypotheticalWeight += calculator.calcHypotheticalWeight(assessment);
+            totalHypotheticalWeight += assessment.getHypotheticalWeight();
         }
         return totalHypotheticalWeight;
     }
 
+    @Override
     public double computeRunningGrade() {
         double rgrade = 0.0;
         for (Assessment assessment : assessments) {
@@ -80,6 +83,7 @@ public class Outline {
         return rgrade/this.getTotalCommmittedWeight();
     }
 
+    @Override
     public double computeHypotheticalGrade() {
         double hgrade = 0.0;
         for (Assessment assessment : assessments) {
