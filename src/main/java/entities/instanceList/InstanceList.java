@@ -56,7 +56,7 @@ public class InstanceList implements InstanceListInterface{
 
     @Override
     public int getCurrentNumberOfInstances() {
-        return currentNumberOfInstances;
+        return listOfAssessmentInstances.size();
     }
 
     @Override
