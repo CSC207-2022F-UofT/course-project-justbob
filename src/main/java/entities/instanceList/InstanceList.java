@@ -15,8 +15,6 @@ public class InstanceList implements InstanceListInterface{
     private int totalNumberOfInstances;
 
     private int currentNumberOfInstances;
-    private int numberOfCommittedInstances;
-    private int numberOfSubmittedInstances;
 
     /**
      * Create a new InstanceList object with a list of AssessmentInstances
@@ -47,12 +45,6 @@ public class InstanceList implements InstanceListInterface{
 
     @Override
     public void removeInstance(int index) {
-        if (listOfAssessmentInstances.get(index).isCommitted()) {
-            numberOfCommittedInstances--;
-        }
-        if (listOfAssessmentInstances.get(index).isSubmitted()) {
-            numberOfSubmittedInstances--;
-        }
         listOfAssessmentInstances.remove(index);
         currentNumberOfInstances--;
     }
