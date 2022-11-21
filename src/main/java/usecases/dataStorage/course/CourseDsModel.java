@@ -1,20 +1,20 @@
 package usecases.dataStorage.course;
 
-import usecases.dataStorage.assessment.AssessmentDsResponseModel;
+import usecases.dataStorage.assessment.AssessmentDsModel;
 
 import java.util.List;
 
-public class CourseDsResponseModel {
+public class CourseDsModel {
     private String courseCode;
     private String courseName;
     private String semester;
     private boolean archived;
     private float credit;
-    private List<AssessmentDsResponseModel> assessmentData;
+    private List<AssessmentDsModel> assessmentData;
     private List<CourseEventDsModel> courseEventData;
 
-    public CourseDsResponseModel(String courseCode, String courseName, String semester, boolean archived, float credit,
-                                 List<AssessmentDsResponseModel> assessmentData, List<CourseEventDsModel> courseEventData) {
+    public CourseDsModel(String courseCode, String courseName, String semester, boolean archived, float credit,
+                         List<AssessmentDsModel> assessmentData, List<CourseEventDsModel> courseEventData) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.semester = semester;
@@ -44,7 +44,7 @@ public class CourseDsResponseModel {
         return credit;
     }
 
-    public List<AssessmentDsResponseModel> getAssessmentData() {
+    public List<AssessmentDsModel> getAssessmentData() {
         return assessmentData;
     }
 

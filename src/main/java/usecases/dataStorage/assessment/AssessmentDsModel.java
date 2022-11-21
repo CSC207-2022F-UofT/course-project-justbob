@@ -1,17 +1,17 @@
 package usecases.dataStorage.assessment;
 
-import usecases.dataStorage.instance.InstanceDsResponseModel;
+import usecases.dataStorage.instance.InstanceDsModel;
 import usecases.dataStorage.weightScheme.WeightSchemeDsModel;
 
 import java.util.List;
 
-public class AssessmentDsResponseModel {
+public class AssessmentDsModel {
     private String title;
-    private List<InstanceDsResponseModel> instanceData;
+    private List<InstanceDsModel> instanceData;
     private WeightSchemeDsModel weightSchemeModel;
 
-    public AssessmentDsResponseModel(String title, List<InstanceDsResponseModel> instanceData,
-                                     WeightSchemeDsModel weightSchemeModel) {
+    public AssessmentDsModel(String title, List<InstanceDsModel> instanceData,
+                             WeightSchemeDsModel weightSchemeModel) {
         this.title = title;
         this.instanceData = instanceData;
         this.weightSchemeModel = weightSchemeModel;
@@ -21,7 +21,7 @@ public class AssessmentDsResponseModel {
         return title;
     }
 
-    public List<InstanceDsResponseModel>  getInstanceData() {
+    public List<InstanceDsModel>  getInstanceData() {
         return instanceData;
     }
 
