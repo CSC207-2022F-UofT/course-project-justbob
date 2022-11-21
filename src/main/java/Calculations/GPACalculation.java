@@ -51,8 +51,8 @@ public class GPACalculation {
      * Takes list of double consisting of course marks in terms of percentage and iterate through the list and
      * converting values in terms of GPA using helper function of computationGPA. New converted values added to new
      * list called gpalist.
-     * @param marksPercentage
-     * @return
+     * @param marksPercentage list of double consisting of course marks in percentage
+     * @return gpalist which is a list of double of marks in terms of GPA point scale UofT
      */
 
     public static List<Double> computeSemGPA(List<Double> marksPercentage) {
