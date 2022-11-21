@@ -1,10 +1,11 @@
 package usecases.dataStorage.course;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalTime;
 
-public class CourseEventDsModel {
+public class CourseEventDsModel implements Serializable {
     private String type;
     private DayOfWeek day;
     private LocalTime startTime;

@@ -1,8 +1,9 @@
 package usecases.dataStorage.instance;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class InstanceDsModel {
+public class InstanceDsModel implements Serializable {
     private String assessmentInstanceName;
     private LocalDate date;
     private double mark;

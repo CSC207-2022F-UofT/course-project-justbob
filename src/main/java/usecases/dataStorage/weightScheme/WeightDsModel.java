@@ -1,6 +1,8 @@
 package usecases.dataStorage.weightScheme;
 
-public class WeightDsModel {
+import java.io.Serializable;
+
+public class WeightDsModel implements Serializable {
     private int numberOfInstances;
     private double weightOfEachInstance;
 

@@ -2,9 +2,10 @@ package usecases.dataStorage.account;
 
 import usecases.dataStorage.course.CourseDsModel;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AccountDsModel {
+public class AccountDsModel implements Serializable {
     private String username;
     private String password;
     private List<CourseDsModel> courseData;

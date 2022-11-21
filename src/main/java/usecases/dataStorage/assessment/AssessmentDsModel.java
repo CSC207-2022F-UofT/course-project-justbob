@@ -3,9 +3,10 @@ package usecases.dataStorage.assessment;
 import usecases.dataStorage.instance.InstanceDsModel;
 import usecases.dataStorage.weightScheme.WeightSchemeDsModel;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class AssessmentDsModel {
+public class AssessmentDsModel implements Serializable {
     private String title;
     private List<InstanceDsModel> instanceData;
     private WeightSchemeDsModel weightSchemeModel;

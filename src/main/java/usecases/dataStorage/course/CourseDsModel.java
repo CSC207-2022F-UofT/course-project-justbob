@@ -2,9 +2,10 @@ package usecases.dataStorage.course;
 
 import usecases.dataStorage.assessment.AssessmentDsModel;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CourseDsModel {
+public class CourseDsModel implements Serializable {
     private String courseCode;
     private String courseName;
     private String semester;
