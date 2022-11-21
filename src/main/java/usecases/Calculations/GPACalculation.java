@@ -19,7 +19,7 @@ public class GPACalculation {
      * @return a double of GPA value
      */
 
-    public static double computationGPA(double percentage){
+    public static double percentToGPA(double percentage){
         if(percentage >= 85.0){
             return 4.0;
         }else if(percentage >= 80.0){
@@ -57,7 +57,7 @@ public class GPACalculation {
     public static List<Double> computeSemGPA(List<Double> marksPercentage) {
         List<Double> gpalist = new ArrayList<>();
         for(int i = 0; i < marksPercentage.size(); i++) {
-            gpalist.add(computationGPA(marksPercentage.get(i)));
+            gpalist.add(percentToGPA(marksPercentage.get(i)));
         }
         //System.out.println(gpalist);
         return gpalist;
@@ -148,7 +148,7 @@ public class GPACalculation {
             sumCredits += courseCredits.get(i);
         }
         for(int j = 0; j < markpercentage.size(); j++) {
-            gpalist.add(computationGPA(markpercentage.get(j)));
+            gpalist.add(percentToGPA(markpercentage.get(j)));
         }
         for(int s = 0; s < gpalist.size(); s ++){
             overallGrade.add(gpalist.get(s) * courseCredits.get(s));
