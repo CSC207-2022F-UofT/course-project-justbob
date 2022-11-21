@@ -4,7 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.lang.Math;
 
+/**
+ * Construct GPACalculations that consist of different methods for various functionality ranging from computation
+ * of percentage to GPA, converting list marks to list of GPA marks, computing the average of marks,
+ * computation of percentage to lettered Grade, converting list marks to list of lettered Grades, and overall GPA
+ * consisting of GPA and weight. GPA scale and lettered Grade are representive of UofT grading scheme.
+ */
+
 public class GPACalculation {
+
+    /**
+     * Takes a double of mark in terms of percentage and converts to double in terms of GPA point scale
+     * @param percentage is a double that represents the mark in a course
+     * @return a double of GPA value
+     */
 
     public static double computationGPA(double percentage){
         if(percentage >= 85.0){
@@ -32,28 +45,46 @@ public class GPACalculation {
         }else {
             return 0.0;
         }
-
     }
 
-    public static List<Double> computeSemGPA(List<Double> markspercentage) {
+    /**
+     * Takes list of double consisting of course marks in terms of percentage and iterate through the list and
+     * converting values in terms of GPA using helper function of computationGPA. New converted values added to new
+     * list called gpalist.
+     * @param marksPercentage
+     * @return
+     */
+
+    public static List<Double> computeSemGPA(List<Double> marksPercentage) {
         List<Double> gpalist = new ArrayList<>();
-        for(int i = 0; i < markspercentage.size(); i++) {
-            gpalist.add(computationGPA(markspercentage.get(i)));
+        for(int i = 0; i < marksPercentage.size(); i++) {
+            gpalist.add(computationGPA(marksPercentage.get(i)));
         }
-        System.out.println(gpalist);
+        //System.out.println(gpalist);
         return gpalist;
     }
-    public static double computeAverage(List<Double> markspercentage) {
+
+    /**
+     * Takes list of double consisting of course marks in terms of percentage and take the average of these marks
+     * @param marksPercentage1 a list of double consisting of course marks in terms of percentage
+     * @return a double of the computed average
+     */
+    public static double computeAverage(List<Double> marksPercentage1) {
         double average;
         double sum = 0;
-        for (int i = 0; i < markspercentage.size(); i++) {
-            sum += markspercentage.get(i);
+        for (int i = 0; i < marksPercentage1.size(); i++) {
+            sum += marksPercentage1.get(i);
         }
-        average = (sum / markspercentage.size());
-        System.out.println(average);
+        average = (sum / marksPercentage1.size());
+        //System.out.println(average);
         return average;
     }
 
+    /**
+     * Takes a double in terms of percentage and converts it to lettered Grade based on UofT grading scheme
+     * @param percentage1 a double representing course mark in terms of percentage
+     * @return a String that is representative of mark in terms of lettered Grade
+     */
 
     public static String percentToGrade(double percentage1){
         if(percentage1 >= 90){
@@ -85,15 +116,31 @@ public class GPACalculation {
         }
     }
 
-    public static List<String> computeGrade(List<Double> markspercentage) {
+    /**
+     * Takes list of double consisting of course marks in terms of percentage and converts to list of lettered Grades
+     * using helper function percentToGrade
+     * @param marksPercentage2 a list of double
+     * @return gradelist which is a list of string consisting of lettered Grade
+     */
+    public static List<String> computeGrade(List<Double> marksPercentage2) {
         List<String> gradelist = new ArrayList<>();
-        for(int i = 0; i < markspercentage.size(); i++) {
-            gradelist.add(percentToGrade(markspercentage.get(i)));
+        for(int i = 0; i < marksPercentage2.size(); i++) {
+            gradelist.add(percentToGrade(marksPercentage2.get(i)));
         }
-        System.out.println(gradelist);
+        //System.out.println(gradelist);
         return gradelist;
     }
 
+    /**
+     * Takes a list of double of markpercentage (course marks) and a list of courseCredit (0.5 or 1 depending on
+     * half-year or full-year). Computes overall GPA accounting for course credit. GPA is calculated by first
+     * taking sum of credits, then converting markpercentage into gpalist, then creating a new list consisting of
+     * gpa x course credit, and taking sum of this and dividing by sum of credits.
+     *
+     * @param markpercentage is a list of double consisting of course marks
+     * @param courseCredits is a list of double consisting of course credits
+     * @return a double of the overall GPA to 2 decimal places
+     */
     public static double overallGPA(List<Double> markpercentage, List<Double> courseCredits) {
         double sumGPA = 0;
         double sumCredits = 0;
@@ -113,34 +160,8 @@ public class GPACalculation {
         for(int v = 0; v < overallGrade.size(); v++) {
             sumGPA += overallGrade.get(v);
         }
-        System.out.println(courseCredits);
-        System.out.println(sumCredits);
-        System.out.println(gpalist);
-        System.out.println(overallGrade);
-
         totalGpa = Math.round((sumGPA / sumCredits) * 100.0) / 100.0;
-        System.out.println(totalGpa);
+        //System.out.println(totalGpa);
         return totalGpa;
-
-    }
-
-
-
-
-
-
-
-    public static void main(String[] args){
-        System.out.println("GPA: ");
-        computeSemGPA(List.of(90.0, 85.0, 73.0, 84.9));
-
-        System.out.println("Average: ");
-        computeAverage(List.of(90.0, 85.0, 73.0, 84.9));
-
-        System.out.println("Letters: ");
-        computeGrade(List.of(90.0, 85.0, 73.0, 84.9));
-
-        System.out.println("Whole: ");
-        overallGPA(List.of(90.0, 75.0, 73.0, 81.0), List.of(1.0, 0.5, 0.5, 1.0));
     }
 }
