@@ -1,5 +1,7 @@
-package main;
+package AssignmetnChecklistTest;
 
+import AssessmentChecklist.Assessment;
+import AssessmentChecklist.Checklist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
