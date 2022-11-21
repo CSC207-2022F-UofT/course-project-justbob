@@ -53,8 +53,6 @@ public class ChecklistPanel extends JPanel{
         this.name = new JTextField();
         name.setBounds(120, 570, 150, 25);
         this.add(name);
-        String a = courseName.getText();
-        String b = name.getText();
 
         finishedButton = new JButton("Finished!!!");
         finishedButton.setBounds(320, 570, 100, 25);
@@ -62,8 +60,14 @@ public class ChecklistPanel extends JPanel{
         finishedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AssessmentCl theAssessmentCl = checklist.findAssessmentCl(a, b);
-                theAssessmentCl.markAsFinished();
+                String a = courseName.getText();
+                String b = name.getText();
+                for (AssessmentCl i: checklist.getAllTasks()){
+                    if (i.getCourseName().equals(a) &&
+                            i.getName().equals(b)){
+                        i.markAsFinished();
+                    }
+                }
                 List c = checklist.getAllTasks();
                 checklist.refresher();
                 checklist.addAssessmentCls(c);
@@ -218,8 +222,8 @@ public class ChecklistPanel extends JPanel{
         assessmentCl6.setMark(90);
         Checklist checklist = new Checklist();
         checklist.addAssessmentCls(assessmentClList);
-
          */
+
         AssessmentChecklist.Checklist checklist = new Checklist();
         ChecklistPanel b = new ChecklistPanel(checklist);
         a.setSize(500, 800);
