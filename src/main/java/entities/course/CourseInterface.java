@@ -19,4 +19,12 @@ public interface CourseInterface {
     Outline getOutline();
 
     ArrayList<CourseEvent> getCourseEvents();
+
+    void archiveCourse();
+
+    void unarchiveCourse();
+
+    String toString();
+
+    void addCourseEvent(CourseEvent courseEvent);
 }
