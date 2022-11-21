@@ -14,8 +14,6 @@ public class InstanceList implements InstanceListInterface{
     private String singularTitle;
     private int totalNumberOfInstances;
 
-    private int currentNumberOfInstances;
-
     /**
      * Create a new InstanceList object with a list of AssessmentInstances
      * @param pluralTitle the plural title of the assessment
@@ -25,7 +23,6 @@ public class InstanceList implements InstanceListInterface{
     public InstanceList(String pluralTitle, int totalNumberOfInstances) {
         this.listOfAssessmentInstances = new ArrayList<>();
         this.totalNumberOfInstances = totalNumberOfInstances;
-        this.currentNumberOfInstances = 0;
         this.singularTitle = toSingular(pluralTitle);
         for (int i = 0, j = 1; i < totalNumberOfInstances; i++, j++){
             this.addInstance(this.singularTitle + " #" + j);
@@ -33,9 +30,8 @@ public class InstanceList implements InstanceListInterface{
     }
     @Override
     public void addInstance(String name) {
-        if (currentNumberOfInstances < totalNumberOfInstances) {
+        if (getCurrentNumberOfInstances() < totalNumberOfInstances) {
             listOfAssessmentInstances.add(new AssessmentInstance(name));
-            currentNumberOfInstances++;
         }
         else{
             System.out.println("You have reached the maximum number of instances for this assessment");
@@ -46,7 +42,6 @@ public class InstanceList implements InstanceListInterface{
     @Override
     public void removeInstance(int index) {
         listOfAssessmentInstances.remove(index);
-        currentNumberOfInstances--;
     }
 
     @Override
