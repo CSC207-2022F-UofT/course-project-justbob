@@ -6,7 +6,7 @@ import java.time.LocalTime;
 public class AssessmentInstanceFactory implements AssessmentInstanceFactoryInterface{
 
     @Override
-    public AssessmentInstance create(String assessmentInstanceName) {
+    public AssessmentInstanceInterface create(String assessmentInstanceName) {
         return new AssessmentInstance(assessmentInstanceName);
     }
 
@@ -21,7 +21,7 @@ public class AssessmentInstanceFactory implements AssessmentInstanceFactoryInter
      * @return the constructed AssessmentInstance.
      */
     @Override
-    public AssessmentInstance create(String assessmentInstanceName, LocalDate dueDate, LocalTime dueTime, Double mark,
+    public AssessmentInstanceInterface create(String assessmentInstanceName, LocalDate dueDate, LocalTime dueTime, Double mark,
                                         boolean isCommitted, boolean isSubmitted) {
         AssessmentInstance assessmentInstance = new AssessmentInstance(assessmentInstanceName);
         assessmentInstance.setDueDate(dueDate);
