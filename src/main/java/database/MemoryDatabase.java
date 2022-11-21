@@ -13,9 +13,11 @@ import usecases.dataStorage.instance.InstanceDsGateway;
 import usecases.dataStorage.instance.InstanceDsModel;
 import usecases.dataStorage.instance.InstanceDsRequestModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MemoryDataBase implements AccountDsGateway, CourseDsGateway, AssessmentDsGateway, InstanceDsGateway {
+public class MemoryDatabase implements AccountDsGateway, CourseDsGateway, AssessmentDsGateway, InstanceDsGateway,
+        Serializable {
     ArrayList<AccountDsModel> Accounts;
 
     /**
