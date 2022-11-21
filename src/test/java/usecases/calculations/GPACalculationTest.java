@@ -1,4 +1,4 @@
-package usecases.Calculations;
+package usecases.calculations;
 
 import org.junit.Test;
 
