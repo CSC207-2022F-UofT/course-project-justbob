@@ -1,6 +1,8 @@
 package usecases.dataStorage.course;
 
 public interface CourseDsGateway {
-    boolean existsCourse(CourseDsRequestModel requestModel);
-    CourseDsModel loadCourse(CourseDsRequestModel requestModel);
+    boolean existsSemesterCourse(CourseDsRequestModel requestModel);
+    boolean existsArchivedCourse(CourseDsRequestModel requestModel);
+    CourseDsModel loadSemesterCourse(CourseDsRequestModel requestModel) throws NoSuchFieldException;
+    CourseDsModel loadArchivedCourse(CourseDsRequestModel requestModel) throws NoSuchFieldException;
 }
