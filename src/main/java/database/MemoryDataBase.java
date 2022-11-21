@@ -89,6 +89,11 @@ public class MemoryDataBase implements AccountDsGateway, CourseDsGateway, Assess
         }
     }
 
+    /**
+     * @param requestModel
+     * @return the assessment data in this database
+     * @throws NoSuchFieldException if the assessment does not exist in this database.
+     */
     @Override
     public AssessmentDsModel loadAssessment(AssessmentDsRequestModel requestModel) throws NoSuchFieldException {
         if (!existsAssessment(requestModel)) {
@@ -99,6 +104,10 @@ public class MemoryDataBase implements AccountDsGateway, CourseDsGateway, Assess
                 .toArray()[0];
     }
 
+    /**
+     * @param requestModel
+     * @return whether the specified instance exists in this database
+     */
     @Override
     public boolean existsInstance(InstanceDsRequestModel requestModel) {
         try {
@@ -108,6 +117,11 @@ public class MemoryDataBase implements AccountDsGateway, CourseDsGateway, Assess
         }
     }
 
+    /**
+     * @param requestModel
+     * @return the instance data in this database
+     * @throws NoSuchFieldException if the specified instance does not exist.
+     */
     @Override
     public InstanceDsModel loadInstance(InstanceDsRequestModel requestModel) throws NoSuchFieldException {
         if (!existsInstance(requestModel)) {
@@ -116,6 +130,12 @@ public class MemoryDataBase implements AccountDsGateway, CourseDsGateway, Assess
         return (InstanceDsModel) loadAssessment(requestModel).getInstanceData().get(requestModel.getInstanceIndex());
     }
 
+    /**
+     * save an instance's mark in the database
+     * @param requestModel
+     * @param mark the new mark to set
+     * @throws NoSuchFieldException if the specified instance does not exist
+     */
     @Override
     public void saveInstanceMark(InstanceDsRequestModel requestModel, double mark) throws NoSuchFieldException {
         loadInstance(requestModel).setMark(mark);
