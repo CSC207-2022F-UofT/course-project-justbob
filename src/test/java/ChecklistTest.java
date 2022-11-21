@@ -1,6 +1,6 @@
-package test;
+package AssessmentChecklist;
 
-import AssessmentChecklist.Assessment;
+import AssessmentChecklist.AssessmentCl;
 import AssessmentChecklist.Checklist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -12,36 +12,36 @@ import java.util.List;
 
 public class ChecklistTest {
     private Checklist checklist = new Checklist();
-    private Assessment assessment1 = new Assessment("CSC207", "Final Exam");
-    private Assessment assessment2 = new Assessment("CSC207", "Project");
-    private Assessment assessment3 = new Assessment("CSC236", "Final Exam");
-    private Assessment assessment4 = new Assessment("CSC236", "Term Test 1");
-    private Assessment assessment5 = new Assessment("CSC236", "Term Test 2");
-    private Assessment assessment6 = new Assessment("CSC236", "Term Test 3");
+    private AssessmentCl assessmentCl1 = new AssessmentCl("CSC207", "Final Exam");
+    private AssessmentCl assessmentCl2 = new AssessmentCl("CSC207", "Project");
+    private AssessmentCl assessmentCl3 = new AssessmentCl("CSC236", "Final Exam");
+    private AssessmentCl assessmentCl4 = new AssessmentCl("CSC236", "Term Test 1");
+    private AssessmentCl assessmentCl5 = new AssessmentCl("CSC236", "Term Test 2");
+    private AssessmentCl assessmentCl6 = new AssessmentCl("CSC236", "Term Test 3");
 
     @Test
-    public void test_addAssessment(){
-        checklist.addAssessment(assessment1);
+    public void test_addAssessmentCl(){
+        checklist.addAssessmentCl(assessmentCl1);
         Assertions.assertEquals("[CSC207 Final Exam]", checklist.getTaskToDo().toString());
         Assertions.assertEquals("[CSC207 Final Exam]", checklist.getAllTasks().toString());
         Assertions.assertEquals("[]", checklist.getTaskFinished().toString());
-        assessment2.markAsFinished();
-        checklist.addAssessment(assessment2);
+        assessmentCl2.markAsFinished();
+        checklist.addAssessmentCl(assessmentCl2);
         Assertions.assertEquals("[CSC207 Project]", checklist.getTaskFinished().toString());
         Assertions.assertEquals("[CSC207 Final Exam, CSC207 Project]", checklist.getAllTasks().toString());
-        assessment2.toShowDetail();
+        assessmentCl2.toShowDetail();
         Assertions.assertEquals("[CSC207 Project\n" +
                 "Finished!!!  :)]", checklist.getTaskFinished().toString());
     }
 
     @Test
-    public void test_addAssessments(){
-        List<Assessment> assessmentList = new ArrayList();
-        assessmentList.add(assessment1);
-        assessmentList.add(assessment2);
-        assessmentList.add(assessment3);
-        assessmentList.add(assessment4);
-        checklist.addAssessments(assessmentList);
+    public void test_addAssessmentCls(){
+        List<AssessmentCl> assessmentClList = new ArrayList();
+        assessmentClList.add(assessmentCl1);
+        assessmentClList.add(assessmentCl2);
+        assessmentClList.add(assessmentCl3);
+        assessmentClList.add(assessmentCl4);
+        checklist.addAssessmentCls(assessmentClList);
         Assertions.assertEquals("[CSC207 Final Exam, CSC207 Project, CSC236 Final Exam, CSC236 Term Test 1]",
                 checklist.getTaskToDo().toString());
         Assertions.assertEquals("[CSC207 Final Exam, CSC207 Project, CSC236 Final Exam, CSC236 Term Test 1]",
@@ -50,7 +50,7 @@ public class ChecklistTest {
 
     @Test
     public void test_refresher(){
-        checklist.addAssessment(assessment1);
+        checklist.addAssessmentCl(assessmentCl1);
         Assertions.assertEquals("[CSC207 Final Exam]", checklist.getTaskToDo().toString());
         Assertions.assertEquals("[CSC207 Final Exam]", checklist.getAllTasks().toString());
         checklist.refresher();
@@ -60,16 +60,16 @@ public class ChecklistTest {
 
     @Test
     public void test_toString(){
-        List<Assessment> assessmentList = new ArrayList();
-        assessment5.markAsFinished();
-        assessment6.markAsFinished();
-        assessmentList.add(assessment1);
-        assessmentList.add(assessment2);
-        assessmentList.add(assessment3);
-        assessmentList.add(assessment4);
-        assessmentList.add(assessment5);
-        assessmentList.add(assessment6);
-        checklist.addAssessments(assessmentList);
+        List<AssessmentCl> assessmentClList = new ArrayList();
+        assessmentCl5.markAsFinished();
+        assessmentCl6.markAsFinished();
+        assessmentClList.add(assessmentCl1);
+        assessmentClList.add(assessmentCl2);
+        assessmentClList.add(assessmentCl3);
+        assessmentClList.add(assessmentCl4);
+        assessmentClList.add(assessmentCl5);
+        assessmentClList.add(assessmentCl6);
+        checklist.addAssessmentCls(assessmentClList);
         checklist.toShowDetail();
         checklist.toShowPast();
         Assertions.assertEquals("CSC236 Term Test 2\n" +
@@ -86,12 +86,12 @@ public class ChecklistTest {
                 "\n" +
                 "CSC236 Term Test 1\n" +
                 "\n", checklist.toString());
-        assessment1.setMark(86);
-        assessment1.setWeight(45);
-        assessment1.markAsFinished();
-        assessment1.toShowDetail();
-        assessment1.setDdl(LocalDate.of(2022, 12, 16));
-        assessment1.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl1.setMark(86);
+        assessmentCl1.setWeight(45);
+        assessmentCl1.markAsFinished();
+        assessmentCl1.toShowDetail();
+        assessmentCl1.setDdl(LocalDate.of(2022, 12, 16));
+        assessmentCl1.setDdlTime(LocalTime.of(9, 0));
         Assertions.assertEquals("CSC236 Term Test 2\n" +
                 "Finished!!!  :)\n" +
                 "\n" +
@@ -108,9 +108,9 @@ public class ChecklistTest {
                 "\n" +
                 "CSC236 Term Test 1\n" +
                 "\n", checklist.toString());
-        assessment2.setWeight(45);
-        assessment2.setDdl(LocalDate.of(2022, 11, 16));
-        assessment2.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl2.setWeight(45);
+        assessmentCl2.setDdl(LocalDate.of(2022, 11, 16));
+        assessmentCl2.setDdlTime(LocalTime.of(9, 0));
         Assertions.assertEquals("CSC236 Term Test 2\n" +
                 "Finished!!!  :)\n" +
                 "\n" +
@@ -143,45 +143,45 @@ public class ChecklistTest {
     }
 
     @Test
-    public void test_findAssessment(){
-        List<Assessment> assessmentList = new ArrayList();
-        assessment5.markAsFinished();
-        assessment6.markAsFinished();
-        assessmentList.add(assessment1);
-        assessmentList.add(assessment2);
-        assessmentList.add(assessment3);
-        assessmentList.add(assessment4);
-        assessmentList.add(assessment5);
-        assessmentList.add(assessment6);
-        checklist.addAssessments(assessmentList);
+    public void test_findAssessmentCl(){
+        List<AssessmentCl> assessmentClList = new ArrayList();
+        assessmentCl5.markAsFinished();
+        assessmentCl6.markAsFinished();
+        assessmentClList.add(assessmentCl1);
+        assessmentClList.add(assessmentCl2);
+        assessmentClList.add(assessmentCl3);
+        assessmentClList.add(assessmentCl4);
+        assessmentClList.add(assessmentCl5);
+        assessmentClList.add(assessmentCl6);
+        checklist.addAssessmentCls(assessmentClList);
         Assertions.assertEquals("CSC207 Final Exam",
-                checklist.findAssessment("CSC207", "Final Exam").toString());
+                checklist.findAssessmentCl("CSC207", "Final Exam").toString());
     }
 
     @Test
     public void test_sortInDdl(){
-        List<Assessment> assessmentList = new ArrayList();
-        assessment5.markAsFinished();
-        assessment6.markAsFinished();
-        assessmentList.add(assessment1);
-        assessmentList.add(assessment2);
-        assessmentList.add(assessment3);
-        assessmentList.add(assessment4);
-        assessmentList.add(assessment5);
-        assessmentList.add(assessment6);
-        checklist.addAssessments(assessmentList);
-        assessment1.setDdl(LocalDate.of(2022, 12, 16));
-        assessment1.setDdlTime(LocalTime.of(8, 0));
-        assessment2.setDdl(LocalDate.of(2022, 12, 16));
-        assessment2.setDdlTime(LocalTime.of(9, 0));
-        assessment3.setDdl(LocalDate.of(2022, 12, 14));
-        assessment3.setDdlTime(LocalTime.of(9, 0));
-        assessment4.setDdl(LocalDate.of(2022, 11, 16));
-        assessment4.setDdlTime(LocalTime.of(9, 0));
-        assessment5.setDdl(LocalDate.of(2022, 12, 20));
-        assessment5.setDdlTime(LocalTime.of(9, 0));
-        assessment6.setDdl(LocalDate.of(2022, 9, 16));
-        assessment6.setDdlTime(LocalTime.of(9, 0));
+        List<AssessmentCl> assessmentClList = new ArrayList();
+        assessmentCl5.markAsFinished();
+        assessmentCl6.markAsFinished();
+        assessmentClList.add(assessmentCl1);
+        assessmentClList.add(assessmentCl2);
+        assessmentClList.add(assessmentCl3);
+        assessmentClList.add(assessmentCl4);
+        assessmentClList.add(assessmentCl5);
+        assessmentClList.add(assessmentCl6);
+        checklist.addAssessmentCls(assessmentClList);
+        assessmentCl1.setDdl(LocalDate.of(2022, 12, 16));
+        assessmentCl1.setDdlTime(LocalTime.of(8, 0));
+        assessmentCl2.setDdl(LocalDate.of(2022, 12, 16));
+        assessmentCl2.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl3.setDdl(LocalDate.of(2022, 12, 14));
+        assessmentCl3.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl4.setDdl(LocalDate.of(2022, 11, 16));
+        assessmentCl4.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl5.setDdl(LocalDate.of(2022, 12, 20));
+        assessmentCl5.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl6.setDdl(LocalDate.of(2022, 9, 16));
+        assessmentCl6.setDdlTime(LocalTime.of(9, 0));
         checklist.sortInDdl(checklist.getAllTasks());
         checklist.sortInDdl(checklist.getTaskToDo());
         checklist.sortInDdl(checklist.getTaskFinished());
@@ -213,22 +213,22 @@ public class ChecklistTest {
 
     @Test
     public void test_sortInWeight(){
-        List<Assessment> assessmentList = new ArrayList();
-        assessment5.markAsFinished();
-        assessment6.markAsFinished();
-        assessmentList.add(assessment1);
-        assessmentList.add(assessment2);
-        assessmentList.add(assessment3);
-        assessmentList.add(assessment4);
-        assessmentList.add(assessment5);
-        assessmentList.add(assessment6);
-        checklist.addAssessments(assessmentList);
-        assessment1.setWeight(35);
-        assessment2.setWeight(20);
-        assessment3.setWeight(50);
-        assessment4.setWeight(2);
-        assessment5.setWeight(5);
-        assessment6.setWeight(5);
+        List<AssessmentCl> assessmentClList = new ArrayList();
+        assessmentCl5.markAsFinished();
+        assessmentCl6.markAsFinished();
+        assessmentClList.add(assessmentCl1);
+        assessmentClList.add(assessmentCl2);
+        assessmentClList.add(assessmentCl3);
+        assessmentClList.add(assessmentCl4);
+        assessmentClList.add(assessmentCl5);
+        assessmentClList.add(assessmentCl6);
+        checklist.addAssessmentCls(assessmentClList);
+        assessmentCl1.setWeight(35);
+        assessmentCl2.setWeight(20);
+        assessmentCl3.setWeight(50);
+        assessmentCl4.setWeight(2);
+        assessmentCl5.setWeight(5);
+        assessmentCl6.setWeight(5);
         checklist.sortInWeight(checklist.getAllTasks());
         checklist.sortInWeight(checklist.getTaskToDo());
         checklist.sortInWeight(checklist.getTaskFinished());
@@ -249,25 +249,25 @@ public class ChecklistTest {
 
     @Test
     public void test_sortInContribution(){
-        List<Assessment> assessmentList = new ArrayList();
-        assessment5.markAsFinished();
-        assessment6.markAsFinished();
-        assessmentList.add(assessment1);
-        assessmentList.add(assessment2);
-        assessmentList.add(assessment3);
-        assessmentList.add(assessment4);
-        assessmentList.add(assessment5);
-        assessmentList.add(assessment6);
-        checklist.addAssessments(assessmentList);
-        assessment1.setWeight(35);
-        assessment2.setWeight(20);
-        assessment2.setMark(50);
-        assessment3.setWeight(50);
-        assessment4.setWeight(2);
-        assessment5.setWeight(5);
-        assessment5.setMark(70);
-        assessment6.setWeight(5);
-        assessment6.setMark(90);
+        List<AssessmentCl> assessmentClList = new ArrayList();
+        assessmentCl5.markAsFinished();
+        assessmentCl6.markAsFinished();
+        assessmentClList.add(assessmentCl1);
+        assessmentClList.add(assessmentCl2);
+        assessmentClList.add(assessmentCl3);
+        assessmentClList.add(assessmentCl4);
+        assessmentClList.add(assessmentCl5);
+        assessmentClList.add(assessmentCl6);
+        checklist.addAssessmentCls(assessmentClList);
+        assessmentCl1.setWeight(35);
+        assessmentCl2.setWeight(20);
+        assessmentCl2.setMark(50);
+        assessmentCl3.setWeight(50);
+        assessmentCl4.setWeight(2);
+        assessmentCl5.setWeight(5);
+        assessmentCl5.setMark(70);
+        assessmentCl6.setWeight(5);
+        assessmentCl6.setMark(90);
         checklist.sortInContribution(checklist.getAllTasks());
         checklist.sortInContribution(checklist.getTaskToDo());
         checklist.sortInContribution(checklist.getTaskFinished());
