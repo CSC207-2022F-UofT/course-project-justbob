@@ -2,6 +2,7 @@ package entities.assessmentInstance;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Optional;
 
 public class AssessmentInstance {
     private String assessmentInstanceName;
@@ -77,12 +78,10 @@ public class AssessmentInstance {
     }
 
     public void setMark(double mark) throws IllegalArgumentException {
-        if (mark >= 0 && mark <= 1) {
-            this.mark = mark;
-        }
-        else {
+        if (mark < 0 || 1.0 < mark) {
             throw new IllegalArgumentException("Mark must be between 0 and 1");
         }
+        this.mark = mark;
     }
 
     public Double getMark() {
