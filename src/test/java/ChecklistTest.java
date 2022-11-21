@@ -10,36 +10,36 @@ import java.util.List;
 
 public class ChecklistTest {
     private Checklist checklist = new Checklist();
-    private Assignment assignment1 = new Assignment("CSC207", "Final Exam");
-    private Assignment assignment2 = new Assignment("CSC207", "Project");
-    private Assignment assignment3 = new Assignment("CSC236", "Final Exam");
-    private Assignment assignment4 = new Assignment("CSC236", "Term Test 1");
-    private Assignment assignment5 = new Assignment("CSC236", "Term Test 2");
-    private Assignment assignment6 = new Assignment("CSC236", "Term Test 3");
+    private Assessment assessment1 = new Assessment("CSC207", "Final Exam");
+    private Assessment assessment2 = new Assessment("CSC207", "Project");
+    private Assessment assessment3 = new Assessment("CSC236", "Final Exam");
+    private Assessment assessment4 = new Assessment("CSC236", "Term Test 1");
+    private Assessment assessment5 = new Assessment("CSC236", "Term Test 2");
+    private Assessment assessment6 = new Assessment("CSC236", "Term Test 3");
 
     @Test
-    public void test_addAssignment(){
-        checklist.addAssignment(assignment1);
+    public void test_addAssessment(){
+        checklist.addAssessment(assessment1);
         Assertions.assertEquals("[CSC207 Final Exam]", checklist.getTaskToDo().toString());
         Assertions.assertEquals("[CSC207 Final Exam]", checklist.getAllTasks().toString());
         Assertions.assertEquals("[]", checklist.getTaskFinished().toString());
-        assignment2.markAsFinished();
-        checklist.addAssignment(assignment2);
+        assessment2.markAsFinished();
+        checklist.addAssessment(assessment2);
         Assertions.assertEquals("[CSC207 Project]", checklist.getTaskFinished().toString());
         Assertions.assertEquals("[CSC207 Final Exam, CSC207 Project]", checklist.getAllTasks().toString());
-        assignment2.toShowDetail();
+        assessment2.toShowDetail();
         Assertions.assertEquals("[CSC207 Project\n" +
                 "Finished!!!  :)]", checklist.getTaskFinished().toString());
     }
 
     @Test
-    public void test_addAssignments(){
-        List<Assignment> assignmentList = new ArrayList();
-        assignmentList.add(assignment1);
-        assignmentList.add(assignment2);
-        assignmentList.add(assignment3);
-        assignmentList.add(assignment4);
-        checklist.addAssignments(assignmentList);
+    public void test_addAssessments(){
+        List<Assessment> assessmentList = new ArrayList();
+        assessmentList.add(assessment1);
+        assessmentList.add(assessment2);
+        assessmentList.add(assessment3);
+        assessmentList.add(assessment4);
+        checklist.addAssessments(assessmentList);
         Assertions.assertEquals("[CSC207 Final Exam, CSC207 Project, CSC236 Final Exam, CSC236 Term Test 1]",
                 checklist.getTaskToDo().toString());
         Assertions.assertEquals("[CSC207 Final Exam, CSC207 Project, CSC236 Final Exam, CSC236 Term Test 1]",
@@ -48,7 +48,7 @@ public class ChecklistTest {
 
     @Test
     public void test_refresher(){
-        checklist.addAssignment(assignment1);
+        checklist.addAssessment(assessment1);
         Assertions.assertEquals("[CSC207 Final Exam]", checklist.getTaskToDo().toString());
         Assertions.assertEquals("[CSC207 Final Exam]", checklist.getAllTasks().toString());
         checklist.refresher();
@@ -58,161 +58,235 @@ public class ChecklistTest {
 
     @Test
     public void test_toString(){
-        List<Assignment> assignmentList = new ArrayList();
-        assignment5.markAsFinished();
-        assignment6.markAsFinished();
-        assignmentList.add(assignment1);
-        assignmentList.add(assignment2);
-        assignmentList.add(assignment3);
-        assignmentList.add(assignment4);
-        assignmentList.add(assignment5);
-        assignmentList.add(assignment6);
-        checklist.addAssignments(assignmentList);
+        List<Assessment> assessmentList = new ArrayList();
+        assessment5.markAsFinished();
+        assessment6.markAsFinished();
+        assessmentList.add(assessment1);
+        assessmentList.add(assessment2);
+        assessmentList.add(assessment3);
+        assessmentList.add(assessment4);
+        assessmentList.add(assessment5);
+        assessmentList.add(assessment6);
+        checklist.addAssessments(assessmentList);
         checklist.toShowDetail();
         checklist.toShowPast();
         Assertions.assertEquals("CSC236 Term Test 2\n" +
                 "Finished!!!  :)\n" +
+                "\n" +
                 "CSC236 Term Test 3\n" +
                 "Finished!!!  :)\n" +
+                "\n" +
                 "CSC207 Final Exam\n" +
+                "\n" +
                 "CSC207 Project\n" +
+                "\n" +
                 "CSC236 Final Exam\n" +
-                "CSC236 Term Test 1\n", checklist.toString());
-        assignment1.setMark(86);
-        assignment1.setWeight(45);
-        assignment1.markAsFinished();
-        assignment1.toShowDetail();
-        assignment1.setDdl(LocalDate.of(2022, 12, 16));
-        assignment1.setDdlTime(LocalTime.of(9, 0));
+                "\n" +
+                "CSC236 Term Test 1\n" +
+                "\n", checklist.toString());
+        assessment1.setMark(86);
+        assessment1.setWeight(45);
+        assessment1.markAsFinished();
+        assessment1.toShowDetail();
+        assessment1.setDdl(LocalDate.of(2022, 12, 16));
+        assessment1.setDdlTime(LocalTime.of(9, 0));
         Assertions.assertEquals("CSC236 Term Test 2\n" +
                 "Finished!!!  :)\n" +
+                "\n" +
                 "CSC236 Term Test 3\n" +
                 "Finished!!!  :)\n" +
+                "\n" +
                 "CSC207 Final Exam  DDL: 2022-12-16 09:00  Worth: 45.0 percent\n" +
-                "Finished!!!  :)  Mark: 86.0  Contribution:38.7\n" +
+                "Finished!!!  :)\n" +
+                "Mark: 86.0  Contribution:38.7\n" +
+                "\n" +
                 "CSC207 Project\n" +
+                "\n" +
                 "CSC236 Final Exam\n" +
-                "CSC236 Term Test 1\n", checklist.toString());
-        assignment2.setWeight(45);
-        assignment2.setDdl(LocalDate.of(2022, 11, 16));
-        assignment2.setDdlTime(LocalTime.of(9, 0));
+                "\n" +
+                "CSC236 Term Test 1\n" +
+                "\n", checklist.toString());
+        assessment2.setWeight(45);
+        assessment2.setDdl(LocalDate.of(2022, 11, 16));
+        assessment2.setDdlTime(LocalTime.of(9, 0));
         Assertions.assertEquals("CSC236 Term Test 2\n" +
                 "Finished!!!  :)\n" +
+                "\n" +
                 "CSC236 Term Test 3\n" +
                 "Finished!!!  :)\n" +
+                "\n" +
                 "CSC207 Final Exam  DDL: 2022-12-16 09:00  Worth: 45.0 percent\n" +
-                "Finished!!!  :)  Mark: 86.0  Contribution:38.7\n" +
+                "Finished!!!  :)\n" +
+                "Mark: 86.0  Contribution:38.7\n" +
+                "\n" +
                 "CSC207 Project  DDL: 2022-11-16 09:00  Worth: 45.0 percent\n" +
+                "\n" +
                 "CSC236 Final Exam\n" +
-                "CSC236 Term Test 1\n", checklist.toString());
+                "\n" +
+                "CSC236 Term Test 1\n" +
+                "\n", checklist.toString());
+        checklist.toNotShowDetail();
+        Assertions.assertEquals("CSC236 Term Test 2\n" +
+                "\n" +
+                "CSC236 Term Test 3\n" +
+                "\n" +
+                "CSC207 Final Exam\n" +
+                "\n" +
+                "CSC207 Project\n" +
+                "\n" +
+                "CSC236 Final Exam\n" +
+                "\n" +
+                "CSC236 Term Test 1\n" +
+                "\n", checklist.toString());
+    }
+
+    @Test
+    public void test_findAssessment(){
+        List<Assessment> assessmentList = new ArrayList();
+        assessment5.markAsFinished();
+        assessment6.markAsFinished();
+        assessmentList.add(assessment1);
+        assessmentList.add(assessment2);
+        assessmentList.add(assessment3);
+        assessmentList.add(assessment4);
+        assessmentList.add(assessment5);
+        assessmentList.add(assessment6);
+        checklist.addAssessments(assessmentList);
+        Assertions.assertEquals("CSC207 Final Exam",
+                checklist.findAssessment("CSC207", "Final Exam").toString());
     }
 
     @Test
     public void test_sortInDdl(){
-        List<Assignment> assignmentList = new ArrayList();
-        assignment5.markAsFinished();
-        assignment6.markAsFinished();
-        assignmentList.add(assignment1);
-        assignmentList.add(assignment2);
-        assignmentList.add(assignment3);
-        assignmentList.add(assignment4);
-        assignmentList.add(assignment5);
-        assignmentList.add(assignment6);
-        checklist.addAssignments(assignmentList);
-        assignment1.setDdl(LocalDate.of(2022, 12, 16));
-        assignment1.setDdlTime(LocalTime.of(8, 0));
-        assignment2.setDdl(LocalDate.of(2022, 12, 16));
-        assignment2.setDdlTime(LocalTime.of(9, 0));
-        assignment3.setDdl(LocalDate.of(2022, 12, 14));
-        assignment3.setDdlTime(LocalTime.of(9, 0));
-        assignment4.setDdl(LocalDate.of(2022, 11, 16));
-        assignment4.setDdlTime(LocalTime.of(9, 0));
-        assignment5.setDdl(LocalDate.of(2022, 12, 20));
-        assignment5.setDdlTime(LocalTime.of(9, 0));
-        assignment6.setDdl(LocalDate.of(2022, 9, 16));
-        assignment6.setDdlTime(LocalTime.of(9, 0));
+        List<Assessment> assessmentList = new ArrayList();
+        assessment5.markAsFinished();
+        assessment6.markAsFinished();
+        assessmentList.add(assessment1);
+        assessmentList.add(assessment2);
+        assessmentList.add(assessment3);
+        assessmentList.add(assessment4);
+        assessmentList.add(assessment5);
+        assessmentList.add(assessment6);
+        checklist.addAssessments(assessmentList);
+        assessment1.setDdl(LocalDate.of(2022, 12, 16));
+        assessment1.setDdlTime(LocalTime.of(8, 0));
+        assessment2.setDdl(LocalDate.of(2022, 12, 16));
+        assessment2.setDdlTime(LocalTime.of(9, 0));
+        assessment3.setDdl(LocalDate.of(2022, 12, 14));
+        assessment3.setDdlTime(LocalTime.of(9, 0));
+        assessment4.setDdl(LocalDate.of(2022, 11, 16));
+        assessment4.setDdlTime(LocalTime.of(9, 0));
+        assessment5.setDdl(LocalDate.of(2022, 12, 20));
+        assessment5.setDdlTime(LocalTime.of(9, 0));
+        assessment6.setDdl(LocalDate.of(2022, 9, 16));
+        assessment6.setDdlTime(LocalTime.of(9, 0));
         checklist.sortInDdl(checklist.getAllTasks());
         checklist.sortInDdl(checklist.getTaskToDo());
         checklist.sortInDdl(checklist.getTaskFinished());
         Assertions.assertEquals("CSC236 Term Test 1\n" +
+                "\n" +
                 "CSC236 Final Exam\n" +
+                "\n" +
                 "CSC207 Final Exam\n" +
-                "CSC207 Project\n", checklist.toString());
+                "\n" +
+                "CSC207 Project\n" +
+                "\n", checklist.toString());
         checklist.toShowDetail();
         checklist.toShowPast();
         Assertions.assertEquals("CSC236 Term Test 3  DDL: 2022-09-16 09:00\n" +
                 "Finished!!!  :)\n" +
+                "\n" +
                 "CSC236 Term Test 2  DDL: 2022-12-20 09:00\n" +
                 "Finished!!!  :)\n" +
+                "\n" +
                 "CSC236 Term Test 1  DDL: 2022-11-16 09:00\n" +
+                "\n" +
                 "CSC236 Final Exam  DDL: 2022-12-14 09:00\n" +
+                "\n" +
                 "CSC207 Final Exam  DDL: 2022-12-16 08:00\n" +
-                "CSC207 Project  DDL: 2022-12-16 09:00\n", checklist.toString());
+                "\n" +
+                "CSC207 Project  DDL: 2022-12-16 09:00\n" +
+                "\n", checklist.toString());
     }
 
     @Test
     public void test_sortInWeight(){
-        List<Assignment> assignmentList = new ArrayList();
-        assignment5.markAsFinished();
-        assignment6.markAsFinished();
-        assignmentList.add(assignment1);
-        assignmentList.add(assignment2);
-        assignmentList.add(assignment3);
-        assignmentList.add(assignment4);
-        assignmentList.add(assignment5);
-        assignmentList.add(assignment6);
-        checklist.addAssignments(assignmentList);
-        assignment1.setWeight(35);
-        assignment2.setWeight(20);
-        assignment3.setWeight(50);
-        assignment4.setWeight(2);
-        assignment5.setWeight(5);
-        assignment6.setWeight(5);
+        List<Assessment> assessmentList = new ArrayList();
+        assessment5.markAsFinished();
+        assessment6.markAsFinished();
+        assessmentList.add(assessment1);
+        assessmentList.add(assessment2);
+        assessmentList.add(assessment3);
+        assessmentList.add(assessment4);
+        assessmentList.add(assessment5);
+        assessmentList.add(assessment6);
+        checklist.addAssessments(assessmentList);
+        assessment1.setWeight(35);
+        assessment2.setWeight(20);
+        assessment3.setWeight(50);
+        assessment4.setWeight(2);
+        assessment5.setWeight(5);
+        assessment6.setWeight(5);
         checklist.sortInWeight(checklist.getAllTasks());
         checklist.sortInWeight(checklist.getTaskToDo());
         checklist.sortInWeight(checklist.getTaskFinished());
         checklist.toShowPast();
         Assertions.assertEquals("CSC236 Term Test 2\n" +
+                "\n" +
                 "CSC236 Term Test 3\n" +
+                "\n" +
                 "CSC236 Final Exam\n" +
+                "\n" +
                 "CSC207 Final Exam\n" +
+                "\n" +
                 "CSC207 Project\n" +
-                "CSC236 Term Test 1\n", checklist.toString());
+                "\n" +
+                "CSC236 Term Test 1\n" +
+                "\n", checklist.toString());
     }
 
     @Test
     public void test_sortInContribution(){
-        List<Assignment> assignmentList = new ArrayList();
-        assignment5.markAsFinished();
-        assignment6.markAsFinished();
-        assignmentList.add(assignment1);
-        assignmentList.add(assignment2);
-        assignmentList.add(assignment3);
-        assignmentList.add(assignment4);
-        assignmentList.add(assignment5);
-        assignmentList.add(assignment6);
-        checklist.addAssignments(assignmentList);
-        assignment1.setWeight(35);
-        assignment2.setWeight(20);
-        assignment2.setMark(50);
-        assignment3.setWeight(50);
-        assignment4.setWeight(2);
-        assignment5.setWeight(5);
-        assignment5.setMark(70);
-        assignment6.setWeight(5);
-        assignment6.setMark(90);
+        List<Assessment> assessmentList = new ArrayList();
+        assessment5.markAsFinished();
+        assessment6.markAsFinished();
+        assessmentList.add(assessment1);
+        assessmentList.add(assessment2);
+        assessmentList.add(assessment3);
+        assessmentList.add(assessment4);
+        assessmentList.add(assessment5);
+        assessmentList.add(assessment6);
+        checklist.addAssessments(assessmentList);
+        assessment1.setWeight(35);
+        assessment2.setWeight(20);
+        assessment2.setMark(50);
+        assessment3.setWeight(50);
+        assessment4.setWeight(2);
+        assessment5.setWeight(5);
+        assessment5.setMark(70);
+        assessment6.setWeight(5);
+        assessment6.setMark(90);
         checklist.sortInContribution(checklist.getAllTasks());
         checklist.sortInContribution(checklist.getTaskToDo());
         checklist.sortInContribution(checklist.getTaskFinished());
         checklist.toShowPast();
         checklist.toShowDetail();
         Assertions.assertEquals("CSC236 Term Test 3  Worth: 5.0 percent\n" +
-                "Finished!!!  :)  Mark: 90.0  Contribution:4.5\n" +
+                "Finished!!!  :)\n" +
+                "Mark: 90.0  Contribution:4.5\n" +
+                "\n" +
                 "CSC236 Term Test 2  Worth: 5.0 percent\n" +
-                "Finished!!!  :)  Mark: 70.0  Contribution:3.5\n" +
-                "CSC207 Project  Worth: 20.0 percent  Mark: 50.0  Contribution:10.0\n" +
+                "Finished!!!  :)\n" +
+                "Mark: 70.0  Contribution:3.5\n" +
+                "\n" +
+                "CSC207 Project  Worth: 20.0 percent\n" +
+                "Mark: 50.0  Contribution:10.0\n" +
+                "\n" +
                 "CSC207 Final Exam  Worth: 35.0 percent\n" +
+                "\n" +
                 "CSC236 Final Exam  Worth: 50.0 percent\n" +
-                "CSC236 Term Test 1  Worth: 2.0 percent\n", checklist.toString());
+                "\n" +
+                "CSC236 Term Test 1  Worth: 2.0 percent\n" +
+                "\n", checklist.toString());
     }
 }
