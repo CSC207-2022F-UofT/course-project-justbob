@@ -17,24 +17,24 @@ public class ChecklistPanel extends JPanel{
     private JButton contributionButton;
     private JButton finishedButton;
     private JPanel Checklist;
-    private JTextArea AssessmentList;
+    private JTextArea AssessmentClList;
     private JButton showDetailsButton;
-    private JButton showPastAssessmentsButton;
+    private JButton showPastAssessmentClsButton;
     private JButton notShowDetailButton;
     private JButton notShowPastButton;
 
     public ChecklistPanel(Checklist checklist){
         this.setLayout(null);
 
-        JLabel title = new JLabel("Assessment Checklist");
+        JLabel title = new JLabel("AssessmentCl Checklist");
         title.setBounds(150, 0, 200, 25);
         title.setFont(new Font("Georgia", Font.BOLD, 16));
         this.add(title);
 
-        AssessmentList = new JTextArea();
-        AssessmentList.setBounds(0, 30, 500, 500);
-        AssessmentList.append(checklist.toString());
-        this.add(AssessmentList);
+        AssessmentClList = new JTextArea();
+        AssessmentClList.setBounds(0, 30, 500, 500);
+        AssessmentClList.append(checklist.toString());
+        this.add(AssessmentClList);
 
         JLabel courseNameL = new JLabel("Course Name:");
         courseNameL.setBounds(10, 540, 100, 25);
@@ -62,13 +62,13 @@ public class ChecklistPanel extends JPanel{
         finishedButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Assessment theAssessment = checklist.findAssessment(a, b);
-                theAssessment.markAsFinished();
+                AssessmentCl theAssessmentCl = checklist.findAssessmentCl(a, b);
+                theAssessmentCl.markAsFinished();
                 List c = checklist.getAllTasks();
                 checklist.refresher();
-                checklist.addAssessments(c);
-                AssessmentList.setText(null);
-                AssessmentList.append(checklist.toString());
+                checklist.addAssessmentCls(c);
+                AssessmentClList.setText(null);
+                AssessmentClList.append(checklist.toString());
             }
         });
 
@@ -86,8 +86,8 @@ public class ChecklistPanel extends JPanel{
                 checklist.sortInDdl(checklist.getAllTasks());
                 checklist.sortInDdl(checklist.getTaskToDo());
                 checklist.sortInDdl(checklist.getTaskFinished());
-                AssessmentList.setText(null);
-                AssessmentList.append(checklist.toString());
+                AssessmentClList.setText(null);
+                AssessmentClList.append(checklist.toString());
             }
         });
         weightButton = new JButton("Weight");
@@ -99,8 +99,8 @@ public class ChecklistPanel extends JPanel{
                 checklist.sortInWeight(checklist.getAllTasks());
                 checklist.sortInWeight(checklist.getTaskToDo());
                 checklist.sortInWeight(checklist.getTaskFinished());
-                AssessmentList.setText(null);
-                AssessmentList.append(checklist.toString());
+                AssessmentClList.setText(null);
+                AssessmentClList.append(checklist.toString());
             }
         });
         contributionButton = new JButton("Contribution");
@@ -112,8 +112,8 @@ public class ChecklistPanel extends JPanel{
                 checklist.sortInContribution(checklist.getAllTasks());
                 checklist.sortInContribution(checklist.getTaskToDo());
                 checklist.sortInContribution(checklist.getTaskFinished());
-                AssessmentList.setText(null);
-                AssessmentList.append(checklist.toString());
+                AssessmentClList.setText(null);
+                AssessmentClList.append(checklist.toString());
             }
         });
 
@@ -129,8 +129,8 @@ public class ChecklistPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 checklist.toShowDetail();
-                AssessmentList.setText(null);
-                AssessmentList.append(checklist.toString());
+                AssessmentClList.setText(null);
+                AssessmentClList.append(checklist.toString());
             }
         });
 
@@ -141,25 +141,25 @@ public class ChecklistPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 checklist.toNotShowDetail();
-                AssessmentList.setText(null);
-                AssessmentList.append(checklist.toString());
+                AssessmentClList.setText(null);
+                AssessmentClList.append(checklist.toString());
             }
         });
 
-        JLabel showPast = new JLabel("Show Past Assessments:");
+        JLabel showPast = new JLabel("Show Past AssessmentCls:");
         showPast.setBounds(10, 660, 200, 25);
         showPast.setFont(new Font("Georgia", Font.PLAIN, 14));
         this.add(showPast);
 
-        showPastAssessmentsButton = new JButton("Yes");
-        showPastAssessmentsButton.setBounds(210, 660, 70, 25);
-        this.add(showPastAssessmentsButton);
-        showPastAssessmentsButton.addActionListener(new ActionListener() {
+        showPastAssessmentClsButton = new JButton("Yes");
+        showPastAssessmentClsButton.setBounds(210, 660, 70, 25);
+        this.add(showPastAssessmentClsButton);
+        showPastAssessmentClsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 checklist.toShowPast();
-                AssessmentList.setText(null);
-                AssessmentList.append(checklist.toString());
+                AssessmentClList.setText(null);
+                AssessmentClList.append(checklist.toString());
             }
         });
 
@@ -170,54 +170,57 @@ public class ChecklistPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 checklist.toNotShowPast();
-                AssessmentList.setText(null);
-                AssessmentList.append(checklist.toString());
+                AssessmentClList.setText(null);
+                AssessmentClList.append(checklist.toString());
             }
         });
     }
 
     public static void main(String[] args) {
         JFrame a = new JFrame();
-        List<Assessment> assessmentList = new ArrayList();
-        Assessment assessment7 = new Assessment("1", "2");
-        Assessment assessment1 = new Assessment("CSC207", "Final Exam");
-        Assessment assessment2 = new Assessment("CSC207", "Project");
-        Assessment assessment3 = new Assessment("CSC236", "Final Exam");
-        Assessment assessment4 = new Assessment("CSC236", "Term Test 1");
-        Assessment assessment5 = new Assessment("CSC236", "Term Test 2");
-        Assessment assessment6 = new Assessment("CSC236", "Term Test 3");
-        assessment5.markAsFinished();
-        assessment6.markAsFinished();
-        assessmentList.add(assessment1);
-        assessmentList.add(assessment2);
-        assessmentList.add(assessment3);
-        assessmentList.add(assessment4);
-        assessmentList.add(assessment5);
-        assessmentList.add(assessment6);
-        assessmentList.add(assessment7);
-        assessment1.setDdl(LocalDate.of(2022, 12, 16));
-        assessment1.setDdlTime(LocalTime.of(8, 0));
-        assessment2.setDdl(LocalDate.of(2022, 12, 16));
-        assessment2.setDdlTime(LocalTime.of(9, 0));
-        assessment3.setDdl(LocalDate.of(2022, 12, 14));
-        assessment3.setDdlTime(LocalTime.of(9, 0));
-        assessment4.setDdl(LocalDate.of(2022, 11, 16));
-        assessment4.setDdlTime(LocalTime.of(9, 0));
-        assessment5.setDdl(LocalDate.of(2022, 12, 20));
-        assessment5.setDdlTime(LocalTime.of(9, 0));
-        assessment6.setDdl(LocalDate.of(2022, 9, 16));
-        assessment6.setDdlTime(LocalTime.of(9, 0));
-        assessment1.setWeight(35);
-        assessment2.setWeight(20);
-        assessment2.setMark(50);
-        assessment3.setWeight(50);
-        assessment4.setWeight(2);
-        assessment5.setWeight(5);
-        assessment5.setMark(70);
-        assessment6.setWeight(5);
-        assessment6.setMark(90);
+        /*List<AssessmentCl> assessmentClList = new ArrayList();
+        AssessmentCl assessmentCl7 = new AssessmentCl("1", "2");
+        AssessmentCl assessmentCl1 = new AssessmentCl("CSC207", "Final Exam");
+        AssessmentCl assessmentCl2 = new AssessmentCl("CSC207", "Project");
+        AssessmentCl assessmentCl3 = new AssessmentCl("CSC236", "Final Exam");
+        AssessmentCl assessmentCl4 = new AssessmentCl("CSC236", "Term Test 1");
+        AssessmentCl assessmentCl5 = new AssessmentCl("CSC236", "Term Test 2");
+        AssessmentCl assessmentCl6 = new AssessmentCl("CSC236", "Term Test 3");
+        assessmentCl5.markAsFinished();
+        assessmentCl6.markAsFinished();
+        assessmentClList.add(assessmentCl1);
+        assessmentClList.add(assessmentCl2);
+        assessmentClList.add(assessmentCl3);
+        assessmentClList.add(assessmentCl4);
+        assessmentClList.add(assessmentCl5);
+        assessmentClList.add(assessmentCl6);
+        assessmentClList.add(assessmentCl7);
+        assessmentCl1.setDdl(LocalDate.of(2022, 12, 16));
+        assessmentCl1.setDdlTime(LocalTime.of(8, 0));
+        assessmentCl2.setDdl(LocalDate.of(2022, 12, 16));
+        assessmentCl2.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl3.setDdl(LocalDate.of(2022, 12, 14));
+        assessmentCl3.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl4.setDdl(LocalDate.of(2022, 11, 16));
+        assessmentCl4.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl5.setDdl(LocalDate.of(2022, 12, 20));
+        assessmentCl5.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl6.setDdl(LocalDate.of(2022, 9, 16));
+        assessmentCl6.setDdlTime(LocalTime.of(9, 0));
+        assessmentCl1.setWeight(35);
+        assessmentCl2.setWeight(20);
+        assessmentCl2.setMark(50);
+        assessmentCl3.setWeight(50);
+        assessmentCl4.setWeight(2);
+        assessmentCl5.setWeight(5);
+        assessmentCl5.setMark(70);
+        assessmentCl6.setWeight(5);
+        assessmentCl6.setMark(90);
         Checklist checklist = new Checklist();
-        checklist.addAssessments(assessmentList);
+        checklist.addAssessmentCls(assessmentClList);
+
+         */
+        AssessmentChecklist.Checklist checklist = new Checklist();
         ChecklistPanel b = new ChecklistPanel(checklist);
         a.setSize(500, 800);
         a.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
