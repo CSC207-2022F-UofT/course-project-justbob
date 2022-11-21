@@ -1,5 +1,6 @@
-package usecases.calculations;
+package entities.calculations;
 
+import entities.calculation.GPACalculation;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
