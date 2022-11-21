@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Checklist {
-    private List<Assignment> allTasks = new ArrayList<>();
-    private List<Assignment> taskToDo = new ArrayList<Assignment>();
-    private List<Assignment> taskFinished = new ArrayList<Assignment>();
+    private List<Assessment> allTasks = new ArrayList<>();
+    private List<Assessment> taskToDo = new ArrayList<Assessment>();
+    private List<Assessment> taskFinished = new ArrayList<Assessment>();
     private boolean showPast = false;
     private boolean showDetail = false;
 
     /**
-     * Creating a Checklist object holding all finished assignments and
-     * unfinished assignments
+     * Creating a Checklist object holding all finished assessments and
+     * unfinished assessments
      */
     public Checklist(){}
 
@@ -32,18 +32,18 @@ public class Checklist {
         this.showPast = false;
     }
 
-    public void addAssignment(Assignment assignment){
-        if (assignment.getFinished()){
-            this.taskFinished.add(assignment);
+    public void addAssessment(Assessment assessment){
+        if (assessment.getFinished()){
+            this.taskFinished.add(assessment);
         }
         else {
-            this.taskToDo.add(assignment);
+            this.taskToDo.add(assessment);
         }
-        this.allTasks.add(assignment);
+        this.allTasks.add(assessment);
     }
 
-    public void addAssignments(List<Assignment> assignmentList){
-        for (Assignment i: assignmentList){
+    public void addAssessments(List<Assessment> assessmentList){
+        for (Assessment i: assessmentList){
             if (i.getFinished()){
                 this.taskFinished.add(i);
             }
@@ -54,15 +54,15 @@ public class Checklist {
         }
     }
 
-    public List<Assignment> getTaskToDo(){
+    public List<Assessment> getTaskToDo(){
         return this.taskToDo;
     }
 
-    public List<Assignment> getTaskFinished() {
+    public List<Assessment> getTaskFinished() {
         return taskFinished;
     }
 
-    public List<Assignment> getAllTasks() {
+    public List<Assessment> getAllTasks() {
         return allTasks;
     }
 
@@ -75,18 +75,24 @@ public class Checklist {
 
     public String toString(){
         String taskT = "";
-        for (Assignment i: this.taskToDo){
+        for (Assessment i: this.taskToDo){
             if (this.showDetail) {
                 i.toShowDetail();
             }
-            taskT += i.toString() + "\n";
+            else {
+                i.toNotShowDetail();
+            }
+            taskT += i.toString() + "\n" + "\n";
         }
         String taskF = "";
-        for (Assignment j: this.taskFinished){
+        for (Assessment j: this.taskFinished){
             if (this.showDetail) {
                 j.toShowDetail();
             }
-            taskF += j.toString() + "\n";
+            else {
+                j.toNotShowDetail();
+            }
+            taskF += j.toString() + "\n" + "\n";
         }
         if (this.showPast){
             return taskF + taskT;
@@ -96,49 +102,58 @@ public class Checklist {
         }
     }
 
+    public Assessment findAssessment(String courseName, String name){
+        for (Assessment i: this.allTasks){
+            if (i.getCourseName() == courseName && i.getName() == name){
+                return i;
+            }
+        }
+        return null;
+    }
+
     /**
-     * Sort the assignment in the list according to three different values,
+     * Sort the assessment in the list according to three different values,
      * the date, the weight, and the contribution.
-     * @param assignmentList a list of assignment, could be taskToDO,
+     * @param assessmentList a list of assessment, could be taskToDO,
      *                       taskFinished, or allTask
      */
 
-    public void sortInDdl(List<Assignment> assignmentList){
-        for (int i = 0; i < assignmentList.size(); i++){
-            for (int j = i + 1; j < assignmentList.size(); j++){
-                if (assignmentList.get(j).getDdl().isBefore(assignmentList.get(i).getDdl())
-                        || (assignmentList.get(j).getDdl().isEqual(assignmentList.get(i).getDdl()) &&
-                        assignmentList.get(j).getDdlTime().isBefore(assignmentList.get(i).getDdlTime()))){
-                    Assignment temp;
-                    temp = assignmentList.get(j);
-                    assignmentList.set(j, assignmentList.get(i));
-                    assignmentList.set(i, temp);
+    public void sortInDdl(List<Assessment> assessmentList){
+        for (int i = 0; i < assessmentList.size(); i++){
+            for (int j = i + 1; j < assessmentList.size(); j++){
+                if (assessmentList.get(j).getDdlDate().isBefore(assessmentList.get(i).getDdlDate())
+                        || (assessmentList.get(j).getDdlDate().isEqual(assessmentList.get(i).getDdlDate()) &&
+                        assessmentList.get(j).getDdlTime().isBefore(assessmentList.get(i).getDdlTime()))){
+                    Assessment temp;
+                    temp = assessmentList.get(j);
+                    assessmentList.set(j, assessmentList.get(i));
+                    assessmentList.set(i, temp);
                 }
             }
         }
     }
 
-    public void sortInWeight(List<Assignment> assignmentList){
-        for (int i = 0; i < assignmentList.size(); i++) {
-            for (int j = i + 1; j < assignmentList.size(); j++) {
-                if (assignmentList.get(j).getWeight() > assignmentList.get(i).getWeight()){
-                    Assignment temp;
-                    temp = assignmentList.get(j);
-                    assignmentList.set(j, assignmentList.get(i));
-                    assignmentList.set(i, temp);
+    public void sortInWeight(List<Assessment> assessmentList){
+        for (int i = 0; i < assessmentList.size(); i++) {
+            for (int j = i + 1; j < assessmentList.size(); j++) {
+                if (assessmentList.get(j).getWeight() > assessmentList.get(i).getWeight()){
+                    Assessment temp;
+                    temp = assessmentList.get(j);
+                    assessmentList.set(j, assessmentList.get(i));
+                    assessmentList.set(i, temp);
                 }
             }
         }
     }
 
-    public void sortInContribution(List<Assignment> assignmentList){
-        for (int i = 0; i < assignmentList.size(); i++) {
-            for (int j = i + 1; j < assignmentList.size(); j++) {
-                if (assignmentList.get(j).getContribution() > assignmentList.get(i).getContribution()){
-                    Assignment temp;
-                    temp = assignmentList.get(j);
-                    assignmentList.set(j, assignmentList.get(i));
-                    assignmentList.set(i, temp);
+    public void sortInContribution(List<Assessment> assessmentList){
+        for (int i = 0; i < assessmentList.size(); i++) {
+            for (int j = i + 1; j < assessmentList.size(); j++) {
+                if (assessmentList.get(j).getContribution() > assessmentList.get(i).getContribution()){
+                    Assessment temp;
+                    temp = assessmentList.get(j);
+                    assessmentList.set(j, assessmentList.get(i));
+                    assessmentList.set(i, temp);
                 }
             }
         }
