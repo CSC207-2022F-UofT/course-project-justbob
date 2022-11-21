@@ -54,7 +54,7 @@ public class GPACalculation {
      * @return gpalist which is a list of double of marks in terms of GPA point scale UofT
      */
 
-    public static List<Double> computeSemGPA(List<Double> marksPercentage) {
+    public static List<Double> computeGPAList(List<Double> marksPercentage) {
         List<Double> gpalist = new ArrayList<>();
         for(int i = 0; i < marksPercentage.size(); i++) {
             gpalist.add(percentToGPA(marksPercentage.get(i)));
@@ -74,7 +74,7 @@ public class GPACalculation {
         for (int i = 0; i < marksPercentage1.size(); i++) {
             sum += marksPercentage1.get(i);
         }
-        average = (sum / marksPercentage1.size());
+        average = Math.round((sum / marksPercentage1.size()) * 100.0) / 100.0 ;
         //System.out.println(average);
         return average;
     }
@@ -160,4 +160,21 @@ public class GPACalculation {
         //System.out.println(totalGpa);
         return totalGpa;
     }
+
+//    public static void main(String[] args) {
+//        System.out.println("GPA: ");
+//        computeGPAList(List.of(90.0, 85.0, 73.0, 84.9));
+//
+//        System.out.println("Average: ");
+//        computeAverage(List.of(90.0, 85.0, 73.0, 84.9));
+//
+//        System.out.println("Letters: ");
+//        computeGrade(List.of(90.0, 85.0, 73.0, 84.9));
+//
+//        System.out.println("Whole: ");
+//        overallGPA(List.of(90.0, 75.0, 73.0, 81.0), List.of(1.0, 0.5, 0.5, 1.0));
+//
+//
+//    }
+
 }
