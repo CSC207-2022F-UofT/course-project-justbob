@@ -1,4 +1,4 @@
-package AssignmetnChecklistTest;
+package test;
 
 import AssessmentChecklist.Assessment;
 import AssessmentChecklist.Checklist;

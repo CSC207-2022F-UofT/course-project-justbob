@@ -1,5 +1,6 @@
-package main;
+package test;
 
+import AssessmentChecklist.Assessment;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
