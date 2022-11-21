@@ -2,13 +2,16 @@ package usecases.dataStorage.account;
 
 import usecases.dataStorage.course.CourseDsResponseModel;
 
+import java.util.List;
+
 public class AccountDsResponseModel {
     private String username;
     private String password;
-    private CourseDsResponseModel[] semesterData;
-    private CourseDsResponseModel[] archiveData;
+    private List<CourseDsResponseModel> semesterData;
+    private List<CourseDsResponseModel> archiveData;
 
-    public AccountDsResponseModel(String username, String password, CourseDsResponseModel[] semesterData, CourseDsResponseModel[] archiveData) {
+    public AccountDsResponseModel(String username, String password, List<CourseDsResponseModel> semesterData,
+                                  List<CourseDsResponseModel> archiveData) {
         this.username = username;
         this.password = password;
         this.semesterData = semesterData;
@@ -23,11 +26,11 @@ public class AccountDsResponseModel {
         return password;
     }
 
-    public CourseDsResponseModel[] getSemesterData() {
+    public List<CourseDsResponseModel> getSemesterData() {
         return semesterData;
     }
 
-    public CourseDsResponseModel[] getArchiveData() {
+    public List<CourseDsResponseModel> getArchiveData() {
         return archiveData;
     }
 }
