@@ -1,5 +1,8 @@
 package courseManager;
 
+import entities.assessment.Assessment;
+import entities.course.Course;
+import entities.courseEvent.CourseEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import weightScheme.OrderedWeight;
