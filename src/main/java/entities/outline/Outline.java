@@ -1,28 +1,30 @@
-package courseManager;
+package entities.outline;
 
-import weightScheme.WeightScheme;
+import entities.assessment.Assessment;
 
 import java.util.ArrayList;
 
-public class Outline {
+public class Outline implements OutlineInterface{
 
     private ArrayList<Assessment> assessments;
 
-    public Outline () {
+    public Outline() {
         this.assessments = new ArrayList<>();
     }
 
+    @Override
     public void addAssessment(Assessment assessment) {
 
         assessments.add(assessment);
     }
 
+    @Override
     public void removeAssessment(Assessment assessment) {
 
         assessments.remove(assessment);
     }
 
-
+    @Override
     public Assessment getAssessment(int index) throws IndexOutOfBoundsException {
             try {
                 return assessments.get(index);
@@ -31,10 +33,12 @@ public class Outline {
             }
     }
 
+    @Override
     public ArrayList<Assessment> getAssessments() {
         return assessments;
     }
 
+    @Override
     public double getPercentageCompleted() {
         double percentageCompleted = 0.0f;
         for (Assessment assessment : assessments) {
@@ -43,6 +47,7 @@ public class Outline {
         return percentageCompleted;
     }
 
+    @Override
     public int getNumberOfAssessmentInstancesCompleted() {
         int numberOfAssessmentsCompleted = 0;
         for (Assessment assessment : assessments) {
@@ -51,6 +56,7 @@ public class Outline {
         return numberOfAssessmentsCompleted;
     }
 
+    @Override
     public double getTotalCommmittedWeight() {
         double totalCompletedWeight = 0.0f;
         for (Assessment assessment : assessments) {
@@ -58,6 +64,8 @@ public class Outline {
         }
         return totalCompletedWeight;
     }
+
+    @Override
     public double getTotalHypotheticalWeight() {
         double totalHypotheticalWeight = 0.0f;
         for (Assessment assessment : assessments) {
@@ -66,6 +74,7 @@ public class Outline {
         return totalHypotheticalWeight;
     }
 
+    @Override
     public double computeRunningGrade() {
         double rgrade = 0.0;
         for (Assessment assessment : assessments) {
@@ -74,6 +83,7 @@ public class Outline {
         return rgrade/this.getTotalCommmittedWeight();
     }
 
+    @Override
     public double computeHypotheticalGrade() {
         double hgrade = 0.0;
         for (Assessment assessment : assessments) {

@@ -1,4 +1,4 @@
-package courseManager;
+package entities.assessmentInstance;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

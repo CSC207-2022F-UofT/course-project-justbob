@@ -1,7 +1,6 @@
 package weightScheme;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.stream.Stream;
 import java.util.stream.DoubleStream;
 
@@ -9,18 +8,14 @@ public class OrderedWeight implements WeightScheme {
     private Weight[] orderedWeights;
 
     /**
-     * Create new OrderedWeight, with (orderedWeights) sorted from lowest impact to highest impact.
-     * @param orderedWeights
+     * Create new OrderedWeight, with (orderedWeights) being an array of Weight objects
+     * @param orderedWeights must be sorted from lowest impact to highest impact.
      */
     public OrderedWeight(Weight[] orderedWeights) {
         this.orderedWeights = orderedWeights;
     }
 
-    /**
-     * Return the maximum running weight that can be earned with (numberOfMarks) marks.
-     * @param numberOfMarks
-     * @return
-     */
+    /*
     private double getWeightPossible(int numberOfMarks) {
         int number_counted = 0;
         float result = 0f;
@@ -38,7 +33,7 @@ public class OrderedWeight implements WeightScheme {
             --i;
         }
         return result;
-    }
+    }*/
 
     @Override
     public double computeWeighted(double[] marks) {
@@ -55,7 +50,7 @@ public class OrderedWeight implements WeightScheme {
             ;
             numberOfMarksComputed += weight.getNumberOfInstances();
         }
-        return (exactWeightEarned * getTotalWeight()) / getWeightPossible(marks.length);
+        return exactWeightEarned;
     }
 
     @Override
@@ -70,10 +65,5 @@ public class OrderedWeight implements WeightScheme {
         return Stream.of(orderedWeights)
                 .mapToDouble(weight -> weight.getTotalWeight())
                 .sum();
-    }
-
-    @Override
-    public double getWeightOfEachInstance() {
-        return orderedWeights[0].getWeightOfEachInstance();
     }
 }
