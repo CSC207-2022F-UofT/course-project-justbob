@@ -5,34 +5,30 @@ import entities.course.Course;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Semester{
-    public List<Course> semester;
-    //Calendar calendar;
-    //Checklist checklist;
+public class Semester {
+    private static final String DEFAULT_SEMESTER_TITLE = "Semester";
+    private String title;
+    private List<Course> semester;
 
     /**
-     * Creates a new RunningCourses object, where courses of the current semester can be added, as well as a semester
-     * calendar and a checklist
+     * Creates a new Semester object, where courses of the current semester can be added.
      */
     public Semester() {
-        this.semester = new ArrayList<Course>();
-       // this.calendar = new Calendar();
-       // this.checklist = new Checklist();
+        this(DEFAULT_SEMESTER_TITLE);
+    }
+
+    /**
+     * Create a new empty Semester.
+     * @param title the title of the semester (e.g. Fall)
+     */
+    public Semester(String title) {
+        this.title = title;
+        this.semester = new ArrayList<>();
     }
 
     public List<Course> getSemester() {
         return this.semester;
     }
-
-    /*@Override
-    * public Calendar getCalendar() {
-    *   return calendar
-    * }*/
-
-    /*@Override
-     * public Checklist getChecklist() {
-     *   return checklist
-     * }*/
 
     public void addCourse(Course course) {
         //Add new course to the current semester
