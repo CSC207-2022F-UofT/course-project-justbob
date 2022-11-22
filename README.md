@@ -35,6 +35,13 @@
 
 
 ## Use Cases:
+# Courses #
+Courses represent courses that the User is enrolled in. Each course contains a list of all of its assessments, along with other data including
+1. The course code (e.g. "Csc207.") Must be unique.
+2. The course name (e.g. "Introduction to Software Design")
+3. The semester the course is in (e.g. "Winter")
+4. How many credits the course is worth (either 0.5 or 1.0)
+
 # Assessments #
 Assessments represent a group of marks that are weighed together. This can be a set of 10 quizzes worth 2% each, or a set of term tests where the lowest is dropped, and anything similar. 
 
