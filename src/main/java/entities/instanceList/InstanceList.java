@@ -11,26 +11,31 @@ public class InstanceList implements InstanceListInterface{
     private ArrayList<AssessmentInstance> listOfAssessmentInstances;
     private int totalNumberOfInstances;
 
+
+    public InstanceList(int totalNumberOfInstances) {
+        this.listOfAssessmentInstances = new ArrayList<>();
+        this.totalNumberOfInstances = totalNumberOfInstances;
+    }
+
     /**
      * Create a new InstanceList object with a list of AssessmentInstances
      * @param pluralTitle the plural title of the assessment
      *              e.g. "Quizzes", "Midterm", "Homework Assignments"
      * @param totalNumberOfInstances the total number of instances of the assessment
      */
-
     public InstanceList(String pluralTitle, int totalNumberOfInstances) {
         this.listOfAssessmentInstances = new ArrayList<>();
         this.totalNumberOfInstances = totalNumberOfInstances;
-        /*
+
         for (int i = 0, j = 1; i < totalNumberOfInstances; i++, j++){
             this.addInstance(toSingular(pluralTitle) + " #" + j);
-        } */
+        }
     }
+
     public void addInstance(String name) {
         if (getCurrentNumberOfInstances() < totalNumberOfInstances) {
             listOfAssessmentInstances.add(new AssessmentInstance(name));
-        }
-        else{
+        } else{
             throw new IllegalStateException("this assessment already has all instance defined");
             //System.out.println("You have reached the maximum number of instances for this assessment");
             /*we could maybe define a new Exception class for this*/

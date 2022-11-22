@@ -3,10 +3,9 @@ package entities.assessmentInstance;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class AssessmentInstanceFactory implements AssessmentInstanceFactoryInterface{
+public class AssessmentInstanceFactory {
 
-    @Override
-    public AssessmentInstanceInterface create(String assessmentInstanceName) {
+    public AssessmentInstance create(String assessmentInstanceName) {
         return new AssessmentInstance(assessmentInstanceName);
     }
 
@@ -20,8 +19,7 @@ public class AssessmentInstanceFactory implements AssessmentInstanceFactoryInter
      * @param isSubmitted
      * @return the constructed AssessmentInstance.
      */
-    @Override
-    public AssessmentInstanceInterface create(String assessmentInstanceName, LocalDate dueDate, LocalTime dueTime, Double mark,
+    public AssessmentInstance create(String assessmentInstanceName, LocalDate dueDate, LocalTime dueTime, Double mark,
                                         boolean isCommitted, boolean isSubmitted) {
         AssessmentInstance assessmentInstance = new AssessmentInstance(assessmentInstanceName);
         assessmentInstance.setDueDate(dueDate);

@@ -1,5 +1,6 @@
 package entities.assessment;
 
+import entities.assessmentInstance.AssessmentInstance;
 import entities.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
@@ -20,8 +21,19 @@ public class Assessment {
         this.title = title;
         this.weightScheme = weightScheme;
         this.instanceList = new InstanceList(this.title, weightScheme.getNumberOfInstances());
+    }
+
+    public Assessment(String title, WeightScheme weightScheme, boolean populate) {
+        this.title = title;
+        this.weightScheme = weightScheme;
+        if (populate) {
+            this.instanceList = new InstanceList(this.title, weightScheme.getNumberOfInstances());
+        } else {
+            this.instanceList = new InstanceList(weightScheme.getNumberOfInstances());
+        }
 
     }
+
     public double getTotalWeight() {
         return weightScheme.getTotalWeight();
     }

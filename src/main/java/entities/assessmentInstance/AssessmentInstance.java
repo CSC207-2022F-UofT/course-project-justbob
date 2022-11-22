@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
-public class AssessmentInstance implements AssessmentInstanceInterface {
+public class AssessmentInstance {
     private String assessmentInstanceName;
     private LocalDate dueDate;
     private LocalTime dueTime;
