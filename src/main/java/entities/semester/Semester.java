@@ -31,11 +31,7 @@ public class Semester {
     }
 
     public void addCourse(Course course) {
-        //Add new course to the current semester
-        if (this.semester.contains(course)) {
-            throw new IllegalArgumentException("Course already in semester");
-            //report to controller
-        } else {
+        if (!this.semester.contains(course)) {
             this.semester.add(course);
         }
     }

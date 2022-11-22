@@ -38,10 +38,4 @@ public class ArchiveAndSemesterTest {
         testSemester.removeCourse(course1);
         Assertions.assertTrue(testSemester.getSemester().isEmpty());
     }
-
-    @Test
-    public void addDuplicateCourseToSemester(){
-        testSemester.addCourse(course1);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> testSemester.addCourse(course1));
-    }
 }
