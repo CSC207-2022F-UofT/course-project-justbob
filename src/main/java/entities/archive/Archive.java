@@ -21,10 +21,10 @@ public class Archive {
 
     public void addCourse(Course course) {
         this.archived.add(course);
-        course.archiveCourse();
+        //course.archiveCourse();
     }
     public void RemoveCourse(Course course) {
-            course.unarchiveCourse();
+            //course.unarchiveCourse();
             this.archived.remove(course);
         }
 }

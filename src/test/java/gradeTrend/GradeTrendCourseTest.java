@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GradeTrendCourseTest {
+    Course csc207 = new Course("CSC207", "Software Design", 1.0f);
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -25,8 +27,6 @@ public class GradeTrendCourseTest {
 
     @Test
     public void gradeTrendCourseCommitted() {
-        Course csc207 = new Course("CSC207", "Software Design", false, 1.0f);
-
         Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
         InstanceList instanceList = csc207Quizzes.getInstanceList();
 
@@ -54,8 +54,6 @@ public class GradeTrendCourseTest {
 
     @Test
     public void gradeTrendCourseHypothetical() {
-        Course csc207 = new Course("CSC207", "Software Design", false, 1.0f);
-
         Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
         InstanceList instanceList = csc207Quizzes.getInstanceList();
 

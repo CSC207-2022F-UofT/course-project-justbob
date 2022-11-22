@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GradeTrendOverallTest {
+    Course csc207 = new Course("CSC207", "Software Design", 1.0f);
+    Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
+
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
@@ -25,9 +28,6 @@ public class GradeTrendOverallTest {
 
     @Test
     public void gradeTrendOverallCommitted() {
-        Course csc207 = new Course("CSC207", "Software Design", false, 1.0f);
-
-        Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
         InstanceList instanceList = csc207Quizzes.getInstanceList();
 
         instanceList.editInstanceMark(0, 0.80);
@@ -57,9 +57,6 @@ public class GradeTrendOverallTest {
 
     @Test
     public void gradeTrendCourseHypothetical() {
-        Course csc207 = new Course("CSC207", "Software Design", false, 1.0f);
-
-        Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
         InstanceList instanceList = csc207Quizzes.getInstanceList();
 
         instanceList.editInstanceMark(0, 0.80);

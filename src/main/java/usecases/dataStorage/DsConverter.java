@@ -72,8 +72,7 @@ public class DsConverter {
         return assessment;
     }
     public static Course courseModelToEntity(CourseDsModel courseDsModel) {
-        Course course = new CourseFactory().create(courseDsModel.getCourseCode(), courseDsModel.getCourseName(),
-                courseDsModel.getSemester(), courseDsModel.isArchived(), courseDsModel.getCredit());
+        Course course = new CourseFactory().create(courseDsModel.getCourseCode(), courseDsModel.getCourseName(), courseDsModel.getCredit());
         for (AssessmentDsModel assessmentDsModel : courseDsModel.getAssessmentData()) {
             course.getOutline().addAssessment(assessmentModelToEntity(assessmentDsModel));
         }
