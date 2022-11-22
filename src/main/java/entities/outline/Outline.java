@@ -13,12 +13,12 @@ public class Outline {
     }
 
     public void addAssessment(Assessment assessment) {
-
-        assessments.add(assessment);
+        if (!assessments.contains(assessment)) {
+            assessments.add(assessment);
+        }
     }
 
     public void removeAssessment(Assessment assessment) {
-
         assessments.remove(assessment);
     }
 
@@ -67,22 +67,22 @@ public class Outline {
     }
 
     public double computeRunningGrade() {
-        double rgrade = 0.0;
+        double runningGrade = 0.0;
         for (Assessment assessment : assessments) {
-            rgrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getCommittedMarks());
+            runningGrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getCommittedMarks());
         }
-        return rgrade/this.getTotalCommmittedWeight();
+        return runningGrade/this.getTotalCommmittedWeight();
     }
 
     public double computeHypotheticalGrade() {
-        double hgrade = 0.0;
+        double hypotheticalGrade = 0.0;
         for (Assessment assessment : assessments) {
-            hgrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getAllMarks());
+            hypotheticalGrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getAllMarks());
         }
         if (this.getTotalHypotheticalWeight() == 0) {
             return 0;
         }
-        return hgrade/this.getTotalHypotheticalWeight();
+        return hypotheticalGrade/this.getTotalHypotheticalWeight();
     }
 }
 

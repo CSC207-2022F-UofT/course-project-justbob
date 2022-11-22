@@ -13,9 +13,7 @@ public class Course {
     private String courseCode;
     private String courseName;
     private float credit;
-
     private Outline outline;
-
     private ArrayList<CourseEvent> courseEvents;
 
     /**
@@ -31,8 +29,8 @@ public class Course {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.credit = credit;
-        this.courseEvents = new ArrayList<>();
         this.outline = new Outline();
+        this.courseEvents = new ArrayList<>();
     }
     public String getCourseCode() {
         return courseCode;
