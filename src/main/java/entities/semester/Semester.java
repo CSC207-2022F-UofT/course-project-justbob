@@ -8,7 +8,7 @@ import java.util.List;
 public class Semester {
     private static final String DEFAULT_SEMESTER_TITLE = "Semester";
     private String title;
-    private List<Course> semester;
+    private List<Course> runningCourses;
 
     /**
      * Creates a new Semester object, where courses of the current semester can be added.
@@ -23,21 +23,21 @@ public class Semester {
      */
     public Semester(String title) {
         this.title = title;
-        this.semester = new ArrayList<>();
+        this.runningCourses = new ArrayList<>();
     }
 
     public List<Course> getSemester() {
-        return this.semester;
+        return this.runningCourses;
     }
 
     public void addCourse(Course course) {
-        if (!this.semester.contains(course)) {
-            this.semester.add(course);
+        if (!this.runningCourses.contains(course)) {
+            this.runningCourses.add(course);
         }
     }
 
     public void removeCourse(Course course) {
-        semester.remove(course);
+        runningCourses.remove(course);
     }
 }
 
