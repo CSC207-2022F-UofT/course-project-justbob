@@ -12,7 +12,6 @@ import java.time.LocalTime;
 public class Course {
     private String courseCode;
     private String courseName;
-    private String semester;
     private boolean archived;
     private float credit;
 
@@ -33,7 +32,6 @@ public class Course {
     public Course(String courseCode, String courseName, boolean archived, float credit) {
         this.courseCode = courseCode;
         this.courseName = courseName;
-        //this.semester = semester;
         this.archived = archived;
         this.credit = credit;
         this.courseEvents = new ArrayList<>();
@@ -45,10 +43,6 @@ public class Course {
 
     public String getCourseName() {
         return courseName;
-    }
-
-    public String getSemester() {
-        return semester;
     }
 
     public boolean isArchived() {
