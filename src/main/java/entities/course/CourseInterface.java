@@ -1,7 +1,7 @@
 package entities.course;
 
-import entities.outline.Outline;
-import entities.courseEvent.CourseEvent;
+import entities.course.outline.Outline;
+import entities.course.courseEvent.CourseEvent;
 
 import java.util.ArrayList;
 

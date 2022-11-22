@@ -1,12 +1,9 @@
 package entities.course;
 
-import entities.courseEvent.CourseEvent;
-import entities.outline.Outline;
+import entities.course.courseEvent.CourseEvent;
+import entities.course.outline.Outline;
 
 import java.util.ArrayList;
-
-import java.time.DayOfWeek;
-import java.time.LocalTime;
 
 
 public class Course {

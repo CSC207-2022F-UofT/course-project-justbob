@@ -1,4 +1,4 @@
-package entities.outline;
+package entities.course.outline;
 
 import entities.assessment.Assessment;
 

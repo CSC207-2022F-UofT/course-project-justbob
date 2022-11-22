@@ -1,4 +1,4 @@
-package entities.courseEvent;
+package entities.course.courseEvent;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
