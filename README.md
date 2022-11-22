@@ -35,6 +35,65 @@
 
 
 ## Use Cases:
+# Assessments #
+Assessments represent a group of marks that are weighed together. This can be a set of 10 quizzes worth 2% each, or a set of term tests where the lowest is dropped, and anything similar. 
+
+## Choosing a weight scheme ##
+Each assessment needs a `WeightScheme` with instructions on how to weigh each mark. Currently there are 2 types of weight schemes supported
+  1. Ordered Weights: For situations where marks are weighed differently based on performance.
+  2. Simple Weights: For situations where all marks in the assessment are always worth exactly the same.
+
+WeightSchemes use instances of `Weight` as their basic building blocks. A `Weight` simply specifies a number of marks that are worth exactly the same (in the case of the `SimpleWeight`, one weight is enough, that's why it's so simple!)
+
+To create a new `SimpleWeight` that represents the weight of 10 marks worth 2% each:
+```
+Weight weight = new Weight(10, 0.02);
+WeightScheme simpleWeight = new SimpleWeight(weight);
+```
+(Notice that percentiles are out of 1.0)
+
+For more complex behaviour that involves performance-based weighting, we use `OrderedWeight`.
+To create a new `OrderedWeight` that represents the weight of 5 marks with the lowest 2 dropped and the other 3 worth 5%:
+```
+Weight[] orderedArrayOfWeights = new Weight[] {
+  new Weight(2, 0.0),
+  new Weight(3, 0.05)
+};
+WeightScheme orderedWeight = new OrderedWeight(orderedArrayOfWeights);
+```
+Notice the ordering of the weights. Marks are assigned in order from lowest to highest to each space in the input weight array. In our example, the lowest marks we earn will be assigned to the first weight (worth nothing), and every higher mark will be assigned to the next weight (worth 5%). 
+
+## Managing assessments ##
+To create a new `assessment` with 3 instances worth 10% each:
+```
+WeightScheme mySimpleWeightScheme = new SimpleWeight(3, 0.1);
+Assessment assessment = new Assessment("Quizzes", mySimpleWeightScheme);
+```
+To add an `assessment` to a `course`:
+```
+course.getOutline().addAssessment(assessment);
+```
+To remove an `assessment` from a `course`:
+```
+course.getOutline().removeAssessment(assessment);
+```
+
+## Marking assessments ##
+Mark management is delegated to a helper class called `InstanceList` The `InstanceList` stores a certain number of `AssessmentInstance` objects, which each store a single mark earned as part of an assessment. The `AssessmentInstance` class also includes some other data, including
+1. A name for the particular instance (for example, "Quiz 1")
+2. The date and time that the instance is due (optional)
+
+Once the user receives a mark back, they need to **commit** it. Committed instances represent marks that the user has gotten back from their school, and they are used in computations where the current running average is requested. If a mark is not committed, it will only appear in the hypothetical average.
+
+To set a hypothetical mark of 87 for the first instance in `assessment`:
+```
+assessment.getInstanceList().editAssessmentMark(0, 0.87);
+```
+(Notice that we use indexing to sort through the list. We use traditional indexing (starting from 0)
+To commit the above mark (assuming you magically scored exactly an 87 later):
+```
+assessment.getInstanceList().getInstanceData(0).commit();
+```
 - gradeTrend
     - gradeTrendInterface
         - Functions to calculateGPATrend, getXData (for trend graph), getYData (for trend graph), setHypothetical
