@@ -25,7 +25,7 @@ public class GradeTrendOverallTest {
 
     @Test
     public void gradeTrendOverallCommitted() {
-        Course csc207 = new Course("CSC207", "Software Design", "Fall 2022", false, 1.0f);
+        Course csc207 = new Course("CSC207", "Software Design", false, 1.0f);
 
         Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
         InstanceList instanceList = csc207Quizzes.getInstanceList();
@@ -57,7 +57,7 @@ public class GradeTrendOverallTest {
 
     @Test
     public void gradeTrendCourseHypothetical() {
-        Course csc207 = new Course("CSC207", "Software Design", "Fall 2022", false, 1.0f);
+        Course csc207 = new Course("CSC207", "Software Design", false, 1.0f);
 
         Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
         InstanceList instanceList = csc207Quizzes.getInstanceList();

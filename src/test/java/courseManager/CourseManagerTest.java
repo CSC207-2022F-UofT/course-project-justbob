@@ -16,7 +16,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class CourseManagerTest {
-    private Course csc207 = new Course("CSC207", "Software Design", "Fall 2022", false, 1.0f);
+    private Course csc207 = new Course("CSC207", "Software Design", false, 1.0f);
 
     private CourseEvent csc207Lecture = new CourseEvent("Lecture", DayOfWeek.MONDAY, LocalTime.of(10, 0),
             LocalTime.of(11, 0), "BA1100");

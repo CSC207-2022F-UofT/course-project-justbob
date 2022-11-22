@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class ArchiveAndSemesterTest {
-    private final Course course1 = new Course("CSC101", "Intro to CS", "Fall 2021", true, 1.0F);
+    private final Course course1 = new Course("CSC101", "Intro to CS", true, 1.0F);
     private Archive testArchive = new Archive();
     private Semester testSemester = new Semester();
 
