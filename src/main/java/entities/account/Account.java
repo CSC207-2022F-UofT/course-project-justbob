@@ -1,6 +1,7 @@
 package entities.account;
 
 import entities.archive.Archive;
+import entities.course.Course;
 import entities.semester.Semester;
 
 public class Account {
@@ -28,6 +29,13 @@ public class Account {
 
     public String getPassword() {
         return this.password;
+    }
+    public void ArchiveCourse(Course course) throws IllegalArgumentException {
+        if (!semester.getRunningCourses().contains(course)) {
+            throw new IllegalArgumentException("course is not in this Account's semester");
+        }
+        semester.removeCourse(course);
+        archive.addCourse(course, semester.getTitle());
     }
 
     public Archive getArchive() {

@@ -26,6 +26,10 @@ public class Semester {
         this(DEFAULT_SEMESTER_TITLE);
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public List<Course> getRunningCourses() {
         return this.runningCourses;
     }
