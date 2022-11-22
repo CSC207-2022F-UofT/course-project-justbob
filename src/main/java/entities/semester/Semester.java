@@ -11,7 +11,7 @@ public class Semester {
     private List<Course> runningCourses;
 
     /**
-     * Creates a new Semester object, where courses of the current semester can be added.
+     * Creates a new empty Semester object, where courses of the current semester can be added.
      */
     public Semester() {
         this(DEFAULT_SEMESTER_TITLE);
@@ -26,7 +26,7 @@ public class Semester {
         this.runningCourses = new ArrayList<>();
     }
 
-    public List<Course> getSemester() {
+    public List<Course> getRunningCourses() {
         return this.runningCourses;
     }
 

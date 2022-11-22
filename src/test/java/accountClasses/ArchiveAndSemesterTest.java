@@ -1,6 +1,5 @@
 package accountClasses;
 
-import entities.account.Account;
 import entities.archive.Archive;
 import entities.semester.Semester;
 import entities.course.Course;
@@ -30,12 +29,12 @@ public class ArchiveAndSemesterTest {
     @Test
     public void addCourseToSemester(){
         testSemester.addCourse(course1);
-        Assertions.assertEquals(testSemester.getSemester().get(0), course1);
+        Assertions.assertEquals(testSemester.getRunningCourses().get(0), course1);
     }
     @Test
     public void removeCourseFromSemester(){
         testSemester.addCourse(course1);
         testSemester.removeCourse(course1);
-        Assertions.assertTrue(testSemester.getSemester().isEmpty());
+        Assertions.assertTrue(testSemester.getRunningCourses().isEmpty());
     }
 }

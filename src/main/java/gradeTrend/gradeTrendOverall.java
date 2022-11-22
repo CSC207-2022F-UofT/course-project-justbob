@@ -19,11 +19,11 @@ public class gradeTrendOverall implements gradeTrendInterface {
     }
 
     public gradeTrendOverall(Semester semester) {
-        this.courses = semester.getSemester();
+        this.courses = semester.getRunningCourses();
     }
 
     public gradeTrendOverall(Account account) {
-        this.courses = account.getSemester().getSemester();
+        this.courses = account.getSemester().getRunningCourses();
     }
 
     public void calculateGPATrend() {
