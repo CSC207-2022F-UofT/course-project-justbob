@@ -3,24 +3,36 @@ package entities.assessmentInstance;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class AssessmentInstanceFactory {
+public class AssessmentInstanceFactory implements AssessmentInstanceFactoryInterface{
 
-    public AssessmentInstance create(String assessmentInstanceName) {
+    @Override
+    public AssessmentInstanceInterface create(String assessmentInstanceName) {
         return new AssessmentInstance(assessmentInstanceName);
     }
 
-    public AssessmentInstance create(String assessmentInstanceName, LocalDate dueDate, LocalTime dueTime,
-                                     boolean isCommitted, boolean isSubmitted, Double mark) {
-        AssessmentInstance instance = new AssessmentInstance(assessmentInstanceName);
-        instance.setDueDate(dueDate);
-        instance.setDueTime(dueTime);
+    /**
+     * Create a new assessment instance with all data. Useful for constructing instances from a data storage model.
+     * @param assessmentInstanceName
+     * @param dueDate
+     * @param dueTime
+     * @param mark
+     * @param isCommitted
+     * @param isSubmitted
+     * @return the constructed AssessmentInstance.
+     */
+    @Override
+    public AssessmentInstanceInterface create(String assessmentInstanceName, LocalDate dueDate, LocalTime dueTime, Double mark,
+                                        boolean isCommitted, boolean isSubmitted) {
+        AssessmentInstance assessmentInstance = new AssessmentInstance(assessmentInstanceName);
+        assessmentInstance.setDueDate(dueDate);
+        assessmentInstance.setDueTime(dueTime);
+        assessmentInstance.setMark(mark);
         if (isSubmitted) {
-            instance.submit();
+            assessmentInstance.submit();
         }
         if (isCommitted) {
-            instance.commit();
+            assessmentInstance.commit();
         }
-        instance.setMark(mark);
-        return instance;
+        return assessmentInstance;
     }
 }

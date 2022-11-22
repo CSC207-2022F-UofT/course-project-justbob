@@ -1,8 +1,11 @@
 package courseManager;
 
 import entities.assessment.Assessment;
+import entities.assessmentInstance.AssessmentInstanceInterface;
 import entities.course.Course;
 import entities.courseEvent.CourseEvent;
+import entities.instanceList.InstanceListInterface;
+import entities.outline.OutlineInterface;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import weightScheme.OrderedWeight;
@@ -54,15 +57,20 @@ public class CourseManagerTest {
     @Test
     public void SimpleWeightComputeRunningGrade() {
         csc207.getOutline().addAssessment(csc207Quizzes);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(1).commit();
-        Assertions.assertEquals(0.8, csc207.getOutline().computeRunningGrade(),0.01);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(2, 0.30);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(2).commit();
-        Assertions.assertEquals(0.63, csc207.getOutline().computeRunningGrade(),0.01);
+        InstanceListInterface instanceList = csc207Quizzes.getInstanceList();
 
+        instanceList.editInstanceMark(0, 0.90);
+        instanceList.getInstanceData(0).commit();
+
+        instanceList.editInstanceMark(1, 0.70);
+        instanceList.getInstanceData(1).commit();
+
+        Assertions.assertEquals(0.8, csc207.getOutline().computeRunningGrade(),0.01);
+
+        instanceList.editInstanceMark(2, 0.30);
+        instanceList.getInstanceData(2).commit();
+
+        Assertions.assertEquals(0.63, csc207.getOutline().computeRunningGrade(),0.01);
     }
 
     @Test
@@ -74,10 +82,10 @@ public class CourseManagerTest {
 
     @Test
     public void emptyAssessmentInstanceVariables(){
-        csc207.getOutline().addAssessment(csc207Quizzes);
-        Assertions.assertNull(csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).getMark());
-        Assertions.assertNull(csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).getDueDate());
-        Assertions.assertNull(csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).getDueTime());
+        AssessmentInstanceInterface instance = csc207Quizzes.getInstanceList().getInstanceData(0);
+        Assertions.assertNull(instance.getMark());
+        Assertions.assertNull(instance.getDueDate());
+        Assertions.assertNull(instance.getDueTime());
     }
 
     @Test
@@ -89,8 +97,10 @@ public class CourseManagerTest {
     @Test
     public void simpleWeightMixedNullMarks(){
         csc207.getOutline().addAssessment(csc207Quizzes);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
+
+        csc207Quizzes.getInstanceList().editInstanceMark(0, 0.90);
+        csc207Quizzes.getInstanceList().editInstanceMark(1, 0.70);
+
         Assertions.assertEquals(0.8, csc207.getOutline().computeHypotheticalGrade(),0.01);
     }
 
@@ -98,35 +108,46 @@ public class CourseManagerTest {
     public void simpleWeightMixedNullMarksMultipleAssessmentsHypo(){
         csc207.getOutline().addAssessment(csc207Quizzes);
         csc207.getOutline().addAssessment(csc207Midterm);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
-        csc207.getOutline().getAssessment(1).getInstanceList().editInstanceMark(0, 0.90);
-        Assertions.assertEquals(0.86,csc207.getOutline().computeHypotheticalGrade(),0.001);
+
+        csc207Quizzes.getInstanceList().editInstanceMark(0, 0.90);
+        csc207Quizzes.getInstanceList().editInstanceMark(1, 0.70);
+        csc207Midterm.getInstanceList().editInstanceMark(0, 0.90);
+
+        Assertions.assertEquals(0.86, csc207.getOutline().computeHypotheticalGrade(),0.001);
     }
 
     @Test
     public void simpleWeightMixedNullMarksMultipleAssessmentsRunning(){
         csc207.getOutline().addAssessment(csc207Quizzes);
         csc207.getOutline().addAssessment(csc207Midterm);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.60);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
-        csc207.getOutline().getAssessment(1).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(1).getInstanceList().getInstanceData(0).commit();
+
+        csc207Quizzes.getInstanceList().editInstanceMark(0, 0.60);
+        csc207Quizzes.getInstanceList().editInstanceMark(1, 0.70);
+        csc207Quizzes.getInstanceList().getInstanceData(0).commit();
+
+        csc207Midterm.getInstanceList().editInstanceMark(0, 0.90);
+        csc207Midterm.getInstanceList().getInstanceData(0).commit();
+
         Assertions.assertEquals(0.825,csc207.getOutline().computeRunningGrade(),0.001);
     }
 
     @Test
     public void orderedWeightComputeRunningGrade(){
         csc207.getOutline().addAssessment(csc207Homework);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.70);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(2, 0.60);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(3, 0.30);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(1).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(2).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(3).commit();
+        InstanceListInterface instanceList = csc207Homework.getInstanceList();
+
+        instanceList.editInstanceMark(0, 0.70);
+        instanceList.getInstanceData(0).commit();
+
+        instanceList.editInstanceMark(1, 0.90);
+        instanceList.getInstanceData(1).commit();
+
+        instanceList.editInstanceMark(2, 0.60);
+        instanceList.getInstanceData(2).commit();
+
+        instanceList.editInstanceMark(3, 0.30);
+        instanceList.getInstanceData(3).commit();
+
         Assertions.assertEquals(0.775, csc207.getOutline().computeRunningGrade(),0.01);
     }
 
@@ -135,12 +156,16 @@ public class CourseManagerTest {
         csc207.getOutline().addAssessment(csc207Quizzes);
         csc207.getOutline().addAssessment(csc207Midterm);
         csc207.getOutline().addAssessment(csc207Homework);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.60);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
-        csc207.getOutline().getAssessment(1).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(0, 0.80);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(1, 0.90);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(2, 0.95);
+
+        csc207Quizzes.getInstanceList().editInstanceMark(0, 0.60);
+        csc207Quizzes.getInstanceList().editInstanceMark(1, 0.70);
+
+        csc207Midterm.getInstanceList().editInstanceMark(0, 0.90);
+
+        csc207Homework.getInstanceList().editInstanceMark(0, 0.80);
+        csc207Homework.getInstanceList().editInstanceMark(1, 0.90);
+        csc207Homework.getInstanceList().editInstanceMark(2, 0.95);
+
         Assertions.assertEquals(0.844, csc207.getOutline().computeHypotheticalGrade(),0.01);
     }
 
@@ -149,17 +174,21 @@ public class CourseManagerTest {
         csc207.getOutline().addAssessment(csc207Quizzes);
         csc207.getOutline().addAssessment(csc207Midterm);
         csc207.getOutline().addAssessment(csc207Homework);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.60);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
-        csc207.getOutline().getAssessment(1).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(0, 0.80);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(1, 0.90);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(2, 0.95);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(1).commit();
-        csc207.getOutline().getAssessment(1).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(2).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(2).getInstanceList().getInstanceData(2).commit();
+
+        csc207Quizzes.getInstanceList().editInstanceMark(0, 0.60);
+        csc207Quizzes.getInstanceList().editInstanceMark(1, 0.70);
+        csc207Quizzes.getInstanceList().getInstanceData(0).commit();
+        csc207Quizzes.getInstanceList().getInstanceData(1).commit();
+
+        csc207Midterm.getInstanceList().editInstanceMark(0, 0.90);
+        csc207Midterm.getInstanceList().getInstanceData(0).commit();
+
+        csc207Homework.getInstanceList().editInstanceMark(0, 0.80);
+        csc207Homework.getInstanceList().editInstanceMark(1, 0.90);
+        csc207Homework.getInstanceList().editInstanceMark(2, 0.95);
+        csc207Homework.getInstanceList().getInstanceData(0).commit();
+        csc207Homework.getInstanceList().getInstanceData(2).commit();
+
         Assertions.assertEquals(0.8375, csc207.getOutline().computeRunningGrade(),0.01);
     }
 
@@ -169,29 +198,40 @@ public class CourseManagerTest {
     public void getPercentageCompletedSimpleWeightOnly(){
         csc207.getOutline().addAssessment(csc207Quizzes);
         csc207.getOutline().addAssessment(csc207Midterm);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.60);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
-        csc207.getOutline().getAssessment(1).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(1).submit();
-        csc207.getOutline().getAssessment(1).getInstanceList().getInstanceData(0).commit();
+
+        csc207Quizzes.getInstanceList().editInstanceMark(0, 0.60);
+        csc207Quizzes.getInstanceList().editInstanceMark(1, 0.70);
+        csc207Quizzes.getInstanceList().getInstanceData(0).commit();
+        csc207Quizzes.getInstanceList().getInstanceData(1).submit();
+
+        csc207Midterm.getInstanceList().editInstanceMark(0, 0.90);
+        csc207Midterm.getInstanceList().getInstanceData(0).commit();
+
         Assertions.assertEquals(0.5,csc207.getOutline().getPercentageCompleted(),0.001);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).uncommit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).unsubmit();
+
+        csc207Quizzes.getInstanceList().getInstanceData(0).uncommit();
+        csc207Quizzes.getInstanceList().getInstanceData(0).unsubmit();
+
         Assertions.assertEquals(0.4,csc207.getOutline().getPercentageCompleted(),0.001);
     }
 
     @Test
     public void getPercentageCompletedOrderedWeightOnly(){
         csc207.getOutline().addAssessment(csc207Homework);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.70);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(2, 0.60);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(3, 0.30);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(1).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(2).submit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(3).commit();
+        InstanceListInterface instanceList = csc207Homework.getInstanceList();
+
+        instanceList.editInstanceMark(0, 0.70);
+        instanceList.getInstanceData(0).commit();
+
+        instanceList.editInstanceMark(1, 0.90);
+        instanceList.getInstanceData(1).commit();
+
+        instanceList.editInstanceMark(2, 0.60);
+        instanceList.getInstanceData(2).submit();
+
+        instanceList.editInstanceMark(3, 0.30);
+        instanceList.getInstanceData(3).commit();
+
         Assertions.assertEquals(0.4,csc207.getOutline().getPercentageCompleted(),0.001);
     }
 
@@ -200,16 +240,20 @@ public class CourseManagerTest {
         csc207.getOutline().addAssessment(csc207Quizzes);
         csc207.getOutline().addAssessment(csc207Midterm);
         csc207.getOutline().addAssessment(csc207Homework);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.60);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
-        csc207.getOutline().getAssessment(1).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(0, 0.70);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(1, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(1).submit();
-        csc207.getOutline().getAssessment(1).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(2).getInstanceList().getInstanceData(0).submit();
-        csc207.getOutline().getAssessment(2).getInstanceList().getInstanceData(1).commit();
+
+        csc207Quizzes.getInstanceList().editInstanceMark(0, 0.60);
+        csc207Quizzes.getInstanceList().editInstanceMark(1, 0.70);
+        csc207Quizzes.getInstanceList().getInstanceData(0).commit();
+        csc207Quizzes.getInstanceList().getInstanceData(1).submit();
+
+        csc207Midterm.getInstanceList().editInstanceMark(0, 0.90);
+        csc207Midterm.getInstanceList().getInstanceData(0).commit();
+
+        csc207Homework.getInstanceList().editInstanceMark(0, 0.70);
+        csc207Homework.getInstanceList().editInstanceMark(1, 0.90);
+        csc207Homework.getInstanceList().getInstanceData(0).submit();
+        csc207Homework.getInstanceList().getInstanceData(1).commit();
+
         Assertions.assertEquals(0.8,csc207.getOutline().getPercentageCompleted(),0.001);
     }
 
@@ -218,16 +262,20 @@ public class CourseManagerTest {
         csc207.getOutline().addAssessment(csc207Quizzes);
         csc207.getOutline().addAssessment(csc207Midterm);
         csc207.getOutline().addAssessment(csc207Homework);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(0, 0.60);
-        csc207.getOutline().getAssessment(0).getInstanceList().editInstanceMark(1, 0.70);
-        csc207.getOutline().getAssessment(1).getInstanceList().editInstanceMark(0, 0.90);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(0, 0.70);
-        csc207.getOutline().getAssessment(2).getInstanceList().editInstanceMark(1, 0.90);
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(0).getInstanceList().getInstanceData(1).submit();
-        csc207.getOutline().getAssessment(1).getInstanceList().getInstanceData(0).commit();
-        csc207.getOutline().getAssessment(2).getInstanceList().getInstanceData(0).submit();
-        csc207.getOutline().getAssessment(2).getInstanceList().getInstanceData(1).commit();
+
+        csc207Quizzes.getInstanceList().editInstanceMark(0, 0.60);
+        csc207Quizzes.getInstanceList().editInstanceMark(1, 0.70);
+        csc207Quizzes.getInstanceList().getInstanceData(0).commit();
+        csc207Quizzes.getInstanceList().getInstanceData(1).submit();
+
+        csc207Midterm.getInstanceList().editInstanceMark(0, 0.90);
+        csc207Midterm.getInstanceList().getInstanceData(0).commit();
+
+        csc207Homework.getInstanceList().editInstanceMark(0, 0.70);
+        csc207Homework.getInstanceList().editInstanceMark(1, 0.90);
+        csc207Homework.getInstanceList().getInstanceData(0).submit();
+        csc207Homework.getInstanceList().getInstanceData(1).commit();
+
         Assertions.assertEquals(5,csc207.getOutline().getNumberOfAssessmentInstancesCompleted());
     }
 

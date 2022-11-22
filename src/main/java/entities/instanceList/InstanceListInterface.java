@@ -34,6 +34,4 @@ public interface InstanceListInterface {
     void editInstanceTime(int index, LocalTime time);
 
     void editInstanceMark(int index, double mark);
-
-    String toSingular(String pluralTitle);
 }
