@@ -54,15 +54,13 @@ public class Course {
         return courseEvents;
     }
 
-    public void addCourseEvent(CourseEvent courseEvent) throws IllegalArgumentException{
-        if (courseEvents.contains(courseEvent)) {
-            throw new IllegalArgumentException("Course event already exists");
+    public void addCourseEvent(CourseEvent courseEvent) {
+        if (!courseEvents.contains(courseEvent)) {
+            courseEvents.add(courseEvent);
         }
-        courseEvents.add(courseEvent);
     }
 
     public String toString() {
         return String.format("%s: %s - %f credits", courseCode, courseName, credit);
     }
-
 }

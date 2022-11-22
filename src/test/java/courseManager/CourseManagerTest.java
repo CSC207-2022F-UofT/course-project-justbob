@@ -42,12 +42,6 @@ public class CourseManagerTest {
     }
 
     @Test
-    public void addCourseEventWithSameName() {
-        csc207.addCourseEvent(csc207Lecture);
-        Assertions.assertThrows(IllegalArgumentException.class, () -> csc207.addCourseEvent(csc207Lecture));
-    }
-
-    @Test
     public void addAssessmentToOutline() {
         csc207.getOutline().addAssessment(csc207Quizzes);
         Assertions.assertEquals(csc207Quizzes,csc207.getOutline().getAssessment(0));
