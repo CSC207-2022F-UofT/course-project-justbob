@@ -1,7 +1,6 @@
 package entities.assessment;
 
-import entities.assessmentInstance.AssessmentInstance;
-import entities.instanceList.InstanceList;
+import entities.assessment.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
 public class Assessment {

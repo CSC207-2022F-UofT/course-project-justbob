@@ -4,7 +4,7 @@ import entities.assessment.Assessment;
 import entities.assessmentInstance.AssessmentInstance;
 import entities.course.Course;
 import entities.courseEvent.CourseEvent;
-import entities.instanceList.InstanceList;
+import entities.assessment.instanceList.InstanceList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import weightScheme.OrderedWeight;

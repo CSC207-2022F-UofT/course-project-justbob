@@ -1,7 +1,7 @@
 package entities.account;
 
-import entities.archive.Archive;
-import entities.semester.Semester;
+import entities.account.archive.Archive;
+import entities.account.semester.Semester;
 
 public interface AccountInterface {
     String getUsername();

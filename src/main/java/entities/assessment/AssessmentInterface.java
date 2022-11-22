@@ -1,6 +1,6 @@
 package entities.assessment;
 
-import entities.instanceList.InstanceList;
+import entities.assessment.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
 public interface AssessmentInterface {

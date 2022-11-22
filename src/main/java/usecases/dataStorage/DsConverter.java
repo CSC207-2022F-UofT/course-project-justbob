@@ -2,16 +2,14 @@ package usecases.dataStorage;
 
 import entities.account.AccountFactory;
 import entities.account.Account;
-import entities.archive.Archive;
-import entities.archive.ArchiveFactory;
+import entities.account.archive.Archive;
 import entities.assessment.Assessment;
 import entities.assessment.AssessmentFactory;
 import entities.assessmentInstance.AssessmentInstance;
 import entities.assessmentInstance.AssessmentInstanceFactory;
 import entities.course.Course;
 import entities.course.CourseFactory;
-import entities.semester.Semester;
-import entities.semester.SemesterFactory;
+import entities.account.semester.Semester;
 import usecases.dataStorage.account.AccountDsModel;
 import usecases.dataStorage.assessment.AssessmentDsModel;
 import usecases.dataStorage.course.CourseDsModel;
@@ -81,8 +79,8 @@ public class DsConverter {
     }
     public static Account accountModelToEntity(AccountDsModel accountDsModel) {
         Account account = new AccountFactory().create(accountDsModel.getUsername(), accountDsModel.getPassword());
-        Semester semester = new SemesterFactory().create();
-        Archive archive = new ArchiveFactory().create();
+        Semester semester = new Semester();
+        Archive archive = new Archive();
         for (CourseDsModel courseDsModel : accountDsModel.getCourseData()) {
             if (courseDsModel.isArchived()) {
                 archive.addCourse(courseModelToEntity(courseDsModel));

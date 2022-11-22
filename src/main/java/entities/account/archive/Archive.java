@@ -1,4 +1,4 @@
-package entities.archive;
+package entities.account.archive;
 
 import entities.course.Course;
 
@@ -30,14 +30,18 @@ public class Archive {
     private HashMap<Course, ArchivedCourseData> courseToData;
 
     /**
+     * Create an archive from a data source. Useful for loading from a database
+     * @param courseToData The map to construct the archive from
+     */
+    public Archive(HashMap<Course, ArchivedCourseData> courseToData) {
+        this.courseToData = courseToData;
+    }
+
+    /**
      * Initiate the archive with an empty archived course list
      */
     public Archive() {
-        courseToData = new HashMap<>();
-    }
-
-    public Archive(HashMap<Course, ArchivedCourseData> courseToData) {
-        this.courseToData = courseToData;
+        this(new HashMap<>());
     }
 
     public List<Course> getCourses() {
@@ -65,7 +69,7 @@ public class Archive {
      * @param course the course to archive
      */
     public void addCourse(Course course) {
-        addCourse(course, "");
+        this.addCourse(course, "");
     }
 
     public void RemoveCourse(Course course) {

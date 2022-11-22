@@ -65,14 +65,4 @@ public class Course {
         return String.format("%s: %s - %f credits", courseCode, courseName, credit);
     }
 
-    /*
-    public void archiveCourse() {
-        this.archived = true;
-    } */
-
-
-    /*
-    public void unarchiveCourse() {
-        this.archived = false;
-    } */
 }

@@ -12,13 +12,10 @@ import usecases.dataStorage.instance.InstanceDsRequestModel;
 public class AddMarkInteractor implements AddMarkInputBoundary {
     private AddMarkDsGateway gateway;
     private AddMarkPresenter presenter;
-    private CourseFactoryInterface courseFactory;
 
-    public AddMarkInteractor(AddMarkDsGateway gateway, AddMarkPresenter presenter,
-                             CourseFactoryInterface courseFactory) {
+    public AddMarkInteractor(AddMarkDsGateway gateway, AddMarkPresenter presenter) {
         this.gateway = gateway;
         this.presenter = presenter;
-        this.courseFactory = courseFactory;
     }
 
     @Override

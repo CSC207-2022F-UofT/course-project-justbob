@@ -1,4 +1,4 @@
-package entities.instanceList;
+package entities.assessment.instanceList;
 
 import entities.assessmentInstance.AssessmentInstance;
 

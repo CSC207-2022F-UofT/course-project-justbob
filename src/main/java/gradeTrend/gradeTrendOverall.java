@@ -3,7 +3,7 @@ package gradeTrend;
 
 import entities.account.Account;
 import entities.course.Course;
-import entities.semester.Semester;
+import entities.account.semester.Semester;
 
 import java.util.ArrayList;
 import java.util.List;

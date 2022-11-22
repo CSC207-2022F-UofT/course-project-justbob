@@ -2,7 +2,7 @@ package gradeTrend;
 
 import entities.assessment.Assessment;
 import entities.course.Course;
-import entities.instanceList.InstanceList;
+import entities.assessment.instanceList.InstanceList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import weightScheme.SimpleWeight;

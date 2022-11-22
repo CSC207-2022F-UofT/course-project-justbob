@@ -1,8 +1,8 @@
 package entities.account;
 
-import entities.archive.Archive;
+import entities.account.archive.Archive;
 import entities.course.Course;
-import entities.semester.Semester;
+import entities.account.semester.Semester;
 
 public class Account {
     private final String username;

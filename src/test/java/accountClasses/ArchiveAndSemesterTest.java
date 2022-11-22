@@ -1,7 +1,7 @@
 package accountClasses;
 
-import entities.archive.Archive;
-import entities.semester.Semester;
+import entities.account.archive.Archive;
+import entities.account.semester.Semester;
 import entities.course.Course;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
