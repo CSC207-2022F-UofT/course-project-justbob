@@ -1,15 +1,22 @@
 package usecases.markOperations.addMark;
 
+import entities.course.CourseFactoryInterface;
+import entities.course.CourseInterface;
+import usecases.dataStorage.course.CourseDsGateway;
+import usecases.dataStorage.course.CourseDsModel;
 import usecases.dataStorage.instance.InstanceDsGateway;
 import usecases.dataStorage.instance.InstanceDsRequestModel;
 
 public class AddMarkInteractor implements AddMarkInputBoundary {
-    private InstanceDsGateway instanceDsGateway;
+    private AddMarkDsGateway gateway;
     private AddMarkPresenter presenter;
+    private CourseFactoryInterface courseFactory;
 
-    public AddMarkInteractor(InstanceDsGateway instanceDsGateway, AddMarkPresenter presenter) {
-        this.instanceDsGateway = instanceDsGateway;
+    public AddMarkInteractor(AddMarkDsGateway gateway, AddMarkPresenter presenter,
+                             CourseFactoryInterface courseFactory) {
+        this.gateway = gateway;
         this.presenter = presenter;
+        this.courseFactory = courseFactory;
     }
 
     @Override
@@ -21,11 +28,11 @@ public class AddMarkInteractor implements AddMarkInputBoundary {
                 requestModel.getInstanceIndex()
         );
 
-        if (!instanceDsGateway.existsInstance(dsRequestModel)) {
+        if (!gateway.existsInstance(dsRequestModel)) {
             return presenter.prepareFailureView("Could not find the desired instance");
         }
-
-        // factory a new instance
+        CourseDsModel courseModel = gateway.loadCourse(dsRequestModel);
+        //CourseInterface course = courseFactory.create();
 
         // somehow find the new hypothetical grade
 
