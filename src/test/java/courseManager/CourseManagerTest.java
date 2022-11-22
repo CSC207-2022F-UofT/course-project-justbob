@@ -1,11 +1,10 @@
 package courseManager;
 
 import entities.assessment.Assessment;
-import entities.assessmentInstance.AssessmentInstanceInterface;
+import entities.assessmentInstance.AssessmentInstance;
 import entities.course.Course;
 import entities.courseEvent.CourseEvent;
-import entities.instanceList.InstanceListInterface;
-import entities.outline.OutlineInterface;
+import entities.instanceList.InstanceList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import weightScheme.OrderedWeight;
@@ -57,7 +56,7 @@ public class CourseManagerTest {
     @Test
     public void SimpleWeightComputeRunningGrade() {
         csc207.getOutline().addAssessment(csc207Quizzes);
-        InstanceListInterface instanceList = csc207Quizzes.getInstanceList();
+        InstanceList instanceList = csc207Quizzes.getInstanceList();
 
         instanceList.editInstanceMark(0, 0.90);
         instanceList.getInstanceData(0).commit();
@@ -82,7 +81,7 @@ public class CourseManagerTest {
 
     @Test
     public void emptyAssessmentInstanceVariables(){
-        AssessmentInstanceInterface instance = csc207Quizzes.getInstanceList().getInstanceData(0);
+        AssessmentInstance instance = csc207Quizzes.getInstanceList().getInstanceData(0);
         Assertions.assertNull(instance.getMark());
         Assertions.assertNull(instance.getDueDate());
         Assertions.assertNull(instance.getDueTime());
@@ -134,7 +133,7 @@ public class CourseManagerTest {
     @Test
     public void orderedWeightComputeRunningGrade(){
         csc207.getOutline().addAssessment(csc207Homework);
-        InstanceListInterface instanceList = csc207Homework.getInstanceList();
+        InstanceList instanceList = csc207Homework.getInstanceList();
 
         instanceList.editInstanceMark(0, 0.70);
         instanceList.getInstanceData(0).commit();
@@ -218,7 +217,7 @@ public class CourseManagerTest {
     @Test
     public void getPercentageCompletedOrderedWeightOnly(){
         csc207.getOutline().addAssessment(csc207Homework);
-        InstanceListInterface instanceList = csc207Homework.getInstanceList();
+        InstanceList instanceList = csc207Homework.getInstanceList();
 
         instanceList.editInstanceMark(0, 0.70);
         instanceList.getInstanceData(0).commit();
