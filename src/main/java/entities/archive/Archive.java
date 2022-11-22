@@ -5,7 +5,7 @@ import entities.course.Course;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Archive implements ArchiveInterface {
+public class Archive {
     private List<Course> archived;  // List of archived courses, which were completed in the past
 
     /**
@@ -19,12 +19,10 @@ public class Archive implements ArchiveInterface {
         return this.archived;
     }
 
-    @Override
     public void addCourse(Course course) {
         this.archived.add(course);
         course.archiveCourse();
     }
-    @Override
     public void RemoveCourse(Course course) {
             course.unarchiveCourse();
             this.archived.remove(course);

@@ -5,7 +5,7 @@ import entities.course.Course;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Semester implements SemesterInterface {
+public class Semester{
     public List<Course> semester;
     //Calendar calendar;
     //Checklist checklist;
@@ -20,7 +20,6 @@ public class Semester implements SemesterInterface {
        // this.checklist = new Checklist();
     }
 
-    @Override
     public List<Course> getSemester() {
         return this.semester;
     }

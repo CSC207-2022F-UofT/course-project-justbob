@@ -3,9 +3,8 @@ package entities.assessmentInstance;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class AssessmentInstanceFactory implements AssessmentInstanceFactoryInterface{
+public class AssessmentInstanceFactory {
 
-    @Override
     public AssessmentInstance create(String assessmentInstanceName) {
         return new AssessmentInstance(assessmentInstanceName);
     }

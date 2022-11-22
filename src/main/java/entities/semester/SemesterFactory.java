@@ -1,8 +1,6 @@
 package entities.semester;
 
-public class SemesterFactory implements SemesterFactoryInterface{
-
-    @Override
+public class SemesterFactory {
     public Semester create() {
         return new Semester();
     }

@@ -3,7 +3,7 @@ package entities.assessment;
 import entities.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
-public class Assessment implements AssessmentInterface{
+public class Assessment {
     private String title;
     private final InstanceList instanceList;
     private WeightScheme weightScheme;
@@ -22,12 +22,10 @@ public class Assessment implements AssessmentInterface{
         this.instanceList = new InstanceList(this.title, weightScheme.getNumberOfInstances());
 
     }
-    @Override
     public double getTotalWeight() {
         return weightScheme.getTotalWeight();
     }
 
-    @Override
     public double getCommittedWeight() {
         double[] committedMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
         for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
@@ -41,7 +39,6 @@ public class Assessment implements AssessmentInterface{
         return weightScheme.computeWeighted(committedMarksForWeight) / 100;
     }
 
-    @Override
     public double getSubmittedWeight() {
         double[] submittedMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
         for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
@@ -55,7 +52,6 @@ public class Assessment implements AssessmentInterface{
         return weightScheme.computeWeighted(submittedMarksForWeight) / 100;
     }
 
-    @Override
     public double getHypotheticalWeight() {
         double[] hypotheticalMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
         for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
@@ -69,27 +65,22 @@ public class Assessment implements AssessmentInterface{
         return weightScheme.computeWeighted(hypotheticalMarksForWeight) / 100;
 
     }
-    @Override
     public InstanceList getInstanceList() {
 
         return instanceList;
     }
-    @Override
     public void setTitle(String title) {
         this.title = title;
     }
 
-    @Override
     public String getTitle() {
         return title;
     }
 
-    @Override
     public void setWeightScheme(WeightScheme weightScheme) {
         this.weightScheme = weightScheme;
     }
 
-    @Override
     public WeightScheme getWeightScheme() {
         return weightScheme;
     }

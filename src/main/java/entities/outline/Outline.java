@@ -4,7 +4,7 @@ import entities.assessment.Assessment;
 
 import java.util.ArrayList;
 
-public class Outline implements OutlineInterface{
+public class Outline {
 
     private ArrayList<Assessment> assessments;
 
@@ -12,19 +12,16 @@ public class Outline implements OutlineInterface{
         this.assessments = new ArrayList<>();
     }
 
-    @Override
     public void addAssessment(Assessment assessment) {
 
         assessments.add(assessment);
     }
 
-    @Override
     public void removeAssessment(Assessment assessment) {
 
         assessments.remove(assessment);
     }
 
-    @Override
     public Assessment getAssessment(int index) throws IndexOutOfBoundsException {
             try {
                 return assessments.get(index);
@@ -33,12 +30,10 @@ public class Outline implements OutlineInterface{
             }
     }
 
-    @Override
     public ArrayList<Assessment> getAssessments() {
         return assessments;
     }
 
-    @Override
     public double getPercentageCompleted() {
         double percentageCompleted = 0.0f;
         for (Assessment assessment : assessments) {
@@ -47,7 +42,6 @@ public class Outline implements OutlineInterface{
         return percentageCompleted;
     }
 
-    @Override
     public int getNumberOfAssessmentInstancesCompleted() {
         int numberOfAssessmentsCompleted = 0;
         for (Assessment assessment : assessments) {
@@ -56,7 +50,6 @@ public class Outline implements OutlineInterface{
         return numberOfAssessmentsCompleted;
     }
 
-    @Override
     public double getTotalCommmittedWeight() {
         double totalCompletedWeight = 0.0f;
         for (Assessment assessment : assessments) {
@@ -65,7 +58,6 @@ public class Outline implements OutlineInterface{
         return totalCompletedWeight;
     }
 
-    @Override
     public double getTotalHypotheticalWeight() {
         double totalHypotheticalWeight = 0.0f;
         for (Assessment assessment : assessments) {
@@ -74,7 +66,6 @@ public class Outline implements OutlineInterface{
         return totalHypotheticalWeight;
     }
 
-    @Override
     public double computeRunningGrade() {
         double rgrade = 0.0;
         for (Assessment assessment : assessments) {
@@ -83,7 +74,6 @@ public class Outline implements OutlineInterface{
         return rgrade/this.getTotalCommmittedWeight();
     }
 
-    @Override
     public double computeHypotheticalGrade() {
         double hgrade = 0.0;
         for (Assessment assessment : assessments) {
