@@ -2,24 +2,28 @@ package usecases.dataStorage.instance;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class InstanceDsModel implements Serializable {
     private String assessmentInstanceName;
-    private LocalDate date;
+    private LocalDate dueDate;
+    private LocalTime dueTime;
     private double mark;
     private boolean isCommitted;
     private boolean isSubmitted;
 
     public InstanceDsModel(String assessmentInstanceName,
-                           LocalDate date,
-                           double mark,
+                           LocalDate dueDate,
+                           LocalTime duetime,
                            boolean isCommitted,
-                           boolean isSubmitted) {
+                           boolean isSubmitted,
+                           double mark) {
         this.assessmentInstanceName = assessmentInstanceName;
-        this.date = date;
-        this.mark = mark;
+        this.dueDate = dueDate;
+        this.dueTime = duetime;
         this.isCommitted = isCommitted;
         this.isSubmitted = isSubmitted;
+        this.mark = mark;
     }
 
     public String getAssessmentInstanceName() {
@@ -30,12 +34,20 @@ public class InstanceDsModel implements Serializable {
         this.assessmentInstanceName = assessmentInstanceName;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public LocalTime getDueTime() {
+        return dueTime;
+    }
+
+    public void setDueTime(LocalTime dueTime) {
+        this.dueTime = dueTime;
     }
 
     public double getMark() {
