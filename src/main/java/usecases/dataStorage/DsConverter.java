@@ -34,8 +34,8 @@ public class DsConverter {
                 instanceDsModel.getDueDate(),
                 instanceDsModel.getDueTime(),
                 instanceDsModel.getMark(),
-                instanceDsModel.isSubmitted(),
-                instanceDsModel.isCommitted()
+                instanceDsModel.isCommitted(),
+                instanceDsModel.isSubmitted()
         );
     }
 

@@ -14,13 +14,13 @@ public class InstanceDsModel implements Serializable {
 
     public InstanceDsModel(String assessmentInstanceName,
                            LocalDate dueDate,
-                           LocalTime duetime,
+                           LocalTime dueTime,
+                           double mark,
                            boolean isCommitted,
-                           boolean isSubmitted,
-                           double mark) {
+                           boolean isSubmitted) {
         this.assessmentInstanceName = assessmentInstanceName;
         this.dueDate = dueDate;
-        this.dueTime = duetime;
+        this.dueTime = dueTime;
         this.isCommitted = isCommitted;
         this.isSubmitted = isSubmitted;
         this.mark = mark;
