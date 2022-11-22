@@ -11,19 +11,19 @@ public class Semester {
     private List<Course> runningCourses;
 
     /**
-     * Creates a new empty Semester object, where courses of the current semester can be added.
-     */
-    public Semester() {
-        this(DEFAULT_SEMESTER_TITLE);
-    }
-
-    /**
      * Create a new empty Semester.
      * @param title the title of the semester (e.g. Fall)
      */
     public Semester(String title) {
         this.title = title;
         this.runningCourses = new ArrayList<>();
+    }
+
+    /**
+     * Creates a new empty Semester object, where courses of the current semester can be added.
+     */
+    public Semester() {
+        this(DEFAULT_SEMESTER_TITLE);
     }
 
     public List<Course> getRunningCourses() {
