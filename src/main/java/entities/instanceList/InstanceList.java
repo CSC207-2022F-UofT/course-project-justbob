@@ -21,17 +21,27 @@ public class InstanceList implements InstanceListInterface{
     public InstanceList(String pluralTitle, int totalNumberOfInstances) {
         this.listOfAssessmentInstances = new ArrayList<>();
         this.totalNumberOfInstances = totalNumberOfInstances;
+        /*
         for (int i = 0, j = 1; i < totalNumberOfInstances; i++, j++){
             this.addInstance(toSingular(pluralTitle) + " #" + j);
-        }
+        } */
     }
     public void addInstance(String name) {
         if (getCurrentNumberOfInstances() < totalNumberOfInstances) {
             listOfAssessmentInstances.add(new AssessmentInstance(name));
         }
         else{
-            System.out.println("You have reached the maximum number of instances for this assessment");
+            throw new IllegalStateException("this assessment already has all instance defined");
+            //System.out.println("You have reached the maximum number of instances for this assessment");
             /*we could maybe define a new Exception class for this*/
+        }
+    }
+
+    public void addInstance(AssessmentInstance instance) {
+        if (getCurrentNumberOfInstances() < totalNumberOfInstances) {
+            listOfAssessmentInstances.add(instance);
+        } else {
+            throw new IllegalStateException("this assessment already has all instances defined");
         }
     }
 
