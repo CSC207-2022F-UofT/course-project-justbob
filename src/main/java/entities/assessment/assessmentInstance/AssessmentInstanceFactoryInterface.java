@@ -1,4 +1,4 @@
-package entities.assessmentInstance;
+package entities.assessment.assessmentInstance;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

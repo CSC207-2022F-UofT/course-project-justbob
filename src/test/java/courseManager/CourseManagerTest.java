@@ -1,7 +1,7 @@
 package courseManager;
 
 import entities.assessment.Assessment;
-import entities.assessmentInstance.AssessmentInstance;
+import entities.assessment.assessmentInstance.AssessmentInstance;
 import entities.course.Course;
 import entities.courseEvent.CourseEvent;
 import entities.assessment.instanceList.InstanceList;

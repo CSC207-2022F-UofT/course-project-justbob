@@ -1,6 +1,6 @@
 package entities.assessment.instanceList;
 
-import entities.assessmentInstance.AssessmentInstance;
+import entities.assessment.assessmentInstance.AssessmentInstance;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

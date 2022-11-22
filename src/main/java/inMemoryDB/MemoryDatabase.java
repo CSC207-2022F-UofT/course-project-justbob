@@ -1,4 +1,4 @@
-package database;
+package inMemoryDB;
 
 import usecases.dataStorage.account.AccountDsGateway;
 import usecases.dataStorage.account.AccountDsRequestModel;

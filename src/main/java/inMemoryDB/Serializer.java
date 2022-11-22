@@ -1,4 +1,4 @@
-package database;
+package inMemoryDB;
 
 import java.io.*;
 

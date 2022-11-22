@@ -1,31 +1,7 @@
 package usecases.dataStorage;
 
-import entities.account.AccountFactory;
-import entities.account.Account;
-import entities.account.archive.Archive;
-import entities.assessment.Assessment;
-import entities.assessment.AssessmentFactory;
-import entities.assessmentInstance.AssessmentInstance;
-import entities.assessmentInstance.AssessmentInstanceFactory;
-import entities.course.Course;
-import entities.course.CourseFactory;
-import entities.account.semester.Semester;
-import usecases.dataStorage.account.AccountDsModel;
-import usecases.dataStorage.assessment.AssessmentDsModel;
-import usecases.dataStorage.course.CourseDsModel;
-import usecases.dataStorage.instance.InstanceDsModel;
-import usecases.dataStorage.weightScheme.OrderedWeightDsModel;
-import usecases.dataStorage.weightScheme.SimpleWeightDsModel;
-import usecases.dataStorage.weightScheme.WeightDsModel;
-import usecases.dataStorage.weightScheme.WeightSchemeDsModel;
-import weightScheme.OrderedWeight;
-import weightScheme.SimpleWeight;
-import weightScheme.Weight;
-import weightScheme.WeightScheme;
-
-import java.util.Arrays;
-
-public class DsConverter {
+public class DsConverter {}
+    /*
     public static AssessmentInstance instanceModelToEntity(InstanceDsModel instanceDsModel) {
         return new AssessmentInstanceFactory().create(
                 instanceDsModel.getAssessmentInstanceName(),
@@ -77,8 +53,8 @@ public class DsConverter {
         // DOES NOT LOAD EVENTS (TEMPORARY)
         return course;
     }
-    public static Account accountModelToEntity(AccountDsModel accountDsModel) {
-        Account account = new AccountFactory().create(accountDsModel.getUsername(), accountDsModel.getPassword());
+    public static Account accountModelToEntity(AccountDsModel accountDsModel, EntityFactory entityFactory) {
+        Account account = entityFactory.createAccount(accountDsModel.getUsername(), accountDsModel.getPassword());
         Semester semester = new Semester();
         Archive archive = new Archive();
         for (CourseDsModel courseDsModel : accountDsModel.getCourseData()) {
@@ -90,4 +66,4 @@ public class DsConverter {
         }
         return account;
     }
-}
+} */

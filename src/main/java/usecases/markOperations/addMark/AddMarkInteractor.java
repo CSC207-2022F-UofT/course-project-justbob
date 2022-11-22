@@ -30,7 +30,7 @@ public class AddMarkInteractor implements AddMarkInputBoundary {
         if (!gateway.existsInstance(dsRequestModel)) {
             return presenter.prepareFailureView("Could not find the desired instance");
         }
-        Account account = DsConverter.accountModelToEntity(gateway.loadAccount(dsRequestModel));
+        //Account account = DsConverter.accountModelToEntity(gateway.loadAccount(dsRequestModel));
         //account.getSemester().
 
         //Account account = gateway.loadAccount(requestModel.getUsername());//DsConverter.accountModelToEntity()//DsConverter.courseModelToEntity(courseModel);

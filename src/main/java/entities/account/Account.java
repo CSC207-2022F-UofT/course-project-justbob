@@ -1,49 +1,30 @@
 package entities.account;
 
 import entities.account.archive.Archive;
-import entities.course.Course;
 import entities.account.semester.Semester;
+import entities.course.Course;
 
-public class Account {
-    private final String username;
-    private final String password;
-    private Semester semester;
-    private Archive archive;
+public abstract class Account {
+    public abstract String getUsername();
+    public abstract String getPassword();
+    public abstract Archive getArchive();
+    public abstract Semester getSemester();
 
-    /**
-     * Creates an account object
-     * @param id the username of the account
-     *           e.g. 'JimBob123'
-     * @param password the password of the account
-     *           e.g. 'JimmyJimmy321'
-     */
-    public Account(String id, String password) {
-        this.username = id;
-        this.password = password;
-        this.semester = new Semester();
-        this.archive = new Archive();
-    }
-    public String getUsername(){
-        return this.username;
-    }
+    public abstract void setUsername(String username);
+    public abstract void setPassword(String password);
+    public abstract void setArchive(Archive archive);
+    public abstract void setSemester(Semester semester);
 
-    public String getPassword() {
-        return this.password;
-    }
     public void ArchiveCourse(Course course) throws IllegalArgumentException {
-        if (!semester.getRunningCourses().contains(course)) {
+        if (!getSemester().getRunningCourses().contains(course)) {
             throw new IllegalArgumentException("course is not in this Account's semester");
         }
-        semester.removeCourse(course);
-        archive.addCourse(course, semester.getTitle());
+        getSemester().removeCourse(course);
+        getArchive().addCourse(course, getSemester().getTitle());
     }
 
-    public Archive getArchive() {
-        return this.archive;
-    }
-
-    public Semester getSemester() {
-        return this.semester;
+    public interface AccountFactory {
+        Account createAccount();
     }
 }
 

@@ -1,7 +1,6 @@
 package database;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import inMemoryDB.MemoryDatabase;
 
 public class databaseTests {
     MemoryDatabase database = new MemoryDatabase();
