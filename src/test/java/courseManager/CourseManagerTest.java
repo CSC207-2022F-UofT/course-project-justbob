@@ -5,6 +5,7 @@ import entities.assessment.assessmentInstance.AssessmentInstance;
 import entities.course.Course;
 import entities.course.courseEvent.CourseEvent;
 import entities.assessment.instanceList.InstanceList;
+import inMemoryDB.entities.CourseImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import weightScheme.OrderedWeight;
@@ -16,7 +17,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class CourseManagerTest {
-    private Course csc207 = new Course("CSC207", "Software Design", 1.0f);
+    private Course csc207 = new CourseImpl("CSC207", "Software Design", 1.0f);
 
     private CourseEvent csc207Lecture = new CourseEvent("Lecture", DayOfWeek.MONDAY, LocalTime.of(10, 0),
             LocalTime.of(11, 0), "BA1100");

@@ -1,12 +1,5 @@
 package usecases.markOperations.addMark;
 
-import entities.account.Account;
-import entities.course.CourseFactoryInterface;
-import entities.course.CourseInterface;
-import usecases.dataStorage.DsConverter;
-import usecases.dataStorage.course.CourseDsGateway;
-import usecases.dataStorage.course.CourseDsModel;
-import usecases.dataStorage.instance.InstanceDsGateway;
 import usecases.dataStorage.instance.InstanceDsRequestModel;
 
 public class AddMarkInteractor implements AddMarkInputBoundary {

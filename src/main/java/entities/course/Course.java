@@ -6,56 +6,27 @@ import entities.course.outline.Outline;
 import java.util.ArrayList;
 
 
-public class Course {
-    private String courseCode;
-    private String courseName;
-    private float credit;
-    private Outline outline;
-    private ArrayList<CourseEvent> courseEvents;
+public abstract class Course {
+    public abstract String getCourseCode();
+    public abstract String getCourseName();
+    public abstract float getCredit();
+    public abstract Outline getOutline();
+    public abstract ArrayList<CourseEvent> getCourseEvents();
 
-    /**
-     * Create a new Course object with the given parameters
-     * @param courseCode the code of the course
-     *                   e.g. 'CSC207'
-     * @param courseName the name of the course
-     *                   e.g. 'Software Design'
-     * @param credit the number of credits the course is worth; must be either 0.5 or 1.0
-     */
+    public abstract void setCourseCode(String courseCode);
+    public abstract void setCourseName(String courseName);
+    public abstract void setCredit(float credit);
+    public abstract void setOutline(Outline outline);
 
-    public Course(String courseCode, String courseName, float credit) {
-        this.courseCode = courseCode;
-        this.courseName = courseName;
-        this.credit = credit;
-        this.outline = new Outline();
-        this.courseEvents = new ArrayList<>();
-    }
-    public String getCourseCode() {
-        return courseCode;
-    }
+    public abstract void addCourseEvent(CourseEvent courseEvent);
+    public abstract void removeCourseEvent(CourseEvent courseEvent);
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public float getCredit() {
-        return credit;
-    }
-
-    public Outline getOutline() {
-        return outline;
-    }
-
-    public ArrayList<CourseEvent> getCourseEvents() {
-        return courseEvents;
-    }
-
-    public void addCourseEvent(CourseEvent courseEvent) {
-        if (!courseEvents.contains(courseEvent)) {
-            courseEvents.add(courseEvent);
-        }
-    }
-
+    @Override
     public String toString() {
-        return String.format("%s: %s - %f credits", courseCode, courseName, credit);
+        return String.format("%s: %s - %f credits", getCourseCode(), getCourseName(), getCredit());
+    }
+
+    public interface CourseFactory {
+        Course createCourse();
     }
 }
