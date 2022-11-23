@@ -13,23 +13,6 @@ public class CourseImpl extends Course {
     private Outline outline;
     private ArrayList<CourseEvent> courseEvents;
 
-    /**
-     * Create a new Course object with the given parameters
-     *
-     * @param courseCode the code of the course
-     *                   e.g. 'CSC207'
-     * @param courseName the name of the course
-     *                   e.g. 'Software Design'
-     * @param credit     the number of credits the course is worth; must be either 0.5 or 1.0
-     */
-    public CourseImpl(String courseCode, String courseName, float credit) {
-        this.courseCode = courseCode;
-        this.courseName = courseName;
-        this.credit = credit;
-        this.outline = new Outline();
-        this.courseEvents = new ArrayList<>();
-    }
-
     @Override
     public String getCourseCode() {
         return courseCode;

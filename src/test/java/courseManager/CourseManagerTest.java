@@ -17,6 +17,14 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class CourseManagerTest {
+    private class CourseFactoryImpl implements Course.CourseFactory {
+        @Override
+        public Course createCourse() {
+            return null;
+        }
+    }
+
+
     private Course csc207 = new CourseImpl("CSC207", "Software Design", 1.0f);
 
     private CourseEvent csc207Lecture = new CourseEvent("Lecture", DayOfWeek.MONDAY, LocalTime.of(10, 0),

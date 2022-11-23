@@ -4,39 +4,15 @@ import entities.assessment.Assessment;
 
 import java.util.ArrayList;
 
-public class Outline {
-
-    private ArrayList<Assessment> assessments;
-
-    public Outline() {
-        this.assessments = new ArrayList<>();
-    }
-
-    public void addAssessment(Assessment assessment) {
-        if (!assessments.contains(assessment)) {
-            assessments.add(assessment);
-        }
-    }
-
-    public void removeAssessment(Assessment assessment) {
-        assessments.remove(assessment);
-    }
-
-    public Assessment getAssessment(int index) throws IndexOutOfBoundsException {
-            try {
-                return assessments.get(index);
-            } catch (IndexOutOfBoundsException e) {
-                throw new IndexOutOfBoundsException("Index out of bounds");
-            }
-    }
-
-    public ArrayList<Assessment> getAssessments() {
-        return assessments;
-    }
+public abstract class Outline {
+    public abstract ArrayList<Assessment> getAssessments();
+    public abstract Assessment getAssessment(int index) throws IndexOutOfBoundsException;
+    public abstract void addAssessment(Assessment assessment);
+    public abstract void removeAssessment(Assessment assessment);
 
     public double getPercentageCompleted() {
         double percentageCompleted = 0.0f;
-        for (Assessment assessment : assessments) {
+        for (Assessment assessment : getAssessments()) {
             percentageCompleted += assessment.getSubmittedWeight();
         }
         return percentageCompleted;
@@ -44,7 +20,7 @@ public class Outline {
 
     public int getNumberOfAssessmentInstancesCompleted() {
         int numberOfAssessmentsCompleted = 0;
-        for (Assessment assessment : assessments) {
+        for (Assessment assessment : getAssessments()) {
             numberOfAssessmentsCompleted += assessment.getInstanceList().getNumberOfSubmittedInstances();
         }
         return numberOfAssessmentsCompleted;
@@ -52,7 +28,7 @@ public class Outline {
 
     public double getTotalCommmittedWeight() {
         double totalCompletedWeight = 0.0f;
-        for (Assessment assessment : assessments) {
+        for (Assessment assessment : getAssessments()) {
             totalCompletedWeight += assessment.getCommittedWeight();
         }
         return totalCompletedWeight;
@@ -60,7 +36,7 @@ public class Outline {
 
     public double getTotalHypotheticalWeight() {
         double totalHypotheticalWeight = 0.0f;
-        for (Assessment assessment : assessments) {
+        for (Assessment assessment : getAssessments()) {
             totalHypotheticalWeight += assessment.getHypotheticalWeight();
         }
         return totalHypotheticalWeight;
@@ -68,7 +44,7 @@ public class Outline {
 
     public double computeRunningGrade() {
         double runningGrade = 0.0;
-        for (Assessment assessment : assessments) {
+        for (Assessment assessment : getAssessments()) {
             runningGrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getCommittedMarks());
         }
         return runningGrade/this.getTotalCommmittedWeight();
@@ -76,7 +52,7 @@ public class Outline {
 
     public double computeHypotheticalGrade() {
         double hypotheticalGrade = 0.0;
-        for (Assessment assessment : assessments) {
+        for (Assessment assessment : getAssessments()) {
             hypotheticalGrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getAllMarks());
         }
         if (this.getTotalHypotheticalWeight() == 0) {
