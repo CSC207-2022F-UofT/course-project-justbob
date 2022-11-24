@@ -1,98 +1,49 @@
 package entities.assessment;
 
+import entities.assessment.assessmentInstance.AssessmentInstance;
 import entities.assessment.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
-public class Assessment {
-    private String title;
-    private final InstanceList instanceList;
-    private WeightScheme weightScheme;
+import java.util.Arrays;
 
-    /**
-     * Create a new Assessment object with a title and an associated WeightScheme
-     * @param title The title of the assessment
-     *              e.g. "Quizzes", "Midterm", "Homework Assignments"
-     * @param weightScheme The WeightScheme associated with the assessment
-     *              e.g. "Quizzes" might be associated with a SimpleWeight scheme with a weight of 10% for each quiz
-     */
+public abstract class Assessment {
+    public abstract String getTitle();
+    public abstract WeightScheme getWeightScheme();
+    public abstract InstanceList getInstanceList();
 
-    public Assessment(String title, WeightScheme weightScheme) {
-        this.title = title;
-        this.weightScheme = weightScheme;
-        this.instanceList = new InstanceList(this.title, weightScheme.getNumberOfInstances());
-    }
-
-    public Assessment(String title, WeightScheme weightScheme, boolean populate) {
-        this.title = title;
-        this.weightScheme = weightScheme;
-        if (populate) {
-            this.instanceList = new InstanceList(this.title, weightScheme.getNumberOfInstances());
-        } else {
-            this.instanceList = new InstanceList(weightScheme.getNumberOfInstances());
-        }
-
-    }
+    public abstract void setTitle(String title);
+    public abstract void setWeightScheme(WeightScheme weightScheme);
+    public abstract void setInstanceList(InstanceList instanceList);
 
     public double getTotalWeight() {
-        return weightScheme.getTotalWeight();
+        return getWeightScheme().getTotalWeight();
+    }
+
+    public int getTotalNumberOfInstances() {
+        return getWeightScheme().getNumberOfInstances();
+    }
+
+    // TODO: test that this works!
+    private double getMaxWeight(int numberOfInstances) {
+        double[] marksToWeigh = new double[getWeightScheme().getNumberOfInstances()];
+        Arrays.fill(marksToWeigh, 0, numberOfInstances, 100);
+        return getWeightScheme().computeWeighted(marksToWeigh) / 100;
     }
 
     public double getCommittedWeight() {
-        double[] committedMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
-        for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
-            if (this.instanceList.getInstanceData(i).isCommitted()) {
-                committedMarksForWeight[i] = 100;
-            }
-            else {
-                committedMarksForWeight[i] = 0;
-            }
-        }
-        return weightScheme.computeWeighted(committedMarksForWeight) / 100;
+        return getMaxWeight(getInstanceList().getNumberOfCommittedInstances());
     }
 
     public double getSubmittedWeight() {
-        double[] submittedMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
-        for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
-            if (this.instanceList.getInstanceData(i).isSubmitted()) {
-                submittedMarksForWeight[i] = 100;
-            }
-            else {
-                submittedMarksForWeight[i] = 0;
-            }
-        }
-        return weightScheme.computeWeighted(submittedMarksForWeight) / 100;
+        return getMaxWeight(getInstanceList().getNumberOfSubmittedInstances());
     }
 
+    // TODO: make this use number of marked instances instead.
     public double getHypotheticalWeight() {
-        double[] hypotheticalMarksForWeight = new double[this.instanceList.getTotalNumberOfInstances()];
-        for (int i = 0; i < this.instanceList.getTotalNumberOfInstances(); i++) {
-            if (this.instanceList.getInstanceData(i).getMark() != null) {
-                hypotheticalMarksForWeight[i] = 100;
-            }
-            else {
-                hypotheticalMarksForWeight[i] = 0;
-            }
-        }
-        return weightScheme.computeWeighted(hypotheticalMarksForWeight) / 100;
-
-    }
-    public InstanceList getInstanceList() {
-
-        return instanceList;
-    }
-    public void setTitle(String title) {
-        this.title = title;
+        return getMaxWeight(getInstanceList().getTotalNumberOfInstances());
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setWeightScheme(WeightScheme weightScheme) {
-        this.weightScheme = weightScheme;
-    }
-
-    public WeightScheme getWeightScheme() {
-        return weightScheme;
+    public interface AssessmentFactory {
+        public Assessment createAssessment();
     }
 }
