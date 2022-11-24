@@ -60,5 +60,9 @@ public abstract class Outline {
         }
         return hypotheticalGrade/this.getTotalHypotheticalWeight();
     }
+
+    public interface OutlineFactory {
+        public Outline createOutline();
+    }
 }
 
