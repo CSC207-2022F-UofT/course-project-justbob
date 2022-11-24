@@ -6,13 +6,9 @@ import java.time.LocalTime;
 
 public class CourseEvent {
     private String type;
-
     private DayOfWeek day;
     private LocalTime startTime;
     private LocalTime endTime;
-
-    private Duration duration;
-
     private String location;
 
     /**
@@ -40,7 +36,6 @@ public class CourseEvent {
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.duration = Duration.between(startTime, endTime);
         this.location = location;
     }
 
@@ -48,24 +43,49 @@ public class CourseEvent {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public DayOfWeek getDay() {
         return day;
+    }
+
+    public void setDay(DayOfWeek day) {
+        this.day = day;
     }
 
     public LocalTime getStartTime() {
         return startTime;
     }
 
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
+    }
+
     public LocalTime getEndTime() {
         return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
 
     public String getLocation() {
         return location;
     }
 
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Duration getDuration() {
+        return Duration.between(startTime, endTime);
+    }
+
+    // TODO: test that this is properly formatted.
     public String toString() {
-        return this.type + " on " + this.day + " from " + this.startTime + " to " + this.endTime + " at " + this.location;
+        return String.format("%s - %s from %s to %s - %s", type, day, startTime, endTime, location);
     }
 
 
