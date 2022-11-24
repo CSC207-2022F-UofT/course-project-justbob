@@ -4,16 +4,19 @@ import entities.assessment.assessmentInstance.AssessmentInstance;
 import entities.assessment.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public abstract class Assessment {
     public abstract String getTitle();
     public abstract WeightScheme getWeightScheme();
-    public abstract InstanceList getInstanceList();
+    public abstract ArrayList<AssessmentInstance> getInstances();
 
     public abstract void setTitle(String title);
     public abstract void setWeightScheme(WeightScheme weightScheme);
-    public abstract void setInstanceList(InstanceList instanceList);
+
+    public abstract void addInstance(AssessmentInstance instance);
+    public abstract void removeInstance(AssessmentInstance instance);
 
     public double getTotalWeight() {
         return getWeightScheme().getTotalWeight();
@@ -21,6 +24,22 @@ public abstract class Assessment {
 
     public int getTotalNumberOfInstances() {
         return getWeightScheme().getNumberOfInstances();
+    }
+
+    public int getCurrentNumberOfInstances() {
+        return getInstances().size();
+    }
+
+    public int getNumberOfCommittedInstances() {
+        return (int) getInstances().stream()
+                .filter(instance -> instance.isCommitted())
+                .count();
+    }
+
+    public int getNumberOfSubmittedInstances() {
+        return (int) getInstances().stream()
+                .filter(instance -> instance.isSubmitted())
+                .count();
     }
 
     // TODO: test that this works!
@@ -31,16 +50,16 @@ public abstract class Assessment {
     }
 
     public double getCommittedWeight() {
-        return getMaxWeight(getInstanceList().getNumberOfCommittedInstances());
+        return getMaxWeight(getNumberOfCommittedInstances());
     }
 
     public double getSubmittedWeight() {
-        return getMaxWeight(getInstanceList().getNumberOfSubmittedInstances());
+        return getMaxWeight(getNumberOfSubmittedInstances());
     }
 
     // TODO: make this use number of marked instances instead.
     public double getHypotheticalWeight() {
-        return getMaxWeight(getInstanceList().getTotalNumberOfInstances());
+        return getMaxWeight(getTotalNumberOfInstances());
     }
 
     public interface AssessmentFactory {

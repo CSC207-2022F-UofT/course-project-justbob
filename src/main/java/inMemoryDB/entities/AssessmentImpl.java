@@ -2,13 +2,15 @@ package inMemoryDB.entities;
 
 
 import entities.assessment.Assessment;
-import entities.assessment.instanceList.InstanceList;
+import entities.assessment.assessmentInstance.AssessmentInstance;
 import weightScheme.WeightScheme;
+
+import java.util.ArrayList;
 
 public class AssessmentImpl extends Assessment {
     private String title;
     private WeightScheme weightScheme;
-    private InstanceList instanceList;
+    private ArrayList<AssessmentInstance> instances;
 
     @Override
     public String getTitle() {
@@ -31,12 +33,19 @@ public class AssessmentImpl extends Assessment {
     }
 
     @Override
-    public InstanceList getInstanceList() {
-        return instanceList;
+    public ArrayList<AssessmentInstance> getInstances() {
+        return instances;
     }
 
     @Override
-    public void setInstanceList(InstanceList instanceList) {
-        this.instanceList = instanceList;
+    public void addInstance(AssessmentInstance instance) {
+        if (!instances.contains(instance)) {
+            instances.add(instance);
+        }
+    }
+
+    @Override
+    public void removeInstance(AssessmentInstance instance) {
+        instances.remove(instance);
     }
 }

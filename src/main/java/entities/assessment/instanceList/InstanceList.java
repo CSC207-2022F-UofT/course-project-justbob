@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 
-public class InstanceList implements InstanceListInterface{
+public abstract class InstanceList {
     private ArrayList<AssessmentInstance> listOfAssessmentInstances;
     private int totalNumberOfInstances;
 
