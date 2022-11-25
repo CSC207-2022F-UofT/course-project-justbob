@@ -41,8 +41,6 @@ public abstract class Assessment {
                 .count();
     }
 
-
-
     public double[] getCommittedMarks() {
         return getInstances().stream()
                 .filter(instance -> instance.isCommitted())
