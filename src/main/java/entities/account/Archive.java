@@ -38,12 +38,6 @@ public abstract class Archive {
     public abstract void addCourse(Course course, String semester);
 
     /**
-     * add a course to this archive. This operation will be recorded in terms of the date given by the system clock.
-     * @param course the course to archive
-     */
-    public abstract void addCourse(Course course);
-
-    /**
      * remove a course and its archive data from this archive.
      * @param course the course to remove
      */

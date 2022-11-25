@@ -83,10 +83,7 @@ public class CourseEvent {
         return Duration.between(startTime, endTime);
     }
 
-    // TODO: test that this is properly formatted.
     public String toString() {
         return String.format("%s - %s from %s to %s - %s", type, day, startTime, endTime, location);
     }
-
-
 }

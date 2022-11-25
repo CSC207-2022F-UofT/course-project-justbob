@@ -13,6 +13,7 @@ public abstract class Account {
     public abstract void setArchive(Archive archive);
     public abstract void setSemester(Semester semester);
 
+    /*
     public void ArchiveCourse(Course course) throws IllegalArgumentException {
         if (!getSemester().getRunningCourses().contains(course)) {
             throw new IllegalArgumentException("course is not in this Account's semester");
@@ -20,6 +21,7 @@ public abstract class Account {
         getSemester().removeCourse(course);
         getArchive().addCourse(course, getSemester().getTitle());
     }
+     */
 
     public interface AccountFactory {
         Account createAccount();

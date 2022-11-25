@@ -3,13 +3,12 @@ package inMemoryDB.entities;
 import entities.account.Semester;
 import entities.course.Course;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SemesterImpl extends Semester {
-    private static final String DEFAULT_SEMESTER_TITLE = "Semester";
-
     private String title;
-    private List<Course> runningCourses;
+    private ArrayList<Course> runningCourses = new ArrayList<>();
 
     @Override
     public String getTitle() {
@@ -22,12 +21,12 @@ public class SemesterImpl extends Semester {
     }
 
     @Override
-    public List<Course> getRunningCourses() {
+    public ArrayList<Course> getRunningCourses() {
         return runningCourses;
     }
 
     @Override
-    public void setRunningCourses(List<Course> runningCourses) {
+    public void setRunningCourses(ArrayList<Course> runningCourses) {
         this.runningCourses = runningCourses;
     }
 

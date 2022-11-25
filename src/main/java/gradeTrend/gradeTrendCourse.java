@@ -24,9 +24,9 @@ public class gradeTrendCourse implements gradeTrendInterface {
         for (Assessment assessment: assessments) {
             double[] part_marks;
             if(this.isHypothetical) {
-                part_marks = assessment.getInstanceList().getAllMarks();
+                part_marks = assessment.getAllMarks();
             } else {
-                part_marks = assessment.getInstanceList().getCommittedMarks();
+                part_marks = assessment.getCommittedMarks();
             }
             double grade = 0;
             for(double part_mark : part_marks) {

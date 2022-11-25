@@ -18,9 +18,10 @@ public abstract class Course {
     public abstract void addCourseEvent(CourseEvent courseEvent);
     public abstract void removeCourseEvent(CourseEvent courseEvent);
 
+    // TODO: expand to change when some values are empty
     @Override
     public String toString() {
-        return String.format("%s: %s - %f credits", getCourseCode(), getCourseName(), getCredit());
+        return String.format("%s: %s - %.1f credits", getCourseCode(), getCourseName(), getCredit());
     }
 
     public interface CourseFactory {

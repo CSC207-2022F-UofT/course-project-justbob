@@ -29,11 +29,6 @@ public class ArchiveImpl extends Archive {
     }
 
     @Override
-    public void addCourse(Course course) {
-        this.addCourse(course, "");
-    }
-
-    @Override
     public void RemoveCourse(Course course) {
         courseToData.remove(course);
     }
