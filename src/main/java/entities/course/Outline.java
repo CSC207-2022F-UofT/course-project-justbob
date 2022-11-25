@@ -10,6 +10,7 @@ public abstract class Outline {
     public abstract void addAssessment(Assessment assessment);
     public abstract void removeAssessment(Assessment assessment);
 
+    // TODO: rename to getNumberOfInstancesSubmitted (more descriptive)
     public int getNumberOfAssessmentInstancesCompleted() {
         return getAssessments().stream()
                 .mapToInt(assessment -> assessment.getNumberOfSubmittedInstances())
@@ -22,13 +23,13 @@ public abstract class Outline {
                 .sum();
     }
 
-    public double getTotalCommittedWeight() {
+    private double getTotalCommittedWeight() {
         return getAssessments().stream()
                 .mapToDouble(assessment -> assessment.getMaxPossibleCommittedWeight())
                 .sum();
     }
 
-    public double getTotalHypotheticalWeight() {
+    private double getTotalHypotheticalWeight() {
         return getAssessments().stream()
                 .mapToDouble(assessment -> assessment.getMaxPossibleHypotheticalWeight())
                 .sum();

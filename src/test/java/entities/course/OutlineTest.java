@@ -48,4 +48,6 @@ public class OutlineTest {
         Assertions.assertEquals(4, outlineMock.getNumberOfAssessmentInstancesCompleted());
     }
 
+    //TODO: implement testing for [getPercentageCompleted, computeRunningGrade, computeHypotheticalWeight]
+
 }
