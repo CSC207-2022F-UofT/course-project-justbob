@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class AssessmentImpl extends Assessment {
     private String title;
     private WeightScheme weightScheme;
-    private ArrayList<AssessmentInstance> instances;
+    private ArrayList<AssessmentInstance> instances = new ArrayList<>();
 
     public AssessmentImpl(String title, WeightScheme weightScheme) {
         this.title = title;

@@ -7,17 +7,14 @@ import java.util.ArrayList;
 
 public class OutlineImpl extends Outline {
 
-    private ArrayList<Assessment> assessments;
-
-    public OutlineImpl() {
-        this.assessments = new ArrayList<>();
-    }
+    private ArrayList<Assessment> assessments = new ArrayList<>();
 
     @Override
     public ArrayList<Assessment> getAssessments() {
         return assessments;
     }
 
+    // TODO: should assessments be added if their weight sums over 100%?
     @Override
     public void addAssessment(Assessment assessment) {
         if (!assessments.contains(assessment)) {
