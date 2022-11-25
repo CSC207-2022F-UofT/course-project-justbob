@@ -41,6 +41,22 @@ public abstract class Assessment {
                 .count();
     }
 
+
+
+    public double[] getCommittedMarks() {
+        return getInstances().stream()
+                .filter(instance -> instance.isCommitted())
+                .mapToDouble(instance -> instance.getMark())
+                .toArray();
+    }
+
+    public double[] getAllMarks() {
+        return getInstances().stream()
+                .filter(instance -> instance.getMark() != null)
+                .mapToDouble(instance -> instance.getMark())
+                .toArray();
+    }
+
     // TODO: test that this works!
     private double getMaxWeight(int numberOfInstances) {
         double[] marksToWeigh = new double[getWeightScheme().getNumberOfInstances()];

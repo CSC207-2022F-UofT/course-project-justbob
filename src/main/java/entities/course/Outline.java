@@ -21,7 +21,7 @@ public abstract class Outline {
     public int getNumberOfAssessmentInstancesCompleted() {
         int numberOfAssessmentsCompleted = 0;
         for (Assessment assessment : getAssessments()) {
-            numberOfAssessmentsCompleted += assessment.getInstanceList().getNumberOfSubmittedInstances();
+            numberOfAssessmentsCompleted += assessment.getNumberOfSubmittedInstances();
         }
         return numberOfAssessmentsCompleted;
     }
@@ -45,7 +45,7 @@ public abstract class Outline {
     public double computeRunningGrade() {
         double runningGrade = 0.0;
         for (Assessment assessment : getAssessments()) {
-            runningGrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getCommittedMarks());
+            runningGrade += assessment.getWeightScheme().computeWeighted(assessment.getCommittedMarks());
         }
         return runningGrade/this.getTotalCommmittedWeight();
     }
@@ -53,7 +53,7 @@ public abstract class Outline {
     public double computeHypotheticalGrade() {
         double hypotheticalGrade = 0.0;
         for (Assessment assessment : getAssessments()) {
-            hypotheticalGrade += assessment.getWeightScheme().computeWeighted(assessment.getInstanceList().getAllMarks());
+            hypotheticalGrade += assessment.getWeightScheme().computeWeighted(assessment.getAllMarks());
         }
         if (this.getTotalHypotheticalWeight() == 0) {
             return 0;
