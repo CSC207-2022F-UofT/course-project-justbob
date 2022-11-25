@@ -1,18 +1,5 @@
 package gradeTrend;
 
-import entities.assessment.Assessment;
-import entities.course.Course;
-import inMemoryDB.entities.CourseImpl;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import weightScheme.SimpleWeight;
-import weightScheme.Weight;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.List;
-
 /*
 public class GradeTrendOverallTest {
     Course csc207 = new CourseImpl("CSC207", "Software Design", 1.0f);

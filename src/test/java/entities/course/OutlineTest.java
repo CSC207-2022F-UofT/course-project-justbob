@@ -5,8 +5,8 @@ import entities.assessment.Assessment;
 import entities.assessment.AssessmentInstance;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import weightScheme.SimpleWeight;
-import weightScheme.Weight;
+import entities.weightScheme.SimpleWeight;
+import entities.weightScheme.Weight;
 
 import java.util.ArrayList;
 import java.util.List;

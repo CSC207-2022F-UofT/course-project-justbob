@@ -9,10 +9,9 @@ import entities.course.Course;
 import entities.course.Outline;
 import inMemoryDB.entities.*;
 import ports.database.EntityFactory;
-import weightScheme.WeightScheme;
+import entities.weightScheme.WeightScheme;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class inMemoryEntityFactory implements EntityFactory {

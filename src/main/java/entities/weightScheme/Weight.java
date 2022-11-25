@@ -1,4 +1,4 @@
-package weightScheme;
+package entities.weightScheme;
 
 public class Weight {
     private int numberOfInstances;

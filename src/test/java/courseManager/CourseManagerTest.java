@@ -1,20 +1,5 @@
 package courseManager;
 
-import entities.assessment.Assessment;
-import entities.assessment.AssessmentInstance;
-import entities.course.Course;
-import entities.course.CourseEvent;
-import inMemoryDB.entities.CourseImpl;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import weightScheme.OrderedWeight;
-import weightScheme.SimpleWeight;
-import weightScheme.Weight;
-
-
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-
 /*
 public class CourseManagerTest {
     private class CourseFactoryImpl implements Course.CourseFactory {

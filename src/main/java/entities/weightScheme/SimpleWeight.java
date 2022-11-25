@@ -1,4 +1,4 @@
-package weightScheme;
+package entities.weightScheme;
 
 import java.util.stream.DoubleStream;
 

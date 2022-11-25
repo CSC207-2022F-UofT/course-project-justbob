@@ -1,5 +1,9 @@
-package weightScheme;
+package entities.weightScheme;
 
+import entities.weightScheme.OrderedWeight;
+import entities.weightScheme.SimpleWeight;
+import entities.weightScheme.Weight;
+import entities.weightScheme.WeightScheme;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

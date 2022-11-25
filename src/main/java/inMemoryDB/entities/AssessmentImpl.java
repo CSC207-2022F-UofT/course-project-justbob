@@ -3,7 +3,7 @@ package inMemoryDB.entities;
 
 import entities.assessment.Assessment;
 import entities.assessment.AssessmentInstance;
-import weightScheme.WeightScheme;
+import entities.weightScheme.WeightScheme;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,6 @@
 package entities.assessment;
 
-import weightScheme.WeightScheme;
+import entities.weightScheme.WeightScheme;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,7 +55,6 @@ public abstract class Assessment {
                 .toArray();
     }
 
-    // TODO: test that this works!
     private double getMaxWeight(int numberOfInstances) {
         double[] marksToWeigh = new double[getWeightScheme().getNumberOfInstances()];
         Arrays.fill(marksToWeigh, 0, numberOfInstances, 100);
@@ -84,7 +83,7 @@ public abstract class Assessment {
         return getMaxWeight(getTotalNumberOfInstances());
     }
 
-    // TODO: reimplement toSinglar function
+    // TODO: reimplement toSinglar function (for naming)
 
     public interface AssessmentFactory {
         Assessment createAssessment(String title, WeightScheme weightScheme);

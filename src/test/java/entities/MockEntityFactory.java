@@ -10,7 +10,7 @@ import entities.course.CourseEvent;
 import entities.course.Outline;
 import entities.course.Outline.OutlineFactory;
 import inMemoryDB.entities.AssessmentInstanceImpl;
-import weightScheme.WeightScheme;
+import entities.weightScheme.WeightScheme;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
