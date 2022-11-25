@@ -1,11 +1,12 @@
 package ports.database;
 
 import entities.account.Account.AccountFactory;
-import entities.account.archive.Archive.ArchiveFactory;
-import entities.account.semester.Semester.SemesterFactory;
+import entities.account.Archive.ArchiveFactory;
+import entities.account.Semester.SemesterFactory;
 import entities.assessment.Assessment.AssessmentFactory;
+import entities.assessment.AssessmentInstance.AssessmentInstanceFactory;
 import entities.course.Course.CourseFactory;
-import entities.course.outline.Outline.OutlineFactory;
+import entities.course.Outline.OutlineFactory;
 
 
 public interface EntityFactory extends
@@ -14,5 +15,6 @@ public interface EntityFactory extends
         ArchiveFactory,
         CourseFactory,
         OutlineFactory,
-        AssessmentFactory
+        AssessmentFactory,
+        AssessmentInstanceFactory
 {}

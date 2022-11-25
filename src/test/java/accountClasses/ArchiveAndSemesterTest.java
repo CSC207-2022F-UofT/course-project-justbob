@@ -1,8 +1,8 @@
 package accountClasses;
 
 /*
-import entities.account.archive.Archive;
-import entities.account.semester.Semester;
+import entities.account.Archive;
+import entities.account.Semester;
 import entities.course.Course;
 import inMemoryDB.entities.ArchiveImpl;
 import org.junit.jupiter.api.Assertions;

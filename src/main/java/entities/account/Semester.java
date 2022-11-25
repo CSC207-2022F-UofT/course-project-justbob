@@ -1,4 +1,4 @@
-package entities.account.semester;
+package entities.account;
 
 import entities.course.Course;
 

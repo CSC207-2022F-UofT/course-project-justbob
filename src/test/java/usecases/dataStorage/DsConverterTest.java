@@ -1,7 +1,7 @@
 package usecases.dataStorage;
 
 import entities.assessment.Assessment;
-import entities.assessment.assessmentInstance.AssessmentInstance;
+import entities.assessment.AssessmentInstance;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import usecases.dataStorage.account.AccountDsModel;

@@ -1,6 +1,6 @@
 package inMemoryDB.entities;
 
-import entities.account.semester.Semester;
+import entities.account.Semester;
 import entities.course.Course;
 
 import java.util.List;

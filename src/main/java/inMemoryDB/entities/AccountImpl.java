@@ -1,8 +1,8 @@
 package inMemoryDB.entities;
 
 import entities.account.Account;
-import entities.account.archive.Archive;
-import entities.account.semester.Semester;
+import entities.account.Archive;
+import entities.account.Semester;
 
 public class AccountImpl extends Account {
     private String username;

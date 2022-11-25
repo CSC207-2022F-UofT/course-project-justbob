@@ -1,7 +1,5 @@
 package entities.account;
 
-import entities.account.archive.Archive;
-import entities.account.semester.Semester;
 import entities.course.Course;
 
 public abstract class Account {

@@ -1,6 +1,6 @@
 package inMemoryDB.entities;
 
-import entities.account.archive.Archive;
+import entities.account.Archive;
 import entities.course.Course;
 
 import java.time.LocalDate;

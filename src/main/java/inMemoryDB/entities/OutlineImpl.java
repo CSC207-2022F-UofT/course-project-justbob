@@ -1,7 +1,7 @@
 package inMemoryDB.entities;
 
 import entities.assessment.Assessment;
-import entities.course.outline.Outline;
+import entities.course.Outline;
 
 import java.util.ArrayList;
 

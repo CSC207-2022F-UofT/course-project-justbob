@@ -1,8 +1,5 @@
 package entities.course;
 
-import entities.course.courseEvent.CourseEvent;
-import entities.course.outline.Outline;
-
 import java.util.ArrayList;
 
 

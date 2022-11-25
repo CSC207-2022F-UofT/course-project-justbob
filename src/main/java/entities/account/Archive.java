@@ -1,4 +1,4 @@
-package entities.account.archive;
+package entities.account;
 
 import entities.course.Course;
 

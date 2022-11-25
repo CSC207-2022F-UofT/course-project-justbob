@@ -1,11 +1,10 @@
 package entities.assessment;
 
-import entities.assessment.assessmentInstance.AssessmentInstance;
-import entities.assessment.instanceList.InstanceList;
 import weightScheme.WeightScheme;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class Assessment {
     public abstract String getTitle();
@@ -62,7 +61,10 @@ public abstract class Assessment {
         return getMaxWeight(getTotalNumberOfInstances());
     }
 
+    // TODO: reimplement toSinglar function
+
     public interface AssessmentFactory {
-        public Assessment createAssessment();
+        Assessment createAssessment(String title, WeightScheme weightScheme);
+        Assessment createAssessment(String title, WeightScheme weightScheme, List<AssessmentInstance> instances);
     }
 }

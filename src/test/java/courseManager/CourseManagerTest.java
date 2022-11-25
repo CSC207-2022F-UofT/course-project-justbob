@@ -1,9 +1,9 @@
 package courseManager;
 
 import entities.assessment.Assessment;
-import entities.assessment.assessmentInstance.AssessmentInstance;
+import entities.assessment.AssessmentInstance;
 import entities.course.Course;
-import entities.course.courseEvent.CourseEvent;
+import entities.course.CourseEvent;
 import entities.assessment.instanceList.InstanceList;
 import inMemoryDB.entities.CourseImpl;
 import org.junit.jupiter.api.Assertions;

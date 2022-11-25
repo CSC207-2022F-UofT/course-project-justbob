@@ -1,8 +1,8 @@
 package inMemoryDB.entities;
 
 import entities.course.Course;
-import entities.course.courseEvent.CourseEvent;
-import entities.course.outline.Outline;
+import entities.course.CourseEvent;
+import entities.course.Outline;
 
 import java.util.ArrayList;
 
