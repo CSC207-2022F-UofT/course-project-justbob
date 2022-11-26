@@ -1,10 +1,11 @@
-package usecases.accountOperations;
+package usecases.account;
 
 import entities.account.Account;
 import ports.database.EntityGateway;
 import ports.usecases.account.loginAccount.LoginAccountInputBoundary;
 import ports.usecases.account.loginAccount.LoginAccountRequest;
 import ports.usecases.account.loginAccount.LoginAccountResponse;
+import usecases.gpaTrend.GetAccountTrendUseCase;
 
 // TODO: implement testing
 public class LoginAccountUseCase implements LoginAccountInputBoundary {
@@ -33,6 +34,7 @@ public class LoginAccountUseCase implements LoginAccountInputBoundary {
         response.courseCodes = (String[]) account.getSemester().getRunningCourses().stream()
                 .map(course -> course.getCourseCode())
                 .toArray();
+        response.trendModel = new GetAccountTrendUseCase(entityGateway).execute(account.getUsername());
         return response;
     }
 }
