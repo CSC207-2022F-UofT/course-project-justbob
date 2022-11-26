@@ -15,16 +15,6 @@ public abstract class Account {
 
     //TODO: implement a static method to check if password is valid (more than 8 characters, etc.)
 
-    /*
-    public void ArchiveCourse(Course course) throws IllegalArgumentException {
-        if (!getSemester().getRunningCourses().contains(course)) {
-            throw new IllegalArgumentException("course is not in this Account's semester");
-        }
-        getSemester().removeCourse(course);
-        getArchive().addCourse(course, getSemester().getTitle());
-    }
-     */
-
     public interface AccountFactory {
         Account createAccount();
     }

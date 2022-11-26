@@ -15,6 +15,8 @@ public abstract class Semester {
     public abstract void addCourse(Course course);
     public abstract void removeCourse(Course course);
 
+    public abstract Course getCourseByCode(String courseCode);
+
     public interface SemesterFactory {
         Semester createSemester();
     }
