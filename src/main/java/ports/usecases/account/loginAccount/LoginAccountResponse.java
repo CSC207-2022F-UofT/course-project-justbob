@@ -1,4 +1,4 @@
-package ports.usecases.loginAccount;
+package ports.usecases.account.loginAccount;
 
 public class LoginAccountResponse {
     public String semesterTitle;

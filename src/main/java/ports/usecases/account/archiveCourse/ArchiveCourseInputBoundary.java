@@ -1,4 +1,4 @@
-package ports.usecases.archiveCourse;
+package ports.usecases.account.archiveCourse;
 
 import ports.usecases.PathNotFoundError;
 

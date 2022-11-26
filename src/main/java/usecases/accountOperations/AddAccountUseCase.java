@@ -4,8 +4,8 @@ import entities.account.Account;
 import entities.account.Archive;
 import entities.account.Semester;
 import ports.database.EntityGateway;
-import ports.usecases.addAccount.AddAccountInputBoundary;
-import ports.usecases.addAccount.AddAccountRequest;
+import ports.usecases.account.addAccount.AddAccountInputBoundary;
+import ports.usecases.account.addAccount.AddAccountRequest;
 
 public class AddAccountUseCase implements AddAccountInputBoundary {
     private Account.AccountFactory accountFactory;

@@ -1,4 +1,4 @@
-package ports.usecases.addAccount;
+package ports.usecases.account.addAccount;
 
 public interface AddAccountInputBoundary {
     void execute(AddAccountRequest request) throws UsernameAlreadyInUseError;

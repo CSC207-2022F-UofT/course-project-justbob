@@ -2,9 +2,9 @@ package usecases.accountOperations;
 
 import entities.account.Account;
 import ports.database.EntityGateway;
-import ports.usecases.loginAccount.LoginAccountInputBoundary;
-import ports.usecases.loginAccount.LoginAccountRequest;
-import ports.usecases.loginAccount.LoginAccountResponse;
+import ports.usecases.account.loginAccount.LoginAccountInputBoundary;
+import ports.usecases.account.loginAccount.LoginAccountRequest;
+import ports.usecases.account.loginAccount.LoginAccountResponse;
 
 public class LoginAccountUseCase implements LoginAccountInputBoundary {
     private EntityGateway entityGateway;

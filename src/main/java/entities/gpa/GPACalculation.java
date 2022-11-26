@@ -1,4 +1,4 @@
-package entities.calculation;
+package entities.gpa;
 
 import java.util.ArrayList;
 import java.util.List;
