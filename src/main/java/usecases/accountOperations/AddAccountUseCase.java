@@ -6,7 +6,6 @@ import entities.account.Semester;
 import ports.database.EntityGateway;
 import ports.usecases.addAccount.AddAccountInputBoundary;
 import ports.usecases.addAccount.AddAccountRequest;
-import ports.usecases.addAccount.UsernameAlreadyInUseError;
 
 public class AddAccountUseCase implements AddAccountInputBoundary {
     private Account.AccountFactory accountFactory;

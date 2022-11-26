@@ -5,7 +5,6 @@ import ports.database.EntityGateway;
 import ports.usecases.loginAccount.LoginAccountInputBoundary;
 import ports.usecases.loginAccount.LoginAccountRequest;
 import ports.usecases.loginAccount.LoginAccountResponse;
-import ports.usecases.loginAccount.LoginError;
 
 public class LoginAccountUseCase implements LoginAccountInputBoundary {
     private EntityGateway entityGateway;
