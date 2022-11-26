@@ -20,16 +20,17 @@ public interface EntityGateway {
 
     /**
      * Save an account to the database. If a user with the same username already exists, overwrite it.
+     * Precondition: account.getUsername() is not null.
      * @param account the account to save.
      */
     void saveAccount(Account account);
 
     /**
-     * Remove an account and all of its data from the database
+     * Remove an account and all of its data from the database. Does nothing if the account does not exist in the
+     * database.
      * @param username the username of the account.
-     * @throws AccountNotFoundException if the account does not exist in the database.
      */
-    void deleteAccount(String username) throws AccountNotFoundException;
+    void deleteAccount(String username);
 
     class AccountNotFoundException extends RuntimeException {}
 }

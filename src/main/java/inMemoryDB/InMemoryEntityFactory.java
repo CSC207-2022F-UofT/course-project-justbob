@@ -14,7 +14,7 @@ import entities.weightScheme.WeightScheme;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class inMemoryEntityFactory implements EntityFactory {
+public class InMemoryEntityFactory implements EntityFactory {
     @Override
     public Account createAccount() {
         return new AccountImpl();
