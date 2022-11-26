@@ -1,6 +1,5 @@
-package entities.calculations;
+package entities.gpa;
 
-import entities.gpa.GPACalculation;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

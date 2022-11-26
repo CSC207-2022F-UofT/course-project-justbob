@@ -2,6 +2,8 @@ package inMemoryDB;
 
 import java.io.*;
 
+// TODO: Make required implementations serializable in order to save them to a file.
+
 public class Serializer {
     /**
      * Serialize an object to a file.

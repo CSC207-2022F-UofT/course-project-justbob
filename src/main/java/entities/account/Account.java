@@ -1,6 +1,6 @@
 package entities.account;
 
-import entities.course.Course;
+// TODO: create an abstract class to represent course collections that Archive and Semester can inherit from.
 
 public abstract class Account {
     public abstract String getUsername();
