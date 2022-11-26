@@ -7,6 +7,7 @@ import ports.database.EntityGateway;
 import ports.usecases.account.addAccount.AddAccountInputBoundary;
 import ports.usecases.account.addAccount.AddAccountRequest;
 
+// TODO: implement testing
 public class AddAccountUseCase implements AddAccountInputBoundary {
     private Account.AccountFactory accountFactory;
     private Semester.SemesterFactory semesterFactory;

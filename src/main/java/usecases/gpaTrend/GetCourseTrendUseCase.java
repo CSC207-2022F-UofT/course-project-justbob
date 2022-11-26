@@ -11,6 +11,7 @@ import ports.usecases.gpaTrend.getCourseTrend.GetCourseTrendInputBoundary;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO: implement testing
 public class GetCourseTrendUseCase implements GetCourseTrendInputBoundary {
     private EntityGateway entityGateway;
 

@@ -6,6 +6,7 @@ import ports.usecases.account.loginAccount.LoginAccountInputBoundary;
 import ports.usecases.account.loginAccount.LoginAccountRequest;
 import ports.usecases.account.loginAccount.LoginAccountResponse;
 
+// TODO: implement testing
 public class LoginAccountUseCase implements LoginAccountInputBoundary {
     private EntityGateway entityGateway;
 

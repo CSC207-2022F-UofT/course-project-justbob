@@ -6,6 +6,7 @@ import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
 
+//TODO: implement testing
 public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
     private EntityGateway entityGateway;
 

@@ -10,6 +10,7 @@ import ports.usecases.gpaTrend.getAccountTrend.GetAccountTrendInputBoundary;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: implement testing
 public class GetAccountTrendUseCase implements GetAccountTrendInputBoundary {
     private EntityGateway entityGateway;
 
