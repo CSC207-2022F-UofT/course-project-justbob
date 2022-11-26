@@ -29,11 +29,6 @@ public class SemesterImpl extends Semester {
     }
 
     @Override
-    public void setRunningCourses(ArrayList<Course> runningCourses) {
-        this.runningCourses = runningCourses;
-    }
-
-    @Override
     public void addCourse(Course course) {
         if (!getRunningCourses().contains(course)) {
             getRunningCourses().add(course);
