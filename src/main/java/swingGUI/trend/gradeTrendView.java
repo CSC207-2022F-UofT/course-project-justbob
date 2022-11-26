@@ -1,5 +1,9 @@
-package gradeTrend;
+// TODO: implement this code with the new use cases once the VIEW is in development
 
+/*
+package graphicalUI.trend;
+
+import gradeTrend.gradeTrendInterface;
 import org.knowm.xchart.CategoryChart;
 import org.knowm.xchart.SwingWrapper;
 import org.knowm.xchart.XChartPanel;
@@ -44,3 +48,4 @@ public class gradeTrendView {
         sw.displayChart();
     }
 }
+ */

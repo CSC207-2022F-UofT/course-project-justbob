@@ -1,6 +1,6 @@
-package courseManager;
-
+// TODO: Use this code to implement new test/java/entities test cases
 /*
+package courseManager;
 public class CourseManagerTest {
     private class CourseFactoryImpl implements Course.CourseFactory {
         @Override

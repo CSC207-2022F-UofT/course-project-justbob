@@ -1,6 +1,6 @@
-package gradeTrend;
-
+// TODO: Modify to test new use cases
 /*
+package gradeTrend;
 public class GradeTrendCourseTest {
     Course csc207 = new CourseImpl("CSC207", "Software Design", 1.0f);
 

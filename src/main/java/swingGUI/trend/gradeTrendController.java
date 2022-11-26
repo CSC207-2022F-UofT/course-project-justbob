@@ -1,4 +1,8 @@
-package gradeTrend;
+// TODO: implement this code with the new use cases once the VIEW is in development
+/*
+package graphicalUI.trend;
+
+import gradeTrend.gradeTrendInterface;
 
 public class gradeTrendController {
     final private gradeTrendInterface model;
@@ -18,3 +22,4 @@ public class gradeTrendController {
         this.view.updateFrame(this.model);
     }
 }
+ */

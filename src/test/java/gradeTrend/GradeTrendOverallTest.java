@@ -1,6 +1,6 @@
-package gradeTrend;
-
+// TODO: modify to fit new use cases
 /*
+package gradeTrend;
 public class GradeTrendOverallTest {
     Course csc207 = new CourseImpl("CSC207", "Software Design", 1.0f);
     Assessment csc207Quizzes = new Assessment("Quizzes", new SimpleWeight(new Weight(3, 0.1)));
