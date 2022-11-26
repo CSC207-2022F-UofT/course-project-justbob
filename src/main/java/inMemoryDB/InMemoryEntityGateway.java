@@ -5,6 +5,9 @@ import ports.database.EntityGateway;
 
 import java.util.HashMap;
 
+//TODO: Implement querying for paths of the form (username, courseCode, assessmentTitle, instanceTitle) and sub-paths
+// of the same form.
+
 public class InMemoryEntityGateway implements EntityGateway {
     private HashMap<String, Account> accountsByUsername = new HashMap<>();
 
