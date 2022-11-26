@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SemesterImpl extends Semester {
-    private String title;
+    private static final String DEFAULT_SEMESTER_TITLE = "Semester";
+    private String title = DEFAULT_SEMESTER_TITLE;
     private ArrayList<Course> runningCourses = new ArrayList<>();
 
     @Override
