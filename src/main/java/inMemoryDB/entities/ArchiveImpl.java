@@ -9,6 +9,27 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ArchiveImpl extends Archive implements Serializable {
+    public class ArchivedCourseDataImpl extends ArchivedCourseData {
+        private String semester;
+        private LocalDate dateArchived;
+
+        public String getSemester() {
+            return semester;
+        }
+
+        public void setSemester(String semester) {
+            this.semester = semester;
+        }
+
+        public LocalDate getDateArchived() {
+            return dateArchived;
+        }
+
+        public void setDateArchived(LocalDate dateArchived) {
+            this.dateArchived = dateArchived;
+        }
+    }
+
     private HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
 
     @Override
@@ -23,7 +44,7 @@ public class ArchiveImpl extends Archive implements Serializable {
 
     @Override
     public void addCourse(Course course, String semester) {
-        Archive.ArchivedCourseData data = new Archive.ArchivedCourseData();
+        Archive.ArchivedCourseData data = new ArchivedCourseDataImpl();
         data.setSemester(semester);
         data.setDateArchived(LocalDate.now());
         courseToData.put(course, data);

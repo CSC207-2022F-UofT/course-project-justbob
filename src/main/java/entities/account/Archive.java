@@ -6,25 +6,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public abstract class Archive {
-    public class ArchivedCourseData {
-        private String semester;
-        private LocalDate dateArchived;
-
-        public String getSemester() {
-            return semester;
-        }
-
-        public void setSemester(String semester) {
-            this.semester = semester;
-        }
-
-        public LocalDate getDateArchived() {
-            return dateArchived;
-        }
-
-        public void setDateArchived(LocalDate dateArchived) {
-            this.dateArchived = dateArchived;
-        }
+    public abstract class ArchivedCourseData {
+        public abstract String getSemester();
+        public abstract LocalDate getDateArchived();
+        public abstract void setSemester(String semester);
+        public abstract void setDateArchived(LocalDate dateArchived);
     }
 
     public abstract List<Course> getCourses();
