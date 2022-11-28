@@ -3,11 +3,12 @@ package inMemoryDB.entities;
 import entities.account.Archive;
 import entities.course.Course;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 
-public class ArchiveImpl extends Archive {
+public class ArchiveImpl extends Archive implements Serializable {
     private HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
 
     @Override

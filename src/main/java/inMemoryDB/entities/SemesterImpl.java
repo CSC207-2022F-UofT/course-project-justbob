@@ -3,10 +3,11 @@ package inMemoryDB.entities;
 import entities.account.Semester;
 import entities.course.Course;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SemesterImpl extends Semester {
+public class SemesterImpl extends Semester implements Serializable {
     // TODO: update the implementation so that it uses a hashmap from courseCodes to Course objects.
 
     private static final String DEFAULT_SEMESTER_TITLE = "Semester";

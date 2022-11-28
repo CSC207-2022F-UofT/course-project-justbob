@@ -3,9 +3,10 @@ package inMemoryDB.entities;
 import entities.assessment.Assessment;
 import entities.course.Outline;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class OutlineImpl extends Outline {
+public class OutlineImpl extends Outline implements Serializable {
 
     private ArrayList<Assessment> assessments = new ArrayList<>();
 

@@ -2,9 +2,10 @@ package inMemoryDB.entities;
 
 import entities.assessment.AssessmentInstance;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class AssessmentInstanceImpl extends AssessmentInstance {
+public class AssessmentInstanceImpl extends AssessmentInstance implements Serializable {
     private String title;
     private LocalDateTime deadline;
     private boolean isCommitted;
