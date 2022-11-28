@@ -1,44 +1,22 @@
 package entities.account;
 
-import entities.archive.Archive;
-import entities.semester.Semester;
+// TODO: create an abstract class to represent course collections that Archive and Semester can inherit from.
 
-public class Account implements AccountInterface {
-    private final String username;
-    private final String password;
-    private Semester semester;
-    private Archive archive;
+public abstract class Account {
+    public abstract String getUsername();
+    public abstract String getPassword();
+    public abstract Archive getArchive();
+    public abstract Semester getSemester();
 
-    /**
-     * Creates an account object
-     * @param id the username of the account
-     *           e.g. 'JimBob123'
-     * @param password the password of the account
-     *           e.g. 'JimmyJimmy321'
-     */
-    public Account(String id, String password) {
-        this.username = id;
-        this.password = password;
-        this.semester = new Semester();
-        this.archive = new Archive();
-    }
-    @Override
-    public String getUsername(){
-        return this.username;
-    }
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
+    public abstract void setUsername(String username);
+    public abstract void setPassword(String password);
+    public abstract void setArchive(Archive archive);
+    public abstract void setSemester(Semester semester);
 
-    @Override
-    public Archive getArchive() {
-        return this.archive;
-    }
+    //TODO: implement a static method to check if password is valid (more than 8 characters, etc.)
 
-    @Override
-    public Semester getSemester() {
-        return this.semester;
+    public interface AccountFactory {
+        Account createAccount();
     }
 }
 
