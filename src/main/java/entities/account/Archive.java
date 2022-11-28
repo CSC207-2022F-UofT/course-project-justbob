@@ -6,13 +6,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public abstract class Archive {
-    public abstract class ArchivedCourseData {
-        public abstract String getSemester();
-        public abstract LocalDate getDateArchived();
-        public abstract void setSemester(String semester);
-        public abstract void setDateArchived(LocalDate dateArchived);
-    }
-
     public abstract List<Course> getCourses();
     public abstract ArchivedCourseData getArchivedCourseData(Course course);
 
@@ -28,6 +21,13 @@ public abstract class Archive {
      * @param course the course to remove
      */
     public abstract void RemoveCourse(Course course);
+
+    public abstract class ArchivedCourseData {
+        public abstract String getSemester();
+        public abstract LocalDate getDateArchived();
+        public abstract void setSemester(String semester);
+        public abstract void setDateArchived(LocalDate dateArchived);
+    }
 
     public interface ArchiveFactory {
         Archive createArchive();
