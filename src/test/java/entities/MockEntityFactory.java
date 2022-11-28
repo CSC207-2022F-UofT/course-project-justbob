@@ -12,11 +12,13 @@ import entities.course.Outline.OutlineFactory;
 import inMemoryDB.entities.AssessmentInstanceImpl;
 import entities.weightScheme.WeightScheme;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockEntityFactory implements CourseFactory, OutlineFactory, AssessmentFactory, AssessmentInstanceFactory {
+public class MockEntityFactory implements CourseFactory, CourseEvent.CourseEventFactory, OutlineFactory, AssessmentFactory, AssessmentInstanceFactory {
     private class CourseMock extends Course {
         private String courseCode;
         private String courseName;
@@ -77,6 +79,61 @@ public class MockEntityFactory implements CourseFactory, OutlineFactory, Assessm
         @Override
         public void removeCourseEvent(CourseEvent courseEvent) {
             courseEvents.remove(courseEvent);
+        }
+    }
+
+    private class CourseEventMock extends CourseEvent {
+        private String type;
+        private DayOfWeek day;
+        private LocalTime startTime;
+        private LocalTime endTime;
+        private String location;
+        public CourseEventMock(String type, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
+            this.type = type;
+            this.day = day;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.location = location;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public DayOfWeek getDay() {
+            return day;
+        }
+
+        public void setDay(DayOfWeek day) {
+            this.day = day;
+        }
+
+        public LocalTime getStartTime() {
+            return startTime;
+        }
+
+        public void setStartTime(LocalTime startTime) {
+            this.startTime = startTime;
+        }
+
+        public LocalTime getEndTime() {
+            return endTime;
+        }
+
+        public void setEndTime(LocalTime endTime) {
+            this.endTime = endTime;
+        }
+
+        public String getLocation() {
+            return location;
+        }
+
+        public void setLocation(String location) {
+            this.location = location;
         }
     }
 
@@ -167,6 +224,12 @@ public class MockEntityFactory implements CourseFactory, OutlineFactory, Assessm
     @Override
     public Course createCourse() {
         return new CourseMock();
+    }
+
+    @Override
+    public CourseEvent createCourseEvent(String type, DayOfWeek day, LocalTime startTime, LocalTime endTime,
+                                         String location) {
+        return new CourseEventMock(type, day, startTime, endTime, location);
     }
 
     @Override

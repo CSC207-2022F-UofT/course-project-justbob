@@ -6,6 +6,7 @@ import entities.account.Semester.SemesterFactory;
 import entities.assessment.Assessment.AssessmentFactory;
 import entities.assessment.AssessmentInstance.AssessmentInstanceFactory;
 import entities.course.Course.CourseFactory;
+import entities.course.CourseEvent.CourseEventFactory;
 import entities.course.Outline.OutlineFactory;
 
 
@@ -14,6 +15,7 @@ public interface EntityFactory extends
         SemesterFactory,
         ArchiveFactory,
         CourseFactory,
+        CourseEventFactory,
         OutlineFactory,
         AssessmentFactory,
         AssessmentInstanceFactory

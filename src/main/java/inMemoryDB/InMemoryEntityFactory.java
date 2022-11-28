@@ -6,12 +6,15 @@ import entities.account.Semester;
 import entities.assessment.Assessment;
 import entities.assessment.AssessmentInstance;
 import entities.course.Course;
+import entities.course.CourseEvent;
 import entities.course.Outline;
 import inMemoryDB.entities.*;
 import ports.database.EntityFactory;
 import entities.weightScheme.WeightScheme;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public class InMemoryEntityFactory implements EntityFactory {
@@ -33,6 +36,11 @@ public class InMemoryEntityFactory implements EntityFactory {
     @Override
     public Course createCourse() {
         return new CourseImpl();
+    }
+
+    @Override
+    public CourseEvent createCourseEvent(String type, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
+        return new CourseEventImpl(type, day, startTime, endTime, location);
     }
 
     @Override
