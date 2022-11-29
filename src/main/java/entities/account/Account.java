@@ -14,11 +14,11 @@ public abstract class Account {
     public abstract void setSemester(Semester semester);
 
     /**
-     * Takes string and converts to boolean
+     * Check whether password is valid
      * @param password Takes string representing password
      * @return a boolean if password is valid
      */
-    public static boolean checkPassValid(String password){
+    public static boolean isPasswordValid(String password){
         return password.length() >= 8;
     }
 
