@@ -1,7 +1,7 @@
 package ports.usecases.account.removeAccount;
 
+import entities.course.Course;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
 
 public interface RemoveCourseInputBoundary {
     /**
@@ -10,5 +10,6 @@ public interface RemoveCourseInputBoundary {
      * @param courseCode the courseCode
      * @throws PathNotFoundError if the username or courseCode do not exist
      */
-    void execute(String username, String courseCode) throws PathNotFoundError;
+
+    void execute(String username, Course course) throws PathNotFoundError;
 }
