@@ -14,7 +14,7 @@ public abstract class Account {
     public abstract void setSemester(Semester semester);
 
     /**
-     * Check whether password is valid
+     * Checks whether password is valid
      * @param password Takes string representing password
      * @return a boolean if password is valid
      */
