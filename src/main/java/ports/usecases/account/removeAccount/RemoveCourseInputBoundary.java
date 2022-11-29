@@ -7,7 +7,7 @@ public interface RemoveCourseInputBoundary {
     /**
      * Send remove a course from this account's archive.
      * @param username the username of the account
-     * @param courseCode the courseCode
+     * @param course the course that the user wants to remove
      * @throws PathNotFoundError if the username or courseCode do not exist
      */
 

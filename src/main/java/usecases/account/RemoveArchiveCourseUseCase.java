@@ -18,4 +18,6 @@ public class RemoveArchiveCourseUseCase implements RemoveCourseInputBoundary {
         Account account = entityGateway.loadAccount(username);
         account.getArchive().RemoveCourse(course);
     }
+
+
 }

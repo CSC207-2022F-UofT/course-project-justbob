@@ -46,5 +46,7 @@ public abstract class Archive {
     public interface ArchiveFactory {
         Archive createArchive();
     }
+
+    public abstract Course getCourseByCode(String courseCode);
 }
 

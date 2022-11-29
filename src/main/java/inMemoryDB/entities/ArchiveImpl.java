@@ -6,6 +6,7 @@ import entities.course.Course;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class ArchiveImpl extends Archive {
     private HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
@@ -31,5 +32,16 @@ public class ArchiveImpl extends Archive {
     @Override
     public void RemoveCourse(Course course) {
         courseToData.remove(course);
+    }
+
+    @Override
+    public Course getCourseByCode(String courseCode) {
+        Course[] candidates = (Course[]) courseToData.keySet().stream().filter(course ->
+                Objects.equals(course.getCourseCode(), courseCode)).toArray();
+        if(candidates.length > 0){
+            return candidates[0];
+        }
+
+        return null;
     }
 }
