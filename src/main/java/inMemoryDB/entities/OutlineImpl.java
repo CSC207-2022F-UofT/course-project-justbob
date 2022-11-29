@@ -14,6 +14,15 @@ public class OutlineImpl extends Outline {
         return assessments;
     }
 
+    @Override
+    public ArrayList<String> getAssessmentsTitles() {
+        ArrayList<String> titles = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            titles.add(assessment.getTitle());
+        }
+        return titles;
+    }
+
     // TODO: should assessments be added if their weight sums over 100%?
     @Override
     public void addAssessment(Assessment assessment) {
