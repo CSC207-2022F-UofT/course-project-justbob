@@ -35,6 +35,16 @@ public class OutlineImpl extends Outline {
         return -1;
     }
 
+    @Override
+    public Assessment getAssessmentByTitle(String assessmentTitle){
+        for (Assessment assessment : assessments) {
+            if (assessment.getTitle().equals(assessmentTitle)) {
+                return assessment;
+            }
+        }
+        return null;
+    }
+
     // TODO: should assessments be added if their weight sums over 100%?
     @Override
     public void addAssessment(Assessment assessment) {
