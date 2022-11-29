@@ -30,7 +30,7 @@ public class ArchiveImpl extends Archive {
     }
 
     @Override
-    public void RemoveCourse(Course course) {
+    public void removeCourse(Course course) {
         courseToData.remove(course);
     }
 

@@ -47,6 +47,8 @@ public abstract class Archive {
         Archive createArchive();
     }
 
+    public abstract void removeCourse(Course course);
+
     public abstract Course getCourseByCode(String courseCode);
 }
 
