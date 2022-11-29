@@ -26,6 +26,5 @@ public class RemoveArchiveCourseUseCase implements RemoveCourseInputBoundary {
             throw new PathNotFoundError();
         }
         account.getArchive().removeCourse(course);
-        account.getArchive().addCourse(course, account.getSemester().getTitle());
     }
 }
