@@ -30,7 +30,7 @@
     - Takes in a ‘String’ called ‘title’, and a ‘String’ called ‘type’. StickyNotes represent events or activities. StickyNotes can be organized into ‘Assessment’, ‘TimeTable’, and ‘Miscellaneous’ sticky notes. The user can write to a sticky note represented by a text file with the method ‘writeToStickyNote’ which takes in an array of ‘Strings’ called ‘dotJots’. The class contains setter and getter methods for the time, the location if applicable, title, and type. The StickyNote can be posted on a single day, multiple specified days, or routinely during the week. Notifications can be set for every day a StickyNote is posted on.
 - Notification
     - The Notification class uses two constructors. One constructor takes in a ‘LocalDateTime’ variable called ‘notification’ so that a notification is set for that date and time. The second constructor takes in a ‘LocalDateTime’ value called ‘notification’ along with an ‘int’ value called ‘period’ which calls on the notification again after every period. ‘period’ is in milliseconds. ‘Reminder’ is a helper class which inherits ‘TimerTask’. ‘Reminder’ is what happens when the notification is rang. It prints out a statement to remind the user that their activity is in 24 hours.
-
+- GPACalculation
 
 
 
