@@ -18,7 +18,7 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
     public void execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
         // TODO: Abstractify the path verification process
         if (!entityGateway.existsAccount(username)) {
-            // TODO: specify (first implement PathNotFoundError's TODO.
+            // TODO: specify first implement PathNotFoundError's TODO.
             throw new PathNotFoundError();
         }
         Account account = entityGateway.loadAccount(username);
