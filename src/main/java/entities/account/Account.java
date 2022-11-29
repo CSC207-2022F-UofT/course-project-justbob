@@ -25,6 +25,5 @@ public abstract class Account {
     public interface AccountFactory {
         Account createAccount();
     }
-
 }
 
