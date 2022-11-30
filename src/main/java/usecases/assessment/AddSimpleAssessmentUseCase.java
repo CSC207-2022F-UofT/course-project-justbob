@@ -67,11 +67,11 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
 
         course.getOutline().addAssessment(assessment);
 
-        return createResponse(course.getOutline(), assessment);
+        return createResponse(assessment);
 
     }
 
-    private AddSimpleAssessmentResponse createResponse(Outline outline, Assessment assessment) {
+    private AddSimpleAssessmentResponse createResponse(Assessment assessment) {
         AddSimpleAssessmentResponse response = new AddSimpleAssessmentResponse();
         response.totalWeight = assessment.getWeightScheme().getTotalWeight();
         response.maximumNumberOfInstances = assessment.getWeightScheme().getNumberOfInstances();
