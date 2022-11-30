@@ -16,11 +16,11 @@ public class ChecklistUseCase implements ChecklistInputBoundary {
     }
 
     @Override
-    public ChecklistModel execute(String userName) throws PathNotFoundError {
-        if (!entityGateway.existsAccount(userName)){
-            throw new PathNotFoundError("Username: " + userName);
+    public ChecklistModel execute(String username) throws PathNotFoundError {
+        if (!entityGateway.existsAccount(username)) {
+            throw new PathNotFoundError("username: " + username);
         }
-        Account account = entityGateway.loadAccount(userName);
+        Account account = entityGateway.loadAccount(username);
         TaskList taskList = new TaskListImpl(account);
         return new ChecklistModel(taskList);
     }
