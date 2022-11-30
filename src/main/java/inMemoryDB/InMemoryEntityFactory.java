@@ -65,7 +65,7 @@ public class InMemoryEntityFactory implements EntityFactory {
             throw new IllegalArgumentException(String.format("Mark %f is not valid", mark));
         }
         if (isCommitted && !isSubmitted) {
-            throw new IllegalArgumentException("Submit the AssessmentIntance before it is committed.");
+            throw new IllegalArgumentException("Submit the AssessmentInstance before it is committed.");
         }
 
         AssessmentInstance instance = new AssessmentInstanceImpl(title, deadline);

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ArchiveImpl extends Archive {
-    private HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
+    private final HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
 
     @Override
     public List<Course> getCourses() {
