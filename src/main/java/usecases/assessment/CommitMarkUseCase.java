@@ -37,7 +37,7 @@ public class CommitMarkUseCase implements CommitMarkInputBoundary {
         }
         Assessment assessment = course.getOutline().getAssessmentByTitle(request.assessmentTitle);
 
-        if (request.instanceNumber > assessment.getInstances().size()) {
+        if (request.instanceNumber >= assessment.getInstances().size()) {
             throw new PathNotFoundError();
         }
 

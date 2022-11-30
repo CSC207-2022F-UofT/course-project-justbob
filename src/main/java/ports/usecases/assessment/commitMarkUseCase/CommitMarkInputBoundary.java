@@ -1,8 +1,5 @@
 package ports.usecases.assessment.commitMarkUseCase;
 
-import ports.usecases.assessment.setMarkUseCase.SetMarkInputBoundary;
-import ports.usecases.assessment.setMarkUseCase.SetMarkRequest;
-import ports.usecases.assessment.setMarkUseCase.SetMarkResponse;
 
 public interface CommitMarkInputBoundary {
     /**
@@ -13,7 +10,7 @@ public interface CommitMarkInputBoundary {
      */
 
     public CommitMarkResponse execute(CommitMarkRequest request)
-            throws ports.usecases.PathNotFoundError, SetMarkInputBoundary.SetMarkError;
+            throws ports.usecases.PathNotFoundError, CommitMarkInputBoundary.CommitMarkError;
 
     public class CommitMarkError extends Error {
         public CommitMarkError(String message) {
