@@ -1,10 +1,9 @@
-package ports.usecases.account.removeAccount;
+package ports.usecases.account.removeAchiveCourse;
 
-import entities.course.Course;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
 
-public interface RemoveCourseInputBoundary {
+public interface RemoveArchiveCourseInputBoundary {
     /**
      * Send remove a course from this account's archive.
      * @param username the username of the account
