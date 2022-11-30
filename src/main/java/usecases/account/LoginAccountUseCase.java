@@ -9,7 +9,7 @@ import usecases.gpaTrend.GetAccountTrendUseCase;
 
 // TODO: implement testing
 public class LoginAccountUseCase implements LoginAccountInputBoundary {
-    private EntityGateway entityGateway;
+    private final EntityGateway entityGateway;
 
     public LoginAccountUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
@@ -17,13 +17,11 @@ public class LoginAccountUseCase implements LoginAccountInputBoundary {
 
     public LoginAccountResponse execute(LoginAccountRequest request) throws LoginError {
         if (!entityGateway.existsAccount(request.username)) {
-            // TODO: specify that username was not found.
-            throw new LoginError();
+            throw new LoginError("Username not found.");
         }
         Account account = entityGateway.loadAccount(request.username);
-        if (account.getPassword() != request.password) {
-            // TODO: specify that password is incorrect.
-            throw new LoginError();
+        if (account.getPassword().equals(request.password)) {
+            throw new LoginError("Incorrect Password");
         }
         return createResponse(account);
     }

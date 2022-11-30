@@ -9,7 +9,7 @@ import ports.usecases.checklist.ChecklistInputBoundary;
 import ports.usecases.checklist.ChecklistModel;
 
 public class ChecklistUseCase implements ChecklistInputBoundary {
-    private EntityGateway entityGateway;
+    private final EntityGateway entityGateway;
 
     public ChecklistUseCase(EntityGateway entityGateway){
         this.entityGateway = entityGateway;
@@ -18,7 +18,7 @@ public class ChecklistUseCase implements ChecklistInputBoundary {
     @Override
     public ChecklistModel execute(String userName) throws PathNotFoundError {
         if (!entityGateway.existsAccount(userName)){
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Username: " + userName);
         }
         Account account = entityGateway.loadAccount(userName);
         TaskList taskList = new TaskListImpl(account);
