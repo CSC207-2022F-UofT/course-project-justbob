@@ -1,5 +1,7 @@
 package ports.usecases.account.addSemesterCourse;
 
+import entities.course.Outline;
+
 public class AddSemesterCourseRequest {
     public String courseCode;
     public String courseName;
@@ -9,5 +11,6 @@ public class AddSemesterCourseRequest {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.credit = credit;
+
     }
 }
