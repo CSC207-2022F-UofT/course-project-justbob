@@ -83,8 +83,6 @@ public abstract class Assessment {
         return getMaxWeight(getTotalNumberOfInstances());
     }
 
-    // TODO: reimplement toSinglar function (for naming)
-
     public interface AssessmentFactory {
         Assessment createAssessment(String title, WeightScheme weightScheme);
         Assessment createAssessment(String title, WeightScheme weightScheme, List<AssessmentInstance> instances);

@@ -31,7 +31,7 @@ public class SetSimpleWeightSchemeUseCase implements SetSimpleWeightSchemeInputB
         }
 
         Account account = entityGateway.loadAccount(request.username);
-        Course course = account.getArchive().getCourseByCode(request.courseCode);
+        Course course = account.getSemester().getCourseByCode(request.courseCode);
 
         if (course == null) {
             throw new PathNotFoundError();
