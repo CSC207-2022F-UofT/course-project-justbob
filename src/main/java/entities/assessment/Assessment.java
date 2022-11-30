@@ -31,27 +31,27 @@ public abstract class Assessment {
 
     public int getNumberOfCommittedInstances() {
         return (int) getInstances().stream()
-                .filter(instance -> instance.isCommitted())
+                .filter(AssessmentInstance::isCommitted)
                 .count();
     }
 
     public int getNumberOfSubmittedInstances() {
         return (int) getInstances().stream()
-                .filter(instance -> instance.isSubmitted())
+                .filter(AssessmentInstance::isSubmitted)
                 .count();
     }
 
     public double[] getCommittedMarks() {
         return getInstances().stream()
-                .filter(instance -> instance.isCommitted())
-                .mapToDouble(instance -> instance.getMark())
+                .filter(AssessmentInstance::isCommitted)
+                .mapToDouble(AssessmentInstance::getMark)
                 .toArray();
     }
 
     public double[] getAllMarks() {
         return getInstances().stream()
                 .filter(instance -> instance.getMark() != null)
-                .mapToDouble(instance -> instance.getMark())
+                .mapToDouble(AssessmentInstance::getMark)
                 .toArray();
     }
 
