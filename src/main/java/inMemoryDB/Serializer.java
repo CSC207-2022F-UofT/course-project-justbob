@@ -14,7 +14,7 @@ public class Serializer {
      * @throws IOException if the file cannot be written to
      */
     public static void serialize(Serializable object, String filename) throws FileNotFoundException, IOException {
-        try (FileOutputStream file = new FileOutputStream(filename); ObjectOutputStream outputStream = new ObjectOutputStream(file)) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename))) {
             outputStream.writeObject(object);
         }
     }
@@ -29,7 +29,7 @@ public class Serializer {
      * @throws ClassNotFoundException if a serialized object could not be found.
      */
     public static Object deserialize(String filename) throws FileNotFoundException, IOException, ClassNotFoundException {
-        try (FileInputStream file = new FileInputStream(filename); ObjectInputStream inputStream = new ObjectInputStream(file)) {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(filename))) {
             return inputStream.readObject();
         }
     }
