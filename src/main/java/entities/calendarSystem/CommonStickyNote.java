@@ -1,13 +1,15 @@
 package entities.calendarSystem;
 
+import java.time.LocalDate;
+
 public class CommonStickyNote implements StickyNoteInterface {
     private final String title;
     private final String type;
     private final String location;
     private final String[] dotJots;
-    private final String[] dates;
+    private final LocalDate[] dates;
 
-    CommonStickyNote(String title, String type, String location, String[] dotJots, String[] dates) {
+    CommonStickyNote(String title, String type, String location, String[] dotJots, LocalDate[] dates) {
         this.title = title;
         this.type = type;
         this.location = location;
@@ -36,7 +38,7 @@ public class CommonStickyNote implements StickyNoteInterface {
     }
 
     @Override
-    public String[] getDates() {
+    public LocalDate[] getDates() {
         return dates;
     }
 }
