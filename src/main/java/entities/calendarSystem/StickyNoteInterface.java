@@ -13,4 +13,6 @@ public interface StickyNoteInterface {
     String[] getDotJots();
 
     LocalDate[] getDates();
+
+    String getTime();
 }
