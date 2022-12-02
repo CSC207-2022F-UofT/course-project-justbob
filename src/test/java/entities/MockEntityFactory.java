@@ -89,6 +89,37 @@ public class MockEntityFactory implements CourseFactory, OutlineFactory, Assessm
         }
 
         @Override
+        public ArrayList<String> getAssessmentsTitles() {
+            ArrayList<String> titles = new ArrayList<>();
+            for (Assessment assessment : assessments) {
+                titles.add(assessment.getTitle());
+            }
+            return titles;
+        }
+
+        @Override
+        public int getIndexByTitle(String assessmentTitle){
+            int index = 0;
+            for (Assessment assessment : assessments) {
+                if (assessment.getTitle().equals(assessmentTitle)) {
+                    return index;
+                }
+                index++;
+            }
+            return -1;
+        }
+
+        @Override
+        public Assessment getAssessmentByTitle(String assessmentTitle){
+            for (Assessment assessment : assessments) {
+                if (assessment.getTitle().equals(assessmentTitle)) {
+                    return assessment;
+                }
+            }
+            return null;
+        }
+
+        @Override
         public void addAssessment(Assessment assessment) {
             if (!assessments.contains(assessment)) {
                 assessments.add(assessment);
@@ -203,7 +234,7 @@ public class MockEntityFactory implements CourseFactory, OutlineFactory, Assessm
             throw new IllegalArgumentException("AssessmentIntance cannot be committed and not submitted");
         }
 
-        AssessmentInstance instance = new AssessmentInstanceImpl(title, deadline);
+        AssessmentInstance instance = new AssessmentInstanceImpl(title);
         instance.setSubmitted(isSubmitted);
         instance.setCommitted(isCommitted);
         instance.setMark(mark);

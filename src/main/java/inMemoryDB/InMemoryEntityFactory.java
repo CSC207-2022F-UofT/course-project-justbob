@@ -69,7 +69,7 @@ public class InMemoryEntityFactory implements EntityFactory {
             throw new IllegalArgumentException("AssessmentIntance cannot be committed and not submitted");
         }
 
-        AssessmentInstance instance = new AssessmentInstanceImpl(title, deadline);
+        AssessmentInstance instance = new AssessmentInstanceImpl(title);
         instance.setSubmitted(isSubmitted);
         instance.setCommitted(isCommitted);
         instance.setMark(mark);
