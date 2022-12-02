@@ -17,7 +17,7 @@ public class calendarModelMonthUseCaseInteractor implements calendarModelMonthIn
 
     @Override
     public calendarModelResponseMonth execute(calendarModelRequest calendarMonthRequest) {
-        LocalDate[] monthDays = new LocalDate[41];
+        LocalDate[] monthDays = new LocalDate[42];
         LocalDate firstDay = LocalDate.of(calendarMonthRequest.getDate().getYear(),
                 calendarMonthRequest.getDate().getMonth().getValue(), 1);
         int week = (firstDay.getDayOfWeek().getValue()) % 7;
@@ -27,7 +27,7 @@ public class calendarModelMonthUseCaseInteractor implements calendarModelMonthIn
             monthDays[i] = temporary;
             temporary = temporary.plusDays(1);
             if (temporary.getMonthValue() != firstDay.getMonthValue()){
-                i = 41;
+                i = 42;
             }
         }
         calendarModelResponseMonth monthData = new calendarModelResponseMonth(monthDays);
