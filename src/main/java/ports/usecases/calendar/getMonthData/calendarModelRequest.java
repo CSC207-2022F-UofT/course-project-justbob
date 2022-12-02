@@ -1,4 +1,4 @@
-package ports.usecases.calendar;
+package ports.usecases.calendar.getMonthData;
 import java.time.*;
 
 public class calendarModelRequest {

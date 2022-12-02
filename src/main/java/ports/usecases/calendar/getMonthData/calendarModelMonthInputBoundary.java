@@ -1,4 +1,4 @@
-package ports.usecases.calendar;
+package ports.usecases.calendar.getMonthData;
 
 public interface calendarModelMonthInputBoundary {
 
