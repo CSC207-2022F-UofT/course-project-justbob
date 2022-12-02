@@ -8,6 +8,7 @@ class StickyNoteCalendar implements CalendarInterface {
     LocalDateTime currDateAndTime;
     LocalDate today;
     LocalDate seekedDate;
+    int x = 0;
     private ArrayList<StickyNoteInterface> stickyNotes = new ArrayList<>();
     private boolean viewAssessment = true;
     private boolean viewTimetable = true;
