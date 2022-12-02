@@ -1,7 +1,5 @@
 package entities.calendarSystem;
 
-import entities.calendar.StickyNote;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
