@@ -1,5 +1,0 @@
-package ports.usecases.calendarUseCases.toggleMiscellaneousUseCase;
-
-public interface ToggleMiscellaneousOutputBoundary {
-    ToggleMiscellaneousResponseModel prepareSuccessView(ToggleMiscellaneousRequestModel toggleMiscellaneousRequestModel);
-}
