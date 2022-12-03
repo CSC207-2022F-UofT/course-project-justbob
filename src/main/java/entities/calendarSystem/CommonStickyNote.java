@@ -9,14 +9,16 @@ public class CommonStickyNote implements StickyNoteInterface {
     private final String time;
     private final String[] dotJots;
     private final LocalDate[] dates;
+    private final String[] daysOfWeekToPostOn;
 
-    CommonStickyNote(String title, String type, String location, String time, String[] dotJots, LocalDate[] dates) {
+    CommonStickyNote(String title, String type, String location, String time, String[] dotJots, LocalDate[] dates, String[] daysOfWeekToPostOn) {
         this.title = title;
         this.type = type;
         this.location = location;
         this.time = time;
         this.dotJots = dotJots;
         this.dates = dates;
+        this.daysOfWeekToPostOn = daysOfWeekToPostOn;
     }
 
     @Override
@@ -37,6 +39,11 @@ public class CommonStickyNote implements StickyNoteInterface {
     @Override
     public String getTime() {
         return time;
+    }
+
+    @Override
+    public String getDaysOfWeekToPostOn() {
+        return null;
     }
 
     @Override

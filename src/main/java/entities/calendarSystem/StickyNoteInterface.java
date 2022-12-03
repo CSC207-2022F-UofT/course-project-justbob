@@ -15,4 +15,6 @@ public interface StickyNoteInterface {
     LocalDate[] getDates();
 
     String getTime();
+
+    String getDaysOfWeekToPostOn();
 }
