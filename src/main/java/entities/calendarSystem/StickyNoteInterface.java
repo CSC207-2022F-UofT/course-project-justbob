@@ -1,6 +1,7 @@
 package entities.calendarSystem;
 
-import java.time.LocalDate;
+import java.util.*;
+import java.time.*;
 
 public interface StickyNoteInterface {
 
@@ -16,5 +17,5 @@ public interface StickyNoteInterface {
 
     String getTime();
 
-    String getDaysOfWeekToPostOn();
+    DayOfWeek[] getDaysOfWeekToPostOn();
 }
