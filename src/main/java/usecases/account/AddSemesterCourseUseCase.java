@@ -18,11 +18,11 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
     }
 
     @Override
-    public void execute(String username, AddSemesterCourseRequest request) {
-        if (!entityGateway.existsAccount(username)) {
+    public void execute(AddSemesterCourseRequest request) {
+        if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError();
         }
-        Account account = entityGateway.loadAccount(username);
+        Account account = entityGateway.loadAccount(request.username);
         if(!(account.getSemester().getCourseByCode(request.courseCode) == null)){
             throw new CourseAlreadyExistsError();
         }
@@ -31,5 +31,6 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         course.setCourseName(request.courseName);
         course.setCredit(request.credit);
         account.getSemester().addCourse(course);
+        entityGateway.saveAccount(account);
     }
 }

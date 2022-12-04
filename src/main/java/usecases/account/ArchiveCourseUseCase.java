@@ -15,7 +15,7 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
     }
 
     @Override
-    public void execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
+    public void execute(String username, String courseCode) throws PathNotFoundError {
         if (!entityGateway.existsAccount(username)) {
             throw new PathNotFoundError("Username: " + username);
         }
@@ -23,10 +23,6 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
         Course course = account.getSemester().getCourseByCode(courseCode);
         if (course == null) {
             throw new PathNotFoundError("Course: " + courseCode);
-        }
-
-        if (course.getOutline().getPercentageCompleted() < 1.0) {
-            throw new CourseNotCompletedError();
         }
         account.getSemester().removeCourse(course);
         account.getArchive().addCourse(course, account.getSemester().getTitle());

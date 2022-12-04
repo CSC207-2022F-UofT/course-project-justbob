@@ -11,5 +11,5 @@ public interface RemoveArchiveCourseInputBoundary {
      * @throws PathNotFoundError if the username or courseCode do not exist
      */
 
-    void execute(String username, String courseCode) throws PathNotFoundError, ArchiveCourseInputBoundary.CourseNotCompletedError;
+    void execute(String username, String courseCode) throws PathNotFoundError;
 }

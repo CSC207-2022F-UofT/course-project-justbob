@@ -25,5 +25,6 @@ public class RemoveArchiveCourseUseCase implements RemoveArchiveCourseInputBound
             throw new PathNotFoundError();
         }
         account.getArchive().removeCourse(course);
+        entityGateway.saveAccount(account);
     }
 }
