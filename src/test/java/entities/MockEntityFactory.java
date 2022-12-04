@@ -98,6 +98,15 @@ public class MockEntityFactory implements CourseFactory, OutlineFactory, Assessm
         }
 
         @Override
+        public ArrayList<String> getAssessmentsSingularTitles() {
+            ArrayList<String> singularTitles = new ArrayList<>();
+            for (Assessment assessment : assessments) {
+                singularTitles.add(assessment.getSingularTitle());
+            }
+            return singularTitles;
+        }
+
+        @Override
         public int getIndexByTitle(String assessmentTitle){
             int index = 0;
             for (Assessment assessment : assessments) {
@@ -146,14 +155,26 @@ public class MockEntityFactory implements CourseFactory, OutlineFactory, Assessm
         private WeightScheme weightScheme;
         private ArrayList<AssessmentInstance> instances = new ArrayList<>();
 
+        private String singularTitle;
+
         public AssessmentMock(String title, WeightScheme weightScheme) {
             this.title = title;
             this.weightScheme = weightScheme;
+            this.singularTitle = toSingular(this.title);
+
+            for (int i = 0, j = 1; i < this.getTotalNumberOfInstances(); i++, j++) {
+                this.instances.add(new AssessmentInstanceImpl(this.singularTitle + " #" + j));
+            }
         }
 
         @Override
         public String getTitle() {
             return title;
+        }
+
+        @Override
+        public String getSingularTitle() {
+            return singularTitle;
         }
 
         @Override
@@ -190,6 +211,17 @@ public class MockEntityFactory implements CourseFactory, OutlineFactory, Assessm
         @Override
         public void removeInstance(AssessmentInstance instance) {
             instances.remove(instance);
+        }
+
+        @Override
+        public String toSingular(String title) {
+            if (title == "Quizzes"){
+                return "Quiz";
+            }
+            if (title.charAt(title.length()-1) == 's'){
+                return singularTitle.substring(0, title.length()-1);
+            }
+            return title;
         }
     }
 

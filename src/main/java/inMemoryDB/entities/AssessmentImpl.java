@@ -24,7 +24,8 @@ public class AssessmentImpl extends Assessment {
         }
     }
 
-    private String toSingular(String title) {
+    @Override
+    public String toSingular(String title) {
         if (title == "Quizzes"){
             return "Quiz";
         }
@@ -37,6 +38,11 @@ public class AssessmentImpl extends Assessment {
     @Override
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public String getSingularTitle() {
+        return singularTitle;
     }
 
     @Override

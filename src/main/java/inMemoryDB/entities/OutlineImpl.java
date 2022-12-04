@@ -24,6 +24,15 @@ public class OutlineImpl extends Outline {
     }
 
     @Override
+    public ArrayList<String> getAssessmentsSingularTitles() {
+        ArrayList<String> singularTitles = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            singularTitles.add(assessment.getSingularTitle());
+        }
+        return singularTitles;
+    }
+
+    @Override
     public int getIndexByTitle(String assessmentTitle){
         int index = 0;
         for (Assessment assessment : assessments) {

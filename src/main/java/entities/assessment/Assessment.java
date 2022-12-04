@@ -8,6 +8,10 @@ import java.util.List;
 
 public abstract class Assessment {
     public abstract String getTitle();
+
+    public abstract String getSingularTitle();
+
+    public abstract String toSingular(String title);
     public abstract WeightScheme getWeightScheme();
     public abstract ArrayList<AssessmentInstance> getInstances();
 
