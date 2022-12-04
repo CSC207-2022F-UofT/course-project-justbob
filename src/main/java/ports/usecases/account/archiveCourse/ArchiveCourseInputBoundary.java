@@ -9,5 +9,7 @@ public interface ArchiveCourseInputBoundary {
      * @param courseCode the courseCode
      * @throws PathNotFoundError if the username or courseCode do not exist
      */
-    void execute(String username, String courseCode) throws PathNotFoundError;
+    void execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError;
+
+    class CourseNotCompletedError extends Error {}
 }

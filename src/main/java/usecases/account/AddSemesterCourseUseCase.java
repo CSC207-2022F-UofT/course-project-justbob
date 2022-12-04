@@ -7,6 +7,8 @@ import ports.usecases.PathNotFoundError;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseRequest;
 
+import java.util.Arrays;
+
 public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary {
 
     private EntityGateway entityGateway;

@@ -15,13 +15,13 @@ public class RemoveSemesterCourseUseCase implements RemoveSemesterCourseInputBou
     }
 
     @Override
-    public void execute(RemoveSemesterCourseRequest request) throws CourseDoesNotExistsError {
+    public void execute(RemoveSemesterCourseRequest request) throws CourseDoesNotExistError {
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError();
         }
         Account account = entityGateway.loadAccount(request.username);
         if((account.getSemester().getCourseByCode(request.courseCode) == null)){
-            throw new RemoveSemesterCourseInputBoundary.CourseDoesNotExistsError();
+            throw new RemoveSemesterCourseInputBoundary.CourseDoesNotExistError();
         }
         account.getSemester().removeCourse(account.getSemester().getCourseByCode(request.courseCode));
         entityGateway.saveAccount(account);
