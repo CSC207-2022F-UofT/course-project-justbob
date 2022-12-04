@@ -82,11 +82,11 @@ public abstract class Assessment {
     public double getMaxPossibleHypotheticalWeight() {
         return getMaxWeight(getTotalNumberOfInstances());
     }
-
+    
     public String toSingular() {
         return getTitle();
     }
-
+    
     public interface AssessmentFactory {
         Assessment createAssessment(String title, WeightScheme weightScheme);
 
