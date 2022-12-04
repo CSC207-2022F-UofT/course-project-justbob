@@ -8,7 +8,7 @@ public interface AddSemesterCourseInputBoundary {
      * @param request a request for a new course with the course's courseCode, courseName, and credit
      * @throws CourseAlreadyExistsError if the course requested is already in semester
      */
-    void execute(AddSemesterCourseRequest request) throws CourseAlreadyExistsError;
+    AddSemesterCourseResponse execute(AddSemesterCourseRequest request) throws CourseAlreadyExistsError;
 
     class CourseAlreadyExistsError extends Error{}
 }

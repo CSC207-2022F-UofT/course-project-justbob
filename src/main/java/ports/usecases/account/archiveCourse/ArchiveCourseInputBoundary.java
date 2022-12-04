@@ -1,6 +1,7 @@
 package ports.usecases.account.archiveCourse;
 
 import ports.usecases.PathNotFoundError;
+import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
 
 public interface ArchiveCourseInputBoundary {
     /**

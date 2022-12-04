@@ -6,8 +6,12 @@ import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseRequest;
+import ports.usecases.account.addSemesterCourse.AddSemesterCourseResponse;
+import ports.usecases.account.loginAccount.LoginAccountResponse;
+import usecases.gpaTrend.GetAccountTrendUseCase;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary {
 
@@ -20,7 +24,7 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
     }
 
     @Override
-    public void execute(AddSemesterCourseRequest request) {
+    public AddSemesterCourseResponse execute(AddSemesterCourseRequest request) {
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError();
         }
@@ -34,5 +38,12 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         course.setCredit(request.credit);
         account.getSemester().addCourse(course);
         entityGateway.saveAccount(account);
+        return createResponse(account);
+    }
+
+    private AddSemesterCourseResponse createResponse(Account account) {
+        AddSemesterCourseResponse response = new AddSemesterCourseResponse();
+        response.courseList = List.of((String[]) account.getSemester().getRunningCourses().stream().map(Course::getCourseCode).toArray());
+        return response;
     }
 }
