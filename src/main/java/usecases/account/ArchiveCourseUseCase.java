@@ -8,7 +8,7 @@ import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
 
 //TODO: implement testing
 public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
-    private EntityGateway entityGateway;
+    private final EntityGateway entityGateway;
 
     public ArchiveCourseUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
@@ -16,16 +16,13 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
 
     @Override
     public void execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
-        // TODO: Abstractify the path verification process
         if (!entityGateway.existsAccount(username)) {
-            // TODO: specify first implement PathNotFoundError's TODO.
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Username: " + username);
         }
         Account account = entityGateway.loadAccount(username);
         Course course = account.getSemester().getCourseByCode(courseCode);
         if (course == null) {
-            // TODO: specify
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Course: " + courseCode);
         }
 
         if (course.getOutline().getPercentageCompleted() < 1.0) {

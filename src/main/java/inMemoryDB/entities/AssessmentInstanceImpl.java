@@ -5,25 +5,24 @@ import entities.assessment.AssessmentInstance;
 import java.time.LocalDateTime;
 
 public class AssessmentInstanceImpl extends AssessmentInstance {
-    private String title;
+    private String singularTitle;
     private LocalDateTime deadline;
     private boolean isCommitted;
     private boolean isSubmitted;
     private Double mark;
 
-    public AssessmentInstanceImpl(String title, LocalDateTime deadline) {
-        this.title = title;
-        this.deadline = deadline;
+    public AssessmentInstanceImpl(String singularTitle) {
+        this.singularTitle = singularTitle;
     }
 
     @Override
     public String getTitle() {
-        return title;
+        return singularTitle;
     }
 
     @Override
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitle(String newTitle) {
+        this.singularTitle = newTitle;
     }
 
     @Override

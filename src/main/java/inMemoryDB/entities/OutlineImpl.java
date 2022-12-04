@@ -7,11 +7,42 @@ import java.util.ArrayList;
 
 public class OutlineImpl extends Outline {
 
-    private ArrayList<Assessment> assessments = new ArrayList<>();
+    private final ArrayList<Assessment> assessments = new ArrayList<>();
 
     @Override
     public ArrayList<Assessment> getAssessments() {
         return assessments;
+    }
+
+    @Override
+    public ArrayList<String> getAssessmentsTitles() {
+        ArrayList<String> titles = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            titles.add(assessment.getTitle());
+        }
+        return titles;
+    }
+
+    @Override
+    public int getIndexByTitle(String assessmentTitle){
+        int index = 0;
+        for (Assessment assessment : assessments) {
+            if (assessment.getTitle().equals(assessmentTitle)) {
+                return index;
+            }
+            index++;
+        }
+        return -1;
+    }
+
+    @Override
+    public Assessment getAssessmentByTitle(String assessmentTitle){
+        for (Assessment assessment : assessments) {
+            if (assessment.getTitle().equals(assessmentTitle)) {
+                return assessment;
+            }
+        }
+        return null;
     }
 
     // TODO: should assessments be added if their weight sums over 100%?

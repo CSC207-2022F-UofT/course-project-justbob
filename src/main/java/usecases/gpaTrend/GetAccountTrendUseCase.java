@@ -12,7 +12,7 @@ import java.util.List;
 
 //TODO: implement testing
 public class GetAccountTrendUseCase implements GetAccountTrendInputBoundary {
-    private EntityGateway entityGateway;
+    private final EntityGateway entityGateway;
 
     public GetAccountTrendUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
@@ -20,10 +20,8 @@ public class GetAccountTrendUseCase implements GetAccountTrendInputBoundary {
 
     @Override
     public TrendModel execute(String username) {
-        // TODO: Abstractify the path verification process
         if (!entityGateway.existsAccount(username)) {
-            // TODO: specify (first implement PathNotFoundError's TODO.
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Username: " + username);
         }
         Account account = entityGateway.loadAccount(username);
         return calculateTrend(account);

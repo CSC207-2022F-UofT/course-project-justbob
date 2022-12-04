@@ -1,4 +1,11 @@
 package ports.usecases;
 
-//TODO: add ability to find which element of the path was not found.
-public class PathNotFoundError extends Error {}
+public class PathNotFoundError extends Error {
+    public PathNotFoundError(String path) {
+        super("Path not found: " + path);
+    }
+    
+    public PathNotFoundError() {
+        super("Empty Error");
+    }
+}
