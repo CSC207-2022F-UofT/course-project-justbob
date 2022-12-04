@@ -57,9 +57,9 @@ public class AddAccountView {
         panel.add(registerButton);
 
         // Login Button constructor
-        JButton loginButton = new JButton("Login");
-        loginButton.setBounds(100, 190, 193, 28);
-        panel.add(loginButton);
+        JButton loginPageButton = new JButton("Login Page");
+        loginPageButton.setBounds(100, 190, 193, 28);
+        panel.add(loginPageButton);
 
         registerButton.addActionListener(e -> {
             String inputUsername = username.getText();
@@ -67,10 +67,10 @@ public class AddAccountView {
             String inputRepeatPassword = new String(repeatPassword.getPassword());
 
             AddAccountRequest request = new AddAccountRequest(inputUsername, inputPassword, inputRepeatPassword);
-             new AddAccountController(request, frame, entityGateway, entityFactory);
+            new AddAccountController(request, frame, entityGateway, entityFactory);
         });
 
-        loginButton.addActionListener(e -> {
+        loginPageButton.addActionListener(e -> {
             frame.dispose();
             new LoginView(entityGateway, entityFactory);
         });

@@ -1,6 +1,7 @@
 package usecases.account.AddAccount;
 
 import entities.account.Account;
+import entities.account.Semester;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.account.addAccount.AddAccountInputBoundary;
@@ -38,7 +39,9 @@ public class AddAccountUseCase implements AddAccountInputBoundary {
     private void setFields(Account account, AddAccountRequest request) {
         account.setUsername(request.username);
         account.setPassword(request.password);
-        account.setSemester(entityFactory.createSemester());
+        Semester semester = entityFactory.createSemester();
+        semester.setTitle("My Semester");
+        account.setSemester(semester);
         account.setArchive(entityFactory.createArchive());
     }
 }

@@ -2,6 +2,7 @@ package usecases.account.LoginAccount;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
+import ports.usecases.account.loginAccount.LoginAccountResponse;
 import views.ApplicationView;
 
 import javax.swing.*;
@@ -21,9 +22,9 @@ public class LoginAccountPresenter {
         JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void presentSuccess(String username) {
+    public void presentSuccess(LoginAccountResponse response) {
         JOptionPane.showMessageDialog(null, "Logged In", "Success", JOptionPane.INFORMATION_MESSAGE);
         this.frame.dispose();
-        new ApplicationView(this.entityGateway, this.entityFactory, username);
+        new ApplicationView(this.entityGateway, this.entityFactory, response);
     }
 }
