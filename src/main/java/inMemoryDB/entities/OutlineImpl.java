@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class OutlineImpl extends Outline {
 
-    private ArrayList<Assessment> assessments = new ArrayList<>();
+    private final ArrayList<Assessment> assessments = new ArrayList<>();
 
     @Override
     public ArrayList<Assessment> getAssessments() {

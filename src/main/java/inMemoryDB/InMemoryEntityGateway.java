@@ -9,7 +9,7 @@ import java.util.HashMap;
 // of the same form.
 
 public class InMemoryEntityGateway implements EntityGateway {
-    private HashMap<String, Account> accountsByUsername = new HashMap<>();
+    private final HashMap<String, Account> accountsByUsername = new HashMap<>();
 
     @Override
     public boolean existsAccount(String username) {

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class AssessmentImpl extends Assessment {
     private String title;
     private WeightScheme weightScheme;
-    private ArrayList<AssessmentInstance> instances = new ArrayList<>();
+    private final ArrayList<AssessmentInstance> instances = new ArrayList<>();
 
     private String singularTitle;
 
@@ -65,6 +65,7 @@ public class AssessmentImpl extends Assessment {
     public void addInstance(AssessmentInstance instance) {
         if (getCurrentNumberOfInstances() < getTotalNumberOfInstances()) {
             // TODO: throw appropriate error
+            throw new Error("?");
         }
         if (!instances.contains(instance)) {
             instances.add(instance);
