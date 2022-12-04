@@ -11,7 +11,7 @@ public interface StickyNoteInterface {
 
     String getLocation();
 
-    String[] getDotJots();
+    String getDotJots();
 
     LocalDate[] getDates();
 
