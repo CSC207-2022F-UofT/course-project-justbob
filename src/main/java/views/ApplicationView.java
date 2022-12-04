@@ -1,4 +1,4 @@
-package usecases;
+package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;

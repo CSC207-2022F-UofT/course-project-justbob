@@ -2,7 +2,7 @@ package usecases.account.AddAccount;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import usecases.account.LoginAccount.LoginView;
+import views.LoginView;
 
 import javax.swing.*;
 

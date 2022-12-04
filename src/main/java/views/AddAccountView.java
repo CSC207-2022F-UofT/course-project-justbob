@@ -1,9 +1,9 @@
-package usecases.account.AddAccount;
+package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.account.addAccount.AddAccountRequest;
-import usecases.account.LoginAccount.LoginView;
+import usecases.account.AddAccount.AddAccountController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,8 +71,8 @@ public class AddAccountView {
         });
 
         loginButton.addActionListener(e -> {
-            new LoginView(entityGateway, entityFactory);
             frame.dispose();
+            new LoginView(entityGateway, entityFactory);
         });
 
         frame.setVisible(true);

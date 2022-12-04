@@ -2,7 +2,7 @@ import inMemoryDB.InMemoryEntityFactory;
 import inMemoryDB.InMemoryEntityGateway;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import usecases.account.LoginAccount.LoginView;
+import views.LoginView;
 
 public class Main {
     private static final EntityGateway entityGateway = new InMemoryEntityGateway();
