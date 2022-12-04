@@ -47,9 +47,9 @@ public class LoginView {
         panel.add(loginButton);
 
         // Register Button constructor
-        JButton registerButton = new JButton("Register");
-        registerButton.setBounds(100, 140, 193, 28);
-        panel.add(registerButton);
+        JButton registerPageButton = new JButton("Register Page");
+        registerPageButton.setBounds(100, 140, 193, 28);
+        panel.add(registerPageButton);
 
         loginButton.addActionListener(e -> {
             String inputUsername = username.getText();
@@ -59,7 +59,7 @@ public class LoginView {
             new LoginAccountController(request, frame, entityGateway, entityFactory);
         });
 
-        registerButton.addActionListener(e -> {
+        registerPageButton.addActionListener(e -> {
             frame.dispose();
             new AddAccountView(entityGateway, entityFactory);
         });
