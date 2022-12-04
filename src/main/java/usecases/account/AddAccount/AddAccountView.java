@@ -67,7 +67,7 @@ public class AddAccountView {
             String inputRepeatPassword = new String(repeatPassword.getPassword());
 
             AddAccountRequest request = new AddAccountRequest(inputUsername, inputPassword, inputRepeatPassword);
-            AddAccountController controller = new AddAccountController(request, frame, entityGateway, entityFactory);
+             new AddAccountController(request, frame, entityGateway, entityFactory);
         });
 
         loginButton.addActionListener(e -> {

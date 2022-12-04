@@ -56,7 +56,7 @@ public class LoginView {
             String inputPassword = new String(password.getPassword());
 
             LoginAccountRequest request = new LoginAccountRequest(inputUsername, inputPassword);
-            LoginAccountController controller = new LoginAccountController(request, frame, entityGateway, entityFactory);
+            new LoginAccountController(request, frame, entityGateway, entityFactory);
         });
 
         registerButton.addActionListener(e -> {
