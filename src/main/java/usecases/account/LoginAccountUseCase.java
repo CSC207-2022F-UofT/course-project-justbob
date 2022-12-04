@@ -21,7 +21,7 @@ public class LoginAccountUseCase implements LoginAccountInputBoundary {
             throw new LoginError("Username not found.");
         }
         Account account = entityGateway.loadAccount(request.username);
-        if (account.getPassword().equals(request.password)) {
+        if (!account.getPassword().equals(request.password)) {
             throw new LoginError("Incorrect Password");
         }
         return createResponse(account);
@@ -30,9 +30,9 @@ public class LoginAccountUseCase implements LoginAccountInputBoundary {
     private LoginAccountResponse createResponse(Account account) {
         LoginAccountResponse response = new LoginAccountResponse();
         response.semesterTitle = account.getSemester().getTitle();
-        response.courseCodes = (String[]) account.getSemester().getRunningCourses().stream()
+        response.courseCodes = account.getSemester().getRunningCourses().stream()
                 .map(Course::getCourseCode)
-                .toArray();
+                .toArray(String[]::new);
         response.trendModel = new GetAccountTrendUseCase(entityGateway).execute(account.getUsername());
         return response;
     }

@@ -66,10 +66,16 @@ public class RegisterForm {
 
             AddAccountRequest request = new AddAccountRequest(inputUsername, inputPassword, inputRepeatPassword);
             AddAccountUseCase usecase = new AddAccountUseCase(entityGateway, entityFactory);
+
+            boolean success = true;
             try {
                 usecase.execute(request);
-            } catch (Exception exception) {
+            } catch (Exception | Error exception) {
+                success = false;
                 JOptionPane.showMessageDialog(frame, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            if (success) {
+                JOptionPane.showMessageDialog(frame, "Account Created", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 

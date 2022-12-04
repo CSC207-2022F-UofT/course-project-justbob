@@ -26,6 +26,10 @@ public class AddAccountUseCase implements AddAccountInputBoundary {
         if (entityGateway.existsAccount(request.username)) {
             throw new UsernameAlreadyInUseError(request.username);
         }
+        if (!request.password.equals(request.passwordRepeat)) {
+            throw new PasswordsDoNotMatchError();
+        }
+
         Account account = entityFactory.createAccount();
         setFields(account, request);
         entityGateway.saveAccount(account);

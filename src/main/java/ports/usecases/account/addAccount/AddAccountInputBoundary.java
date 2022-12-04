@@ -8,4 +8,10 @@ public interface AddAccountInputBoundary {
             super("Username already in use: " + username);
         }
     }
+
+    class PasswordsDoNotMatchError extends Error {
+        public PasswordsDoNotMatchError() {
+            super("Password don't match");
+        }
+    }
 }

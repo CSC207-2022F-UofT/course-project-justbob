@@ -1,7 +1,6 @@
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.account.loginAccount.LoginAccountRequest;
-import ports.usecases.account.loginAccount.LoginAccountResponse;
 import usecases.account.LoginAccountUseCase;
 
 import javax.swing.*;
@@ -56,10 +55,16 @@ public class LoginForm {
 
             LoginAccountRequest request = new LoginAccountRequest(inputUsername, inputPassword);
             LoginAccountUseCase usecase = new LoginAccountUseCase(entityGateway);
+
+            boolean success = true;
             try {
-                LoginAccountResponse response = usecase.execute(request);
-            } catch (Exception exception) {
+                usecase.execute(request);
+            } catch (Exception | Error exception) {
+                success = false;
                 JOptionPane.showMessageDialog(frame, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            if (success) {
+                JOptionPane.showMessageDialog(frame, "Logged In", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
