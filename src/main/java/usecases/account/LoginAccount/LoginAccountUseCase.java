@@ -1,4 +1,4 @@
-package usecases.account;
+package usecases.account.LoginAccount;
 
 import entities.account.Account;
 import entities.course.Course;

@@ -1,7 +1,7 @@
 package ports.usecases.account.addAccount;
 
 public interface AddAccountInputBoundary {
-    void execute(AddAccountRequest request) throws UsernameAlreadyInUseError;
+    void execute(AddAccountRequest request) throws UsernameAlreadyInUseError, PasswordsDoNotMatchError;
 
     class UsernameAlreadyInUseError extends Error {
         public UsernameAlreadyInUseError(String username) {

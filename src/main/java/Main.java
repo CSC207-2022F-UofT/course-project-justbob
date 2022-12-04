@@ -2,12 +2,13 @@ import inMemoryDB.InMemoryEntityFactory;
 import inMemoryDB.InMemoryEntityGateway;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
+import usecases.account.LoginAccount.LoginView;
 
 public class Main {
     private static final EntityGateway entityGateway = new InMemoryEntityGateway();
     private static final EntityFactory entityFactory = new InMemoryEntityFactory();
 
     public static void main(String[] args) {
-        new LoginForm(entityGateway, entityFactory);
+        new LoginView(entityGateway, entityFactory);
     }
 }

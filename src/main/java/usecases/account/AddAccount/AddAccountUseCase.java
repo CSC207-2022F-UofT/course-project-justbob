@@ -1,4 +1,4 @@
-package usecases.account;
+package usecases.account.AddAccount;
 
 import entities.account.Account;
 import ports.database.EntityFactory;

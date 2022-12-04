@@ -1,13 +1,15 @@
+package usecases.account.LoginAccount;
+
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.account.loginAccount.LoginAccountRequest;
-import usecases.account.LoginAccountUseCase;
+import usecases.account.AddAccount.AddAccountView;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginForm {
-    public LoginForm(EntityGateway entityGateway, EntityFactory entityFactory) {
+public class LoginView {
+    public LoginView(EntityGateway entityGateway, EntityFactory entityFactory) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -54,22 +56,11 @@ public class LoginForm {
             String inputPassword = new String(password.getPassword());
 
             LoginAccountRequest request = new LoginAccountRequest(inputUsername, inputPassword);
-            LoginAccountUseCase usecase = new LoginAccountUseCase(entityGateway);
-
-            boolean success = true;
-            try {
-                usecase.execute(request);
-            } catch (Exception | Error exception) {
-                success = false;
-                JOptionPane.showMessageDialog(frame, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            if (success) {
-                JOptionPane.showMessageDialog(frame, "Logged In", "Success", JOptionPane.INFORMATION_MESSAGE);
-            }
+            LoginAccountController controller = new LoginAccountController(request, frame, entityGateway, entityFactory);
         });
 
         registerButton.addActionListener(e -> {
-            RegisterForm registerForm = new RegisterForm(entityGateway, entityFactory);
+            new AddAccountView(entityGateway, entityFactory);
             frame.dispose();
         });
 
