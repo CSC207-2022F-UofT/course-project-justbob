@@ -1,10 +1,15 @@
 package usecases.account;
 
 import entities.account.Account;
+import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.account.RemoveSemesterCourse.RemoveSemesterCourseInputBoundary;
 import ports.usecases.account.RemoveSemesterCourse.RemoveSemesterCourseRequest;
+import ports.usecases.account.RemoveSemesterCourse.RemoveSemesterCourseResponse;
+import ports.usecases.account.archiveCourse.ArchiveCourseResponse;
+
+import java.util.List;
 
 public class RemoveSemesterCourseUseCase implements RemoveSemesterCourseInputBoundary {
 
@@ -15,7 +20,7 @@ public class RemoveSemesterCourseUseCase implements RemoveSemesterCourseInputBou
     }
 
     @Override
-    public void execute(RemoveSemesterCourseRequest request) throws CourseDoesNotExistError {
+    public RemoveSemesterCourseResponse execute(RemoveSemesterCourseRequest request) throws CourseDoesNotExistError {
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError();
         }
@@ -25,5 +30,12 @@ public class RemoveSemesterCourseUseCase implements RemoveSemesterCourseInputBou
         }
         account.getSemester().removeCourse(account.getSemester().getCourseByCode(request.courseCode));
         entityGateway.saveAccount(account);
+        return createResponse(account);
+    }
+
+    private RemoveSemesterCourseResponse createResponse(Account account) {
+        RemoveSemesterCourseResponse response = new RemoveSemesterCourseResponse();
+        response.courseList = List.of((String[]) account.getSemester().getRunningCourses().stream().map(Course::getCourseCode).toArray());
+        return response;
     }
 }

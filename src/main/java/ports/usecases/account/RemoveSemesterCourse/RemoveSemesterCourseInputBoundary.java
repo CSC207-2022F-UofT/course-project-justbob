@@ -6,7 +6,7 @@ public interface RemoveSemesterCourseInputBoundary {
      * @param request the user input required for this usecase
      * @throws CourseDoesNotExistError if the course requested does not exist in semester
      */
-    void execute(RemoveSemesterCourseRequest request) throws CourseDoesNotExistError;
+    RemoveSemesterCourseResponse execute(RemoveSemesterCourseRequest request) throws CourseDoesNotExistError;
 
     class CourseDoesNotExistError extends Error{}
 }

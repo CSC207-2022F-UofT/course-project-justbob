@@ -5,6 +5,9 @@ import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
+import ports.usecases.account.archiveCourse.ArchiveCourseResponse;
+
+import java.util.List;
 
 //TODO: implement testing
 public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
@@ -15,7 +18,7 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
     }
 
     @Override
-    public void execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
+    public ArchiveCourseResponse execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
         if (!entityGateway.existsAccount(username)) {
             throw new PathNotFoundError("Username: " + username);
         }
@@ -29,5 +32,13 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
         }
         account.getSemester().removeCourse(course);
         account.getArchive().addCourse(course, account.getSemester().getTitle());
+        entityGateway.saveAccount(account);
+        return createResponse(account);
+    }
+
+    private ArchiveCourseResponse createResponse(Account account) {
+        ArchiveCourseResponse response = new ArchiveCourseResponse();
+        response.courseList = List.of((String[]) account.getArchive().getCourses().stream().map(Course::getCourseCode).toArray());
+        return response;
     }
 }
