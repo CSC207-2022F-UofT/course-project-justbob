@@ -1,4 +1,4 @@
-package ports.usecases.assessment.setWeightSchemeUseCase;
+package ports.usecases.assessment.setWeightScheme;
 
 public class SetSimpleWeightSchemeResponse {
 

@@ -1,4 +1,4 @@
-package ports.usecases.assessment.setMarkUseCase;
+package ports.usecases.assessment.setMark;
 
 public class SetMarkRequest {
     public String username; /*abstract to path class*/

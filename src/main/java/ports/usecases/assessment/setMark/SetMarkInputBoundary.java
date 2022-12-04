@@ -1,4 +1,4 @@
-package ports.usecases.assessment.setMarkUseCase;
+package ports.usecases.assessment.setMark;
 
 public interface SetMarkInputBoundary {
     /**

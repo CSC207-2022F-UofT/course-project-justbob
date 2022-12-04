@@ -1,9 +1,6 @@
-package ports.usecases.assessment.setWeightSchemeUseCase;
+package ports.usecases.assessment.setWeightScheme;
 
-import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.addSimpleAssessmentUseCase.AddSimpleAssessmentInputBoundary;
-import ports.usecases.assessment.addSimpleAssessmentUseCase.AddSimpleAssessmentRequest;
-import ports.usecases.assessment.addSimpleAssessmentUseCase.AddSimpleAssessmentResponse;
+import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentInputBoundary;
 
 public interface SetSimpleWeightSchemeInputBoundary {
     /**

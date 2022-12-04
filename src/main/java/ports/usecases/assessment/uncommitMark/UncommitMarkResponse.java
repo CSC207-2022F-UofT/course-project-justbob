@@ -1,4 +1,4 @@
-package ports.usecases.assessment.uncommitMarkUseCase;
+package ports.usecases.assessment.uncommitMark;
 
 public class UncommitMarkResponse {
     public boolean uncommitSuccessful;

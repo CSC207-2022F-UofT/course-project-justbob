@@ -1,4 +1,4 @@
-package ports.usecases.assessment.setInstanceMetaDataUseCase;
+package ports.usecases.assessment.setInstanceMetaData;
 
 public class SetInstanceMetaDataResponse {
     public String newTitle;

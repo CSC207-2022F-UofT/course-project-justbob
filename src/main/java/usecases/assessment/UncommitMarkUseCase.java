@@ -6,10 +6,9 @@ import entities.assessment.AssessmentInstance;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.uncommitMarkUseCase.UncommitMarkInputBoundary;
-import ports.usecases.assessment.uncommitMarkUseCase.UncommitMarkRequest;
-import ports.usecases.assessment.uncommitMarkUseCase.UncommitMarkResponse;
-import ports.usecases.assessment.uncommitMarkUseCase.UncommitMarkInputBoundary;
+import ports.usecases.assessment.uncommitMark.UncommitMarkInputBoundary;
+import ports.usecases.assessment.uncommitMark.UncommitMarkRequest;
+import ports.usecases.assessment.uncommitMark.UncommitMarkResponse;
 
 import java.util.ArrayList;
 
@@ -31,6 +30,10 @@ public class UncommitMarkUseCase implements UncommitMarkInputBoundary {
         Account account = entityGateway.loadAccount(request.username);
         Course course = account.getSemester().getCourseByCode(request.courseCode);
 
+        if (course == null) {
+            throw new PathNotFoundError();
+        }
+
         ArrayList<String> assessmentTitles = course.getOutline().getAssessmentsTitles();
         if (!assessmentTitles.contains(request.assessmentTitle)) {
             throw new PathNotFoundError();
@@ -49,6 +52,8 @@ public class UncommitMarkUseCase implements UncommitMarkInputBoundary {
         }
 
         assessmentInstance.setCommitted(false);
+        entityGateway.saveAccount(account);
+
         return createResponse(assessmentInstance);
     }
     private UncommitMarkResponse createResponse(AssessmentInstance assessmentInstance) {

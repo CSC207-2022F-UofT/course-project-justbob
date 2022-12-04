@@ -1,8 +1,4 @@
-package ports.usecases.assessment.addSimpleAssessmentUseCase;
-
-import inMemoryDB.entities.AssessmentImpl;
-import inMemoryDB.entities.OutlineImpl;
-import usecases.dataStorage_DEPRECATED.weightScheme.WeightSchemeDsModel;
+package ports.usecases.assessment.addSimpleAssessment;
 
 public class AddSimpleAssessmentResponse {
 

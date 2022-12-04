@@ -1,6 +1,6 @@
-package ports.usecases.assessment.commitMarkUseCase;
+package ports.usecases.assessment.uncommitMark;
 
-public class CommitMarkRequest {
+public class UncommitMarkRequest {
     public String username; /*abstract to path class*/
 
     public String courseCode; /*abstract to path class*/
@@ -9,13 +9,12 @@ public class CommitMarkRequest {
 
     public int instanceNumber; /*abstract to path class*/
 
-    public CommitMarkRequest() {}
+    public UncommitMarkRequest() {}
 
-    public CommitMarkRequest(String username, String courseCode, String assessmentTitle, int instanceNumber) {
+    public UncommitMarkRequest(String username, String courseCode, String assessmentTitle, int instanceNumber) {
         this.username = username;
         this.courseCode = courseCode;
         this.assessmentTitle = assessmentTitle;
         this.instanceNumber = instanceNumber;
     }
 }
-

@@ -1,4 +1,4 @@
-package ports.usecases.assessment.uncommitMarkUseCase;
+package ports.usecases.assessment.uncommitMark;
 
 
 public interface UncommitMarkInputBoundary {

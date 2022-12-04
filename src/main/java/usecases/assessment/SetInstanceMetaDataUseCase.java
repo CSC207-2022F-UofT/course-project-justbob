@@ -6,9 +6,9 @@ import entities.assessment.AssessmentInstance;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.setInstanceMetaDataUseCase.SetInstanceMetaDataInputBoundary;
-import ports.usecases.assessment.setInstanceMetaDataUseCase.SetInstanceMetaDataRequest;
-import ports.usecases.assessment.setInstanceMetaDataUseCase.SetInstanceMetaDataResponse;
+import ports.usecases.assessment.setInstanceMetaData.SetInstanceMetaDataInputBoundary;
+import ports.usecases.assessment.setInstanceMetaData.SetInstanceMetaDataRequest;
+import ports.usecases.assessment.setInstanceMetaData.SetInstanceMetaDataResponse;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +22,6 @@ public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBound
         this.entityGateway = entityGateway;
     }
 
-    @Override
     public SetInstanceMetaDataResponse execute(SetInstanceMetaDataRequest request)
             throws ports.usecases.PathNotFoundError, SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError {
 
@@ -32,6 +31,10 @@ public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBound
 
         Account account = entityGateway.loadAccount(request.username);
         Course course = account.getSemester().getCourseByCode(request.courseCode);
+
+        if (course == null) {
+            throw new PathNotFoundError();
+        }
 
         ArrayList<String> assessmentTitles = course.getOutline().getAssessmentsTitles();
 
@@ -63,11 +66,8 @@ public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBound
             throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Title must be different");
         }
 
-        if (request.newTitle == null || request.newTitle.equals("")) {
-            assessmentInstance.setTitle(oldTitle); /*if the user doesn't give any input, the old title remains. Somehow,
-            the controller must allow for no input though.*/
-        } else {
-            assessmentInstance.setTitle(request.newTitle);
+        if (request.newTitle.equals("")) {
+            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Title must not be empty");
         }
 
         LocalDateTime newDeadlineFormatted = LocalDateTime.parse(request.newDeadline,
@@ -81,12 +81,14 @@ public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBound
             throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Deadline must be in the future");
         }
 
-        if (request.newDeadline == null || request.newDeadline.equals("")) {
-            assessmentInstance.setDeadline(oldDeadline); /*if the user doesn't give any input, the old deadline remains.
-            Somehow, the controller must allow for no input though.*/
-        } else {
-            assessmentInstance.setDeadline(newDeadlineFormatted);
+        if (request.newDeadline.equals("")) {
+            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Deadline must not be empty");
         }
+
+        assessmentInstance.setTitle(request.newTitle);
+        assessmentInstance.setDeadline(newDeadlineFormatted);
+
+        entityGateway.saveAccount(account);
 
         return createResponse(assessmentInstance);
     }

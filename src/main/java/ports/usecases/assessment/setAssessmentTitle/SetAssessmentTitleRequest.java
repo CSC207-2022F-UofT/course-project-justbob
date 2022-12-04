@@ -1,4 +1,4 @@
-package ports.usecases.assessment.setAssessmentTitleUseCase;
+package ports.usecases.assessment.setAssessmentTitle;
 
 public class SetAssessmentTitleRequest {
     public String username; /*abstract to path class*/

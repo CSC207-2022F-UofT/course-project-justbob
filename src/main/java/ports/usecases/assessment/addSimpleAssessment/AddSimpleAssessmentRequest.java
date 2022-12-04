@@ -1,7 +1,4 @@
-package ports.usecases.assessment.addSimpleAssessmentUseCase;
-
-import java.util.ArrayList;
-import java.util.List;
+package ports.usecases.assessment.addSimpleAssessment;
 
 public class AddSimpleAssessmentRequest {
     public String username; /*abstract to path class*/

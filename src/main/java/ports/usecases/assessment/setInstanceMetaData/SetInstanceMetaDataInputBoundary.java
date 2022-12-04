@@ -1,6 +1,4 @@
-package ports.usecases.assessment.setInstanceMetaDataUseCase;
-
-import ports.usecases.assessment.setMarkUseCase.SetMarkInputBoundary;
+package ports.usecases.assessment.setInstanceMetaData;
 
 public interface SetInstanceMetaDataInputBoundary {
     /**

@@ -1,4 +1,4 @@
-package ports.usecases.assessment.addSimpleAssessmentUseCase;
+package ports.usecases.assessment.addSimpleAssessment;
 
 public interface AddSimpleAssessmentInputBoundary {
     /**

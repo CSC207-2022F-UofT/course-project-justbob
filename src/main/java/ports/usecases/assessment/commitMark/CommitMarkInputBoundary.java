@@ -1,4 +1,4 @@
-package ports.usecases.assessment.commitMarkUseCase;
+package ports.usecases.assessment.commitMark;
 
 
 public interface CommitMarkInputBoundary {

@@ -1,4 +1,4 @@
-package ports.usecases.assessment.setInstanceMetaDataUseCase;
+package ports.usecases.assessment.setInstanceMetaData;
 
 public class SetInstanceMetaDataRequest {
     public String username; /*abstract to path class*/
