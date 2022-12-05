@@ -20,19 +20,32 @@ public class ApplicationView {
         frame.setSize(new Dimension(400, 225));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        String title = response.semesterTitle;
-        String[] courseCodes = response.courseCodes;
-
         // Title label constructor
-        JLabel label1 = new JLabel(title);
-        label1.setBounds(100, 8, 70, 20);
+        JLabel label1 = new JLabel(response.semesterTitle);
+        label1.setBounds(100, 10, 370, 20);
         panel.add(label1);
 
         // Courses Table constructor
-        String[][] data = {};
-        String[] column = {"Course Codes"};
+        String[] courseCodes = response.courseCodes;
+        String[] courseTitles = response.courseTitles;
+        Double[] courseGrades = response.courseGrades;
+
+        if (courseCodes.length == 0) {
+            courseCodes = new String[]{"NCA"};
+            courseTitles = new String[]{"No Course Added"};
+            courseGrades = new Double[]{0.0};
+        }
+
+        String[][] dataColumns = new String[3][courseCodes.length];
+        dataColumns[0] = courseCodes;
+        dataColumns[1] = courseTitles;
+        dataColumns[2] = doubleListToStringList(courseGrades);
+
+        String[][] data = transpose(dataColumns);
+        String[] column = {"Course Codes", "Course Titles", "Course Grades"};
+
         JTable coursesTable = new JTable(data, column);
-        coursesTable.setBounds(100, 27, 193, 100);
+        coursesTable.setBounds(10, 30, 370, 100);
         panel.add(coursesTable);
 
         // add course button
@@ -47,6 +60,32 @@ public class ApplicationView {
         frame.setVisible(true);
 
     }
+
+    private static String[][] transpose(String[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        String[][] transposedMatrix = new String[n][m];
+
+        for (int x = 0; x < n; x++) {
+            for (int y = 0; y < m; y++) {
+                transposedMatrix[x][y] = matrix[y][x];
+            }
+        }
+
+        return transposedMatrix;
+    }
+
+    private String[] doubleListToStringList(Double[] doubleList) {
+        String[] stringList = new String[doubleList.length];
+        int index = 0;
+        for (Double d : doubleList) {
+            stringList[index] = d.toString();
+            index += 1;
+        }
+        return stringList;
+    }
+
 }
 
 

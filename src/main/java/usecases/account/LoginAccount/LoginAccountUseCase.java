@@ -33,6 +33,15 @@ public class LoginAccountUseCase implements LoginAccountInputBoundary {
         response.courseCodes = account.getSemester().getRunningCourses().stream()
                 .map(Course::getCourseCode)
                 .toArray(String[]::new);
+        response.courseTitles = account.getSemester().getRunningCourses().stream()
+                .map(Course::getCourseName)
+                .toArray(String[]::new);
+        response.courseGrades = new Double[response.courseCodes.length];
+        int index = 0;
+        for (Course course : account.getSemester().getRunningCourses()) {
+            response.courseGrades[index] = course.getOutline().computeRunningGrade();
+            index += 1;
+        }
         response.trendModel = new GetAccountTrendUseCase(entityGateway).execute(account.getUsername());
         return response;
     }
