@@ -28,7 +28,7 @@ public class AddAccountUseCase implements AddAccountInputBoundary {
             throw new UsernameAlreadyInUseError(request.username);
         }
         if (!Account.isUsernameValid(request.username)) {
-            throw new PasswordNotValidError();
+            throw new UsernameNotValidError();
         }
         if (!Account.isPasswordValid(request.password)) {
             throw new PasswordNotValidError();
