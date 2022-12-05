@@ -2,13 +2,13 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.account.loginAccount.LoginAccountResponse;
+import ports.usecases.ApplicationResponse;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ApplicationView {
-    public ApplicationView(EntityGateway entityGateway, EntityFactory entityFactory, LoginAccountResponse response) {
+    public ApplicationView(EntityGateway entityGateway, EntityFactory entityFactory, ApplicationResponse response) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -54,7 +54,8 @@ public class ApplicationView {
         panel.add(addCourseButton);
 
         addCourseButton.addActionListener(e -> {
-            // TODO: create addCourseView
+            // frame.dispose();
+            new AddCourseView(entityGateway, entityFactory, response.username);
         });
 
         frame.setVisible(true);

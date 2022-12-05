@@ -1,18 +1,20 @@
-package ports.usecases.account.loginAccount;
+package ports.usecases;
 
 import ports.usecases.gpaTrend.TrendModel;
 
-public class LoginAccountResponse {
+public class ApplicationResponse {
+    public String username;
     public String semesterTitle;
     public String[] courseCodes;
     public String[] courseTitles;
     public Double[] courseGrades;
     public TrendModel trendModel;
 
-    public LoginAccountResponse() {
+    public ApplicationResponse() {
     }
 
-    public LoginAccountResponse(String semesterTitle, String[] courseCodes, String[] courseTitles, Double[] courseGrades, TrendModel trendModel) {
+    public ApplicationResponse(String username, String semesterTitle, String[] courseCodes, String[] courseTitles, Double[] courseGrades, TrendModel trendModel) {
+        this.username = username;
         this.semesterTitle = semesterTitle;
         this.courseCodes = courseCodes;
         this.courseTitles = courseTitles;

@@ -1,29 +1,40 @@
-package usecases.account.LoginAccount;
+package usecases.account.AddSemesterCourse;
 
 import entities.account.Account;
 import entities.course.Course;
+import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.ApplicationResponse;
-import ports.usecases.account.loginAccount.LoginAccountInputBoundary;
-import ports.usecases.account.loginAccount.LoginAccountRequest;
+import ports.usecases.PathNotFoundError;
+import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
+import ports.usecases.account.addSemesterCourse.AddSemesterCourseRequest;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
-// TODO: implement testing
-public class LoginAccountUseCase implements LoginAccountInputBoundary {
-    private final EntityGateway entityGateway;
+public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary {
 
-    public LoginAccountUseCase(EntityGateway entityGateway) {
+    private final EntityGateway entityGateway;
+    private final EntityFactory entityFactory;
+
+    public AddSemesterCourseUseCase(EntityGateway entityGateway, EntityFactory entityFactory) {
         this.entityGateway = entityGateway;
+        this.entityFactory = entityFactory;
     }
 
-    public ApplicationResponse execute(LoginAccountRequest request) throws LoginError {
+    @Override
+    public ApplicationResponse execute(AddSemesterCourseRequest request) {
         if (!entityGateway.existsAccount(request.username)) {
-            throw new LoginError("Username not found.");
+            throw new PathNotFoundError();
         }
         Account account = entityGateway.loadAccount(request.username);
-        if (!account.getPassword().equals(request.password)) {
-            throw new LoginError("Incorrect Password");
+        if (!(account.getSemester().getCourseByCode(request.courseCode) == null)) {
+            throw new CourseAlreadyExistsError();
         }
+        Course course = entityFactory.createCourse();
+        course.setCourseCode(request.courseCode);
+        course.setCourseName(request.courseName);
+        course.setCredit(request.credit);
+        account.getSemester().addCourse(course);
+        entityGateway.saveAccount(account);
         return createResponse(account);
     }
 
