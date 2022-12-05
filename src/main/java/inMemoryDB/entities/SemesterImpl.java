@@ -4,14 +4,13 @@ import entities.account.Semester;
 import entities.course.Course;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class SemesterImpl extends Semester {
     // TODO: update the implementation so that it uses a hashmap from courseCodes to Course objects.
 
     private static final String DEFAULT_SEMESTER_TITLE = "Semester";
     private String title = DEFAULT_SEMESTER_TITLE;
-    private ArrayList<Course> runningCourses = new ArrayList<>();
+    private final ArrayList<Course> runningCourses = new ArrayList<>();
 
     @Override
     public String getTitle() {
@@ -43,7 +42,7 @@ public class SemesterImpl extends Semester {
     @Override
     public Course getCourseByCode(String courseCode) {
         Course[] candidates = (Course[]) runningCourses.stream()
-                .filter(course -> course.getCourseCode() == courseCode)
+                .filter(course -> course.getCourseCode().equals(courseCode))
                 .toArray()
                 ;
         if (candidates.length > 0) {

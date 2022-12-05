@@ -7,7 +7,7 @@ public class LoginAccountResponse {
     public String[] courseCodes;
     public TrendModel trendModel;
 
-    // TODO: may need more info:
+    //  may need more info:
     //  data of one course to display
     //  checklist data
     //  calendar data

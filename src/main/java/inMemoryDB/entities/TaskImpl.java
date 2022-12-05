@@ -4,18 +4,18 @@ import entities.assessment.AssessmentInstance;
 import entities.task.Task;
 
 public class TaskImpl extends Task {
-    private String courseName;
-    private AssessmentInstance assessmentInstance;
+    private final String courseName;
+    private final AssessmentInstance assessmentInstance;
     private boolean showDetail = false;
 
 
-    public TaskImpl(String courseName, AssessmentInstance assessmentInstanceImpl){
+    public TaskImpl(String courseName, AssessmentInstance assessmentInstanceImpl) {
         this.courseName = courseName;
         this.assessmentInstance = assessmentInstanceImpl;
     }
 
     @Override
-    public boolean getSubmitted(){
+    public boolean getSubmitted() {
         return assessmentInstance.isSubmitted();
     }
 

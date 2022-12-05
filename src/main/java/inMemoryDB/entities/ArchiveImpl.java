@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class ArchiveImpl extends Archive {
-    private HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
+    private final HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
 
     @Override
     public List<Course> getCourses() {
@@ -30,7 +30,7 @@ public class ArchiveImpl extends Archive {
     }
 
     @Override
-    public void RemoveCourse(Course course) {
+    public void removeCourse(Course course) {
         courseToData.remove(course);
     }
 
