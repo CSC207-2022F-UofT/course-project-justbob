@@ -6,24 +6,23 @@ import entities.assessment.AssessmentInstance;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.setInstanceMetaData.SetInstanceMetaDataInputBoundary;
-import ports.usecases.assessment.setInstanceMetaData.SetInstanceMetaDataRequest;
-import ports.usecases.assessment.setInstanceMetaData.SetInstanceMetaDataResponse;
+import ports.usecases.assessment.editAssessmentInstanceData.EditAssessmentInstanceDataInputBoundary;
+import ports.usecases.assessment.editAssessmentInstanceData.EditAssessmentInstanceDataRequest;
+import ports.usecases.assessment.editAssessmentInstanceData.EditAssessmentInstanceDataResponse;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBoundary {
+public class EditAssessmentInstanceDataUseCase implements EditAssessmentInstanceDataInputBoundary {
 
     private EntityGateway entityGateway;
 
-    public SetInstanceMetaDataUseCase(EntityGateway entityGateway) {
+    public EditAssessmentInstanceDataUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
     }
 
-    public SetInstanceMetaDataResponse execute(SetInstanceMetaDataRequest request)
-            throws ports.usecases.PathNotFoundError, SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError {
+    public EditAssessmentInstanceDataResponse execute(EditAssessmentInstanceDataRequest request)
+            throws ports.usecases.PathNotFoundError, EditAssessmentInstanceDataInputBoundary.EditAssessmentInstanceDataError {
 
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError();
@@ -55,28 +54,28 @@ public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBound
         LocalDateTime oldDeadline = assessmentInstance.getDeadline();
 
         if (request.newTitle.length() > 30) {
-            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Title must be less than 30 characters");
+            throw new EditAssessmentInstanceDataInputBoundary.EditAssessmentInstanceDataError("Title must be less than 30 characters");
         }
 
         if (assessmentSingularTitles.contains(request.newTitle)) {
-            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Title must not mimic another assessment");
+            throw new EditAssessmentInstanceDataInputBoundary.EditAssessmentInstanceDataError("Title must not mimic another assessment");
         }
 
         if (request.newTitle.equals(oldTitle)) {
-            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Title must be different");
+            throw new EditAssessmentInstanceDataInputBoundary.EditAssessmentInstanceDataError("Title must be different");
         }
 
         if (request.newTitle.equals("")) {
-            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Title must not be empty");
+            throw new EditAssessmentInstanceDataInputBoundary.EditAssessmentInstanceDataError("Title must not be empty");
         }
 
 
         if (request.newDeadline.isEqual(oldDeadline)) {
-            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Deadline must be different");
+            throw new EditAssessmentInstanceDataInputBoundary.EditAssessmentInstanceDataError("Deadline must be different");
         }
 
         if (request.newDeadline.isBefore(LocalDateTime.now())) {
-            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Deadline must be in the future");
+            throw new EditAssessmentInstanceDataInputBoundary.EditAssessmentInstanceDataError("Deadline must be in the future");
         }
 
 
@@ -87,8 +86,8 @@ public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBound
 
         return createResponse(assessmentInstance);
     }
-    private SetInstanceMetaDataResponse createResponse(AssessmentInstance assessmentInstance) {
-        SetInstanceMetaDataResponse response = new SetInstanceMetaDataResponse();
+    private EditAssessmentInstanceDataResponse createResponse(AssessmentInstance assessmentInstance) {
+        EditAssessmentInstanceDataResponse response = new EditAssessmentInstanceDataResponse();
         response.newTitle = assessmentInstance.getTitle();
         response.newDeadline = assessmentInstance.getDeadline();
         return response;
