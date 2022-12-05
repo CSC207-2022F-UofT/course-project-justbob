@@ -70,23 +70,18 @@ public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBound
             throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Title must not be empty");
         }
 
-        LocalDateTime newDeadlineFormatted = LocalDateTime.parse(request.newDeadline,
-                java.time.format.DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
 
-        if (newDeadlineFormatted.isEqual(oldDeadline)) {
+        if (request.newDeadline.isEqual(oldDeadline)) {
             throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Deadline must be different");
         }
 
-        if (newDeadlineFormatted.isBefore(LocalDateTime.now())) {
+        if (request.newDeadline.isBefore(LocalDateTime.now())) {
             throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Deadline must be in the future");
         }
 
-        if (request.newDeadline.equals("")) {
-            throw new SetInstanceMetaDataInputBoundary.SetInstanceMetaDataError("Deadline must not be empty");
-        }
 
         assessmentInstance.setTitle(request.newTitle);
-        assessmentInstance.setDeadline(newDeadlineFormatted);
+        assessmentInstance.setDeadline(request.newDeadline);
 
         entityGateway.saveAccount(account);
 
@@ -95,7 +90,7 @@ public class SetInstanceMetaDataUseCase implements SetInstanceMetaDataInputBound
     private SetInstanceMetaDataResponse createResponse(AssessmentInstance assessmentInstance) {
         SetInstanceMetaDataResponse response = new SetInstanceMetaDataResponse();
         response.newTitle = assessmentInstance.getTitle();
-        response.newDeadline = assessmentInstance.getDeadline().format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a"));
+        response.newDeadline = assessmentInstance.getDeadline();
         return response;
     }
 }

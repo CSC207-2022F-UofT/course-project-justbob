@@ -1,5 +1,7 @@
 package ports.usecases.assessment.setInstanceMetaData;
 
+import java.time.LocalDateTime;
+
 public class SetInstanceMetaDataRequest {
     public String username; /*abstract to path class*/
 
@@ -11,12 +13,12 @@ public class SetInstanceMetaDataRequest {
 
     public String newTitle;
 
-    public String newDeadline;
+    public LocalDateTime newDeadline;
 
     public SetInstanceMetaDataRequest() {};
 
     public SetInstanceMetaDataRequest(String username, String courseCode, String assessmentTitle, int instanceNumber,
-                                      String newTitle, String newDeadline) {
+                                      String newTitle, LocalDateTime newDeadline) {
         this.username = username;
         this.courseCode = courseCode;
         this.assessmentTitle = assessmentTitle;
