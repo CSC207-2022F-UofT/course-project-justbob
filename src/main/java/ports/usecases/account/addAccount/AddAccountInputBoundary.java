@@ -14,4 +14,16 @@ public interface AddAccountInputBoundary {
             super("Password don't match");
         }
     }
+
+    class PasswordNotValidError extends Error {
+        public PasswordNotValidError() {
+            super("Password isn't valid");
+        }
+    }
+
+    class UsernameNotValidError extends Error {
+        public UsernameNotValidError() {
+            super("Username isn't valid");
+        }
+    }
 }
