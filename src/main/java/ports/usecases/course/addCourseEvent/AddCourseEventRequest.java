@@ -1,4 +1,4 @@
-package ports.usecases.account.addCourseEvent;
+package ports.usecases.course.addCourseEvent;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

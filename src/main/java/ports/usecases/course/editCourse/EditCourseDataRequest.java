@@ -1,6 +1,6 @@
-package ports.usecases.account.setCourseMetaData;
+package ports.usecases.course.editCourse;
 
-public class SetCourseMetaDataRequest {
+public class EditCourseDataRequest {
     public String username; /*abstract to path class*/
 
     public String courseCode; /*abstract to path class*/
@@ -12,10 +12,10 @@ public class SetCourseMetaDataRequest {
     public float newCredit;
 
 
-    public SetCourseMetaDataRequest() {};
+    public EditCourseDataRequest() {};
 
-    public SetCourseMetaDataRequest(String username, String courseCode, String newCourseCode, String newCourseName,
-                                    float newCredit) {
+    public EditCourseDataRequest(String username, String courseCode, String newCourseCode, String newCourseName,
+                                 float newCredit) {
         this.username = username;
         this.courseCode = courseCode;
         this.newCourseCode = newCourseCode;

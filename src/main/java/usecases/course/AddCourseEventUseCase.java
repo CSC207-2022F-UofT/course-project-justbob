@@ -1,12 +1,12 @@
-package usecases.account;
+package usecases.course;
 
 import entities.account.Account;
 import entities.course.Course;
 import entities.course.CourseEvent;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.account.addCourseEvent.AddCourseEventRequest;
-import ports.usecases.account.addCourseEvent.AddCourseEventResponse;
+import ports.usecases.course.addCourseEvent.AddCourseEventRequest;
+import ports.usecases.course.addCourseEvent.AddCourseEventResponse;
 
 public class AddCourseEventUseCase {
 
@@ -33,16 +33,10 @@ public class AddCourseEventUseCase {
 
         entityGateway.saveAccount(account);
 
-        return createResponse(courseEvent);
+        return createResponse(course);
     }
 
-    private AddCourseEventResponse createResponse(CourseEvent courseEvent) {
-        AddCourseEventResponse response = new AddCourseEventResponse();
-        response.eventTitle = courseEvent.getTitle();
-        response.day = courseEvent.getDay();
-        response.startTime = courseEvent.getStartTime();
-        response.endTime = courseEvent.getEndTime();
-        response.location = courseEvent.getLocation();
-        return response;
+    private AddCourseEventResponse createResponse(Course course){
+        return new AddCourseEventResponse(course.getCourseEvents());
     }
 }
