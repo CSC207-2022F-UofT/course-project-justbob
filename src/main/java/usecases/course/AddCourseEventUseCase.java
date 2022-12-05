@@ -5,6 +5,7 @@ import entities.course.Course;
 import entities.course.CourseEvent;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
+import ports.usecases.course.addCourseEvent.AddCourseEventInputBoundary;
 import ports.usecases.course.addCourseEvent.AddCourseEventRequest;
 import ports.usecases.course.addCourseEvent.AddCourseEventResponse;
 
@@ -16,7 +17,7 @@ public class AddCourseEventUseCase {
         this.entityGateway = entityGateway;
     }
 
-    public AddCourseEventResponse execute(AddCourseEventRequest request) {
+    public AddCourseEventResponse execute(AddCourseEventRequest request) throws PathNotFoundError, AddCourseEventInputBoundary.AddCourseEventError {
 
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError();

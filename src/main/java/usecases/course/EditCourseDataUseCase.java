@@ -4,9 +4,9 @@ import entities.account.Account;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.course.editCourse.EditCourseDataInputBoundary;
-import ports.usecases.course.editCourse.EditCourseDataRequest;
-import ports.usecases.course.editCourse.EditCourseDataResponse;
+import ports.usecases.course.editCourseData.EditCourseDataInputBoundary;
+import ports.usecases.course.editCourseData.EditCourseDataRequest;
+import ports.usecases.course.editCourseData.EditCourseDataResponse;
 
 public class EditCourseDataUseCase {
 

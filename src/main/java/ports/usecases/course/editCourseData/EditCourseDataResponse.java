@@ -1,4 +1,4 @@
-package ports.usecases.course.editCourse;
+package ports.usecases.course.editCourseData;
 
 public class EditCourseDataResponse {
     public String newCourseCode;
