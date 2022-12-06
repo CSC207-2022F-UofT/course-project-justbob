@@ -30,10 +30,6 @@ public class EditCourseDataUseCase {
             throw new PathNotFoundError();
         }
 
-        if (request.newCourseCode.length() != 6) {
-            throw new EditCourseDataInputBoundary.EditCourseDataError("Course code must be 6 characters long");
-            }
-
         if (request.newCourseCode.equals(course.getCourseCode())) {
             throw new EditCourseDataInputBoundary.EditCourseDataError("Course code must be different from previous course code");
             }
