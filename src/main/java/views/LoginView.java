@@ -33,7 +33,7 @@ public class LoginView {
 
         // Password Label constructor
         JLabel label2 = new JLabel("Password");
-        label2.setBounds(100, 55, 70, 20);
+        label2.setBounds(100, 55, 193, 20);
         panel.add(label2);
 
         // Password TextField

@@ -23,7 +23,7 @@ public class AddAccountView {
 
         // Username label constructor
         JLabel label1 = new JLabel("Username");
-        label1.setBounds(100, 8, 70, 20);
+        label1.setBounds(100, 8, 193, 20);
         panel.add(label1);
 
         // Username TextField constructor
@@ -33,7 +33,7 @@ public class AddAccountView {
 
         // Password Label constructor
         JLabel label2 = new JLabel("Password");
-        label2.setBounds(100, 55, 70, 20);
+        label2.setBounds(100, 55, 193, 20);
         panel.add(label2);
 
         // Password TextField
@@ -43,7 +43,7 @@ public class AddAccountView {
 
         // Repeat Password Label constructor
         JLabel label3 = new JLabel("Repeat Password");
-        label3.setBounds(100, 105, 100, 20);
+        label3.setBounds(100, 105, 193, 20);
         panel.add(label3);
 
         // Repeat Password TextField
