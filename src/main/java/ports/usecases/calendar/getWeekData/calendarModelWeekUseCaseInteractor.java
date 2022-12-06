@@ -11,7 +11,7 @@ public class calendarModelWeekUseCaseInteractor implements calendarModelWeekInpu
 
     /**
      * Takes calendarModelWeekRequest and converts data into array of days in associated week
-     * @param calendarWeekRequest represents data
+     * @param calendarWeekRequest represents data (year-month-date in terms of numbers)
      * @return array of the week days (from sunday to saturday) associated with the date
      */
     @Override
