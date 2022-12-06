@@ -30,7 +30,8 @@ public class ApplicationView {
         String[] courseTitles = response.courseTitles;
         Double[] courseGrades = response.courseGrades;
 
-        if (courseCodes.length == 0) {
+        boolean isEmpty = courseCodes.length == 0;
+        if (isEmpty) {
             courseCodes = new String[]{"NCA"};
             courseTitles = new String[]{"No Course Added"};
             courseGrades = new Double[]{0.0};
@@ -50,10 +51,23 @@ public class ApplicationView {
 
         // add course button
         JButton addCourseButton = new JButton("Add Course");
-        addCourseButton.setBounds(100, 150, 193, 28);
+        if (!isEmpty) {
+            addCourseButton.setBounds(100, 150, 100, 28);
+        } else {
+            addCourseButton.setBounds(100, 150, 193, 28);
+        }
         panel.add(addCourseButton);
 
         addCourseButton.addActionListener(e -> new AddCourseView(entityGateway, entityFactory, response.username, frame));
+
+        if (!isEmpty) {
+            // showTrend button
+            JButton showTrendButton = new JButton("Show Trend");
+            showTrendButton.setBounds(210, 150, 100, 28);
+            panel.add(showTrendButton);
+
+            showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel));
+        }
 
         frame.setVisible(true);
 
