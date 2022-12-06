@@ -18,7 +18,7 @@ public class AddCourseView {
         frame.setTitle("Just Bob");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(400, 235));
+        frame.setSize(new Dimension(400, 245));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // CourseCode label constructor

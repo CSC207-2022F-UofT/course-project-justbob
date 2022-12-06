@@ -2,6 +2,7 @@ package usecases.account.AddSemesterCourse;
 
 import entities.account.Account;
 import entities.course.Course;
+import entities.course.Outline;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.ApplicationResponse;
@@ -29,9 +30,11 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         if (!(account.getSemester().getCourseByCode(request.courseCode) == null)) {
             throw new CourseAlreadyExistsError();
         }
+        Outline outline = entityFactory.createOutline();
         Course course = entityFactory.createCourse();
         course.setCourseCode(request.courseCode);
         course.setCourseName(request.courseName);
+        course.setOutline(outline);
         course.setCredit(request.credit);
         account.getSemester().addCourse(course);
         entityGateway.saveAccount(account);
