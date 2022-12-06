@@ -9,6 +9,11 @@ public class calendarModelDayUseCaseInteractor implements calendarModelDayInputB
         this.dayOutput = dayOutput;
     }
 
+    /**
+     * Takes calendarModelDayRequest and converts data into single day
+     * @param calendarDayRequest date (year-month-date all in terms of numbers)
+     * @return date as LocalDate
+     */
     @Override
     public calendarModelDayResponse execute(calendarModelDayRequest calendarDayRequest) {
         LocalDate day = calendarDayRequest.getDate();
