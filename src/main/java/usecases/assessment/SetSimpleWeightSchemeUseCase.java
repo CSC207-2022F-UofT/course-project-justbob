@@ -54,6 +54,11 @@ public class SetSimpleWeightSchemeUseCase implements SetSimpleWeightSchemeInputB
             throw new SetSimpleWeightSchemeInputBoundary.SetSimpleWeightSchemeError("Total weight of instances must be less than or equal to 1");
         }
 
+        if (assessment.getNumberOfSubmittedInstances() > request.numberOfInstances) {
+            throw new SetSimpleWeightSchemeInputBoundary.SetSimpleWeightSchemeError
+                    ("New Weightscheme cannot have less assessment instances than the number of submitted assessment instances");
+        }
+
         SimpleWeight weightscheme = new SimpleWeight(new Weight(request.numberOfInstances, request.weightOfEachInstance));
 
         assessment.setWeightScheme(weightscheme);
