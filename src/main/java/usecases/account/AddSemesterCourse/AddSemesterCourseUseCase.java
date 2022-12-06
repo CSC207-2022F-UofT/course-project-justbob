@@ -30,17 +30,19 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         if (!(account.getSemester().getCourseByCode(request.courseCode) == null)) {
             throw new CourseAlreadyExistsError();
         }
-        Outline outline = entityFactory.createOutline();
-        Course course = entityFactory.createCourse();
-        course.setCourseCode(request.courseCode);
-        course.setCourseName(request.courseName);
-        course.setOutline(outline);
+
         float credit;
         try {
             credit = Float.parseFloat(request.credit);
         } catch (NumberFormatException ex) {
             throw new InvalidCreditError();
         }
+
+        Outline outline = entityFactory.createOutline();
+        Course course = entityFactory.createCourse();
+        course.setCourseCode(request.courseCode);
+        course.setCourseName(request.courseName);
+        course.setOutline(outline);
         course.setCredit(credit);
         account.getSemester().addCourse(course);
         entityGateway.saveAccount(account);
