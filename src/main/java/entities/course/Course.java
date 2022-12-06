@@ -10,6 +10,8 @@ public abstract class Course {
     public abstract Outline getOutline();
     public abstract ArrayList<CourseEvent> getCourseEvents();
 
+    public abstract CourseEvent getCourseEventByTitle(String courseEventTitle);
+
     public abstract void setCourseCode(String courseCode);
     public abstract void setCourseName(String courseName);
     public abstract void setCredit(float credit);
