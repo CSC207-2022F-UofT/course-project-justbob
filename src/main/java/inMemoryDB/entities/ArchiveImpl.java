@@ -36,10 +36,10 @@ public class ArchiveImpl extends Archive {
 
     @Override
     public Course getCourseByCode(String courseCode) {
-        Course[] candidates = (Course[]) courseToData.keySet().stream().filter(course ->
-                Objects.equals(course.getCourseCode(), courseCode)).toArray();
-        if(candidates.length > 0){
-            return candidates[0];
+        for(Course course : getCourses()) {
+            if (course.getCourseCode().equals(courseCode)) {
+                return course;
+            }
         }
 
         return null;
