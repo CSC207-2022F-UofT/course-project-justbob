@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 public class calendarModelWeekRequest {
     public LocalDate date;
-
     public calendarModelWeekRequest(LocalDate date){
         this.date = date;
     }
