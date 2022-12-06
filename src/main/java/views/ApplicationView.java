@@ -66,7 +66,7 @@ public class ApplicationView {
             showTrendButton.setBounds(210, 150, 100, 28);
             panel.add(showTrendButton);
 
-            showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel));
+            showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
         }
 
         frame.setVisible(true);

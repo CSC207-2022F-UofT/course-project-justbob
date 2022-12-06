@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TrendView {
-    public TrendView(EntityGateway entityGateway, EntityFactory entityFactory, TrendModel model) {
+    public TrendView(EntityGateway entityGateway, EntityFactory entityFactory, TrendModel model, String name) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -22,7 +22,7 @@ public class TrendView {
         // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         CategoryChart chart = new CategoryChart(1000, 500);
-        chart.addSeries("Name", model.xData, model.yData);
+        chart.addSeries(name, model.xData, model.yData);
 
         JPanel chartPanel = new XChartPanel<>(chart);
 
