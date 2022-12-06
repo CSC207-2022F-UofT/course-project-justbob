@@ -57,7 +57,7 @@ public class AddAccountView {
         panel.add(registerButton);
 
         // Login Button constructor
-        JButton loginPageButton = new JButton("Login Page");
+        JButton loginPageButton = new JButton("Login");
         loginPageButton.setBounds(100, 190, 193, 28);
         panel.add(loginPageButton);
 
