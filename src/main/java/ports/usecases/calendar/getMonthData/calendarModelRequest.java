@@ -4,6 +4,10 @@ import java.time.*;
 public class calendarModelRequest {
     public LocalDate date;
 
+    /**
+     *
+     * @param date is a LocalDate representing a date
+     */
     public calendarModelRequest(LocalDate date){
         this.date = date;
     }

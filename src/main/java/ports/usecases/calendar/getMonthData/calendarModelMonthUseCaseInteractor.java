@@ -15,6 +15,11 @@ public class calendarModelMonthUseCaseInteractor implements calendarModelMonthIn
         this.monthOutput = monthOutput;
     }
 
+    /**
+     * Takes calenderModelRequest and converts date into array of dates in month
+     * @param calendarMonthRequest represents date
+     * @return array of list consisting days in month
+     */
     @Override
     public calendarModelResponseMonth execute(calendarModelRequest calendarMonthRequest) {
         LocalDate[] monthDays = new LocalDate[42];
