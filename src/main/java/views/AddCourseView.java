@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddCourseView {
-    public AddCourseView(EntityGateway entityGateway, EntityFactory entityFactory, String username) {
+    public AddCourseView(EntityGateway entityGateway, EntityFactory entityFactory, String username, JFrame parentFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -64,10 +64,10 @@ public class AddCourseView {
         addCourseButton.addActionListener(e -> {
             String courseCode = textField1.getText();
             String courseName = textField2.getText();
-            float credit = Float.parseFloat(textField3.getText());
+            String credit = textField3.getText();
 
             AddSemesterCourseRequest request = new AddSemesterCourseRequest(username, courseCode, courseName, credit);
-            new AddSemesterCourseController(request, frame, entityGateway, entityFactory);
+            new AddSemesterCourseController(request, frame, entityGateway, entityFactory, parentFrame);
         });
 
         backButton.addActionListener(e -> frame.dispose());

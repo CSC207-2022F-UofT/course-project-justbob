@@ -8,9 +8,9 @@ import ports.usecases.account.addSemesterCourse.AddSemesterCourseRequest;
 import javax.swing.*;
 
 public class AddSemesterCourseController {
-    public AddSemesterCourseController(AddSemesterCourseRequest request, JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory) {
+    public AddSemesterCourseController(AddSemesterCourseRequest request, JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory, JFrame parentFrame) {
         AddSemesterCourseUseCase usecase = new AddSemesterCourseUseCase(entityGateway, entityFactory);
-        AddSemesterCoursePresenter presenter = new AddSemesterCoursePresenter(frame, entityGateway, entityFactory);
+        AddSemesterCoursePresenter presenter = new AddSemesterCoursePresenter(frame, entityGateway, entityFactory, parentFrame);
 
         try {
             ApplicationResponse response = usecase.execute(request);

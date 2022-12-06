@@ -16,4 +16,10 @@ public interface AddSemesterCourseInputBoundary {
             super("Course already exists.");
         }
     }
+
+    class InvalidCreditError extends Error {
+        public InvalidCreditError() {
+            super("Invalid credit.");
+        }
+    }
 }

@@ -11,11 +11,13 @@ public class AddSemesterCoursePresenter {
     private final JFrame frame;
     private final EntityGateway entityGateway;
     private final EntityFactory entityFactory;
+    private final JFrame parentFrame;
 
-    public AddSemesterCoursePresenter(JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory) {
+    public AddSemesterCoursePresenter(JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory, JFrame parentFrame) {
         this.entityGateway = entityGateway;
         this.entityFactory = entityFactory;
         this.frame = frame;
+        this.parentFrame = parentFrame;
     }
 
     public void presentError(Throwable error) {
@@ -25,6 +27,7 @@ public class AddSemesterCoursePresenter {
     public void presentSuccess(ApplicationResponse response) {
         JOptionPane.showMessageDialog(null, "Course Added", "Success", JOptionPane.INFORMATION_MESSAGE);
         this.frame.dispose();
+        this.parentFrame.dispose();
         new ApplicationView(entityGateway, entityFactory, response);
     }
 }

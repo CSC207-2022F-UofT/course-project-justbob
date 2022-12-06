@@ -53,10 +53,7 @@ public class ApplicationView {
         addCourseButton.setBounds(100, 150, 193, 28);
         panel.add(addCourseButton);
 
-        addCourseButton.addActionListener(e -> {
-            frame.dispose();
-            new AddCourseView(entityGateway, entityFactory, response.username);
-        });
+        addCourseButton.addActionListener(e -> new AddCourseView(entityGateway, entityFactory, response.username, frame));
 
         frame.setVisible(true);
 

@@ -35,7 +35,13 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         course.setCourseCode(request.courseCode);
         course.setCourseName(request.courseName);
         course.setOutline(outline);
-        course.setCredit(request.credit);
+        float credit;
+        try {
+            credit = Float.parseFloat(request.credit);
+        } catch (NumberFormatException ex) {
+            throw new InvalidCreditError();
+        }
+        course.setCredit(credit);
         account.getSemester().addCourse(course);
         entityGateway.saveAccount(account);
         return createResponse(account);
