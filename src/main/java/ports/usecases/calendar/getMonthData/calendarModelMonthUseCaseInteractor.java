@@ -17,7 +17,7 @@ public class calendarModelMonthUseCaseInteractor implements calendarModelMonthIn
 
     /**
      * Takes calenderModelRequest and converts date into array of dates in month
-     * @param calendarMonthRequest represents date
+     * @param calendarMonthRequest represents date (year-month-date in numbers)
      * @return array of list consisting days in month
      */
     @Override
