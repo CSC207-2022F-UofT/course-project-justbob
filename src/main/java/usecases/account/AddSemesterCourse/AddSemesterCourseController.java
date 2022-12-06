@@ -12,9 +12,8 @@ public class AddSemesterCourseController {
         AddSemesterCourseUseCase usecase = new AddSemesterCourseUseCase(entityGateway, entityFactory);
         AddSemesterCoursePresenter presenter = new AddSemesterCoursePresenter(frame, entityGateway, entityFactory);
 
-        ApplicationResponse response = usecase.execute(request);
         try {
-            // ApplicationResponse response = usecase.execute(request);
+            ApplicationResponse response = usecase.execute(request);
             presenter.presentSuccess(response);
         } catch (Throwable error) {
             presenter.presentError(error);
