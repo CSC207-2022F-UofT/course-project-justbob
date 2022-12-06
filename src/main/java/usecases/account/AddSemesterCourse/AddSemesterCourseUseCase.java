@@ -24,7 +24,7 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
     @Override
     public ApplicationResponse execute(AddSemesterCourseRequest request) {
         if (!entityGateway.existsAccount(request.username)) {
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Account not found.");
         }
         Account account = entityGateway.loadAccount(request.username);
         if (!(account.getSemester().getCourseByCode(request.courseCode) == null)) {

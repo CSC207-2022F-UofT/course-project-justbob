@@ -11,5 +11,9 @@ public interface AddSemesterCourseInputBoundary {
      */
     ApplicationResponse execute(AddSemesterCourseRequest request) throws CourseAlreadyExistsError;
 
-    class CourseAlreadyExistsError extends Error{}
+    class CourseAlreadyExistsError extends Error {
+        public CourseAlreadyExistsError() {
+            super("Course already exists.");
+        }
+    }
 }
