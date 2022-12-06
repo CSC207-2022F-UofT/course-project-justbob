@@ -22,20 +22,37 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
     }
 
     @Override
-    public ApplicationResponse execute(AddSemesterCourseRequest request) {
+    public ApplicationResponse execute(AddSemesterCourseRequest request)
+    throws PathNotFoundError, AddSemesterCourseInputBoundary.AddSemesterCourseError {
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError("Account not found.");
         }
         Account account = entityGateway.loadAccount(request.username);
-        if (!(account.getSemester().getCourseByCode(request.courseCode) == null)) {
-            throw new CourseAlreadyExistsError();
-        }
 
         float credit;
         try {
             credit = Float.parseFloat(request.credit);
         } catch (NumberFormatException ex) {
             throw new InvalidCreditError();
+        }
+
+        if (account.getArchive().getCourseByCode(request.courseCode) != null ||
+                account.getSemester().getCourseByCode(request.courseCode) != null) {
+            throw new AddSemesterCourseError("Course Code must be unique");
+        }
+
+
+        if (request.courseName.length() > 50) {
+            throw new AddSemesterCourseError("Course name must be less than 30 characters");
+        }
+
+        if (request.courseName.equals("")) {
+            throw new AddSemesterCourseError("Course name cannot be empty");
+        }
+
+
+        if (credit != 0.5 || credit != 1.0) {
+            throw new AddSemesterCourseError("Credit must be either 0.5 or 1.0");
         }
 
         Outline outline = entityFactory.createOutline();

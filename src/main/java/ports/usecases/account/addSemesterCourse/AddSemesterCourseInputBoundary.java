@@ -7,13 +7,13 @@ public interface AddSemesterCourseInputBoundary {
      * add a new course to the current semester of the user's account
      *
      * @param request a request for a new course with the course's courseCode, courseName, and credit
-     * @throws CourseAlreadyExistsError if the course requested is already in semester
+     * @throws AddSemesterCourseError if the course can't be added
      */
-    ApplicationResponse execute(AddSemesterCourseRequest request) throws CourseAlreadyExistsError;
+    ApplicationResponse execute(AddSemesterCourseRequest request) throws AddSemesterCourseError;
 
-    class CourseAlreadyExistsError extends Error {
-        public CourseAlreadyExistsError() {
-            super("Course already exists.");
+    class AddSemesterCourseError extends Error {
+        public AddSemesterCourseError(String message) {
+            super(message);
         }
     }
 
