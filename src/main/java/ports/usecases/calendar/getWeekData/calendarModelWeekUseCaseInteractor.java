@@ -9,6 +9,11 @@ public class calendarModelWeekUseCaseInteractor implements calendarModelWeekInpu
         this.weekOutput = weekOutput;
     }
 
+    /**
+     * Takes calendarModelWeekRequest and converts data into array of days in associated week
+     * @param calendarWeekRequest represents data
+     * @return array of the week days (from sunday to saturday) associated with the date
+     */
     @Override
     public calendarModelWeekResponse execute(calendarModelWeekRequest calendarWeekRequest) {
         LocalDate[] weekDays = new LocalDate[7];
