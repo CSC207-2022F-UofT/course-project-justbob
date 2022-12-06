@@ -15,11 +15,16 @@ public abstract class Account {
 
     /**
      * Checks whether password is valid
+     *
      * @param password Takes string representing password
      * @return a boolean if password is valid
      */
-    public static boolean isPasswordValid(String password){
+    public static boolean isPasswordValid(String password) {
         return password.length() >= 8;
+    }
+
+    public static boolean isUsernameValid(String username) {
+        return username.length() >= 2;
     }
 
     public interface AccountFactory {

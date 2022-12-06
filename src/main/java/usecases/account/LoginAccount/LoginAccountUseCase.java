@@ -1,11 +1,11 @@
-package usecases.account;
+package usecases.account.LoginAccount;
 
 import entities.account.Account;
 import entities.course.Course;
 import ports.database.EntityGateway;
+import ports.usecases.ApplicationResponse;
 import ports.usecases.account.loginAccount.LoginAccountInputBoundary;
 import ports.usecases.account.loginAccount.LoginAccountRequest;
-import ports.usecases.account.loginAccount.LoginAccountResponse;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
 // TODO: implement testing
@@ -16,23 +16,33 @@ public class LoginAccountUseCase implements LoginAccountInputBoundary {
         this.entityGateway = entityGateway;
     }
 
-    public LoginAccountResponse execute(LoginAccountRequest request) throws LoginError {
+    public ApplicationResponse execute(LoginAccountRequest request) throws LoginError {
         if (!entityGateway.existsAccount(request.username)) {
             throw new LoginError("Username not found.");
         }
         Account account = entityGateway.loadAccount(request.username);
-        if (account.getPassword().equals(request.password)) {
+        if (!account.getPassword().equals(request.password)) {
             throw new LoginError("Incorrect Password");
         }
         return createResponse(account);
     }
 
-    private LoginAccountResponse createResponse(Account account) {
-        LoginAccountResponse response = new LoginAccountResponse();
+    private ApplicationResponse createResponse(Account account) {
+        ApplicationResponse response = new ApplicationResponse();
+        response.username = account.getUsername();
         response.semesterTitle = account.getSemester().getTitle();
-        response.courseCodes = (String[]) account.getSemester().getRunningCourses().stream()
+        response.courseCodes = account.getSemester().getRunningCourses().stream()
                 .map(Course::getCourseCode)
-                .toArray();
+                .toArray(String[]::new);
+        response.courseTitles = account.getSemester().getRunningCourses().stream()
+                .map(Course::getCourseName)
+                .toArray(String[]::new);
+        response.courseGrades = new Double[response.courseCodes.length];
+        int index = 0;
+        for (Course course : account.getSemester().getRunningCourses()) {
+            response.courseGrades[index] = course.getOutline().computeRunningGrade();
+            index += 1;
+        }
         response.trendModel = new GetAccountTrendUseCase(entityGateway).execute(account.getUsername());
         return response;
     }
