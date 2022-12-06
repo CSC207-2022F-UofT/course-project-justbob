@@ -9,11 +9,10 @@ import ports.usecases.account.addAccount.AddAccountRequest;
 
 // TODO: implement testing
 public class AddAccountUseCase implements AddAccountInputBoundary {
-    private Account.AccountFactory accountFactory;
-    private Semester.SemesterFactory semesterFactory;
-    private Archive.ArchiveFactory archiveFactory;
-
-    private EntityGateway entityGateway;
+    private final Account.AccountFactory accountFactory;
+    private final Semester.SemesterFactory semesterFactory;
+    private final Archive.ArchiveFactory archiveFactory;
+    private final EntityGateway entityGateway;
 
     public AddAccountUseCase(
             Account.AccountFactory accountFactory,
@@ -29,7 +28,7 @@ public class AddAccountUseCase implements AddAccountInputBoundary {
 
     public void execute(AddAccountRequest request) {
         if (entityGateway.existsAccount(request.username)) {
-            throw new UsernameAlreadyInUseError();
+            throw new UsernameAlreadyInUseError(request.username);
         }
         Account account = accountFactory.createAccount();
         setFields(account, request);

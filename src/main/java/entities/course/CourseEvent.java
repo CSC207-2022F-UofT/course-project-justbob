@@ -5,7 +5,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 
 public class CourseEvent {
-    private String type;
+    private String title;
     private DayOfWeek day;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -13,8 +13,8 @@ public class CourseEvent {
 
     /**
      * Create a new CourseEvent object with the given parameters
-     * @param type the type of the course event
-     *             e.g. 'Lecture', 'Tutorial', 'Lab'
+     * @param title the title of the course event
+     *             e.g. 'Lecture 1', 'Tutorial', 'Lab'
      *             Note: this is not necessarily the same as the name of the course event (there can be two different lectures)
      * @param day the day of the week the course event is held on
      *            e.g. 'Monday', 'Tuesday', etc.
@@ -31,20 +31,20 @@ public class CourseEvent {
      *                 e.g. 'BA 1234'
      */
 
-    public CourseEvent(String type, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
-        this.type = type;
+    public CourseEvent(String title, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
+        this.title = title;
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
         this.location = location;
     }
 
-    public String getType() {
-        return type;
+    public String getTitle() {
+        return title;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public DayOfWeek getDay() {
@@ -84,6 +84,6 @@ public class CourseEvent {
     }
 
     public String toString() {
-        return String.format("%s - %s from %s to %s - %s", type, day, startTime, endTime, location);
+        return String.format("%s - %s from %s to %s - %s", title, day, startTime, endTime, location);
     }
 }

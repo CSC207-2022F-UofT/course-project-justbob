@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskListImpl extends TaskList {
-    private List<Task> taskList;
+    private final List<Task> taskList = new ArrayList<>();
 
     public TaskListImpl(Account account){
         List<Course> courseList = account.getArchive().getCourses();
-        TaskImpl task = null;
+        TaskImpl task;
         List<List<AssessmentInstance>> assessmentInstances = new ArrayList<>();
         for (Course i: courseList){
             Outline outline = i.getOutline();
@@ -28,9 +28,10 @@ public class TaskListImpl extends TaskList {
             assessmentInstances.add(assessmentInstancesList);
         }
         for (int j = 0; j < courseList.size(); j++){
-            for (AssessmentInstance k: assessmentInstances.get(j))
+            for (AssessmentInstance k : assessmentInstances.get(j)) {
                 task = new TaskImpl(courseList.get(j).getCourseName(), k);
                 taskList.add(task);
+            }
         }
     }
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 // TODO: implement testing
 public class GetCourseTrendUseCase implements GetCourseTrendInputBoundary {
-    private EntityGateway entityGateway;
+    private final EntityGateway entityGateway;
 
     public GetCourseTrendUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
@@ -21,35 +21,32 @@ public class GetCourseTrendUseCase implements GetCourseTrendInputBoundary {
 
     @Override
     public TrendModel execute(String username, String courseCode) {
-        // TODO: Abstractify the path verification process
         if (!entityGateway.existsAccount(username)) {
-            // TODO: specify (first implement PathNotFoundError's TODO.
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Username: " + username);
         }
         Account account = entityGateway.loadAccount(username);
         Course course = account.getSemester().getCourseByCode(courseCode);
         if (course == null) {
-            // TODO: specify
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Course: " + courseCode);
         }
 
-        // TODO: test edge cases (especially when certain fields are empty (assessment, instance...)
         return calculateTrend(course);
     }
 
-    // TODO: add the ability to use instances rather than assessments.
     private TrendModel calculateTrend(Course course) {
         List<Assessment> assessments =  course.getOutline().getAssessments();
         List<String> assessment_names = new ArrayList<>();
         List<Double> grades = new ArrayList<>();
         for (Assessment assessment: assessments) {
             double[] part_marks = assessment.getCommittedMarks();
+            if (part_marks.length == 0) {
+                continue;
+            }
             double grade = 0;
-            for(double part_mark : part_marks) {
+            for (double part_mark : part_marks) {
                 grade += part_mark;
             }
             assessment_names.add(assessment.getTitle());
-            //TODO: division by zero error is possible here.
             grades.add(grade / part_marks.length);  // Average
         }
         return new TrendModel(assessment_names, grades);
