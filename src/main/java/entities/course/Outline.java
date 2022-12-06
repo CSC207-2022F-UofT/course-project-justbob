@@ -9,6 +9,8 @@ public abstract class Outline {
 
     public abstract ArrayList<String> getAssessmentsTitles();
 
+    public abstract ArrayList<String> getAssessmentsSingularTitles();
+
     public abstract Assessment getAssessment(int index) throws IndexOutOfBoundsException;
 
     public abstract int getIndexByTitle(String assessmentTitle);

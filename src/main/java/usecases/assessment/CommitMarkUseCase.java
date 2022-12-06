@@ -6,10 +6,9 @@ import entities.assessment.AssessmentInstance;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.commitMarkUseCase.CommitMarkInputBoundary;
-import ports.usecases.assessment.commitMarkUseCase.CommitMarkRequest;
-import ports.usecases.assessment.commitMarkUseCase.CommitMarkResponse;
-import ports.usecases.assessment.commitMarkUseCase.CommitMarkInputBoundary;
+import ports.usecases.assessment.commitMark.CommitMarkInputBoundary;
+import ports.usecases.assessment.commitMark.CommitMarkRequest;
+import ports.usecases.assessment.commitMark.CommitMarkResponse;
 
 import java.util.ArrayList;
 
@@ -30,6 +29,10 @@ public class CommitMarkUseCase implements CommitMarkInputBoundary {
 
         Account account = entityGateway.loadAccount(request.username);
         Course course = account.getSemester().getCourseByCode(request.courseCode);
+
+        if (course == null) {
+            throw new PathNotFoundError();
+        }
 
         ArrayList<String> assessmentTitles = course.getOutline().getAssessmentsTitles();
         if (!assessmentTitles.contains(request.assessmentTitle)) {
@@ -55,6 +58,7 @@ public class CommitMarkUseCase implements CommitMarkInputBoundary {
         }
 
         assessmentInstance.setCommitted(true);
+        entityGateway.saveAccount(account);
         return createResponse(assessmentInstance);
     }
     private CommitMarkResponse createResponse(AssessmentInstance assessmentInstance) {

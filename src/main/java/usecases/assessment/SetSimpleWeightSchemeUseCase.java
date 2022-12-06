@@ -5,13 +5,11 @@ import entities.assessment.Assessment;
 import entities.course.Course;
 import entities.weightScheme.SimpleWeight;
 import entities.weightScheme.Weight;
-import inMemoryDB.entities.AssessmentImpl;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.addSimpleAssessmentUseCase.AddSimpleAssessmentInputBoundary;
-import ports.usecases.assessment.setWeightSchemeUseCase.SetSimpleWeightSchemeInputBoundary;
-import ports.usecases.assessment.setWeightSchemeUseCase.SetSimpleWeightSchemeRequest;
-import ports.usecases.assessment.setWeightSchemeUseCase.SetSimpleWeightSchemeResponse;
+import ports.usecases.assessment.setWeightScheme.SetSimpleWeightSchemeInputBoundary;
+import ports.usecases.assessment.setWeightScheme.SetSimpleWeightSchemeRequest;
+import ports.usecases.assessment.setWeightScheme.SetSimpleWeightSchemeResponse;
 
 import java.util.ArrayList;
 
@@ -56,9 +54,15 @@ public class SetSimpleWeightSchemeUseCase implements SetSimpleWeightSchemeInputB
             throw new SetSimpleWeightSchemeInputBoundary.SetSimpleWeightSchemeError("Total weight of instances must be less than or equal to 1");
         }
 
+        if (assessment.getNumberOfSubmittedInstances() > request.numberOfInstances) {
+            throw new SetSimpleWeightSchemeInputBoundary.SetSimpleWeightSchemeError
+                    ("New Weightscheme cannot have less assessment instances than the number of submitted assessment instances");
+        }
+
         SimpleWeight weightscheme = new SimpleWeight(new Weight(request.numberOfInstances, request.weightOfEachInstance));
 
         assessment.setWeightScheme(weightscheme);
+        entityGateway.saveAccount(account);
 
         return createResponse(assessment);
 

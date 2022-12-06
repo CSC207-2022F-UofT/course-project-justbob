@@ -5,9 +5,9 @@ import entities.assessment.Assessment;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.setAssessmentTitleUseCase.SetAssessmentTitleInputBoundary;
-import ports.usecases.assessment.setAssessmentTitleUseCase.SetAssessmentTitleRequest;
-import ports.usecases.assessment.setAssessmentTitleUseCase.SetAssessmentTitleResponse;
+import ports.usecases.assessment.setAssessmentTitle.SetAssessmentTitleInputBoundary;
+import ports.usecases.assessment.setAssessmentTitle.SetAssessmentTitleRequest;
+import ports.usecases.assessment.setAssessmentTitle.SetAssessmentTitleResponse;
 
 import java.util.ArrayList;
 
@@ -56,7 +56,7 @@ public class SetAssessmentTitleUseCase implements SetAssessmentTitleInputBoundar
         }
 
         assessment.setTitle(request.newAssessmentTitle);
-
+        entityGateway.saveAccount(account);
         return createResponse(assessment);
     }
 

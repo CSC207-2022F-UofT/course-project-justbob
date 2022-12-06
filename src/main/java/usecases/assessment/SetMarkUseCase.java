@@ -6,9 +6,9 @@ import entities.assessment.AssessmentInstance;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.setMarkUseCase.SetMarkInputBoundary;
-import ports.usecases.assessment.setMarkUseCase.SetMarkRequest;
-import ports.usecases.assessment.setMarkUseCase.SetMarkResponse;
+import ports.usecases.assessment.setMark.SetMarkInputBoundary;
+import ports.usecases.assessment.setMark.SetMarkRequest;
+import ports.usecases.assessment.setMark.SetMarkResponse;
 
 import java.util.ArrayList;
 
@@ -30,6 +30,10 @@ public class SetMarkUseCase implements SetMarkInputBoundary {
         Account account = entityGateway.loadAccount(request.username);
         Course course = account.getSemester().getCourseByCode(request.courseCode);
 
+        if (course == null) {
+            throw new PathNotFoundError();
+        }
+
         ArrayList<String> assessmentTitles = course.getOutline().getAssessmentsTitles();
         if (!assessmentTitles.contains(request.assessmentTitle)) {
             throw new PathNotFoundError();
@@ -50,6 +54,7 @@ public class SetMarkUseCase implements SetMarkInputBoundary {
             throw new SetMarkInputBoundary.SetMarkError("Cannot change mark of committed assessment");
         }
         assessmentInstance.setMark(request.mark);
+        entityGateway.saveAccount(account);
         return createResponse(assessmentInstance);
     }
     private SetMarkResponse createResponse(AssessmentInstance assessmentInstance) {

@@ -8,6 +8,7 @@ import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseRequest;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseResponse;
 import ports.usecases.account.loginAccount.LoginAccountResponse;
+import ports.usecases.course.editCourseData.EditCourseDataInputBoundary;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
 import java.util.Arrays;
@@ -24,14 +25,32 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
     }
 
     @Override
-    public AddSemesterCourseResponse execute(AddSemesterCourseRequest request) {
+    public AddSemesterCourseResponse execute(AddSemesterCourseRequest request) throws
+            AddSemesterCourseInputBoundary.AddSemesterCourseError, PathNotFoundError {
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError();
         }
         Account account = entityGateway.loadAccount(request.username);
-        if(!(account.getSemester().getCourseByCode(request.courseCode) == null)){
-            throw new CourseAlreadyExistsError();
+
+        if (account.getArchive().getCourseByCode(request.courseCode) != null ||
+                account.getSemester().getCourseByCode(request.courseCode) != null) {
+            throw new AddSemesterCourseError("Course Code must be unique");
         }
+
+
+        if (request.courseName.length() > 50) {
+            throw new AddSemesterCourseError("Course name must be less than 30 characters");
+        }
+
+        if (request.courseName.equals("")) {
+            throw new AddSemesterCourseError("Course name cannot be empty");
+        }
+
+
+        if (request.credit != 0.5 || request.credit != 1.0) {
+            throw new AddSemesterCourseError("Credit must be either 0.5 or 1.0");
+        }
+
         Course course = courseFactory.createCourse();
         course.setCourseCode(request.courseCode);
         course.setCourseName(request.courseName);
