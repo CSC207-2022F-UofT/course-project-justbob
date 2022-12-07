@@ -10,6 +10,7 @@ import ports.usecases.account.addSemesterCourse.AddSemesterCourseResponse;
 import ports.usecases.account.loginAccount.LoginAccountResponse;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,7 +44,11 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
 
     private AddSemesterCourseResponse createResponse(Account account) {
         AddSemesterCourseResponse response = new AddSemesterCourseResponse();
-        response.courseList = List.of((String[]) account.getSemester().getRunningCourses().stream().map(Course::getCourseCode).toArray());
+        List<String> myList = new ArrayList<>();
+        for(Course course : account.getSemester().getRunningCourses()){
+            myList.add(course.getCourseCode());
+        }
+        response.courseList = myList;
         return response;
     }
 }

@@ -25,7 +25,7 @@ public class archiveTests {
     private EntityGateway entityGateway;
     private InMemoryEntityFactory factory;
 
-    @Test
+    /*@Test
     public void ArchiveCourseTest(){
         this.entityGateway = new InMemoryEntityGateway();
         this.factory = new InMemoryEntityFactory();
@@ -42,7 +42,7 @@ public class archiveTests {
         entityGateway.saveAccount(account);
         ArchiveCourseUseCase myUseCase = new ArchiveCourseUseCase(entityGateway);
         myUseCase.execute("bob12345", "CSC207");
-    }
+    }*/
 
     @Test
     public void RemoveCourseTest(){
