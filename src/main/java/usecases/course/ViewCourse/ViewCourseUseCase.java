@@ -4,9 +4,9 @@ import entities.account.Account;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
+import ports.usecases.course.viewCourse.ViewCourseInputBoundary;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
 import ports.usecases.course.viewCourse.ViewCourseResponse;
-import ports.usecases.course.viewCourse.ViewCourseInputBoundary;
 
 public class ViewCourseUseCase implements ViewCourseInputBoundary {
 
@@ -24,11 +24,12 @@ public class ViewCourseUseCase implements ViewCourseInputBoundary {
         if (course == null) {
             throw new PathNotFoundError();
         }
-        return createResponse(course);
+        return createResponse(course, account);
     }
 
-    private ViewCourseResponse createResponse(Course course) {
+    private ViewCourseResponse createResponse(Course course, Account account) {
         ViewCourseResponse response = new ViewCourseResponse();
+        response.username = account.getUsername();
         response.courseCode = course.getCourseCode();
         response.courseTitle = course.getCourseName();
         response.credit = Float.toString(course.getCredit());
