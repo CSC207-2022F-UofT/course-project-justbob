@@ -26,7 +26,7 @@ public class AssessmentView {
 
         // Title label constructor
         JLabel label1 = new JLabel(response.assessmentTitle);
-        label1.setBounds(100, 10, 370, 20);
+        label1.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT) - 25, 370, 20);
         panel.add(label1);
 
         // Assessment Instances Table constructor
@@ -48,7 +48,7 @@ public class AssessmentView {
 
         // back button
         JButton backButton = new JButton("Back");
-        backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 200, 160, 50);
+        backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 300, 160, 50);
         panel.add(backButton);
 
         backButton.addActionListener(e -> {
