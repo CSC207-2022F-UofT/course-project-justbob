@@ -2,7 +2,11 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
+import ports.usecases.assessment.viewAssessment.ViewAssessmentRequest;
+import ports.usecases.course.viewCourse.ViewCourseRequest;
 import ports.usecases.course.viewCourse.ViewCourseResponse;
+import usecases.assessment.ViewAssessment.ViewAssessmentController;
+import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -47,7 +51,7 @@ public class CourseView {
         dataColumns[2] = doubleListToStringList(assessmentWeights);
 
         String[][] data = transpose(dataColumns);
-        String[] column = {"Assessment Titles", "Assessment Number of Instances", "Assessment Weight"};
+        String[] column = {"Assessment Titles", "Number of Instances", "Assessment Weight"};
 
         JTable assessmentsTable = new JTable(data, column);
         assessmentsTable.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT), (int) (WIDTH - (0.133*WIDTH)), (int) (HEIGHT * 0.533));
@@ -71,6 +75,23 @@ public class CourseView {
 
 
         addSimpleAssessmentButton.addActionListener(e -> new AddSimpleAssessmentView(entityGateway, entityFactory, response.username, response.courseCode, frame));
+
+        String[] finalAssessmentTitles = assessmentTitles;
+        if (!isEmpty) {
+            assessmentsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    int row = assessmentsTable.rowAtPoint(evt.getPoint());
+                    int col = assessmentsTable.columnAtPoint(evt.getPoint());
+                    if (row >= 0 && col >= 0) {
+                        String assessmentTitle = finalAssessmentTitles[row];
+                        ViewAssessmentRequest request = new ViewAssessmentRequest(response.username, response.courseCode, assessmentTitle);
+                        new ViewAssessmentController(request, frame, entityGateway, entityFactory, frame);
+                        frame.setVisible(false);
+                    }
+                }
+            });
+        }
 
         // back button
         JButton backButton = new JButton("Back");
