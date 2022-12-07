@@ -3,6 +3,7 @@ package usecases.course.ViewCourse;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
+import ports.usecases.course.viewCourse.ViewCourseResponse;
 
 import javax.swing.*;
 
@@ -12,8 +13,8 @@ public class ViewCourseController {
         ViewCourseUseCase usecase = new ViewCourseUseCase(entityGateway);
         ViewCoursePresenter presenter = new ViewCoursePresenter(frame, entityGateway, entityFactory);
 
-        presenter.present(usecase.execute(request));
-
+        ViewCourseResponse response = usecase.execute(request);
+        presenter.present(response);
     }
 
 }
