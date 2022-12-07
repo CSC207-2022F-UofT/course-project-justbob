@@ -81,7 +81,7 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         response.courseCodes = myList.toArray(new String[0]);
         List<String> myTitles = new ArrayList<>();
         for(Course course : account.getSemester().getRunningCourses()){
-            myList.add(course.getCourseCode());
+            myTitles.add(course.getCourseCode());
         }
         response.courseTitles = myTitles.toArray(new String[0]);
         response.courseGrades = new Double[response.courseCodes.length];
