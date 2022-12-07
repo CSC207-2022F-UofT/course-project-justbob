@@ -71,6 +71,7 @@ public class ChecklistView {
 
         JTextArea checklistField = new JTextArea();
         checklistField.setBounds(0, 30, 500, 500);
+        checklistField.setEditable(false);
         if (response.taskChecklist == null){
             checklistField.append("No Tasks");
         } else {
