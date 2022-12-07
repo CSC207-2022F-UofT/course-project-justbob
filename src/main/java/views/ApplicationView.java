@@ -71,6 +71,7 @@ public class ApplicationView {
                 if (row >= 0 && col >= 0) {
                     ViewCourseRequest request = new ViewCourseRequest(response.username, finalCourseCodes[row]);
                     new ViewCourseController(request, frame, entityGateway, entityFactory);
+                    frame.dispose();
                 }
             }
         });
