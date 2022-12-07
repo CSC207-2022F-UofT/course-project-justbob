@@ -21,7 +21,7 @@ public class SemesterTest {
     private EntityGateway entityGateway;
     private EntityFactory entityFactory;
 
-    @Test
+    /*@Test
     public void addSemesterCourseTest(){
         this.entityFactory = new InMemoryEntityFactory();
         this.entityGateway = new InMemoryEntityGateway();
@@ -34,7 +34,7 @@ public class SemesterTest {
         AddSemesterCourseRequest request = new AddSemesterCourseRequest("88888888", "AAA111", "test", "0.5");
         myUseCase.execute(request);
         Assertions.assertEquals("AAA111", entityGateway.loadAccount("88888888").getSemester().getCourseByCode("AAA111").getCourseCode());
-    }
+    }*/
 
     @Test
     public void removeSemesterCourseTest(){

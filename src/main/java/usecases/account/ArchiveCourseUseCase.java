@@ -7,6 +7,7 @@ import ports.usecases.PathNotFoundError;
 import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
 import ports.usecases.account.archiveCourse.ArchiveCourseResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //TODO: implement testing
@@ -38,7 +39,11 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
 
     private ArchiveCourseResponse createResponse(Account account) {
         ArchiveCourseResponse response = new ArchiveCourseResponse();
-        response.courseList = List.of((String[]) account.getArchive().getCourses().stream().map(Course::getCourseCode).toArray());
+        List<String> myList = new ArrayList<>();
+        for(Course course : account.getSemester().getRunningCourses()){
+            myList.add(course.getCourseCode());
+        }
+        response.courseList = myList;
         return response;
     }
 }
