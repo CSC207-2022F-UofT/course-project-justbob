@@ -7,15 +7,15 @@ public class AddSimpleAssessmentRequest {
 
     public String assessmentTitle;
 
-    public int numberOfInstances;
+    public String numberOfInstances;
 
-    public double weightOfEachInstance;
+    public String weightOfEachInstance;
 
 
     public AddSimpleAssessmentRequest() {}
 
     public AddSimpleAssessmentRequest(String username, String courseCode,
-                                String assessmentTitle, int numberOfInstances, double weightOfEachInstance){
+                                String assessmentTitle, String numberOfInstances, String weightOfEachInstance){
 
         this.username = username;
         this.courseCode = courseCode;

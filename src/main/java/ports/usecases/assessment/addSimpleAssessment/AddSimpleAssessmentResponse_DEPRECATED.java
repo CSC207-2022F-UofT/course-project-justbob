@@ -1,6 +1,6 @@
 package ports.usecases.assessment.addSimpleAssessment;
 
-public class AddSimpleAssessmentResponse {
+public class AddSimpleAssessmentResponse_DEPRECATED {
 
     public String assessmentTitle;
 
@@ -8,9 +8,10 @@ public class AddSimpleAssessmentResponse {
 
     public int maximumNumberOfInstances;
 
-    public AddSimpleAssessmentResponse() {}
+    public AddSimpleAssessmentResponse_DEPRECATED() {
+    }
 
-    public AddSimpleAssessmentResponse(String assessmentTitle, double totalWeight, int maximumNumberOfInstances) {
+    public AddSimpleAssessmentResponse_DEPRECATED(String assessmentTitle, double totalWeight, int maximumNumberOfInstances) {
         this.assessmentTitle = assessmentTitle;
         this.totalWeight = totalWeight;
         this.maximumNumberOfInstances = maximumNumberOfInstances;
