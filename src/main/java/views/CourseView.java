@@ -27,7 +27,7 @@ public class CourseView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Title label constructor
-        JLabel label1 = new JLabel(response.courseCode + " - " + response.courseTitle + " - " + response.credit);
+        JLabel label1 = new JLabel(response.courseCode + ": " + response.courseTitle + " - " + response.credit + " credits", SwingConstants.CENTER);
         label1.setBounds(100, 10, 370, 20);
         panel.add(label1);
 
