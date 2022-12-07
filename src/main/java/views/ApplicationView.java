@@ -75,35 +75,34 @@ public class ApplicationView {
         // remove course button
         JButton removeCourseButton = new JButton("-");
         removeCourseButton.setForeground(Color.RED);
-        removeCourseButton.setBounds(addCourseButton.getX() + 50, addCourseButton.getY(),50,50);
+        removeCourseButton.setBounds(addCourseButton.getX() + 50, addCourseButton.getY(), 50, 50);
         panel.add(removeCourseButton);
 
         String[] finalCourseCodes = courseCodes;
-        coursesTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int row = coursesTable.rowAtPoint(evt.getPoint());
-                int col = coursesTable.columnAtPoint(evt.getPoint());
-                if (row >= 0 && col >= 0) {
-                    String courseCode = finalCourseCodes[row];
-                    if (courseCode.equals("NCA")) {
-                        return;
+        if (!isEmpty) {
+            coursesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    int row = coursesTable.rowAtPoint(evt.getPoint());
+                    int col = coursesTable.columnAtPoint(evt.getPoint());
+                    if (row >= 0 && col >= 0) {
+                        String courseCode = finalCourseCodes[row];
+                        ViewCourseRequest request = new ViewCourseRequest(response.username, courseCode);
+                        new ViewCourseController(request, frame, entityGateway, entityFactory);
+                        frame.dispose();
                     }
-                    ViewCourseRequest request = new ViewCourseRequest(response.username, courseCode);
-                    new ViewCourseController(request, frame, entityGateway, entityFactory);
-                    frame.dispose();
                 }
-            }
-        });
+            });
+        }
 
         // checklist button
         JButton checklistButton = new JButton("Checklist");
-        checklistButton.setBounds(label2.getX(), label2.getY() + 100,160,50);
+        checklistButton.setBounds(label2.getX(), label2.getY() + 100, 160, 50);
         panel.add(checklistButton);
 
         // calendar button
         JButton calendarButton = new JButton("Calendar");
-        calendarButton.setBounds(checklistButton.getX() + 180, checklistButton.getY(),160,50);
+        calendarButton.setBounds(checklistButton.getX() + 180, checklistButton.getY(), 160, 50);
         panel.add(calendarButton);
 
         // showTrend button
