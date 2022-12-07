@@ -9,23 +9,20 @@ import java.awt.*;
 
 public class CourseView {
 
-    public final int WIDTH = 600;
-    public final int HEIGHT = 600;
-
     public CourseView(EntityGateway entityGateway, EntityFactory entityFactory, ViewCourseResponse response) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
         // JFrame class
         JFrame frame = new JFrame();
-        frame.setTitle("Course");
+        frame.setTitle("Just Bob");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(WIDTH, HEIGHT));
+        frame.setSize(new Dimension(400, 225));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Title label constructor
-        JLabel label1 = new JLabel(response.courseCode + ": " + response.courseTitle + " - " + response.credit + " credits", SwingConstants.CENTER);
+        JLabel label1 = new JLabel(response.courseCode + " - " + response.courseTitle + " - " + response.credit);
         label1.setBounds(100, 10, 370, 20);
         panel.add(label1);
 
@@ -52,31 +49,26 @@ public class CourseView {
         String[] column = {"Assessment Titles", "Assessment Number of Instances", "Assessment Weight"};
 
         JTable assessmentsTable = new JTable(data, column);
-        assessmentsTable.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT), (int) (WIDTH - (0.133*WIDTH)), (int) (HEIGHT * 0.533));
+        assessmentsTable.setBounds(10, 30, 370, 100);
         panel.add(assessmentsTable);
 
-        // Running Grade Label
-        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade);
-        label2.setBounds(assessmentsTable.getX(),assessmentsTable.getY() + assessmentsTable.getHeight() - 25,210,100);
-        panel.add(label2, BorderLayout.CENTER);
-
-        // Hypo Grade Label
-        JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade);
-        label3.setBounds(label2.getX() + 210,label2.getY(),210,100);
-        panel.add(label3);
-
         // add assessment button
-        JButton addSimpleAssessmentButton = new JButton("+");
-        addSimpleAssessmentButton.setForeground(Color.GREEN);
-        addSimpleAssessmentButton.setBounds(label3.getX() + 210,label3.getY() + 25,100,50);
+        JButton addSimpleAssessmentButton = new JButton("Add Assessment");
+        if (!isEmpty) {
+            addSimpleAssessmentButton.setBounds(100, 150, 100, 28);
+        } else {
+            addSimpleAssessmentButton.setBounds(100, 150, 193, 28);
+        }
         panel.add(addSimpleAssessmentButton);
 
-
-        addSimpleAssessmentButton.addActionListener(e -> new AddSimpleAssessmentView(entityGateway, entityFactory, response.username, response.courseCode, frame));
+        addSimpleAssessmentButton.addActionListener(e -> {
+            frame.dispose();
+            new AddSimpleAssessmentView(entityGateway, entityFactory, response.username, response.courseCode);
+        });
 
         // back button
         JButton backButton = new JButton("Back");
-        backButton.setBounds(label2.getX() + 360, label2.getY() + 100,160,50);
+        backButton.setBounds(100, 190, 193, 28);
         panel.add(backButton);
 
         backButton.addActionListener(e -> {

@@ -10,9 +10,9 @@ import javax.swing.*;
 
 public class AddSimpleAssessmentController {
 
-    public AddSimpleAssessmentController(AddSimpleAssessmentRequest request, JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory, JFrame parentFrame) {
+    public AddSimpleAssessmentController(AddSimpleAssessmentRequest request, JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory) {
         AddSimpleAssessmentUseCase usecase = new AddSimpleAssessmentUseCase(entityGateway, entityFactory);
-        AddSimpleAssessmentPresenter presenter = new AddSimpleAssessmentPresenter(frame, entityGateway, entityFactory, parentFrame);
+        AddSimpleAssessmentPresenter presenter = new AddSimpleAssessmentPresenter(frame, entityGateway, entityFactory);
 
         try {
             ViewCourseResponse response = usecase.execute(request);
