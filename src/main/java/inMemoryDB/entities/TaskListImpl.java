@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskListImpl extends TaskList {
-    private final List<Task> taskList = new ArrayList<>();
+    private List<Task> taskList = new ArrayList<>();
 
     public TaskListImpl(Account account){
         List<Course> courseList = account.getArchive().getCourses();

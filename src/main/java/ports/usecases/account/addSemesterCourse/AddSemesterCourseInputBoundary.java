@@ -1,14 +1,25 @@
 package ports.usecases.account.addSemesterCourse;
 
-import ports.usecases.account.RemoveSemesterCourse.RemoveSemesterCourseInputBoundary;
+import ports.usecases.ApplicationResponse;
 
 public interface AddSemesterCourseInputBoundary {
     /**
      * add a new course to the current semester of the user's account
+     *
      * @param request a request for a new course with the course's courseCode, courseName, and credit
-     * @throws CourseAlreadyExistsError if the course requested is already in semester
+     * @throws AddSemesterCourseError if the course can't be added
      */
-    AddSemesterCourseResponse execute(AddSemesterCourseRequest request) throws CourseAlreadyExistsError;
+    ApplicationResponse execute(AddSemesterCourseRequest request) throws AddSemesterCourseError;
 
-    class CourseAlreadyExistsError extends Error{}
+    class AddSemesterCourseError extends Error {
+        public AddSemesterCourseError(String message) {
+            super(message);
+        }
+    }
+
+    class InvalidCreditError extends Error {
+        public InvalidCreditError() {
+            super("Invalid credit.");
+        }
+    }
 }

@@ -57,6 +57,16 @@ public class CourseImpl extends Course {
     }
 
     @Override
+    public CourseEvent getCourseEventByTitle(String title) {
+        for (CourseEvent courseEvent : courseEvents) {
+            if (courseEvent.getTitle().equals(title)) {
+                return courseEvent;
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void addCourseEvent(CourseEvent courseEvent) {
         if (!courseEvents.contains(courseEvent)) {
             courseEvents.add(courseEvent);

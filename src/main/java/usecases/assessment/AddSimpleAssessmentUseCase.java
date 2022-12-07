@@ -3,20 +3,13 @@ package usecases.assessment;
 import entities.account.Account;
 import entities.assessment.Assessment;
 import entities.course.Course;
-import entities.course.Outline;
 import entities.weightScheme.SimpleWeight;
 import entities.weightScheme.Weight;
-import inMemoryDB.entities.AssessmentImpl;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.assessment.addSimpleAssessmentUseCase.AddSimpleAssessmentInputBoundary;
-import ports.usecases.assessment.addSimpleAssessmentUseCase.AddSimpleAssessmentRequest;
-import ports.usecases.assessment.addSimpleAssessmentUseCase.AddSimpleAssessmentResponse;
-import ports.usecases.assessment.setWeightSchemeUseCase.SetSimpleWeightSchemeInputBoundary;
-import ports.usecases.assessment.setWeightSchemeUseCase.SetSimpleWeightSchemeRequest;
-import ports.usecases.assessment.setWeightSchemeUseCase.SetSimpleWeightSchemeResponse;
-
-import java.util.ArrayList;
+import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentInputBoundary;
+import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentRequest;
+import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentResponse;
 
 public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBoundary {
 
@@ -66,7 +59,7 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
         Assessment assessment = assessmentFactory.createAssessment(request.assessmentTitle, weightScheme);
 
         course.getOutline().addAssessment(assessment);
-
+        entityGateway.saveAccount(account);
         return createResponse(assessment);
 
     }

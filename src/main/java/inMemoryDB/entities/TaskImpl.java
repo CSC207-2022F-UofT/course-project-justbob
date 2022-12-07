@@ -3,6 +3,8 @@ package inMemoryDB.entities;
 import entities.assessment.AssessmentInstance;
 import entities.task.Task;
 
+import java.time.LocalDateTime;
+
 public class TaskImpl extends Task {
     private final String courseName;
     private final AssessmentInstance assessmentInstance;
@@ -15,8 +17,17 @@ public class TaskImpl extends Task {
     }
 
     @Override
+    public LocalDateTime getDueTime(){
+        return assessmentInstance.getDeadline();
+    }
+    @Override
     public boolean getSubmitted() {
         return assessmentInstance.isSubmitted();
+    }
+
+    @Override
+    public double getMark(){
+        return assessmentInstance.getMark();
     }
 
     @Override
