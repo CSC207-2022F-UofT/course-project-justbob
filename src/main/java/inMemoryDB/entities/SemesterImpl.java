@@ -41,12 +41,10 @@ public class SemesterImpl extends Semester {
 
     @Override
     public Course getCourseByCode(String courseCode) {
-        Course[] candidates = (Course[]) runningCourses.stream()
-                .filter(course -> course.getCourseCode().equals(courseCode))
-                .toArray()
-                ;
-        if (candidates.length > 0) {
-            return candidates[0];
+        for (Course course : getRunningCourses()) {
+            if (course.getCourseCode().equals(courseCode)) {
+                return course;
+            }
         }
         return null;
     }
