@@ -12,13 +12,11 @@ public class AddSimpleAssessmentPresenter {
     private final JFrame frame;
     private final EntityGateway entityGateway;
     private final EntityFactory entityFactory;
-    private final JFrame parentFrame;
 
-    public AddSimpleAssessmentPresenter(JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory, JFrame parentFrame) {
+    public AddSimpleAssessmentPresenter(JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory) {
         this.entityGateway = entityGateway;
         this.entityFactory = entityFactory;
         this.frame = frame;
-        this.parentFrame = parentFrame;
     }
 
     public void presentError(Throwable error) {
@@ -28,7 +26,6 @@ public class AddSimpleAssessmentPresenter {
     public void presentSuccess(ViewCourseResponse response) {
         JOptionPane.showMessageDialog(null, "Assessment Added", "Success", JOptionPane.INFORMATION_MESSAGE);
         this.frame.dispose();
-        this.parentFrame.dispose();
         new CourseView(entityGateway, entityFactory, response);
     }
 }
