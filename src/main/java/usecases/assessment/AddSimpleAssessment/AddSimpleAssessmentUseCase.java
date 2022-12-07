@@ -68,7 +68,7 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Total weight of instances must be less than or equal to 1");
         }
 
-        SimpleWeight weightScheme = new SimpleWeight(new Weight((int) numberOfInstances, weightOfEachInstance));
+        SimpleWeight weightScheme = new SimpleWeight(new Weight(numberOfInstances, weightOfEachInstance));
 
         Assessment assessment = assessmentFactory.createAssessment(request.assessmentTitle, weightScheme);
 
