@@ -12,15 +12,17 @@ public class ViewCoursePresenter {
     private final EntityGateway entityGateway;
     private final EntityFactory entityFactory;
     private final JFrame frame;
+    private final JFrame parentFrame;
 
-    public ViewCoursePresenter(JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory) {
+    public ViewCoursePresenter(JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory, JFrame parentFrame) {
         this.entityGateway = entityGateway;
         this.entityFactory = entityFactory;
         this.frame = frame;
+        this.parentFrame = parentFrame;
     }
 
     public void present(ViewCourseResponse response) {
-        new CourseView(entityGateway, entityFactory, response);
+        new CourseView(entityGateway, entityFactory, response, parentFrame);
         frame.dispose();
     }
 }

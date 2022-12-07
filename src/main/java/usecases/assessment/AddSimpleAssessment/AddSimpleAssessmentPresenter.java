@@ -29,6 +29,6 @@ public class AddSimpleAssessmentPresenter {
         JOptionPane.showMessageDialog(null, "Assessment Added", "Success", JOptionPane.INFORMATION_MESSAGE);
         this.frame.dispose();
         this.parentFrame.dispose();
-        new CourseView(entityGateway, entityFactory, response);
+        new CourseView(entityGateway, entityFactory, response, parentFrame);
     }
 }

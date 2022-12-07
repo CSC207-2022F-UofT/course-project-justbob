@@ -10,7 +10,7 @@ import java.awt.*;
 public class CourseView {
     public final int WIDTH = 600;
     public final int HEIGHT = 600;
-    public CourseView(EntityGateway entityGateway, EntityFactory entityFactory, ViewCourseResponse response) {
+    public CourseView(EntityGateway entityGateway, EntityFactory entityFactory, ViewCourseResponse response, JFrame parentFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -79,8 +79,7 @@ public class CourseView {
 
         backButton.addActionListener(e -> {
             frame.dispose();
-            /*TODO persistency of previous view*/
-            /*new ApplicationView(entityGateway, entityFactory, response.username);*/
+            parentFrame.setVisible(true);
         });
 
     frame.setVisible(true);

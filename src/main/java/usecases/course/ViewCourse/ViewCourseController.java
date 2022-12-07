@@ -9,9 +9,9 @@ import javax.swing.*;
 
 public class ViewCourseController {
 
-    public ViewCourseController(ViewCourseRequest request, JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory) {
+    public ViewCourseController(ViewCourseRequest request, JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory, JFrame parentFrame) {
         ViewCourseUseCase usecase = new ViewCourseUseCase(entityGateway);
-        ViewCoursePresenter presenter = new ViewCoursePresenter(frame, entityGateway, entityFactory);
+        ViewCoursePresenter presenter = new ViewCoursePresenter(frame, entityGateway, entityFactory, parentFrame);
 
         ViewCourseResponse response = usecase.execute(request);
         presenter.present(response);
