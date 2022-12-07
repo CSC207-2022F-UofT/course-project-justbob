@@ -15,9 +15,15 @@ public class ViewCourseResponse {
 
     public Double[] assessmentWeights;
 
+    public String runningGrade;
+
+    public String hypotheticalGrade;
+
     public ViewCourseResponse(){}
 
-    public ViewCourseResponse(String username, String courseCode, String courseTitle, String credit, String[] assessmentTitles, Integer[] assessmentNumberOfInstances, Double[] assessmentWeights) {
+    public ViewCourseResponse(String username, String courseCode, String courseTitle, String credit,
+                              String[] assessmentTitles, Integer[] assessmentNumberOfInstances, Double[] assessmentWeights,
+                              String runningGrade, String hypotheticalGrade) {
         this.username = username;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
@@ -25,5 +31,7 @@ public class ViewCourseResponse {
         this.assessmentTitles = assessmentTitles;
         this.assessmentNumberOfInstances = assessmentNumberOfInstances;
         this.assessmentWeights = assessmentWeights;
+        this.runningGrade = runningGrade;
+        this.hypotheticalGrade = hypotheticalGrade;
     }
 }

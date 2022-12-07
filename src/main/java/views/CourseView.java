@@ -11,6 +11,10 @@ import java.awt.*;
 
 public class CourseView {
 
+    public final int width = 500;
+
+    public final int height = 400;
+
     public CourseView(EntityGateway entityGateway, EntityFactory entityFactory, String username, String courseCode) {
 
         ViewCourseRequest request = new ViewCourseRequest(username, courseCode);
@@ -24,11 +28,11 @@ public class CourseView {
         frame.setTitle("Just Bob");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(400, 225));
+        frame.setSize(new Dimension(width, height));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Title label constructor
-        JLabel label1 = new JLabel(response.courseCode + " - " + response.courseTitle + " - " + response.credit);
+        JLabel label1 = new JLabel(response.courseCode + ": " + response.courseTitle + " - " + response.credit + " credits");
         label1.setBounds(100, 10, 370, 20);
         panel.add(label1);
 
@@ -55,23 +59,29 @@ public class CourseView {
         String[] column = {"Assessment Titles", "Assessment Number of Instances", "Assessment Weight"};
 
         JTable assessmentsTable = new JTable(data, column);
-        assessmentsTable.setBounds(10, 30, 370, 100);
+        assessmentsTable.setBounds(10, 30, width - 20, height - 300);
         panel.add(assessmentsTable);
+
+
+        // grade labels
+        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade);
+        label2.setBounds(50, 200, 370, 20);
+        panel.add(label2);
+        JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade);
+        label3.setBounds(50, 220, 370, 20);
+        panel.add(label3);
 
         // add assessment button
         JButton addSimpleAssessmentButton = new JButton("Add Assessment");
-        if (!isEmpty) {
-            addSimpleAssessmentButton.setBounds(100, 150, 100, 28);
-        } else {
-            addSimpleAssessmentButton.setBounds(100, 150, 193, 28);
-        }
+        addSimpleAssessmentButton.setBounds(300,200 , 193, 28);
         panel.add(addSimpleAssessmentButton);
 
         addSimpleAssessmentButton.addActionListener(e -> new AddSimpleAssessmentView(entityGateway, entityFactory, response.username, response.courseCode, frame));
 
+
         // back button
         JButton backButton = new JButton("Back");
-        backButton.setBounds(100, 190, 193, 28);
+        backButton.setBounds(300, 220, 193, 28);
         panel.add(backButton);
 
         backButton.addActionListener(e -> {
