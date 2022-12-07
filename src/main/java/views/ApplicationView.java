@@ -60,6 +60,18 @@ public class ApplicationView {
 
         addCourseButton.addActionListener(e -> new AddCourseView(entityGateway, entityFactory, response.username, frame));
 
+        String[] finalCourseCodes = courseCodes;
+        coursesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = coursesTable.rowAtPoint(evt.getPoint());
+                int col = coursesTable.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col >= 0) {
+                    new CourseView(entityGateway, entityFactory, response.username, finalCourseCodes[row]);
+                }
+            }
+        });
+
         if (!isEmpty) {
             // showTrend button
             JButton showTrendButton = new JButton("Show Trend");
