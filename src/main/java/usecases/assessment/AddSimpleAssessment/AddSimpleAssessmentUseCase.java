@@ -67,6 +67,12 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Total weight of instances must be less than or equal to 1");
         }
 
+        double totalWeight = course.getOutline().getAssessmentsWeights().stream().mapToDouble(Double::doubleValue).sum();
+
+        if(numberOfInstances * weightOfEachInstance + totalWeight > 1){
+            throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Adding this assessment would exceed the courses's total weight");
+        }
+
         SimpleWeight weightScheme = new SimpleWeight(new Weight(numberOfInstances, weightOfEachInstance));
 
         Assessment assessment = assessmentFactory.createAssessment(request.assessmentTitle, weightScheme);
