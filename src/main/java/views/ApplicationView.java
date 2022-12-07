@@ -3,6 +3,8 @@ package views;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.ApplicationResponse;
+import ports.usecases.course.viewCourse.ViewCourseRequest;
+import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,7 +69,9 @@ public class ApplicationView {
                 int row = coursesTable.rowAtPoint(evt.getPoint());
                 int col = coursesTable.columnAtPoint(evt.getPoint());
                 if (row >= 0 && col >= 0) {
-                    new CourseView(entityGateway, entityFactory, response.username, finalCourseCodes[row]);
+                    System.out.println(11);
+                    ViewCourseRequest request = new ViewCourseRequest(response.username, finalCourseCodes[row]);
+                    new ViewCourseController(request, frame, entityGateway, entityFactory);
                 }
             }
         });

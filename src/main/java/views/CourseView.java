@@ -2,20 +2,14 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.course.viewCourse.ViewCourseRequest;
 import ports.usecases.course.viewCourse.ViewCourseResponse;
-import usecases.course.ViewCourse.ViewCourseUseCase;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class CourseView {
 
-    public CourseView(EntityGateway entityGateway, EntityFactory entityFactory, String username, String courseCode) {
-
-        ViewCourseRequest request = new ViewCourseRequest(username, courseCode);
-        ViewCourseResponse response = new ViewCourseUseCase(entityGateway).execute(request);
-
+    public CourseView(EntityGateway entityGateway, EntityFactory entityFactory, ViewCourseResponse response) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
