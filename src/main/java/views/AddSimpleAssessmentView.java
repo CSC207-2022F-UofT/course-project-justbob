@@ -10,7 +10,7 @@ import java.awt.*;
 
 public class AddSimpleAssessmentView {
 
-    public AddSimpleAssessmentView(EntityGateway entityGateway, EntityFactory entityFactory, String username, String courseCode) {
+    public AddSimpleAssessmentView(EntityGateway entityGateway, EntityFactory entityFactory, String username, String courseCode, JFrame parentFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -68,7 +68,7 @@ public class AddSimpleAssessmentView {
             String weight = textField3.getText();
 
             AddSimpleAssessmentRequest request = new AddSimpleAssessmentRequest(username, courseCode, assessmentTitle, numberOfInstances, weight);
-            new AddSimpleAssessmentController(request, frame, entityGateway, entityFactory);
+            new AddSimpleAssessmentController(request, frame, entityGateway, entityFactory, parentFrame);
         });
 
         backButton.addActionListener(e -> frame.dispose());

@@ -70,10 +70,7 @@ public class CourseView {
         panel.add(addSimpleAssessmentButton);
 
 
-        addSimpleAssessmentButton.addActionListener(e -> {
-            frame.dispose();
-            new AddSimpleAssessmentView(entityGateway, entityFactory, response.username, response.courseCode);
-        });
+        addSimpleAssessmentButton.addActionListener(e -> new AddSimpleAssessmentView(entityGateway, entityFactory, response.username, response.courseCode, frame));
 
         // back button
         JButton backButton = new JButton("Back");
