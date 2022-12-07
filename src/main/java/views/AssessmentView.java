@@ -78,7 +78,11 @@ public class AssessmentView {
         String[] stringList = new String[doubleList.length];
         int index = 0;
         for (Double d : doubleList) {
-            stringList[index] = d.toString();
+            if (d == null) {
+                stringList[index] = "null";
+            } else {
+                stringList[index] = d.toString();
+            }
             index += 1;
         }
         return stringList;

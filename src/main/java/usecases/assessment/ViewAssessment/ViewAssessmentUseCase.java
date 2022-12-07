@@ -30,13 +30,13 @@ public class ViewAssessmentUseCase implements ViewAssessmentInputBoundary {
         if (assessment == null) {
             throw new PathNotFoundError();
         }
-        return createResponse(assessment, account);
+        return createResponse(assessment, account, course);
     }
 
-    private ViewAssessmentResponse createResponse(Assessment assessment, Account account) {
+    private ViewAssessmentResponse createResponse(Assessment assessment, Account account, Course course) {
         ViewAssessmentResponse response = new ViewAssessmentResponse();
         response.username = account.getUsername();
-        response.courseCode = account.getSemester().getCourseByCode(response.courseCode).getCourseCode();
+        response.courseCode = course.getCourseCode();
         response.assessmentTitle = assessment.getTitle();
         response.assessmentInstanceTitles = new String[assessment.getInstances().size()];
         for (int i = 0; i < assessment.getInstances().size(); i++) {
