@@ -1,7 +1,5 @@
 package ports.usecases.calendar.goToSeekedDateUseCase;
 
-import screens.GoToSeekedDateOutputBoundary;
-
 public class GoToSeekedDateInteractor implements GoToSeekedDateInputBoundary {
     GoToSeekedDateOutputBoundary goToSeekedDateOutputBoundary;
 
