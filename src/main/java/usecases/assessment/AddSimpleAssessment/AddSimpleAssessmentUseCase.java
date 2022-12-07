@@ -1,4 +1,4 @@
-package usecases.assessment;
+package usecases.assessment.AddSimpleAssessment;
 
 import entities.account.Account;
 import entities.assessment.Assessment;
@@ -7,6 +7,7 @@ import entities.weightScheme.SimpleWeight;
 import entities.weightScheme.Weight;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
+import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
 import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentInputBoundary;
 import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentRequest;
 import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentResponse;
@@ -40,21 +41,34 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
             throw new AddAssessmentError();
         }
 
+        int numberOfInstances;
+        try {
+            numberOfInstances = Integer.parseInt(request.numberOfInstances);
+        } catch (NumberFormatException ex) {
+            throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Number of instances must be an integer");
+        }
 
-        if(request.numberOfInstances < 1){
+        double weightOfEachInstance;
+        try {
+            weightOfEachInstance = Double.parseDouble(request.weightOfEachInstance);
+        } catch (NumberFormatException ex) {
+            throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Weight of each instance must be a number between 0 and 1");
+        }
+
+        if(numberOfInstances < 1){
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Number of instances must be greater than 0");
         }
-        if(request.weightOfEachInstance < 0 || request.weightOfEachInstance == 0){
+        if(weightOfEachInstance < 0 || weightOfEachInstance == 0){
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Weight of each instance must be greater than 0");
         }
-        if(request.weightOfEachInstance > 1){
+        if(weightOfEachInstance > 1){
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Weight of each instance must be less than or equal to 1");
         }
-        if(request.numberOfInstances * request.weightOfEachInstance > 1){
+        if(numberOfInstances * weightOfEachInstance > 1){
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Total weight of instances must be less than or equal to 1");
         }
 
-        SimpleWeight weightScheme = new SimpleWeight(new Weight(request.numberOfInstances, request.weightOfEachInstance));
+        SimpleWeight weightScheme = new SimpleWeight(new Weight((int) numberOfInstances, weightOfEachInstance));
 
         Assessment assessment = assessmentFactory.createAssessment(request.assessmentTitle, weightScheme);
 
