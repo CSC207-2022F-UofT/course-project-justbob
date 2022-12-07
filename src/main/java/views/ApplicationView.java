@@ -52,7 +52,7 @@ public class ApplicationView {
         // add course button
         JButton addCourseButton = new JButton("Add Course");
         if (!isEmpty) {
-            addCourseButton.setBounds(100, 150, 100, 28);
+            addCourseButton.setBounds(100, 150, 120, 28);
         } else {
             addCourseButton.setBounds(100, 150, 193, 28);
         }
@@ -66,7 +66,14 @@ public class ApplicationView {
             showTrendButton.setBounds(210, 150, 100, 28);
             panel.add(showTrendButton);
 
+            JButton showChecklistButton = new JButton("Show Checklist");
+            showChecklistButton.setBounds(10, 150, 90, 28);
+            panel.add(showChecklistButton);
+
             showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
+
+            showChecklistButton.addActionListener(e -> new ChecklistView(entityGateway, entityFactory,
+                    response.username, "Checklist"));
         }
 
         frame.setVisible(true);
