@@ -27,7 +27,7 @@ public class CourseView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Title label constructor
-        JLabel label1 = new JLabel(response.courseCode + " - " + response.courseTitle + " - " + response.credit);
+        JLabel label1 = new JLabel(response.courseCode + ": " + response.courseTitle + " - " + response.credit + " credit(s)", SwingConstants.CENTER);
         label1.setBounds(100, 10, 370, 20);
         panel.add(label1);
 
@@ -126,7 +126,8 @@ public class CourseView {
         String[] stringList = new String[doubleList.length];
         int index = 0;
         for (Double d : doubleList) {
-            stringList[index] = d.toString();
+            Double rounded = Math.round(d * 100.0) / 100.0;
+            stringList[index] = rounded.toString();
             index += 1;
         }
         return stringList;
