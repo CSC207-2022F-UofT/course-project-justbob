@@ -20,16 +20,16 @@ public class ViewCourseUseCase implements ViewCourseInputBoundary {
             throw new PathNotFoundError();
         }
         Account account = entityGateway.loadAccount(request.username);
-        System.out.println(request.courseCode);
         Course course = account.getSemester().getCourseByCode(request.courseCode);
         if (course == null) {
             throw new PathNotFoundError();
         }
-        return createResponse(course);
+        return createResponse(course, account);
     }
 
-    private ViewCourseResponse createResponse(Course course) {
+    private ViewCourseResponse createResponse(Course course, Account account) {
         ViewCourseResponse response = new ViewCourseResponse();
+        response.username = account.getUsername();
         response.courseCode = course.getCourseCode();
         response.courseTitle = course.getCourseName();
         response.credit = Float.toString(course.getCredit());

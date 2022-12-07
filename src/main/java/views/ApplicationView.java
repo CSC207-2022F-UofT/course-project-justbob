@@ -69,7 +69,6 @@ public class ApplicationView {
                 int row = coursesTable.rowAtPoint(evt.getPoint());
                 int col = coursesTable.columnAtPoint(evt.getPoint());
                 if (row >= 0 && col >= 0) {
-                    System.out.println(11);
                     ViewCourseRequest request = new ViewCourseRequest(response.username, finalCourseCodes[row]);
                     new ViewCourseController(request, frame, entityGateway, entityFactory);
                 }
