@@ -2,9 +2,11 @@ package ports.usecases.account.loginAccount;
 
 import ports.usecases.gpaTrend.TrendModel;
 
+import java.util.List;
+
 public class LoginAccountResponse {
     public String semesterTitle;
-    public String[] courseCodes;
+    public List<String> courseCodes;
     public TrendModel trendModel;
 
     //  may need more info:
@@ -15,7 +17,7 @@ public class LoginAccountResponse {
 
     public LoginAccountResponse() {}
 
-    public LoginAccountResponse(String semesterTitle, String[] courseCodes, TrendModel trendModel) {
+    public LoginAccountResponse(String semesterTitle, List<String> courseCodes, TrendModel trendModel) {
         this.semesterTitle = semesterTitle;
         this.courseCodes = courseCodes;
         this.trendModel = trendModel;

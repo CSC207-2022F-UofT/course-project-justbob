@@ -8,6 +8,9 @@ import ports.usecases.account.loginAccount.LoginAccountRequest;
 import ports.usecases.account.loginAccount.LoginAccountResponse;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // TODO: implement testing
 public class LoginAccountUseCase implements LoginAccountInputBoundary {
     private final EntityGateway entityGateway;
@@ -21,7 +24,7 @@ public class LoginAccountUseCase implements LoginAccountInputBoundary {
             throw new LoginError("Username not found.");
         }
         Account account = entityGateway.loadAccount(request.username);
-        if (account.getPassword().equals(request.password)) {
+        if (!(account.getPassword().equals(request.password))) {
             throw new LoginError("Incorrect Password");
         }
         return createResponse(account);
@@ -30,9 +33,11 @@ public class LoginAccountUseCase implements LoginAccountInputBoundary {
     private LoginAccountResponse createResponse(Account account) {
         LoginAccountResponse response = new LoginAccountResponse();
         response.semesterTitle = account.getSemester().getTitle();
-        response.courseCodes = (String[]) account.getSemester().getRunningCourses().stream()
-                .map(Course::getCourseCode)
-                .toArray();
+        List<String> courseList = new ArrayList<>();
+        for(Course course : account.getSemester().getRunningCourses()){
+            courseList.add(course.getCourseCode());
+        }
+        response.courseCodes = courseList;
         response.trendModel = new GetAccountTrendUseCase(entityGateway).execute(account.getUsername());
         return response;
     }
