@@ -3,25 +3,30 @@ package views;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.ApplicationResponse;
+import ports.usecases.course.viewCourse.ViewCourseRequest;
+import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ApplicationView {
+
+    public final int WIDTH = 600;
+    public final int HEIGHT = 600;
     public ApplicationView(EntityGateway entityGateway, EntityFactory entityFactory, ApplicationResponse response) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
         // JFrame class
         JFrame frame = new JFrame();
-        frame.setTitle("Just Bob");
+        frame.setTitle("Current Courses");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(400, 225));
+        frame.setSize(new Dimension(WIDTH, HEIGHT));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Title label constructor
-        JLabel label1 = new JLabel(response.semesterTitle);
+        JLabel label1 = new JLabel(response.semesterTitle, SwingConstants.CENTER);
         label1.setBounds(100, 10, 370, 20);
         panel.add(label1);
 
@@ -46,28 +51,66 @@ public class ApplicationView {
         String[] column = {"Course Codes", "Course Titles", "Course Grades"};
 
         JTable coursesTable = new JTable(data, column);
-        coursesTable.setBounds(10, 30, 370, 100);
+        coursesTable.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT), (int) (WIDTH - (0.133*WIDTH)), (int) (HEIGHT * 0.533));
         panel.add(coursesTable);
 
+        // Running GPA Label
+        JLabel label2 = new JLabel("Running GPA: " /*+ response.runningGPA*/);
+        label2.setBounds(coursesTable.getX(),coursesTable.getY() + coursesTable.getHeight() - 25,210,100);
+        panel.add(label2, BorderLayout.CENTER);
+
+        // Hypo GPA Label
+        JLabel label3 = new JLabel("Hypothetical GPA: " /*+ response.hypoGPA*/);
+        label3.setBounds(label2.getX() + 210,label2.getY(),210,100);
+        panel.add(label3);
+
         // add course button
-        JButton addCourseButton = new JButton("Add Course");
-        if (!isEmpty) {
-            addCourseButton.setBounds(100, 150, 100, 28);
-        } else {
-            addCourseButton.setBounds(100, 150, 193, 28);
-        }
+        JButton addCourseButton = new JButton("+");
+        addCourseButton.setForeground(Color.GREEN);
+        addCourseButton.setBounds(label3.getX() + 210,label3.getY() + 25,50,50);
         panel.add(addCourseButton);
 
         addCourseButton.addActionListener(e -> new AddCourseView(entityGateway, entityFactory, response.username, frame));
 
-        if (!isEmpty) {
-            // showTrend button
-            JButton showTrendButton = new JButton("Show Trend");
-            showTrendButton.setBounds(210, 150, 100, 28);
-            panel.add(showTrendButton);
+        // remove course button
+        JButton removeCourseButton = new JButton("-");
+        removeCourseButton.setForeground(Color.RED);
+        removeCourseButton.setBounds(addCourseButton.getX() + 50, addCourseButton.getY(), 50, 50);
+        panel.add(removeCourseButton);
 
-            showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
+        String[] finalCourseCodes = courseCodes;
+        if (!isEmpty) {
+            coursesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override
+                public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    int row = coursesTable.rowAtPoint(evt.getPoint());
+                    int col = coursesTable.columnAtPoint(evt.getPoint());
+                    if (row >= 0 && col >= 0) {
+                        String courseCode = finalCourseCodes[row];
+                        ViewCourseRequest request = new ViewCourseRequest(response.username, courseCode);
+                        new ViewCourseController(request, frame, entityGateway, entityFactory, frame);
+                        frame.setVisible(false);
+                    }
+                }
+            });
         }
+
+        // checklist button
+        JButton checklistButton = new JButton("Checklist");
+        checklistButton.setBounds(label2.getX(), label2.getY() + 100, 160, 50);
+        panel.add(checklistButton);
+
+        // calendar button
+        JButton calendarButton = new JButton("Calendar");
+        calendarButton.setBounds(checklistButton.getX() + 180, checklistButton.getY(), 160, 50);
+        panel.add(calendarButton);
+
+        // showTrend button
+        JButton showTrendButton = new JButton("Show Trend");
+        showTrendButton.setBounds(calendarButton.getX() + 180, calendarButton.getY(), 160, 50);
+        panel.add(showTrendButton);
+        showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
+
 
         frame.setVisible(true);
 

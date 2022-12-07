@@ -33,6 +33,24 @@ public class OutlineImpl extends Outline {
     }
 
     @Override
+    public ArrayList<Integer> getAssessmentsNumberOfInstances() {
+        ArrayList<Integer> numberOfInstances = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            numberOfInstances.add(assessment.getTotalNumberOfInstances());
+        }
+        return numberOfInstances;
+    }
+
+    @Override
+    public ArrayList<Double> getAssessmentsWeights() {
+        ArrayList<Double> weights = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            weights.add(assessment.getTotalWeight());
+        }
+        return weights;
+    }
+
+    @Override
     public int getIndexByTitle(String assessmentTitle){
         int index = 0;
         for (Assessment assessment : assessments) {

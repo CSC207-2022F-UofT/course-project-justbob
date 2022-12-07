@@ -15,7 +15,7 @@ public class AddCourseView {
 
         // JFrame class
         JFrame frame = new JFrame();
-        frame.setTitle("Just Bob");
+        frame.setTitle("Add Course");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
         frame.setSize(new Dimension(400, 245));
