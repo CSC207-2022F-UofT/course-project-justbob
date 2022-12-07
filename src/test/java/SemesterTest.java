@@ -1,6 +1,7 @@
 package semester;
 
 import entities.account.Account;
+import entities.account.Archive;
 import entities.account.Semester;
 import entities.course.Course;
 import inMemoryDB.InMemoryEntityFactory;
@@ -21,20 +22,22 @@ public class SemesterTest {
     private EntityGateway entityGateway;
     private EntityFactory entityFactory;
 
-    /*@Test
+    @Test
     public void addSemesterCourseTest(){
         this.entityFactory = new InMemoryEntityFactory();
         this.entityGateway = new InMemoryEntityGateway();
         Account account = entityFactory.createAccount();
         Semester semester = entityFactory.createSemester();
+        Archive archive = entityFactory.createArchive();
         account.setUsername("88888888");
         account.setSemester(semester);
+        account.setArchive(archive);
         entityGateway.saveAccount(account);
         AddSemesterCourseUseCase myUseCase = new AddSemesterCourseUseCase(entityGateway, entityFactory);
         AddSemesterCourseRequest request = new AddSemesterCourseRequest("88888888", "AAA111", "test", "0.5");
         myUseCase.execute(request);
         Assertions.assertEquals("AAA111", entityGateway.loadAccount("88888888").getSemester().getCourseByCode("AAA111").getCourseCode());
-    }*/
+    }
 
     @Test
     public void removeSemesterCourseTest(){

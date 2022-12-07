@@ -17,7 +17,7 @@ public class ApplicationView {
         frame.setTitle("Just Bob");
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(400, 225));
+        frame.setSize(new Dimension(500, 280));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Title label constructor
@@ -46,7 +46,7 @@ public class ApplicationView {
         String[] column = {"Course Codes", "Course Titles", "Course Grades"};
 
         JTable coursesTable = new JTable(data, column);
-        coursesTable.setBounds(10, 30, 370, 100);
+        coursesTable.setBounds(30, 30, 370, 100);
         panel.add(coursesTable);
 
         // add course button
@@ -63,7 +63,7 @@ public class ApplicationView {
         if (!isEmpty) {
             // showTrend button
             JButton showTrendButton = new JButton("Show Trend");
-            showTrendButton.setBounds(210, 150, 100, 28);
+            showTrendButton.setBounds(210, 150, 130, 28);
             panel.add(showTrendButton);
 
             showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
