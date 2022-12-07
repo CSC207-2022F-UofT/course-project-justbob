@@ -29,12 +29,6 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         }
         Account account = entityGateway.loadAccount(request.username);
 
-        float credit;
-        try {
-            credit = Float.parseFloat(request.credit);
-        } catch (NumberFormatException ex) {
-            throw new InvalidCreditError();
-        }
 
         if (account.getArchive().getCourseByCode(request.courseCode) != null ||
                 account.getSemester().getCourseByCode(request.courseCode) != null) {
@@ -51,7 +45,14 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         }
 
 
-        if (credit != 0.5 || credit != 1.0) {
+        float credit;
+        try {
+            credit = Float.parseFloat(request.credit);
+        } catch (NumberFormatException ex) {
+            throw new InvalidCreditError();
+        }
+
+        if (credit != 0.5 && credit != 1.0) {
             throw new AddSemesterCourseError("Credit must be either 0.5 or 1.0");
         }
 
