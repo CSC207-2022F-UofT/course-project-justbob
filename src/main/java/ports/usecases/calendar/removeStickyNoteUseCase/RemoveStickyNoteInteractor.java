@@ -1,7 +1,5 @@
 package ports.usecases.calendar.removeStickyNoteUseCase;
 
-import screens.RemoveStickyNoteDsGateway;
-
 public class RemoveStickyNoteInteractor implements RemoveStickyNoteInputBoundary {
     private RemoveStickyNoteDsGateway dataAccessGateway;
     private RemoveStickyNoteOutputBoundary removeStickyNoteremoveStickyNoteOutputBoundary;
