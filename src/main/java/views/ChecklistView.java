@@ -15,7 +15,7 @@ import java.util.List;
 public class ChecklistView {
 
     public ChecklistView(EntityGateway entityGateway, EntityFactory entityFactory,
-                         String username, String name){
+                         String username){
 
 
 
