@@ -7,23 +7,22 @@ import entities.weightScheme.SimpleWeight;
 import entities.weightScheme.Weight;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
 import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentInputBoundary;
 import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentRequest;
-import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentResponse;
+import ports.usecases.course.viewCourse.ViewCourseResponse;
 
 public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBoundary {
 
-    private EntityGateway entityGateway;
+    private final EntityGateway entityGateway;
 
-    private Assessment.AssessmentFactory assessmentFactory;
+    private final Assessment.AssessmentFactory assessmentFactory;
 
     public AddSimpleAssessmentUseCase(EntityGateway entityGateway, Assessment.AssessmentFactory assessmentFactory) {
         this.entityGateway = entityGateway;
         this.assessmentFactory = assessmentFactory;
     }
 
-    public AddSimpleAssessmentResponse execute(AddSimpleAssessmentRequest request)
+    public ViewCourseResponse execute(AddSimpleAssessmentRequest request)
             throws AddAssessmentError, AddWeightSchemeError, PathNotFoundError {
 
         if (!entityGateway.existsAccount(request.username)) {
@@ -74,14 +73,24 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
 
         course.getOutline().addAssessment(assessment);
         entityGateway.saveAccount(account);
-        return createResponse(assessment);
+        return createResponse(course, account);
 
     }
 
-    private AddSimpleAssessmentResponse createResponse(Assessment assessment) {
-        AddSimpleAssessmentResponse response = new AddSimpleAssessmentResponse();
-        response.totalWeight = assessment.getWeightScheme().getTotalWeight();
-        response.maximumNumberOfInstances = assessment.getWeightScheme().getNumberOfInstances();
+    private ViewCourseResponse createResponse(Course course, Account account) {
+        ViewCourseResponse response = new ViewCourseResponse();
+        response.username = account.getUsername();
+        response.courseCode = course.getCourseCode();
+        response.courseTitle = course.getCourseName();
+        response.credit = Float.toString(course.getCredit());
+        response.assessmentTitles = new String[course.getOutline().getAssessmentsTitles().size()];
+        response.assessmentTitles = course.getOutline().getAssessmentsTitles().toArray(response.assessmentTitles);
+        response.assessmentNumberOfInstances = new Integer[course.getOutline().getAssessmentsNumberOfInstances().size()];
+        response.assessmentNumberOfInstances = course.getOutline().getAssessmentsNumberOfInstances().toArray(response.assessmentNumberOfInstances);
+        response.assessmentWeights = new Double[course.getOutline().getAssessmentsWeights().size()];
+        response.assessmentWeights = course.getOutline().getAssessmentsWeights().toArray(response.assessmentWeights);
+        response.runningGrade = Double.toString(course.getOutline().computeRunningGrade());
+        response.hypotheticalGrade = Double.toString(course.getOutline().computeHypotheticalGrade());
         return response;
     }
 }

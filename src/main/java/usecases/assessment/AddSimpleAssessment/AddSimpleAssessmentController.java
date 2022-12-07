@@ -3,7 +3,7 @@ package usecases.assessment.AddSimpleAssessment;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentRequest;
-import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentResponse;
+import ports.usecases.course.viewCourse.ViewCourseResponse;
 
 import javax.swing.*;
 
@@ -15,7 +15,7 @@ public class AddSimpleAssessmentController {
         AddSimpleAssessmentPresenter presenter = new AddSimpleAssessmentPresenter(frame, entityGateway, entityFactory, parentFrame);
 
         try {
-            AddSimpleAssessmentResponse response = usecase.execute(request);
+            ViewCourseResponse response = usecase.execute(request);
             presenter.presentSuccess(response);
         } catch (Throwable error) {
             presenter.presentError(error);

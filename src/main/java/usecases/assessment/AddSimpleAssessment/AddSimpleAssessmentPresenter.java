@@ -2,8 +2,7 @@ package usecases.assessment.AddSimpleAssessment;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentResponse;
-import views.AddSimpleAssessmentView;
+import ports.usecases.course.viewCourse.ViewCourseResponse;
 import views.CourseView;
 
 import javax.swing.*;
@@ -26,9 +25,10 @@ public class AddSimpleAssessmentPresenter {
         JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void presentSuccess(AddSimpleAssessmentResponse response) {
+    public void presentSuccess(ViewCourseResponse response) {
         JOptionPane.showMessageDialog(null, "Assessment Added", "Success", JOptionPane.INFORMATION_MESSAGE);
         this.frame.dispose();
         this.parentFrame.dispose();
+        new CourseView(entityGateway, entityFactory, response);
     }
 }
