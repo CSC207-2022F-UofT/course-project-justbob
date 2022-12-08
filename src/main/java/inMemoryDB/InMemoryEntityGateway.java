@@ -15,6 +15,10 @@ public class InMemoryEntityGateway implements EntityGateway {
     private String databaseFilePath;
     private HashMap<String, Account> accountsByUsername = new HashMap<>();
 
+    public InMemoryEntityGateway() {
+        this.databaseFilePath = null;
+    }
+
     public InMemoryEntityGateway(String databaseFilePath) {
         this.databaseFilePath = databaseFilePath;
         try {
@@ -48,6 +52,7 @@ public class InMemoryEntityGateway implements EntityGateway {
     @Override
     public void saveAccount(Account account) {
         accountsByUsername.put(account.getUsername(), account);
+        if (databaseFilePath == null) return;
         try {
             Serializer.serialize(accountsByUsername, databaseFilePath);
         } catch (FileNotFoundException e) {

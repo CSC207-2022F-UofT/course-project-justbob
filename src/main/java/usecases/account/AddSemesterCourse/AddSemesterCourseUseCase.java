@@ -11,6 +11,9 @@ import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseRequest;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary {
 
     private final EntityGateway entityGateway;
@@ -71,12 +74,16 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         ApplicationResponse response = new ApplicationResponse();
         response.username = account.getUsername();
         response.semesterTitle = account.getSemester().getTitle();
-        response.courseCodes = account.getSemester().getRunningCourses().stream()
-                .map(Course::getCourseCode)
-                .toArray(String[]::new);
-        response.courseTitles = account.getSemester().getRunningCourses().stream()
-                .map(Course::getCourseName)
-                .toArray(String[]::new);
+        List<String> myList = new ArrayList<>();
+        for(Course course : account.getSemester().getRunningCourses()){
+            myList.add(course.getCourseCode());
+        }
+        response.courseCodes = myList.toArray(new String[0]);
+        List<String> myTitles = new ArrayList<>();
+        for(Course course : account.getSemester().getRunningCourses()){
+            myTitles.add(course.getCourseCode());
+        }
+        response.courseTitles = myTitles.toArray(new String[0]);
         response.courseGrades = new Double[response.courseCodes.length];
         int index = 0;
         for (Course course : account.getSemester().getRunningCourses()) {
