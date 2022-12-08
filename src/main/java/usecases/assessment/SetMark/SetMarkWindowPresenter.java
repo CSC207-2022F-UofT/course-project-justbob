@@ -21,7 +21,7 @@ public class SetMarkWindowPresenter {
     }
 
     public void present(SetMarkWindowResponse response) {
-        new SetMarkView(entityGateway, entityFactory, response, parentFrame);
+        new SetMarkView(entityGateway, entityFactory, response, frame, parentFrame);
         frame.dispose();
     }
 
