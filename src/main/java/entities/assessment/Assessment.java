@@ -69,6 +69,10 @@ public abstract class Assessment {
         return getWeightScheme().computeWeighted(marksToWeigh) / 100;
     }
 
+    private int getNumberOfMarkedInstances() {
+        return getAllMarks().length;
+    }
+
 
     public double getActualCommittedWeight() {
         return getWeightScheme().computeWeighted(getCommittedMarks());
@@ -86,9 +90,8 @@ public abstract class Assessment {
         return getMaxWeight(getNumberOfSubmittedInstances());
     }
 
-    // TODO: make this use number of marked instances instead.
     public double getMaxPossibleHypotheticalWeight() {
-        return getMaxWeight(getTotalNumberOfInstances());
+        return getMaxWeight(getNumberOfMarkedInstances());
     }
 
     public String toSingular() {
