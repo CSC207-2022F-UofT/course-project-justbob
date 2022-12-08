@@ -46,7 +46,8 @@ public class SetMarkView {
         setMarkButton.addActionListener(e -> {
             double markValue = Double.parseDouble(mark.getText());
 
-            SetMarkRequest request = new SetMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber, markValue);
+            SetMarkRequest request = new SetMarkRequest(response.username, response.courseCode, response.assessmentTitle,
+                    response.instanceNumber, markValue);
             new SetMarkController(request, frame, entityGateway, entityFactory, parentFrame);
         });
         frame.setVisible(true);
