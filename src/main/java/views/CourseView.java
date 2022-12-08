@@ -59,7 +59,7 @@ public class CourseView {
         panel.add(assessmentsTable);
 
         // Running Grade Label
-        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade);
+        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade + "(" + response.letteredGrade + ")");
         label2.setBounds(assessmentsTable.getX(), assessmentsTable.getY() + assessmentsTable.getHeight() - 25, 210, 100);
         panel.add(label2, BorderLayout.CENTER);
 

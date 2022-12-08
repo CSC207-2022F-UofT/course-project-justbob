@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 public class AssessmentInstanceImpl extends AssessmentInstance implements Serializable {
     private String title;
     private LocalDateTime deadline;
-    private boolean isCommitted;
-    private boolean isSubmitted;
+    private boolean isCommitted = false;
+    private boolean isSubmitted = false;
     private Double mark;
 
     public AssessmentInstanceImpl(String title) {

@@ -14,8 +14,9 @@ import java.util.List;
 public class TaskListImpl extends TaskList {
     private List<Task> taskList = new ArrayList<>();
 
-    public TaskListImpl(Account account) {
-        List<Course> courseList = account.getArchive().getCourses();
+
+    public TaskListImpl(Account account){
+        List<Course> courseList = account.getSemester().getRunningCourses();
         TaskImpl task;
         List<List<AssessmentInstance>> assessmentInstances = new ArrayList<>();
         for (Course i : courseList) {
