@@ -159,7 +159,7 @@ public class TaskChecklistImpl extends TaskChecklist {
 
     @Override
     public void toNotShowCommitted(){
-        this.showCommitted = true;
+        this.showCommitted = false;
     }
 
     @Override
@@ -169,7 +169,7 @@ public class TaskChecklistImpl extends TaskChecklist {
 
     @Override
     public void toNotShowSubmitted(){
-        this.showSubmitted = true;
+        this.showSubmitted = false;
     }
 
 
@@ -177,28 +177,44 @@ public class TaskChecklistImpl extends TaskChecklist {
         if (!haveTask){
             return "";
         }
-        String taskT = "";
+        String taskT = "Tasks to do: \n \n";
         for (Task i: this.taskToDo){
-            taskT += i.toString() + "\n";
+            taskT += i.toString() + "\n \n";
         }
-        String taskC = "";
+        String taskC = "Tasks committed: \n \n";
         for (Task i: this.taskCommitted){
-            taskC += i.toString() + "\n";
+            taskC += i.toString() + "\n \n";
         }
-        String taskS = "";
+        String taskS = "Tasks submitted: \n \n";
         for (Task i: this.taskSubmitted){
-            taskS += i.toString() + "\n";
+            taskS += i.toString() + "\n \n";
         }
         String result = "";
-        if (showCommitted){
+        if (this.showCommitted){
             result += taskC;
         }
-        if (showSubmitted){
+        if (this.showSubmitted){
             result += taskS;
         }
-        if (showToDo){
+        if (this.showToDo){
             result += taskT;
         }
         return result;
+    }
+
+    @Override
+    public List<Task> getTaskToDo() {
+        return taskToDo;
+    }
+
+
+    @Override
+    public List<Task> getTaskCommitted() {
+        return taskCommitted;
+    }
+
+    @Override
+    public List<Task> getTaskSubmitted() {
+        return taskSubmitted;
     }
 }
