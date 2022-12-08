@@ -27,13 +27,17 @@ public class OutlineTest {
     public void getNumberOfAssessmentInstancesCompletedTest() {
         Assessment assessment1 = mockEntityFactory.createAssessment(
                 "A1",
-                new SimpleWeight(new Weight(3, 0.2)),
+                mockEntityFactory.createSimpleWeight(
+                        mockEntityFactory.createWeight(3, 0.2)
+                ),
                 createMockInstances(3, 1.0, true, true)
         );
 
         Assessment assessment2 = mockEntityFactory.createAssessment(
                 "A2",
-                new SimpleWeight(new Weight(4, 0.1))
+                mockEntityFactory.createSimpleWeight(
+                        mockEntityFactory.createWeight(4, 0.1)
+                )
         );
         assessment2.addInstance(mockEntityFactory.createAssessmentInstance(
                 "I1", null, 1.0, false, false));

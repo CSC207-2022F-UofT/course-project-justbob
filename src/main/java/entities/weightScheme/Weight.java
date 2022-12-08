@@ -1,29 +1,17 @@
 package entities.weightScheme;
 
-public class Weight {
-    private int numberOfInstances;
-    private double weightOfEachInstance;
+public abstract class Weight {
+    public abstract int getNumberOfInstances();
+    public abstract double getWeightOfEachInstance();
 
-    /**
-     * Create a new Weight object
-     *
-     * @param numberOfInstances    must be positive
-     * @param weightOfEachInstance must be between 0 and 1
-     */
-    public Weight(int numberOfInstances, double weightOfEachInstance) {
-        this.numberOfInstances = numberOfInstances;
-        this.weightOfEachInstance = weightOfEachInstance;
-    }
-
-    public int getNumberOfInstances() {
-        return numberOfInstances;
-    }
-
-    public double getWeightOfEachInstance() {
-        return weightOfEachInstance;
-    }
+    public abstract void setNumberOfInstances(int numberOfInstances);
+    public abstract void setWeightOfEachInstance(double weightOfEachInstance);
 
     public double getTotalWeight() {
-        return numberOfInstances * weightOfEachInstance;
+        return getNumberOfInstances() * getWeightOfEachInstance();
+    }
+
+    public interface WeightFactory {
+        Weight createWeight(int numberOfInstances, double weightOfEachInstance);
     }
 }

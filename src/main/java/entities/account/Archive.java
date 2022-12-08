@@ -6,27 +6,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 public abstract class Archive {
-    public class ArchivedCourseData {
-        private String semester;
-        private LocalDate dateArchived;
-
-        public String getSemester() {
-            return semester;
-        }
-
-        public void setSemester(String semester) {
-            this.semester = semester;
-        }
-
-        public LocalDate getDateArchived() {
-            return dateArchived;
-        }
-
-        public void setDateArchived(LocalDate dateArchived) {
-            this.dateArchived = dateArchived;
-        }
-    }
-
     public abstract List<Course> getCourses();
 
     public abstract ArchivedCourseData getArchivedCourseData(Course course);
@@ -38,6 +17,18 @@ public abstract class Archive {
      * @param semester the semester the course was a part of
      */
     public abstract void addCourse(Course course, String semester);
+
+    /**
+     * remove a course and its archive data from this archive.
+     * @param course the course to remove
+     */
+
+    public abstract class ArchivedCourseData {
+        public abstract String getSemester();
+        public abstract LocalDate getDateArchived();
+        public abstract void setSemester(String semester);
+        public abstract void setDateArchived(LocalDate dateArchived);
+    }
 
     public interface ArchiveFactory {
         Archive createArchive();

@@ -11,7 +11,7 @@ import javax.swing.*;
 public class AddSimpleAssessmentController {
 
     public AddSimpleAssessmentController(AddSimpleAssessmentRequest request, JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory, JFrame parentFrame) {
-        AddSimpleAssessmentUseCase usecase = new AddSimpleAssessmentUseCase(entityGateway, entityFactory);
+        AddSimpleAssessmentUseCase usecase = new AddSimpleAssessmentUseCase(entityGateway, entityFactory, entityFactory, entityFactory);
         AddSimpleAssessmentPresenter presenter = new AddSimpleAssessmentPresenter(frame, entityGateway, entityFactory, parentFrame);
 
         try {

@@ -2,27 +2,28 @@ package inMemoryDB.entities;
 
 import entities.assessment.AssessmentInstance;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class AssessmentInstanceImpl extends AssessmentInstance {
-    private String singularTitle;
+public class AssessmentInstanceImpl extends AssessmentInstance implements Serializable {
+    private String title;
     private LocalDateTime deadline;
     private boolean isCommitted;
     private boolean isSubmitted;
     private Double mark;
 
-    public AssessmentInstanceImpl(String singularTitle) {
-        this.singularTitle = singularTitle;
+    public AssessmentInstanceImpl(String title) {
+        this.title = title;
     }
 
     @Override
     public String getTitle() {
-        return singularTitle;
+        return title;
     }
 
     @Override
-    public void setTitle(String newTitle) {
-        this.singularTitle = newTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     @Override
