@@ -24,7 +24,7 @@ public class SetMarkView {
         frame.setTitle("Set Mark of " + response.instanceName);
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
-        frame.setSize(new Dimension(400, 260));
+        frame.setSize(new Dimension(400, 300));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Mark Label constructor
@@ -49,7 +49,7 @@ public class SetMarkView {
 
         // back button constructor
         JButton backButton = new JButton("Back");
-        backButton.setBounds(100, 180, 193, 28);
+        backButton.setBounds(100, 240, 193, 28);
         panel.add(backButton);
 
 
@@ -61,15 +61,22 @@ public class SetMarkView {
 
         commitMarkButton.addActionListener(e -> {
             SubmitInstanceRequest submitInstanceRequest = new SubmitInstanceRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber);
-            new SubmitInstanceController(submitInstanceRequest, frame, entityGateway, parentFrame);
-            SetMarkRequest request = new SetMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber, mark.getText());
-            new SetMarkController(request, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
-            CommitMarkRequest commitMarkRequest = new CommitMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber);
-            new CommitMarkController(commitMarkRequest, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
+            SubmitInstanceController submitInstanceController = new SubmitInstanceController(submitInstanceRequest, frame, entityGateway, parentFrame);
+            if (submitInstanceController.isSuccessful) {
+                SetMarkRequest request = new SetMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber, mark.getText());
+                SetMarkController setMarkController = new SetMarkController(request, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
+                if (setMarkController.isSuccessful) {
+                    CommitMarkRequest commitMarkRequest = new CommitMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber);
+                    new CommitMarkController(commitMarkRequest, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
+                }
+            }
 
         });
 
-        backButton.addActionListener(e -> frame.dispose());
+        backButton.addActionListener(e -> {
+            frame.dispose();
+            parentFrame.setVisible(true);
+        });
 
         frame.setVisible(true);
     }
