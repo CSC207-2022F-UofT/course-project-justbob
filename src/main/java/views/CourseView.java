@@ -114,7 +114,6 @@ public class CourseView {
         archiveCourseButton.addActionListener(e -> {
             ArchiveCourseRequest request = new ArchiveCourseRequest(response.username, response.courseCode);
             ArchiveCourseController controller = new ArchiveCourseController(request, frame, entityGateway, entityFactory, frame);
-
         });
 
         frame.setVisible(true);

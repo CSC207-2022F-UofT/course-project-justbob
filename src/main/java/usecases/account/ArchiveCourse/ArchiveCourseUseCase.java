@@ -28,9 +28,9 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
         if (course == null) {
             throw new PathNotFoundError("Course: " + courseCode);
         }
-        if (course.getOutline().getPercentageCompleted() < 1.0) {
-            throw new CourseNotCompletedError();
-        }
+        //if (course.getOutline().getPercentageCompleted() < 1.0) {
+        //    throw new CourseNotCompletedError();
+        //}
         account.getSemester().removeCourse(course);
         account.getArchive().addCourse(course, account.getSemester().getTitle());
         entityGateway.saveAccount(account);
