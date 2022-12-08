@@ -26,11 +26,11 @@ public class AssessmentImpl extends Assessment {
 
     @Override
     public String toSingular(String title) {
-        if (title == "Quizzes"){
+        if (title.equals("Quizzes")){
             return "Quiz";
         }
         if (title.charAt(title.length()-1) == 's'){
-            return singularTitle.substring(0, title.length()-1);
+            return title.substring(0, title.length()-1);
         }
         return title;
     }

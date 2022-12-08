@@ -11,11 +11,15 @@ public class TaskChecklistImpl extends TaskChecklist {
     private List<Task> taskCommitted;
     private List<Task> taskSubmitted;
     private Boolean showDetail = false;
-    private Boolean showToDo = false;
+    private Boolean showToDo = true;
     private Boolean showCommitted = false;
     private Boolean showSubmitted = false;
+    private Boolean haveTask = true;
 
     public TaskChecklistImpl(TaskList taskList){
+        if (taskList == null){
+            haveTask = false;
+        }
         for (Task task: taskList.getTaskList()) {
             if (task.getCommitted()) {
                 this.taskCommitted.add(task);
@@ -169,6 +173,9 @@ public class TaskChecklistImpl extends TaskChecklist {
 
 
     public String toString(){
+        if (!haveTask){
+            return "";
+        }
         String taskT = null;
         for (Task i: this.taskToDo){
             taskT += i.toString() + "\n";
