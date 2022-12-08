@@ -9,16 +9,27 @@ import entities.course.Course.CourseFactory;
 import entities.course.CourseEvent;
 import entities.course.Outline;
 import entities.course.Outline.OutlineFactory;
-import inMemoryDB.entities.AssessmentInstanceImpl;
+import entities.weightScheme.OrderedWeight;
+import entities.weightScheme.SimpleWeight;
+import entities.weightScheme.Weight;
 import entities.weightScheme.WeightScheme;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockEntityFactory implements CourseFactory, CourseEvent.CourseEventFactory, OutlineFactory, AssessmentFactory, AssessmentInstanceFactory {
+public class MockEntityFactory implements
+        CourseFactory,
+        CourseEvent.CourseEventFactory,
+        OutlineFactory,
+        AssessmentFactory,
+        AssessmentInstanceFactory,
+        Weight.WeightFactory,
+        SimpleWeight.SimpleWeightFactory,
+        OrderedWeight.OrderedWeightFactory {
     private class CourseMock extends Course {
         private String courseCode;
         private String courseName;
@@ -248,7 +259,7 @@ public class MockEntityFactory implements CourseFactory, CourseEvent.CourseEvent
             this.singularTitle = toSingular(this.title);
 
             for (int i = 0, j = 1; i < this.getTotalNumberOfInstances(); i++, j++) {
-                this.instances.add(new AssessmentInstanceImpl(this.singularTitle + " #" + j));
+                this.instances.add(new AssessmentInstanceMock(this.singularTitle + " #" + j));
             }
         }
 
@@ -310,6 +321,138 @@ public class MockEntityFactory implements CourseFactory, CourseEvent.CourseEvent
         }
     }
 
+    public class AssessmentInstanceMock extends AssessmentInstance implements Serializable {
+        private String title;
+        private LocalDateTime deadline;
+        private boolean isCommitted;
+        private boolean isSubmitted;
+        private Double mark;
+
+        public AssessmentInstanceMock(String title) {
+            this.title = title;
+        }
+
+        @Override
+        public String getTitle() {
+            return title;
+        }
+
+        @Override
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        @Override
+        public LocalDateTime getDeadline() {
+            return deadline;
+        }
+
+        @Override
+        public void setDeadline(LocalDateTime deadline) {
+            this.deadline = deadline;
+        }
+
+        @Override
+        public boolean isCommitted() {
+            return isCommitted;
+        }
+
+        @Override
+        public void setCommitted(boolean committed) {
+            isCommitted = committed;
+        }
+
+        @Override
+        public boolean isSubmitted() {
+            return isSubmitted;
+        }
+
+        @Override
+        public void setSubmitted(boolean submitted) {
+            isSubmitted = submitted;
+        }
+
+        @Override
+        public Double getMark() {
+            return mark;
+        }
+
+        @Override
+        public void setMark(Double mark) {
+            this.mark = mark;
+        }
+    }
+
+    public class WeightMock extends Weight {
+        private int numberOfInstances;
+        private double weightOfEachInstance;
+
+        /**
+         * Create a new Weight object
+         *
+         * @param numberOfInstances    must be positive
+         * @param weightOfEachInstance must be between 0 and 1
+         */
+        public WeightMock(int numberOfInstances, double weightOfEachInstance) {
+            this.numberOfInstances = numberOfInstances;
+            this.weightOfEachInstance = weightOfEachInstance;
+        }
+
+        public int getNumberOfInstances() {
+            return numberOfInstances;
+        }
+
+        public double getWeightOfEachInstance() {
+            return weightOfEachInstance;
+        }
+
+        public void setNumberOfInstances(int numberOfInstances) {
+            this.numberOfInstances = numberOfInstances;
+        }
+
+        public void setWeightOfEachInstance(double weightOfEachInstance) {
+            this.weightOfEachInstance = weightOfEachInstance;
+        }
+    }
+
+    public class SimpleWeightMock extends SimpleWeight {
+        private Weight weight;
+
+        public SimpleWeightMock(Weight weight) {
+            this.weight = weight;
+        }
+
+        @Override
+        public Weight getWeight() {
+            return weight;
+        }
+
+        @Override
+        public void setWeight(Weight weight) {
+            this.weight = weight;
+        }
+    }
+
+    public class OrderedWeightMock extends OrderedWeight {
+        private Weight[] orderedWeights;
+
+        /**
+         * Create new OrderedWeight, with (orderedWeights) being an array of Weight objects
+         * @param orderedWeights must be sorted from lowest impact to highest impact.
+         */
+        public OrderedWeightMock(Weight[] orderedWeights) {
+            this.orderedWeights = orderedWeights;
+        }
+
+        public Weight[] getOrderedWeights() {
+            return orderedWeights;
+        }
+
+        public void setOrderedWeights(Weight[] orderedWeights) {
+            this.orderedWeights = orderedWeights;
+        }
+    }
+
 
 
     @Override
@@ -357,7 +500,7 @@ public class MockEntityFactory implements CourseFactory, CourseEvent.CourseEvent
             throw new IllegalArgumentException("AssessmentIntance cannot be committed and not submitted");
         }
 
-        AssessmentInstance instance = new AssessmentInstanceImpl(title);
+        AssessmentInstance instance = new AssessmentInstanceMock(title);
         instance.setSubmitted(isSubmitted);
         instance.setCommitted(isCommitted);
         instance.setMark(mark);
@@ -365,6 +508,20 @@ public class MockEntityFactory implements CourseFactory, CourseEvent.CourseEvent
         return instance;
     }
 
+    @Override
+    public Weight createWeight(int numberOfInstances, double weightOfEachInstance) {
+        return new WeightMock(numberOfInstances, weightOfEachInstance);
+    }
+
+    @Override
+    public SimpleWeight createSimpleWeight(Weight weight) {
+        return new SimpleWeightMock(weight);
+    }
+
+    @Override
+    public OrderedWeight createOrderedWeight(Weight[] orderedWeights) {
+        return new OrderedWeightMock(orderedWeights);
+    }
 
     /*
     private class ArchiveMock extends Archive {

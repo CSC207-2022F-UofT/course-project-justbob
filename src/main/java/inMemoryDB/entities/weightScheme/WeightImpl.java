@@ -2,7 +2,9 @@ package inMemoryDB.entities.weightScheme;
 
 import entities.weightScheme.Weight;
 
-public class WeightImpl extends Weight {
+import java.io.Serializable;
+
+public class WeightImpl extends Weight implements Serializable {
     private int numberOfInstances;
     private double weightOfEachInstance;
 

@@ -1,8 +1,11 @@
 package inMemoryDB.entities.weightScheme;
 
+import entities.weightScheme.OrderedWeight;
 import entities.weightScheme.Weight;
 
-public class OrderedWeightImpl {
+import java.io.Serializable;
+
+public class OrderedWeightImpl extends OrderedWeight implements Serializable {
     private Weight[] orderedWeights;
 
     /**

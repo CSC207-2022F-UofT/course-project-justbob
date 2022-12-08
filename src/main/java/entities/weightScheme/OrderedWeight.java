@@ -59,4 +59,8 @@ public abstract class OrderedWeight implements WeightScheme {
                 .mapToDouble(weight -> weight.getTotalWeight())
                 .sum();
     }
+
+    public interface OrderedWeightFactory {
+        public OrderedWeight createOrderedWeight(Weight[] orderedWeights);
+    }
 }

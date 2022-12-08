@@ -8,8 +8,14 @@ import entities.assessment.AssessmentInstance;
 import entities.course.Course;
 import entities.course.CourseEvent;
 import entities.course.Outline;
+import entities.weightScheme.OrderedWeight;
+import entities.weightScheme.SimpleWeight;
+import entities.weightScheme.Weight;
 import entities.weightScheme.WeightScheme;
 import inMemoryDB.entities.*;
+import inMemoryDB.entities.weightScheme.OrderedWeightImpl;
+import inMemoryDB.entities.weightScheme.SimpleWeightImpl;
+import inMemoryDB.entities.weightScheme.WeightImpl;
 import ports.database.EntityFactory;
 
 import java.time.DayOfWeek;
@@ -82,5 +88,20 @@ public class InMemoryEntityFactory implements EntityFactory {
         instance.setMark(mark);
 
         return instance;
+    }
+
+    @Override
+    public Weight createWeight(int numberOfInstances, double weightOfEachInstance) {
+        return new WeightImpl(numberOfInstances, weightOfEachInstance);
+    }
+
+    @Override
+    public SimpleWeight createSimpleWeight(Weight weight) {
+        return new SimpleWeightImpl(weight);
+    }
+
+    @Override
+    public OrderedWeight createOrderedWeight(Weight[] orderedWeights) {
+        return new OrderedWeightImpl(orderedWeights);
     }
 }

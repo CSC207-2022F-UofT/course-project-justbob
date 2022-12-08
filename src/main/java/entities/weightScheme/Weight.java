@@ -10,4 +10,8 @@ public abstract class Weight {
     public double getTotalWeight() {
         return getNumberOfInstances() * getWeightOfEachInstance();
     }
+
+    public interface WeightFactory {
+        Weight createWeight(int numberOfInstances, double weightOfEachInstance);
+    }
 }

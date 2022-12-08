@@ -22,4 +22,8 @@ public abstract class SimpleWeight implements WeightScheme {
     public int getNumberOfInstances() {
         return getWeight().getNumberOfInstances();
     }
+
+    public interface SimpleWeightFactory {
+        public SimpleWeight createSimpleWeight(Weight weight);
+    }
 }

@@ -3,9 +3,10 @@ package inMemoryDB.entities.weightScheme;
 import entities.weightScheme.SimpleWeight;
 import entities.weightScheme.Weight;
 
+import java.io.Serializable;
 import java.util.stream.DoubleStream;
 
-public class SimpleWeightImpl extends SimpleWeight {
+public class SimpleWeightImpl extends SimpleWeight implements Serializable {
     private Weight weight;
 
     public SimpleWeightImpl(Weight weight) {
