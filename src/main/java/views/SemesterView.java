@@ -56,7 +56,7 @@ public class SemesterView {
         panel.add(coursesTable);
 
         // Running GPA Label
-        JLabel label2 = new JLabel("Running GPA: " /*+ response.runningGPA*/);
+        JLabel label2 = new JLabel("Running GPA: " + response.runningGPA);
         label2.setBounds(coursesTable.getX(), coursesTable.getY() + coursesTable.getHeight() - 25, 210, 100);
         panel.add(label2, BorderLayout.CENTER);
 
