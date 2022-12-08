@@ -11,7 +11,6 @@ import ports.usecases.account.viewSemester.ViewSemesterResponse;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ViewSemesterUseCase implements ViewSemesterInputBoundary {
@@ -46,17 +45,12 @@ public class ViewSemesterUseCase implements ViewSemesterInputBoundary {
         }
         response.courseTitles = myTitles.toArray(new String[0]);
         response.courseGrades = new Double[response.courseCodes.length];
+        Double[] hypotheticalGrades = new Double[response.courseCodes.length];
         int index = 0;
         for (Course course : account.getSemester().getRunningCourses()) {
             response.courseGrades[index] = Math.round(course.getOutline().computeRunningGrade() * 100.0) / 100.0;
+            hypotheticalGrades[index] = Math.round(course.getOutline().computeHypotheticalGrade() * 100.0) / 100.0;
             index += 1;
-        }
-
-        Double[] hypotheticalGrades = new Double[response.courseCodes.length];
-        int index2 = 0;
-        for (Course course : account.getSemester().getRunningCourses()) {
-            response.courseGrades[index2] = Math.round(course.getOutline().computeHypotheticalGrade() * 100.0) / 100.0;
-            index2 += 1;
         }
 
         List<Double> myCredits = new ArrayList<>();
@@ -67,8 +61,6 @@ public class ViewSemesterUseCase implements ViewSemesterInputBoundary {
         response.courseCredits = myCredits.toArray(new Double[0]);
         response.runningGPA = Double.toString(GPACalculation.overallGPA(response.courseGrades, response.courseCredits));
         response.hypotheticalGPA = Double.toString(GPACalculation.overallGPA(hypotheticalGrades, response.courseCredits));
-        System.out.println(String.join("\n", Arrays.toString(response.courseGrades)));
-        System.out.println(String.join("\n", Arrays.toString(response.courseCredits)));
 
         response.trendModel = new GetAccountTrendUseCase(entityGateway).execute(account.getUsername());
         return response;

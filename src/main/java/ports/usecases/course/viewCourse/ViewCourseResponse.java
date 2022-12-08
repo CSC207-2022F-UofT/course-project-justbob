@@ -1,5 +1,7 @@
 package ports.usecases.course.viewCourse;
 
+import ports.usecases.gpaTrend.TrendModel;
+
 public class ViewCourseResponse {
     public String username;
 
@@ -22,13 +24,15 @@ public class ViewCourseResponse {
     public String runningLetteredGrade;
 
     public String hypotheticalLetteredGrade;
+    public TrendModel trendModel;
 
     public ViewCourseResponse() {
     }
 
     public ViewCourseResponse(String username, String courseCode, String courseTitle, String credit,
                               String[] assessmentTitles, Integer[] assessmentNumberOfInstances, Double[] assessmentWeights,
-                              String runningGrade, String hypotheticalGrade, String semesterTitle, String letteredGrade, String hypotheticalLetteredGrade) {
+                              String runningGrade, String hypotheticalGrade, String semesterTitle, String letteredGrade, String hypotheticalLetteredGrade,
+                              TrendModel trendModel) {
         this.username = username;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
@@ -41,5 +45,6 @@ public class ViewCourseResponse {
         this.semesterTitle = semesterTitle;
         this.runningLetteredGrade = letteredGrade;
         this.hypotheticalLetteredGrade = hypotheticalLetteredGrade;
+        this.trendModel = trendModel;
     }
 }
