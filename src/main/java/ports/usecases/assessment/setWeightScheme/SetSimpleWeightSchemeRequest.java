@@ -11,7 +11,8 @@ public class SetSimpleWeightSchemeRequest {
 
     public double weightOfEachInstance;
 
-    public SetSimpleWeightSchemeRequest() {}
+    public SetSimpleWeightSchemeRequest() {
+    }
 
     public SetSimpleWeightSchemeRequest(String username, String courseCode, String assessmentTitle,
                                         int numberOfInstances, double weightOfEachInstance) {

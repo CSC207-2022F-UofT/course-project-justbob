@@ -41,7 +41,7 @@ public class RemoveCourseEventUseCase {
         return createResponse(course);
     }
 
-    private RemoveCourseEventResponse createResponse(Course course){
+    private RemoveCourseEventResponse createResponse(Course course) {
         return new RemoveCourseEventResponse(course.getCourseEvents());
     }
 }

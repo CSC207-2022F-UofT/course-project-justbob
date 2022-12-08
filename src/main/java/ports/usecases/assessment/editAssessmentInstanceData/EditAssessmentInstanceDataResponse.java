@@ -6,7 +6,8 @@ public class EditAssessmentInstanceDataResponse {
     public String newTitle;
     public LocalDateTime newDeadline;
 
-    public EditAssessmentInstanceDataResponse() {}
+    public EditAssessmentInstanceDataResponse() {
+    }
 
     public EditAssessmentInstanceDataResponse(String newTitle, LocalDateTime newDeadline) {
         this.newTitle = newTitle;

@@ -17,7 +17,7 @@ public class AssessmentView {
     public final int WIDTH = 600;
     public final int HEIGHT = 600;
 
-    public AssessmentView(EntityGateway entityGateway, EntityFactory entityFactory, ViewAssessmentResponse response, JFrame parentFrame){
+    public AssessmentView(EntityGateway entityGateway, EntityFactory entityFactory, ViewAssessmentResponse response, JFrame parentFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -31,7 +31,7 @@ public class AssessmentView {
 
         // Title label constructor
         JLabel label1 = new JLabel(response.assessmentTitle);
-        label1.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT) - 25, 370, 20);
+        label1.setBounds((int) (0.066 * WIDTH), (int) (0.133 * HEIGHT) - 25, 370, 20);
         panel.add(label1);
 
         // Assessment Instances Table constructor
@@ -48,7 +48,7 @@ public class AssessmentView {
         String[] column = {"Title", "Weight", "Marks"};
 
         JTable assessmentInstancesTable = new JTable(data, column);
-        assessmentInstancesTable.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT), (int) (WIDTH - (0.133*WIDTH)), (int) (HEIGHT * 0.533));
+        assessmentInstancesTable.setBounds((int) (0.066 * WIDTH), (int) (0.133 * HEIGHT), (int) (WIDTH - (0.133 * WIDTH)), (int) (HEIGHT * 0.533));
         panel.add(assessmentInstancesTable);
 
        Integer[] finalAssessmentInstanceIds = new Integer[assessmentInstanceTitles.length];

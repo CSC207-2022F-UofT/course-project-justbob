@@ -5,9 +5,10 @@ import java.util.List;
 public class RemoveArchiveCourseResponse {
     public List<String> courseList;
 
-    public RemoveArchiveCourseResponse(){}
+    public RemoveArchiveCourseResponse() {
+    }
 
-    public RemoveArchiveCourseResponse(List<String> courses){
+    public RemoveArchiveCourseResponse(List<String> courses) {
         this.courseList = courses;
     }
 }

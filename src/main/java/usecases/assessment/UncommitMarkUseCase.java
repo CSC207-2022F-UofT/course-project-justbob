@@ -56,6 +56,7 @@ public class UncommitMarkUseCase implements UncommitMarkInputBoundary {
 
         return createResponse(assessmentInstance);
     }
+
     private UncommitMarkResponse createResponse(AssessmentInstance assessmentInstance) {
         UncommitMarkResponse response = new UncommitMarkResponse();
         response.uncommitSuccessful = true;

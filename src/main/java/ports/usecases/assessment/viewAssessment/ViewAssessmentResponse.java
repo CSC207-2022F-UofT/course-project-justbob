@@ -8,7 +8,8 @@ public class ViewAssessmentResponse {
     public Double[] assessmentInstanceWeights;
     public Double[] assessmentInstanceMarks;
 
-    public ViewAssessmentResponse(){}
+    public ViewAssessmentResponse() {
+    }
 
     public ViewAssessmentResponse(String username, String courseCode, String assessmentTitle,
                                   String[] assessmentInstanceTitles, Double[] assessmentInstanceWeights,

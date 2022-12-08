@@ -4,7 +4,7 @@ import entities.assessment.AssessmentInstance;
 
 import java.time.LocalDateTime;
 
-public abstract class Task{
+public abstract class Task {
     public abstract boolean getSubmitted();
 
     public abstract LocalDateTime getDueTime();

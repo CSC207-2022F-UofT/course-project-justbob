@@ -11,7 +11,8 @@ public class SetMarkRequest {
 
     public String mark;
 
-    public SetMarkRequest() {}
+    public SetMarkRequest() {
+    }
 
     public SetMarkRequest(String username, String courseCode, String assessmentTitle, int instanceNumber, String mark) {
         this.username = username;

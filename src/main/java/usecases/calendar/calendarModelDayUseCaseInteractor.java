@@ -10,12 +10,13 @@ import java.time.LocalDate;
 public class calendarModelDayUseCaseInteractor implements calendarModelDayInputBoundary {
     final calendarModelDayOutputBoundary dayOutput;
 
-    public calendarModelDayUseCaseInteractor(calendarModelDayOutputBoundary dayOutput){
+    public calendarModelDayUseCaseInteractor(calendarModelDayOutputBoundary dayOutput) {
         this.dayOutput = dayOutput;
     }
 
     /**
      * Takes calendarModelDayRequest and converts data into single day
+     *
      * @param calendarDayRequest date (year-month-date all in terms of numbers)
      * @return date as LocalDate
      */
