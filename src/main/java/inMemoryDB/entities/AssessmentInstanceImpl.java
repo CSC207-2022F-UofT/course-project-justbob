@@ -1,4 +1,3 @@
-
 package inMemoryDB.entities;
 
 import entities.assessment.AssessmentInstance;
