@@ -8,6 +8,10 @@ import java.util.List;
 
 public abstract class Assessment {
     public abstract String getTitle();
+
+    public abstract String getSingularTitle();
+
+    public abstract String toSingular(String title);
     public abstract WeightScheme getWeightScheme();
     public abstract ArrayList<AssessmentInstance> getInstances();
 
@@ -31,27 +35,27 @@ public abstract class Assessment {
 
     public int getNumberOfCommittedInstances() {
         return (int) getInstances().stream()
-                .filter(instance -> instance.isCommitted())
+                .filter(AssessmentInstance::isCommitted)
                 .count();
     }
 
     public int getNumberOfSubmittedInstances() {
         return (int) getInstances().stream()
-                .filter(instance -> instance.isSubmitted())
+                .filter(AssessmentInstance::isSubmitted)
                 .count();
     }
 
     public double[] getCommittedMarks() {
         return getInstances().stream()
-                .filter(instance -> instance.isCommitted())
-                .mapToDouble(instance -> instance.getMark())
+                .filter(AssessmentInstance::isCommitted)
+                .mapToDouble(AssessmentInstance::getMark)
                 .toArray();
     }
 
     public double[] getAllMarks() {
         return getInstances().stream()
                 .filter(instance -> instance.getMark() != null)
-                .mapToDouble(instance -> instance.getMark())
+                .mapToDouble(AssessmentInstance::getMark)
                 .toArray();
     }
 
@@ -82,11 +86,14 @@ public abstract class Assessment {
     public double getMaxPossibleHypotheticalWeight() {
         return getMaxWeight(getTotalNumberOfInstances());
     }
-
-    // TODO: reimplement toSinglar function (for naming)
-
+    
+    public String toSingular() {
+        return getTitle();
+    }
+    
     public interface AssessmentFactory {
         Assessment createAssessment(String title, WeightScheme weightScheme);
+
         Assessment createAssessment(String title, WeightScheme weightScheme, List<AssessmentInstance> instances);
     }
 }

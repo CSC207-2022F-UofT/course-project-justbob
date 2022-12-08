@@ -13,7 +13,19 @@ public abstract class Account {
     public abstract void setArchive(Archive archive);
     public abstract void setSemester(Semester semester);
 
-    //TODO: implement a static method to check if password is valid (more than 8 characters, etc.)
+    /**
+     * Checks whether password is valid
+     *
+     * @param password Takes string representing password
+     * @return a boolean if password is valid
+     */
+    public static boolean isPasswordValid(String password) {
+        return password.length() >= 8;
+    }
+
+    public static boolean isUsernameValid(String username) {
+        return username.length() >= 2;
+    }
 
     public interface AccountFactory {
         Account createAccount();

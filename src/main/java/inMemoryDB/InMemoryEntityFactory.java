@@ -8,9 +8,9 @@ import entities.assessment.AssessmentInstance;
 import entities.course.Course;
 import entities.course.CourseEvent;
 import entities.course.Outline;
+import entities.weightScheme.WeightScheme;
 import inMemoryDB.entities.*;
 import ports.database.EntityFactory;
-import entities.weightScheme.WeightScheme;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
@@ -73,11 +73,10 @@ public class InMemoryEntityFactory implements EntityFactory {
             throw new IllegalArgumentException(String.format("Mark %f is not valid", mark));
         }
         if (isCommitted && !isSubmitted) {
-            // TODO: is this a valid exception? Would it be better to override isSubmitted as true?
-            throw new IllegalArgumentException("AssessmentIntance cannot be committed and not submitted");
+            throw new IllegalArgumentException("Submit the AssessmentInstance before it is committed.");
         }
 
-        AssessmentInstance instance = new AssessmentInstanceImpl(title, deadline);
+        AssessmentInstance instance = new AssessmentInstanceImpl(title);
         instance.setSubmitted(isSubmitted);
         instance.setCommitted(isCommitted);
         instance.setMark(mark);

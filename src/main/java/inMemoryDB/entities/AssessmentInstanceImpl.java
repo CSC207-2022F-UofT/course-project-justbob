@@ -12,9 +12,8 @@ public class AssessmentInstanceImpl extends AssessmentInstance implements Serial
     private boolean isSubmitted;
     private Double mark;
 
-    public AssessmentInstanceImpl(String title, LocalDateTime deadline) {
+    public AssessmentInstanceImpl(String title) {
         this.title = title;
-        this.deadline = deadline;
     }
 
     @Override

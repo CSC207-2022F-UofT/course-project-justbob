@@ -20,7 +20,6 @@ public abstract class Archive {
      * remove a course and its archive data from this archive.
      * @param course the course to remove
      */
-    public abstract void RemoveCourse(Course course);
 
     public abstract class ArchivedCourseData {
         public abstract String getSemester();
@@ -32,5 +31,9 @@ public abstract class Archive {
     public interface ArchiveFactory {
         Archive createArchive();
     }
+
+    public abstract void removeCourse(Course course);
+
+    public abstract Course getCourseByCode(String courseCode);
 }
 

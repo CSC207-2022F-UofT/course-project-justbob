@@ -5,14 +5,13 @@ import entities.course.Course;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SemesterImpl extends Semester implements Serializable {
     // TODO: update the implementation so that it uses a hashmap from courseCodes to Course objects.
 
     private static final String DEFAULT_SEMESTER_TITLE = "Semester";
     private String title = DEFAULT_SEMESTER_TITLE;
-    private ArrayList<Course> runningCourses = new ArrayList<>();
+    private final ArrayList<Course> runningCourses = new ArrayList<>();
 
     @Override
     public String getTitle() {
@@ -43,12 +42,10 @@ public class SemesterImpl extends Semester implements Serializable {
 
     @Override
     public Course getCourseByCode(String courseCode) {
-        Course[] candidates = (Course[]) runningCourses.stream()
-                .filter(course -> course.getCourseCode() == courseCode)
-                .toArray()
-                ;
-        if (candidates.length > 0) {
-            return candidates[0];
+        for (Course course : getRunningCourses()) {
+            if (course.getCourseCode().equals(courseCode)) {
+                return course;
+            }
         }
         return null;
     }

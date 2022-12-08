@@ -12,7 +12,7 @@ public class CourseImpl extends Course implements Serializable {
     private String courseName;
     private float credit;
     private Outline outline;
-    private ArrayList<CourseEvent> courseEvents;
+    private final ArrayList<CourseEvent> courseEvents = new ArrayList<>();
 
     @Override
     public String getCourseCode() {
@@ -55,6 +55,16 @@ public class CourseImpl extends Course implements Serializable {
     @Override
     public ArrayList<CourseEvent> getCourseEvents() {
         return courseEvents;
+    }
+
+    @Override
+    public CourseEvent getCourseEventByTitle(String title) {
+        for (CourseEvent courseEvent : courseEvents) {
+            if (courseEvent.getTitle().equals(title)) {
+                return courseEvent;
+            }
+        }
+        return null;
     }
 
     @Override

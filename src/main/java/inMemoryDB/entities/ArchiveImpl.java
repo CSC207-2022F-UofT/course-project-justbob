@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 public class ArchiveImpl extends Archive implements Serializable {
     private HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
@@ -30,8 +31,18 @@ public class ArchiveImpl extends Archive implements Serializable {
     }
 
     @Override
-    public void RemoveCourse(Course course) {
+    public void removeCourse(Course course) {
         courseToData.remove(course);
+    }
+
+    @Override
+    public Course getCourseByCode(String courseCode) {
+        for (Course course : getCourses()) {
+            if (course.getCourseCode().equals(courseCode)) {
+                return course;
+            }
+        }
+        return null;
     }
 
     public class ArchivedCourseDataImpl extends ArchivedCourseData {
