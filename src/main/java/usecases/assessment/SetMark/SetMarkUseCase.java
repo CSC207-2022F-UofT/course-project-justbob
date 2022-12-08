@@ -46,14 +46,21 @@ public class SetMarkUseCase implements SetMarkInputBoundary {
 
         AssessmentInstance assessmentInstance = assessment.getInstances().get(request.instanceNumber);
 
-        if (request.mark < 0 || request.mark > 100) {
+        double markValue;
+        try {
+            markValue = Double.parseDouble(request.mark);
+        } catch (NumberFormatException e) {
+            throw new SetMarkError("Mark must be a number");
+        }
+
+        if (markValue < 0 || markValue > 100) {
             throw new SetMarkInputBoundary.SetMarkError("Mark must be between 0 and 100");
         }
 
         if (assessmentInstance.isCommitted()) {
             throw new SetMarkInputBoundary.SetMarkError("Cannot change mark of committed assessment");
         }
-        assessmentInstance.setMark(request.mark);
+        assessmentInstance.setMark(markValue);
         entityGateway.saveAccount(account);
         return createResponse(assessment, account, course);
     }
