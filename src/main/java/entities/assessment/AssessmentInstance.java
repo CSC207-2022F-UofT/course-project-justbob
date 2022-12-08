@@ -16,7 +16,7 @@ public abstract class AssessmentInstance {
     public abstract void setSubmitted(boolean isSubmitted);
 
     public static boolean isMarkValid(double mark) {
-        return (0 <= mark && mark <= 1.0);
+        return (0 <= mark && mark <= 100);
     }
 
     public interface AssessmentInstanceFactory {

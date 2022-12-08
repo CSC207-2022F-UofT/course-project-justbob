@@ -26,7 +26,7 @@ public class AssessmentImpl extends Assessment {
 
     @Override
     public String toSingular(String title) {
-        if (title.equals("Quizzes")){
+        if (title.equals("Quizzes") || title.equals("quizzes")){
             return "Quiz";
         }
         if (title.charAt(title.length()-1) == 's'){
