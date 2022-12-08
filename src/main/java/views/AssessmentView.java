@@ -3,6 +3,7 @@ package views;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.assessment.setMark.SetMarkWindowRequest;
+import ports.usecases.assessment.setWeightScheme.SetSimpleWeightSchemeRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
 import usecases.assessment.SetMark.SetMarkWindowController;
@@ -69,20 +70,30 @@ public class AssessmentView {
             }
         });
 
+        // Edit Weightscheme Button
+        JButton editWeightschemeButton = new JButton("Edit Weightscheme");
+        editWeightschemeButton.setBounds(assessmentInstancesTable.getX(), assessmentInstancesTable.getY() + 320 , 160, 50);
+        panel.add(editWeightschemeButton);
 
-                // back button
-                JButton backButton = new JButton("Back");
-                backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 320, 160, 50);
-                panel.add(backButton);
+        editWeightschemeButton.addActionListener(e -> {
+            new SetSimpleWeightSchemeView(entityGateway, entityFactory, response.username, response.courseCode, response.assessmentTitle, frame);
 
-                backButton.addActionListener(e -> {
-                    frame.dispose();
-                    parentFrame.dispose(); // parentFrame.setVisible(true);
-                    ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode);
-                    new ViewCourseController(request, frame, entityGateway, entityFactory, parentFrame);
-                });
+        });
 
-                frame.setVisible(true);
+
+        // back button
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 320, 160, 50);
+        panel.add(backButton);
+
+        backButton.addActionListener(e -> {
+            frame.dispose();
+            parentFrame.dispose(); // parentFrame.setVisible(true);
+            ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode);
+            new ViewCourseController(request, frame, entityGateway, entityFactory, parentFrame);
+        });
+
+        frame.setVisible(true);
     }
 
     private static String[][] transpose(String[][] matrix) {

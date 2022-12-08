@@ -7,15 +7,15 @@ public class SetSimpleWeightSchemeRequest {
     public String courseCode; /*abstract to path class*/
 
     public String assessmentTitle;
-    public int numberOfInstances;
+    public String numberOfInstances;
 
-    public double weightOfEachInstance;
+    public String weightOfEachInstance;
 
     public SetSimpleWeightSchemeRequest() {
     }
 
     public SetSimpleWeightSchemeRequest(String username, String courseCode, String assessmentTitle,
-                                        int numberOfInstances, double weightOfEachInstance) {
+                                        String numberOfInstances, String weightOfEachInstance) {
         this.username = username;
         this.courseCode = courseCode;
         this.assessmentTitle = assessmentTitle;
