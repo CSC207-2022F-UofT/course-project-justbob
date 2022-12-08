@@ -86,6 +86,7 @@ public class EditAssessmentInstanceDataUseCase implements EditAssessmentInstance
 
         return createResponse(assessmentInstance);
     }
+
     private EditAssessmentInstanceDataResponse createResponse(AssessmentInstance assessmentInstance) {
         EditAssessmentInstanceDataResponse response = new EditAssessmentInstanceDataResponse();
         response.newTitle = assessmentInstance.getTitle();

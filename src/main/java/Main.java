@@ -8,6 +8,7 @@ import ports.usecases.account.loginAccount.LoginAccountRequest;
 import usecases.account.AddAccount.AddAccountUseCase;
 import usecases.account.LoginAccount.LoginAccountUseCase;
 import views.ApplicationView;
+import views.LoginView;
 
 public class Main {
     private static final String DATABASE_FILE_PATH =

@@ -38,7 +38,7 @@ public class AddCourseEventUseCase {
         return createResponse(course);
     }
 
-    private AddCourseEventResponse createResponse(Course course){
+    private AddCourseEventResponse createResponse(Course course) {
         return new AddCourseEventResponse(course.getCourseEvents());
     }
 }

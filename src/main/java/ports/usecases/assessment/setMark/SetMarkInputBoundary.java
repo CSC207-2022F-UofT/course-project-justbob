@@ -4,7 +4,7 @@ public interface SetMarkInputBoundary {
     /**
      * @param request the path to the AssessmentInstance and the mark to set
      * @return the mark that was set
-     * @throws ports.usecases.PathNotFoundError if the path to the AssessmentInstance does not exist
+     * @throws ports.usecases.PathNotFoundError  if the path to the AssessmentInstance does not exist
      * @throws SetMarkInputBoundary.SetMarkError if the mark is invalid
      */
 

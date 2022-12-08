@@ -10,12 +10,13 @@ import java.time.LocalDate;
 public class calendarModelMonthUseCaseInteractor implements calendarModelMonthInputBoundary {
     final calendarModelMonthOutputBoundary monthOutput;
 
-    public calendarModelMonthUseCaseInteractor(calendarModelMonthOutputBoundary monthOutput){
+    public calendarModelMonthUseCaseInteractor(calendarModelMonthOutputBoundary monthOutput) {
         this.monthOutput = monthOutput;
     }
 
     /**
      * Takes calenderModelRequest and converts date into array of dates in month
+     *
      * @param calendarMonthRequest represents date (year-month-date in numbers)
      * @return array of list consisting days in month
      */
@@ -27,10 +28,10 @@ public class calendarModelMonthUseCaseInteractor implements calendarModelMonthIn
         int week = (firstDay.getDayOfWeek().getValue()) % 7;
 
         LocalDate temporary = firstDay;
-        for(int i = week; i < monthDays.length; i++){
+        for (int i = week; i < monthDays.length; i++) {
             monthDays[i] = temporary;
             temporary = temporary.plusDays(1);
-            if (temporary.getMonthValue() != firstDay.getMonthValue()){
+            if (temporary.getMonthValue() != firstDay.getMonthValue()) {
                 i = 42;
             }
         }

@@ -19,7 +19,8 @@ public class ViewCourseResponse {
 
     public String hypotheticalGrade;
 
-    public ViewCourseResponse(){}
+    public ViewCourseResponse() {
+    }
 
     public ViewCourseResponse(String username, String courseCode, String courseTitle, String credit,
                               String[] assessmentTitles, Integer[] assessmentNumberOfInstances, Double[] assessmentWeights,

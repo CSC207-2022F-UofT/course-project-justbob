@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class calendarModelResponseMonth {
     LocalDate[] listOfMonthDays;
 
-    public calendarModelResponseMonth(LocalDate[] listOfMonthDays){
+    public calendarModelResponseMonth(LocalDate[] listOfMonthDays) {
         this.listOfMonthDays = listOfMonthDays;
     }
 
@@ -13,7 +13,7 @@ public class calendarModelResponseMonth {
         return listOfMonthDays;
     }
 
-    public void setListOfMonthDays(LocalDate[] listOfMonthDays){
+    public void setListOfMonthDays(LocalDate[] listOfMonthDays) {
         this.listOfMonthDays = listOfMonthDays;
     }
 }

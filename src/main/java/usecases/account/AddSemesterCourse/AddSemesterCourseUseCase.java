@@ -23,7 +23,7 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
 
     @Override
     public ApplicationResponse execute(AddSemesterCourseRequest request)
-    throws PathNotFoundError, AddSemesterCourseInputBoundary.AddSemesterCourseError {
+            throws PathNotFoundError, AddSemesterCourseInputBoundary.AddSemesterCourseError {
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError("Account not found.");
         }

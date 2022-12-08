@@ -52,7 +52,7 @@ public class OutlineImpl extends Outline implements Serializable {
     }
 
     @Override
-    public int getIndexByTitle(String assessmentTitle){
+    public int getIndexByTitle(String assessmentTitle) {
         int index = 0;
         for (Assessment assessment : assessments) {
             if (assessment.getTitle().equals(assessmentTitle)) {
@@ -64,7 +64,7 @@ public class OutlineImpl extends Outline implements Serializable {
     }
 
     @Override
-    public Assessment getAssessmentByTitle(String assessmentTitle){
+    public Assessment getAssessmentByTitle(String assessmentTitle) {
         for (Assessment assessment : assessments) {
             if (assessment.getTitle().equals(assessmentTitle)) {
                 return assessment;

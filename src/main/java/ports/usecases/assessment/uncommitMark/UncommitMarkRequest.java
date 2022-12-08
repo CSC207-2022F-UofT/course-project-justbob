@@ -9,7 +9,8 @@ public class UncommitMarkRequest {
 
     public int instanceNumber; /*abstract to path class*/
 
-    public UncommitMarkRequest() {}
+    public UncommitMarkRequest() {
+    }
 
     public UncommitMarkRequest(String username, String courseCode, String assessmentTitle, int instanceNumber) {
         this.username = username;

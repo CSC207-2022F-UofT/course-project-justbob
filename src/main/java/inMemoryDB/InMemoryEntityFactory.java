@@ -74,7 +74,7 @@ public class InMemoryEntityFactory implements EntityFactory {
     @Override
     public AssessmentInstance createAssessmentInstance(String title, LocalDateTime deadline, Double mark,
                                                        boolean isCommitted, boolean isSubmitted)
-                                                            throws IllegalArgumentException {
+            throws IllegalArgumentException {
         if (mark != null && !AssessmentInstance.isMarkValid(mark)) {
             throw new IllegalArgumentException(String.format("Mark %f is not valid", mark));
         }

@@ -5,7 +5,8 @@ public class AddAccountRequest {
     public String password;
     public String passwordRepeat;
 
-    public AddAccountRequest() {}
+    public AddAccountRequest() {
+    }
 
     public AddAccountRequest(String username, String password, String passwordRepeat) {
         this.username = username;
