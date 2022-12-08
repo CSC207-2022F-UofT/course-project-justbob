@@ -4,11 +4,9 @@ import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.account.archiveCourse.ArchiveCourseRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentRequest;
-import ports.usecases.course.viewCourse.ViewCourseRequest;
 import ports.usecases.course.viewCourse.ViewCourseResponse;
 import usecases.account.ArchiveCourse.ArchiveCourseController;
 import usecases.assessment.ViewAssessment.ViewAssessmentController;
-import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,7 +87,7 @@ public class CourseView {
                     if (row >= 0 && col >= 0) {
                         String assessmentTitle = finalAssessmentTitles[row];
                         ViewAssessmentRequest request = new ViewAssessmentRequest(response.username, response.courseCode, assessmentTitle);
-                        new ViewAssessmentController(request, frame, entityGateway, entityFactory, frame);
+                        new ViewAssessmentController(request, frame, entityGateway, entityFactory, parentFrame);
                         frame.setVisible(false);
                     }
                 }
@@ -113,7 +111,7 @@ public class CourseView {
 
         archiveCourseButton.addActionListener(e -> {
             ArchiveCourseRequest request = new ArchiveCourseRequest(response.username, response.courseCode);
-            ArchiveCourseController controller = new ArchiveCourseController(request, frame, entityGateway, entityFactory, frame);
+            new ArchiveCourseController(request, frame, entityGateway, entityFactory, frame);
         });
 
         frame.setVisible(true);
@@ -139,8 +137,8 @@ public class CourseView {
         String[] stringList = new String[doubleList.length];
         int index = 0;
         for (Double d : doubleList) {
-            Double rounded = Math.round(d * 100.0) / 100.0;
-            stringList[index] = rounded.toString();
+            double rounded = Math.round(d * 100.0) / 100.0;
+            stringList[index] = Double.toString(rounded);
             index += 1;
         }
         return stringList;

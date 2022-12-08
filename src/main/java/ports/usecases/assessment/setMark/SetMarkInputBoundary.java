@@ -1,5 +1,7 @@
 package ports.usecases.assessment.setMark;
 
+import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
+
 public interface SetMarkInputBoundary {
     /**
      * @param request the path to the AssessmentInstance and the mark to set
@@ -8,10 +10,10 @@ public interface SetMarkInputBoundary {
      * @throws SetMarkInputBoundary.SetMarkError if the mark is invalid
      */
 
-    public SetMarkResponse execute(SetMarkRequest request)
+    ViewAssessmentResponse execute(SetMarkRequest request)
             throws ports.usecases.PathNotFoundError, SetMarkInputBoundary.SetMarkError;
 
-    public class SetMarkError extends Error {
+    class SetMarkError extends Error {
         public SetMarkError(String message) {
             super(message);
         }
