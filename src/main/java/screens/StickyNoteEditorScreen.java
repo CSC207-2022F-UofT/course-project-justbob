@@ -102,7 +102,7 @@ public class StickyNoteEditorScreen extends JPanel implements ActionListener {
 
         if (event.getSource() == saveButton) {
             try {
-                stickyNoteController.create(title.getText(), (String) type.getSelectedItem(), location.getText(), time.getText(), dotJots.getText(), dates.toString(), daysOfWeek.getText());
+                stickyNoteController.create(title.getText(), (String) type.getSelectedItem(), location.getText(), time.getText(), dotJots.getText(), dates.getText(), daysOfWeek.getText());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage());
             }
