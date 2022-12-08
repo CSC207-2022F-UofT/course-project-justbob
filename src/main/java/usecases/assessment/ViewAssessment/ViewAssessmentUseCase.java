@@ -44,7 +44,7 @@ public class ViewAssessmentUseCase implements ViewAssessmentInputBoundary {
         }
         response.assessmentInstanceWeights = new Double[assessment.getInstances().size()];
         for (int i = 0; i < assessment.getInstances().size(); i++) {
-            response.assessmentInstanceWeights[i] = assessment.getWeightScheme().getTotalWeight()/assessment.getInstances().size();
+            response.assessmentInstanceWeights[i] = Math.round(assessment.getWeightScheme().getTotalWeight()/assessment.getInstances().size() * 100.0) / 100.0;
         }
         response.assessmentInstanceMarks = new Double[assessment.getInstances().size()];
         for (int i = 0; i < assessment.getInstances().size(); i++) {
