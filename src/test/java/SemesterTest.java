@@ -1,4 +1,3 @@
-package semester;
 
 import entities.account.Account;
 import entities.account.Archive;
