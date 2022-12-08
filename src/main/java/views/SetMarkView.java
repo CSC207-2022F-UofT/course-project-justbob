@@ -6,9 +6,11 @@ import ports.usecases.assessment.commitMark.CommitMarkRequest;
 import ports.usecases.assessment.setMark.SetMarkRequest;
 import ports.usecases.assessment.setMark.SetMarkWindowResponse;
 import ports.usecases.assessment.submitInstance.SubmitInstanceRequest;
+import ports.usecases.assessment.uncommitMark.UncommitMarkRequest;
 import usecases.assessment.CommitMark.CommitMarkController;
 import usecases.assessment.SetMark.SetMarkController;
 import usecases.assessment.SubmitInstance.SubmitInstanceController;
+import usecases.assessment.UncommitMark.UncommitMarkController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +23,7 @@ public class SetMarkView {
 
         // JFrame class
         JFrame frame = new JFrame();
-        frame.setTitle("Set Mark of " + response.instanceName);
+        frame.setTitle("Mark of " + response.instanceName);
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
         frame.setSize(new Dimension(400, 300));
@@ -39,17 +41,22 @@ public class SetMarkView {
 
         // Set Mark Button constructor
         JButton setMarkButton = new JButton("Set Mark");
-        setMarkButton.setBounds(100, 160, 193, 28);
+        setMarkButton.setBounds(100, 100, 193, 28);
         panel.add(setMarkButton);
 
         // Commit Mark Button constructor
         JButton commitMarkButton = new JButton("Commit Mark");
-        commitMarkButton.setBounds(100, 200, 193, 28);
+        commitMarkButton.setBounds(100, 140, 193, 28);
         panel.add(commitMarkButton);
+
+        // Uncommit Mark Button Constructor
+        JButton uncommitMarkButton = new JButton("Uncommit Mark");
+        uncommitMarkButton.setBounds(100, 180, 193, 28);
+        panel.add(uncommitMarkButton);
 
         // back button constructor
         JButton backButton = new JButton("Back");
-        backButton.setBounds(100, 240, 193, 28);
+        backButton.setBounds(100, 220, 193, 28);
         panel.add(backButton);
 
 
@@ -71,6 +78,11 @@ public class SetMarkView {
                 }
             }
 
+        });
+
+        uncommitMarkButton.addActionListener(e -> {
+            UncommitMarkRequest uncommitMarkRequest = new UncommitMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber);
+            new UncommitMarkController(uncommitMarkRequest, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
         });
 
         backButton.addActionListener(e -> {
