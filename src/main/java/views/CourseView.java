@@ -125,7 +125,7 @@ public class CourseView {
             JButton showCourseTrendButton = new JButton("Show Course Trend");
             showCourseTrendButton.setBounds(archiveCourseButton.getX() + 180, archiveCourseButton.getY(), 160, 50);
             panel.add(showCourseTrendButton);
-            showCourseTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
+            showCourseTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, response.courseTitle));
         }
         else{
             JButton showTrendButton = new JButton("No Course Trend");
