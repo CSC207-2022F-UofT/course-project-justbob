@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 public class AssessmentInstanceImpl extends AssessmentInstance {
     private String singularTitle;
     private LocalDateTime deadline;
-    private boolean isCommitted;
-    private boolean isSubmitted;
+    private boolean isCommitted = false;
+    private boolean isSubmitted = false;
     private Double mark;
 
     public AssessmentInstanceImpl(String singularTitle) {
