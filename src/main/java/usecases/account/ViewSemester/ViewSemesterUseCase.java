@@ -48,7 +48,7 @@ public class ViewSemesterUseCase implements ViewSemesterInputBoundary {
         response.courseGrades = new Double[response.courseCodes.length];
         int index = 0;
         for (Course course : account.getSemester().getRunningCourses()) {
-            response.courseGrades[index] = course.getOutline().computeRunningGrade();
+            response.courseGrades[index] = Math.round(course.getOutline().computeRunningGrade() * 100.0) / 100.0;
             index += 1;
         }
         List<Double> myCredits = new ArrayList<>();

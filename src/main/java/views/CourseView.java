@@ -61,12 +61,12 @@ public class CourseView {
         panel.add(assessmentsTable);
 
         // Running Grade Label
-        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade + "(" + response.letteredGrade + ")");
+        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade + " (" + response.runningLetteredGrade + ")");
         label2.setBounds(assessmentsTable.getX(), assessmentsTable.getY() + assessmentsTable.getHeight() - 25, 210, 100);
         panel.add(label2, BorderLayout.CENTER);
 
         // Hypo Grade Label
-        JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade);
+        JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade + " (" + response.runningLetteredGrade + ")");
         label3.setBounds(label2.getX() + 210, label2.getY(), 210, 100);
         panel.add(label3);
 
