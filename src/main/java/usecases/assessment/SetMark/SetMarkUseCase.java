@@ -1,4 +1,4 @@
-package usecases.assessment;
+package usecases.assessment.SetMark;
 
 import entities.account.Account;
 import entities.assessment.Assessment;

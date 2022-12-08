@@ -2,10 +2,17 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
+import ports.usecases.assessment.setMark.SetMarkRequest;
+import ports.usecases.assessment.setMark.SetMarkWindowRequest;
+import ports.usecases.assessment.viewAssessment.ViewAssessmentRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
+import usecases.assessment.SetMark.SetMarkController;
+import usecases.assessment.SetMark.SetMarkWindowController;
+import usecases.assessment.ViewAssessment.ViewAssessmentController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.stream.IntStream;
 
 public class AssessmentView {
 
@@ -46,17 +53,36 @@ public class AssessmentView {
         assessmentInstancesTable.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT), (int) (WIDTH - (0.133*WIDTH)), (int) (HEIGHT * 0.533));
         panel.add(assessmentInstancesTable);
 
-        // back button
-        JButton backButton = new JButton("Back");
-        backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 320, 160, 50);
-        panel.add(backButton);
+       Integer[] finalAssessmentInstanceIds = new Integer[assessmentInstanceTitles.length];
+       IntStream.range(0, assessmentInstanceTitles.length).forEach(i -> finalAssessmentInstanceIds[i] = i);
 
-        backButton.addActionListener(e -> {
-            frame.dispose();
-            parentFrame.setVisible(true);
+        assessmentInstancesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = assessmentInstancesTable.rowAtPoint(evt.getPoint());
+                int col = assessmentInstancesTable.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col == 2) {
+                    Integer assessmentId = finalAssessmentInstanceIds[row];
+                    SetMarkWindowRequest request = new SetMarkWindowRequest(response.username, response.courseCode, response.assessmentTitle,
+                            response.assessmentInstanceTitles[row], assessmentId);
+                    new SetMarkWindowController(request, frame, entityGateway, entityFactory, frame);
+                    frame.setVisible(false);
+                }
+            }
         });
 
-        frame.setVisible(true);
+
+                // back button
+                JButton backButton = new JButton("Back");
+                backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 320, 160, 50);
+                panel.add(backButton);
+
+                backButton.addActionListener(e -> {
+                    frame.dispose();
+                    parentFrame.setVisible(true);
+                });
+
+                frame.setVisible(true);
     }
 
     private static String[][] transpose(String[][] matrix) {
