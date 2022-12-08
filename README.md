@@ -31,7 +31,7 @@
 - Notification
     - The Notification class uses two constructors. One constructor takes in a ‘LocalDateTime’ variable called ‘notification’ so that a notification is set for that date and time. The second constructor takes in a ‘LocalDateTime’ value called ‘notification’ along with an ‘int’ value called ‘period’ which calls on the notification again after every period. ‘period’ is in milliseconds. ‘Reminder’ is a helper class which inherits ‘TimerTask’. ‘Reminder’ is what happens when the notification is rang. It prints out a statement to remind the user that their activity is in 24 hours.
 - GPACalculation
-    -  Converts percentToGPA (in terms of UofT 4.0 scale), converts list of percentage to list of GPA, converts percent to list of lettered Grades, compute average, and overall GPA. 
+    -  Converts percentToGPA (in terms of UofT 4.0 scale), converts percentToLetteredGrade, converts list of percentage to list of GPA, converts percent to list of lettered Grades, compute average, and overall GPA. 
 
 
 ## Use Cases:
