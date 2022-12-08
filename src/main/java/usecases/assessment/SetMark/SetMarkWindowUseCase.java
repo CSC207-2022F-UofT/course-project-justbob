@@ -14,6 +14,16 @@ public class SetMarkWindowUseCase implements SetMarkWindowInputBoundary {
     }
 
     public SetMarkWindowResponse execute(SetMarkWindowRequest request) {
-        return new SetMarkWindowResponse(request.instanceName, request.instanceNumber);
+        return createResponse(request, request.username);
+    }
+
+    private SetMarkWindowResponse createResponse(SetMarkWindowRequest request, String username) {
+        SetMarkWindowResponse response = new SetMarkWindowResponse();
+        response.username = username;
+        response.instanceName = request.instanceName;
+        response.courseCode = request.courseCode;
+        response.assessmentTitle = request.assessmentTitle;
+        response.instanceNumber = request.instanceNumber;
+        return response;
     }
 }
