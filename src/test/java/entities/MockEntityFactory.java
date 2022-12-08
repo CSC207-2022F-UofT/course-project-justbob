@@ -93,25 +93,25 @@ public class MockEntityFactory implements CourseFactory, CourseEvent.CourseEvent
     }
 
     private class CourseEventMock extends CourseEvent {
-        private String type;
+        private String title;
         private DayOfWeek day;
         private LocalTime startTime;
         private LocalTime endTime;
         private String location;
-        public CourseEventMock(String type, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
-            this.type = type;
+        public CourseEventMock(String title, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
+            this.title = title;
             this.day = day;
             this.startTime = startTime;
             this.endTime = endTime;
             this.location = location;
         }
 
-        public String getType() {
-            return type;
+        public String getTitle() {
+            return title;
         }
 
-        public void setType(String type) {
-            this.type = type;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
         public DayOfWeek getDay() {

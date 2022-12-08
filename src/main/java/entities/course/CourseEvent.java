@@ -22,9 +22,8 @@ public abstract class CourseEvent {
     }
 
     public String toString() {
-        return String.format("%s - %s from %s to %s - %s", title, day, startTime, endTime, location);
         return String.format("%s - %s from %s to %s - %s",
-                getType(),
+                getTitle(),
                 getDay(),
                 getStartTime(),
                 getEndTime(),

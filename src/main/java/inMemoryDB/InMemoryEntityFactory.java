@@ -39,8 +39,8 @@ public class InMemoryEntityFactory implements EntityFactory {
     }
 
     @Override
-    public CourseEvent createCourseEvent(String type, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
-        return new CourseEventImpl(type, day, startTime, endTime, location);
+    public CourseEvent createCourseEvent(String title, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
+        return new CourseEventImpl(title, day, startTime, endTime, location);
     }
 
     @Override

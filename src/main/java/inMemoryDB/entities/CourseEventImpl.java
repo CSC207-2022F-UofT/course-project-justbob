@@ -7,7 +7,7 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 
 public class CourseEventImpl extends CourseEvent implements Serializable {
-    private String type;
+    private String title;
     private DayOfWeek day;
     private LocalTime startTime;
     private LocalTime endTime;
@@ -15,7 +15,7 @@ public class CourseEventImpl extends CourseEvent implements Serializable {
 
     /**
      * Create a new CourseEvent object with the given parameters
-     * @param type the type of the course event
+     * @param title the type of the course event
      *             e.g. 'Lecture', 'Tutorial', 'Lab'
      *             Note: this is not necessarily the same as the name of the course event (there can be two different lectures)
      * @param day the day of the week the course event is held on
@@ -32,20 +32,20 @@ public class CourseEventImpl extends CourseEvent implements Serializable {
      * @param location the location of the course event
      *                 e.g. 'BA 1234'
      */
-    public CourseEventImpl(String type, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
-        this.type = type;
+    public CourseEventImpl(String title, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
+        this.title = title;
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
         this.location = location;
     }
 
-    public String getType() {
-        return type;
+    public String getTitle() {
+        return title;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public DayOfWeek getDay() {
