@@ -8,8 +8,6 @@ import ports.usecases.PathNotFoundError;
 import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
-import java.util.List;
-
 //TODO: implement testing
 public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
     private final EntityGateway entityGateway;
@@ -39,6 +37,7 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
 
     private ApplicationResponse createResponse(Account account) {
         ApplicationResponse response = new ApplicationResponse();
+        response.username = account.getUsername();
         response.courseCodes = account.getSemester().getRunningCourses().stream().map(Course::getCourseCode).toArray(String[]::new);
         response.courseTitles = account.getSemester().getRunningCourses().stream().map(Course::getCourseName).toArray(String[]::new);
         response.courseGrades = new Double[response.courseCodes.length];
