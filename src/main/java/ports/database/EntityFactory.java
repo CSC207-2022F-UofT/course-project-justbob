@@ -6,7 +6,11 @@ import entities.account.Semester.SemesterFactory;
 import entities.assessment.Assessment.AssessmentFactory;
 import entities.assessment.AssessmentInstance.AssessmentInstanceFactory;
 import entities.course.Course.CourseFactory;
+import entities.course.CourseEvent.CourseEventFactory;
 import entities.course.Outline.OutlineFactory;
+import entities.weightScheme.OrderedWeight;
+import entities.weightScheme.SimpleWeight;
+import entities.weightScheme.Weight;
 
 
 public interface EntityFactory extends
@@ -14,7 +18,11 @@ public interface EntityFactory extends
         SemesterFactory,
         ArchiveFactory,
         CourseFactory,
+        CourseEventFactory,
         OutlineFactory,
         AssessmentFactory,
-        AssessmentInstanceFactory
+        AssessmentInstanceFactory,
+        Weight.WeightFactory,
+        SimpleWeight.SimpleWeightFactory,
+        OrderedWeight.OrderedWeightFactory
 {}

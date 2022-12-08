@@ -3,9 +3,10 @@ package inMemoryDB.entities;
 import entities.assessment.Assessment;
 import entities.course.Outline;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class OutlineImpl extends Outline {
+public class OutlineImpl extends Outline implements Serializable {
 
     private final ArrayList<Assessment> assessments = new ArrayList<>();
 
@@ -33,7 +34,25 @@ public class OutlineImpl extends Outline {
     }
 
     @Override
-    public int getIndexByTitle(String assessmentTitle){
+    public ArrayList<Integer> getAssessmentsNumberOfInstances() {
+        ArrayList<Integer> numberOfInstances = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            numberOfInstances.add(assessment.getTotalNumberOfInstances());
+        }
+        return numberOfInstances;
+    }
+
+    @Override
+    public ArrayList<Double> getAssessmentsWeights() {
+        ArrayList<Double> weights = new ArrayList<>();
+        for (Assessment assessment : assessments) {
+            weights.add(assessment.getTotalWeight());
+        }
+        return weights;
+    }
+
+    @Override
+    public int getIndexByTitle(String assessmentTitle) {
         int index = 0;
         for (Assessment assessment : assessments) {
             if (assessment.getTitle().equals(assessmentTitle)) {
@@ -45,7 +64,7 @@ public class OutlineImpl extends Outline {
     }
 
     @Override
-    public Assessment getAssessmentByTitle(String assessmentTitle){
+    public Assessment getAssessmentByTitle(String assessmentTitle) {
         for (Assessment assessment : assessments) {
             if (assessment.getTitle().equals(assessmentTitle)) {
                 return assessment;

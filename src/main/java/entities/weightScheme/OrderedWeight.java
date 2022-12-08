@@ -4,16 +4,9 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 import java.util.stream.DoubleStream;
 
-public class OrderedWeight implements WeightScheme {
-    private Weight[] orderedWeights;
-
-    /**
-     * Create new OrderedWeight, with (orderedWeights) being an array of Weight objects
-     * @param orderedWeights must be sorted from lowest impact to highest impact.
-     */
-    public OrderedWeight(Weight[] orderedWeights) {
-        this.orderedWeights = orderedWeights;
-    }
+public abstract class OrderedWeight implements WeightScheme {
+    public abstract Weight[] getOrderedWeights();
+    public abstract void setOrderedWeights(Weight[] orderedWeights);
 
     /*
     private double getWeightPossible(int numberOfMarks) {
@@ -40,7 +33,7 @@ public class OrderedWeight implements WeightScheme {
         double[] paddedMarks = Arrays.copyOf(marks, getNumberOfInstances());
         double exactWeightEarned = 0;
         int numberOfMarksComputed = 0;
-        for (Weight weight : orderedWeights) {
+        for (Weight weight : getOrderedWeights()) {
             exactWeightEarned += DoubleStream.of(paddedMarks)
                     .sorted()
                     .skip(numberOfMarksComputed)
@@ -55,15 +48,19 @@ public class OrderedWeight implements WeightScheme {
 
     @Override
     public int getNumberOfInstances() {
-        return Stream.of(orderedWeights)
+        return Stream.of(getOrderedWeights())
                 .mapToInt(weight -> weight.getNumberOfInstances())
                 .sum();
     }
 
     @Override
     public double getTotalWeight() {
-        return Stream.of(orderedWeights)
+        return Stream.of(getOrderedWeights())
                 .mapToDouble(weight -> weight.getTotalWeight())
                 .sum();
+    }
+
+    public interface OrderedWeightFactory {
+        public OrderedWeight createOrderedWeight(Weight[] orderedWeights);
     }
 }

@@ -4,7 +4,7 @@ public interface EditCourseDataInputBoundary {
     /**
      * @param request the path to the Course and the courseCode, courseName, and credit to set
      * @return the courseCode, courseName, and credit that was set
-     * @throws ports.usecases.PathNotFoundError if the path to the Course does not exist
+     * @throws ports.usecases.PathNotFoundError                if the path to the Course does not exist
      * @throws EditCourseDataInputBoundary.EditCourseDataError if the new courseCode, courseName, or credit is invalid
      */
 

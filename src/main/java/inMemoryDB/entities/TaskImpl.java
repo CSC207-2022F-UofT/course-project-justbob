@@ -17,21 +17,22 @@ public class TaskImpl extends Task {
     }
 
     @Override
-    public LocalDateTime getDueTime(){
+    public LocalDateTime getDueTime() {
         return assessmentInstance.getDeadline();
     }
+
     @Override
     public boolean getSubmitted() {
         return assessmentInstance.isSubmitted();
     }
 
     @Override
-    public double getMark(){
+    public double getMark() {
         return assessmentInstance.getMark();
     }
 
     @Override
-    public boolean getCommitted(){
+    public boolean getCommitted() {
         return assessmentInstance.isCommitted();
     }
 
@@ -46,28 +47,28 @@ public class TaskImpl extends Task {
     }
 
     @Override
-    public void toShowDetail(){
+    public void toShowDetail() {
         this.showDetail = true;
     }
 
     @Override
-    public void toNotShowDetail(){
+    public void toNotShowDetail() {
         this.showDetail = false;
     }
 
     public String toString() {
         String result = this.courseName + " " + this.assessmentInstance.getTitle();
-        if (this.isShowDetail()){
-            if (this.assessmentInstance.getDeadline() != null){
+        if (this.isShowDetail()) {
+            if (this.assessmentInstance.getDeadline() != null) {
                 result += "  Due: " + this.assessmentInstance.getDeadline().toString();
             }
-            if (this.assessmentInstance.isSubmitted()){
+            if (this.assessmentInstance.isSubmitted()) {
                 result = result + "\n" + "Submitted";
             }
-            if (this.assessmentInstance.isCommitted()){
+            if (this.assessmentInstance.isCommitted()) {
                 result = result + "\n" + "Committed";
             }
-            if (this.isHaveMark()){
+            if (this.isHaveMark()) {
                 result = result + "\nMark: " + this.assessmentInstance.getMark();
             }
         }

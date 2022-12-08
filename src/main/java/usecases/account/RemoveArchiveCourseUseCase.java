@@ -4,7 +4,6 @@ import entities.account.Account;
 import entities.course.Course;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
-import ports.usecases.account.archiveCourse.ArchiveCourseResponse;
 import ports.usecases.account.removeAchiveCourse.RemoveArchiveCourseInputBoundary;
 import ports.usecases.account.removeAchiveCourse.RemoveArchiveCourseResponse;
 
@@ -15,9 +14,10 @@ public class RemoveArchiveCourseUseCase implements RemoveArchiveCourseInputBound
 
     private EntityGateway entityGateway;
 
-    public RemoveArchiveCourseUseCase(EntityGateway entityGateway){
+    public RemoveArchiveCourseUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
     }
+
     @Override
     public RemoveArchiveCourseResponse execute(String username, String courseCode) throws PathNotFoundError {
 

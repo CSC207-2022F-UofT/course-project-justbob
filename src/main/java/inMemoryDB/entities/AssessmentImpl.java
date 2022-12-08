@@ -5,9 +5,10 @@ import entities.assessment.Assessment;
 import entities.assessment.AssessmentInstance;
 import entities.weightScheme.WeightScheme;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AssessmentImpl extends Assessment {
+public class AssessmentImpl extends Assessment implements Serializable {
     private String title;
     private WeightScheme weightScheme;
     private final ArrayList<AssessmentInstance> instances = new ArrayList<>();
@@ -26,11 +27,11 @@ public class AssessmentImpl extends Assessment {
 
     @Override
     public String toSingular(String title) {
-        if (title == "Quizzes"){
+        if (title.equals("Quizzes")) {
             return "Quiz";
         }
-        if (title.charAt(title.length()-1) == 's'){
-            return singularTitle.substring(0, title.length()-1);
+        if (title.charAt(title.length() - 1) == 's') {
+            return title.substring(0, title.length() - 1);
         }
         return title;
     }
@@ -66,7 +67,7 @@ public class AssessmentImpl extends Assessment {
         return instances;
     }
 
-   /*not necessary anymore if constructor automatically creates instance list */
+    /*not necessary anymore if constructor automatically creates instance list */
     @Override
     public void addInstance(AssessmentInstance instance) {
         if (getCurrentNumberOfInstances() < getTotalNumberOfInstances()) {

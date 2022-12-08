@@ -34,10 +34,10 @@ public class GetCourseTrendUseCase implements GetCourseTrendInputBoundary {
     }
 
     private TrendModel calculateTrend(Course course) {
-        List<Assessment> assessments =  course.getOutline().getAssessments();
+        List<Assessment> assessments = course.getOutline().getAssessments();
         List<String> assessment_names = new ArrayList<>();
         List<Double> grades = new ArrayList<>();
-        for (Assessment assessment: assessments) {
+        for (Assessment assessment : assessments) {
             double[] part_marks = assessment.getCommittedMarks();
             if (part_marks.length == 0) {
                 continue;

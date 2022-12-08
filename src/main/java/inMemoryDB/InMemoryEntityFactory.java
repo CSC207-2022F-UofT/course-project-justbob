@@ -6,12 +6,21 @@ import entities.account.Semester;
 import entities.assessment.Assessment;
 import entities.assessment.AssessmentInstance;
 import entities.course.Course;
+import entities.course.CourseEvent;
 import entities.course.Outline;
+import entities.weightScheme.OrderedWeight;
+import entities.weightScheme.SimpleWeight;
+import entities.weightScheme.Weight;
 import entities.weightScheme.WeightScheme;
 import inMemoryDB.entities.*;
+import inMemoryDB.entities.weightScheme.OrderedWeightImpl;
+import inMemoryDB.entities.weightScheme.SimpleWeightImpl;
+import inMemoryDB.entities.weightScheme.WeightImpl;
 import ports.database.EntityFactory;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 public class InMemoryEntityFactory implements EntityFactory {
@@ -33,6 +42,11 @@ public class InMemoryEntityFactory implements EntityFactory {
     @Override
     public Course createCourse() {
         return new CourseImpl();
+    }
+
+    @Override
+    public CourseEvent createCourseEvent(String title, DayOfWeek day, LocalTime startTime, LocalTime endTime, String location) {
+        return new CourseEventImpl(title, day, startTime, endTime, location);
     }
 
     @Override
@@ -60,7 +74,7 @@ public class InMemoryEntityFactory implements EntityFactory {
     @Override
     public AssessmentInstance createAssessmentInstance(String title, LocalDateTime deadline, Double mark,
                                                        boolean isCommitted, boolean isSubmitted)
-                                                            throws IllegalArgumentException {
+            throws IllegalArgumentException {
         if (mark != null && !AssessmentInstance.isMarkValid(mark)) {
             throw new IllegalArgumentException(String.format("Mark %f is not valid", mark));
         }
@@ -74,5 +88,20 @@ public class InMemoryEntityFactory implements EntityFactory {
         instance.setMark(mark);
 
         return instance;
+    }
+
+    @Override
+    public Weight createWeight(int numberOfInstances, double weightOfEachInstance) {
+        return new WeightImpl(numberOfInstances, weightOfEachInstance);
+    }
+
+    @Override
+    public SimpleWeight createSimpleWeight(Weight weight) {
+        return new SimpleWeightImpl(weight);
+    }
+
+    @Override
+    public OrderedWeight createOrderedWeight(Weight[] orderedWeights) {
+        return new OrderedWeightImpl(orderedWeights);
     }
 }

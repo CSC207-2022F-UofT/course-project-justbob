@@ -5,7 +5,7 @@ public interface CommitMarkInputBoundary {
     /**
      * @param request the path to the AssessmentInstance to commit
      * @return the successful commit
-     * @throws ports.usecases.PathNotFoundError if the path to the AssessmentInstance does not exist
+     * @throws ports.usecases.PathNotFoundError        if the path to the AssessmentInstance does not exist
      * @throws CommitMarkInputBoundary.CommitMarkError if the AssessmentInstance can't be committed
      */
 

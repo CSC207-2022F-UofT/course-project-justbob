@@ -12,6 +12,7 @@ import ports.usecases.course.addCourseEvent.AddCourseEventResponse;
 public class AddCourseEventUseCase {
 
     private EntityGateway entityGateway;
+    private CourseEvent.CourseEventFactory courseEventFactory;
 
     public AddCourseEventUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
@@ -29,7 +30,7 @@ public class AddCourseEventUseCase {
         if (course == null) {
             throw new PathNotFoundError();
         }
-        CourseEvent courseEvent = new CourseEvent(request.eventTitle, request.day, request.startTime, request.endTime, request.location);
+        CourseEvent courseEvent = courseEventFactory.createCourseEvent(request.eventTitle, request.day, request.startTime, request.endTime, request.location);
         course.addCourseEvent(courseEvent);
 
         entityGateway.saveAccount(account);
@@ -37,7 +38,7 @@ public class AddCourseEventUseCase {
         return createResponse(course);
     }
 
-    private AddCourseEventResponse createResponse(Course course){
+    private AddCourseEventResponse createResponse(Course course) {
         return new AddCourseEventResponse(course.getCourseEvents());
     }
 }

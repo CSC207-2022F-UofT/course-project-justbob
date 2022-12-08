@@ -16,9 +16,15 @@ import java.util.ArrayList;
 public class SetSimpleWeightSchemeUseCase implements SetSimpleWeightSchemeInputBoundary {
 
     private EntityGateway entityGateway;
+    private Weight.WeightFactory weightFactory;
+    private SimpleWeight.SimpleWeightFactory simpleWeightFactory;
 
-    public SetSimpleWeightSchemeUseCase(EntityGateway entityGateway) {
+    public SetSimpleWeightSchemeUseCase(EntityGateway entityGateway,
+                                        Weight.WeightFactory weightFactory,
+                                        SimpleWeight.SimpleWeightFactory simpleWeightFactory) {
         this.entityGateway = entityGateway;
+        this.weightFactory = weightFactory;
+        this.simpleWeightFactory = simpleWeightFactory;
     }
 
     public SetSimpleWeightSchemeResponse execute(SetSimpleWeightSchemeRequest request) throws
@@ -59,7 +65,9 @@ public class SetSimpleWeightSchemeUseCase implements SetSimpleWeightSchemeInputB
                     ("New Weightscheme cannot have less assessment instances than the number of submitted assessment instances");
         }
 
-        SimpleWeight weightscheme = new SimpleWeight(new Weight(request.numberOfInstances, request.weightOfEachInstance));
+        SimpleWeight weightscheme = simpleWeightFactory.createSimpleWeight(
+                weightFactory.createWeight(request.numberOfInstances, request.weightOfEachInstance)
+        );
 
         assessment.setWeightScheme(weightscheme);
         entityGateway.saveAccount(account);

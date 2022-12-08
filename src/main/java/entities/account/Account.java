@@ -4,13 +4,19 @@ package entities.account;
 
 public abstract class Account {
     public abstract String getUsername();
+
     public abstract String getPassword();
+
     public abstract Archive getArchive();
+
     public abstract Semester getSemester();
 
     public abstract void setUsername(String username);
+
     public abstract void setPassword(String password);
+
     public abstract void setArchive(Archive archive);
+
     public abstract void setSemester(Semester semester);
 
     /**
