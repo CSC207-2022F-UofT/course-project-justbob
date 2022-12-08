@@ -5,7 +5,8 @@ public class EditCourseDataResponse {
     public String newCourseName;
     public float newCredit;
 
-    public EditCourseDataResponse() {}
+    public EditCourseDataResponse() {
+    }
 
     public EditCourseDataResponse(String newCourseCode, String newCourseName, float newCredit) {
         this.newCourseCode = newCourseCode;

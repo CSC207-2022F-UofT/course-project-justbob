@@ -6,7 +6,8 @@ public class SetSimpleWeightSchemeResponse {
 
     public int maximumNumberOfInstances;
 
-    public SetSimpleWeightSchemeResponse() {}
+    public SetSimpleWeightSchemeResponse() {
+    }
 
     public SetSimpleWeightSchemeResponse(double totalWeight, int maximumNumberOfInstances) {
         this.totalWeight = totalWeight;

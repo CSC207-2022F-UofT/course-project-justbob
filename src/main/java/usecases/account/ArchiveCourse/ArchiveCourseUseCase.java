@@ -3,9 +3,10 @@ package usecases.account.ArchiveCourse;
 import entities.account.Account;
 import entities.course.Course;
 import ports.database.EntityGateway;
+import ports.usecases.ApplicationResponse;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
-import ports.usecases.account.archiveCourse.ArchiveCourseResponse;
+import usecases.gpaTrend.GetAccountTrendUseCase;
 
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
     }
 
     @Override
-    public ArchiveCourseResponse execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
+    public ApplicationResponse execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
         if (!entityGateway.existsAccount(username)) {
             throw new PathNotFoundError("Username: " + username);
         }
@@ -36,9 +37,17 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
         return createResponse(account);
     }
 
-    private ArchiveCourseResponse createResponse(Account account) {
-        ArchiveCourseResponse response = new ArchiveCourseResponse();
-        response.courseList = List.of((String[]) account.getArchive().getCourses().stream().map(Course::getCourseCode).toArray());
+    private ApplicationResponse createResponse(Account account) {
+        ApplicationResponse response = new ApplicationResponse();
+        response.courseCodes = account.getSemester().getRunningCourses().stream().map(Course::getCourseCode).toArray(String[]::new);
+        response.courseTitles = account.getSemester().getRunningCourses().stream().map(Course::getCourseName).toArray(String[]::new);
+        response.courseGrades = new Double[response.courseCodes.length];
+        int index = 0;
+        for (Course course : account.getSemester().getRunningCourses()) {
+            response.courseGrades[index] = course.getOutline().computeRunningGrade();
+            index += 1;
+        }
+        response.trendModel = new GetAccountTrendUseCase(entityGateway).execute(account.getUsername());
         return response;
     }
 }

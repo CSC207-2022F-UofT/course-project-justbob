@@ -21,7 +21,7 @@ public class ArchiveCoursePresenter {
     }
 
     public void presentError(Throwable error) {
-        JOptionPane.showMessageDialog(null, error.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, "unknown error", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
     public void presentSuccess(ApplicationResponse response) {

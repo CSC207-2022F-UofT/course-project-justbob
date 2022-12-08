@@ -28,19 +28,16 @@ public abstract class Archive {
     }
 
     public abstract List<Course> getCourses();
+
     public abstract ArchivedCourseData getArchivedCourseData(Course course);
 
     /**
      * add a course to this archive. This operation will be recorded in terms of the date given by the system clock.
-     * @param course the course to archive
+     *
+     * @param course   the course to archive
      * @param semester the semester the course was a part of
      */
     public abstract void addCourse(Course course, String semester);
-
-    /**
-     * remove a course and its archive data from this archive.
-     * @param course the course to remove
-     */
 
     public interface ArchiveFactory {
         Archive createArchive();

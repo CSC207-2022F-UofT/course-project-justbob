@@ -4,7 +4,7 @@ public class ArchiveCourseRequest {
     public String courseCode;
     public String username;
 
-    ArchiveCourseRequest(String username, String courseCode){
+    public ArchiveCourseRequest(String username, String courseCode) {
         this.username = username;
         this.courseCode = courseCode;
     }

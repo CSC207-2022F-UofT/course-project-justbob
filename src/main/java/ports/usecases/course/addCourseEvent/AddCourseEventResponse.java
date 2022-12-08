@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class AddCourseEventResponse {
     public ArrayList<CourseEvent> courseEvents;
 
-    public AddCourseEventResponse() {}
+    public AddCourseEventResponse() {
+    }
 
     public AddCourseEventResponse(ArrayList<CourseEvent> courseEvents) {
         this.courseEvents = courseEvents;

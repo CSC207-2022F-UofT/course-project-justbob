@@ -1,5 +1,6 @@
 package ports.usecases.account.archiveCourse;
 
+import ports.usecases.ApplicationResponse;
 import ports.usecases.PathNotFoundError;
 
 public interface ArchiveCourseInputBoundary {
@@ -11,7 +12,8 @@ public interface ArchiveCourseInputBoundary {
      * @return
      * @throws PathNotFoundError if the username or courseCode do not exist
      */
-    ArchiveCourseResponse execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError;
+    ApplicationResponse execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError;
 
-    class CourseNotCompletedError extends Error {}
+    class CourseNotCompletedError extends Error {
+    }
 }

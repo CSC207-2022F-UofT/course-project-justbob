@@ -12,6 +12,7 @@ public class LoginView {
 
     public final int WIDTH = 600;
     public final int HEIGHT = 600;
+
     public LoginView(EntityGateway entityGateway, EntityFactory entityFactory) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -26,12 +27,12 @@ public class LoginView {
 
         // Username label constructor
         JLabel label1 = new JLabel("Username");
-        label1.setBounds(WIDTH/3, HEIGHT/3 - 25, 70, 20);
+        label1.setBounds(WIDTH / 3, HEIGHT / 3 - 25, 70, 20);
         panel.add(label1);
 
         // Username TextField constructor
         JTextField username = new JTextField();
-        username.setBounds(label1.getX(), label1.getY() + 15 , 193, 28);
+        username.setBounds(label1.getX(), label1.getY() + 15, 193, 28);
         panel.add(username);
 
         // Password Label constructor

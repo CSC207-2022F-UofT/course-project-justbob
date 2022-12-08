@@ -9,6 +9,7 @@ public class OrderedWeight implements WeightScheme {
 
     /**
      * Create new OrderedWeight, with (orderedWeights) being an array of Weight objects
+     *
      * @param orderedWeights must be sorted from lowest impact to highest impact.
      */
     public OrderedWeight(Weight[] orderedWeights) {

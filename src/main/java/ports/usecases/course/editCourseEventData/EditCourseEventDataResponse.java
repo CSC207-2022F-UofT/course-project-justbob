@@ -14,7 +14,8 @@ public class EditCourseEventDataResponse {
 
     public String newLocation;
 
-    public EditCourseEventDataResponse() {}
+    public EditCourseEventDataResponse() {
+    }
 
     public EditCourseEventDataResponse(String newTitle, DayOfWeek newDay, LocalTime newStartTime, LocalTime newEndTime, String newLocation) {
         this.newTitle = newTitle;

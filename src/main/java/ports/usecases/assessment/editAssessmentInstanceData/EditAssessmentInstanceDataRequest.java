@@ -15,7 +15,10 @@ public class EditAssessmentInstanceDataRequest {
 
     public LocalDateTime newDeadline;
 
-    public EditAssessmentInstanceDataRequest() {};
+    public EditAssessmentInstanceDataRequest() {
+    }
+
+    ;
 
     public EditAssessmentInstanceDataRequest(String username, String courseCode, String assessmentTitle, int instanceNumber,
                                              String newTitle, LocalDateTime newDeadline) {

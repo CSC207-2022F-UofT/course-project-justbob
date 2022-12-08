@@ -6,7 +6,8 @@ public class Weight {
 
     /**
      * Create a new Weight object
-     * @param numberOfInstances must be positive
+     *
+     * @param numberOfInstances    must be positive
      * @param weightOfEachInstance must be between 0 and 1
      */
     public Weight(int numberOfInstances, double weightOfEachInstance) {
@@ -17,6 +18,7 @@ public class Weight {
     public int getNumberOfInstances() {
         return numberOfInstances;
     }
+
     public double getWeightOfEachInstance() {
         return weightOfEachInstance;
     }

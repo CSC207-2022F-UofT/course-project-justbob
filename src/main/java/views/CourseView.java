@@ -2,9 +2,11 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
+import ports.usecases.account.archiveCourse.ArchiveCourseRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentRequest;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
 import ports.usecases.course.viewCourse.ViewCourseResponse;
+import usecases.account.ArchiveCourse.ArchiveCourseController;
 import usecases.assessment.ViewAssessment.ViewAssessmentController;
 import usecases.course.ViewCourse.ViewCourseController;
 
@@ -14,6 +16,7 @@ import java.awt.*;
 public class CourseView {
     public final int WIDTH = 600;
     public final int HEIGHT = 600;
+
     public CourseView(EntityGateway entityGateway, EntityFactory entityFactory, ViewCourseResponse response, JFrame parentFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -54,23 +57,23 @@ public class CourseView {
         String[] column = {"Assessment Titles", "Number of Instances", "Assessment Weight"};
 
         JTable assessmentsTable = new JTable(data, column);
-        assessmentsTable.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT), (int) (WIDTH - (0.133*WIDTH)), (int) (HEIGHT * 0.533));
+        assessmentsTable.setBounds((int) (0.066 * WIDTH), (int) (0.133 * HEIGHT), (int) (WIDTH - (0.133 * WIDTH)), (int) (HEIGHT * 0.533));
         panel.add(assessmentsTable);
 
         // Running Grade Label
-        JLabel label2 = new JLabel("Running Grade: "  + response.runningGrade);
-        label2.setBounds(assessmentsTable.getX(),assessmentsTable.getY() + assessmentsTable.getHeight() - 25,210,100);
+        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade);
+        label2.setBounds(assessmentsTable.getX(), assessmentsTable.getY() + assessmentsTable.getHeight() - 25, 210, 100);
         panel.add(label2, BorderLayout.CENTER);
 
         // Hypo GPA Label
         JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade);
-        label3.setBounds(label2.getX() + 210,label2.getY(),210,100);
+        label3.setBounds(label2.getX() + 210, label2.getY(), 210, 100);
         panel.add(label3);
 
         // add assessment button
         JButton addSimpleAssessmentButton = new JButton("+");
         addSimpleAssessmentButton.setForeground(Color.GREEN);
-        addSimpleAssessmentButton.setBounds(label3.getX() + 210,label3.getY() + 25,100,50);
+        addSimpleAssessmentButton.setBounds(label3.getX() + 210, label3.getY() + 25, 100, 50);
         panel.add(addSimpleAssessmentButton);
 
 
@@ -103,7 +106,18 @@ public class CourseView {
             parentFrame.setVisible(true);
         });
 
-    frame.setVisible(true);
+        // Archive course button
+        JButton archiveCourseButton = new JButton("Archive Course");
+        archiveCourseButton.setBounds(label2.getX(), label2.getY() + 100, 160, 50);
+        panel.add(archiveCourseButton);
+
+        archiveCourseButton.addActionListener(e -> {
+            ArchiveCourseRequest request = new ArchiveCourseRequest(response.username, response.courseCode);
+            ArchiveCourseController controller = new ArchiveCourseController(request, frame, entityGateway, entityFactory, frame);
+
+        });
+
+        frame.setVisible(true);
 
     }
 

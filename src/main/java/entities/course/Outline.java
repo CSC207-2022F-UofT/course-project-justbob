@@ -20,7 +20,9 @@ public abstract class Outline {
     public abstract int getIndexByTitle(String assessmentTitle);
 
     public abstract Assessment getAssessmentByTitle(String assessmentTitle);
+
     public abstract void addAssessment(Assessment assessment);
+
     public abstract void removeAssessment(Assessment assessment);
 
     // TODO: rename to getNumberOfInstancesSubmitted (more descriptive)
