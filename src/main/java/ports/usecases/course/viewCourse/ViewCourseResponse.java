@@ -19,12 +19,14 @@ public class ViewCourseResponse {
 
     public String hypotheticalGrade;
 
+    public String letteredGrade;
+
     public ViewCourseResponse() {
     }
 
     public ViewCourseResponse(String username, String courseCode, String courseTitle, String credit,
                               String[] assessmentTitles, Integer[] assessmentNumberOfInstances, Double[] assessmentWeights,
-                              String runningGrade, String hypotheticalGrade) {
+                              String runningGrade, String hypotheticalGrade, String letteredGrade) {
         this.username = username;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
@@ -34,5 +36,6 @@ public class ViewCourseResponse {
         this.assessmentWeights = assessmentWeights;
         this.runningGrade = runningGrade;
         this.hypotheticalGrade = hypotheticalGrade;
+        this.letteredGrade = letteredGrade;
     }
 }
