@@ -14,8 +14,9 @@ import java.util.List;
 public class TaskListImpl extends TaskList {
     private List<Task> taskList = new ArrayList<>();
 
-    public TaskListImpl(Account account) {
-        List<Course> courseList = account.getArchive().getCourses();
+
+    public TaskListImpl(Account account){
+        List<Course> courseList = account.getSemester().getRunningCourses();
         TaskImpl task;
         List<List<AssessmentInstance>> assessmentInstances = new ArrayList<>();
         for (Course i : courseList) {
@@ -29,7 +30,7 @@ public class TaskListImpl extends TaskList {
         }
         for (int j = 0; j < courseList.size(); j++) {
             for (AssessmentInstance k : assessmentInstances.get(j)) {
-                task = new TaskImpl(courseList.get(j).getCourseName(), k);
+                task = new TaskImpl(courseList.get(j).getCourseCode(), k);
                 taskList.add(task);
             }
         }

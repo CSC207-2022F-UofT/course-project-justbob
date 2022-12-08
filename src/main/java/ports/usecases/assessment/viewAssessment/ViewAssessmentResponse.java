@@ -7,19 +7,21 @@ public class ViewAssessmentResponse {
     public String[] assessmentInstanceTitles;
     public Double[] assessmentInstanceWeights;
     public Double[] assessmentInstanceMarks;
+    public String semesterTitle;
 
     public ViewAssessmentResponse() {
     }
 
     public ViewAssessmentResponse(String username, String courseCode, String assessmentTitle,
                                   String[] assessmentInstanceTitles, Double[] assessmentInstanceWeights,
-                                  Double[] assessmentInstanceMarks) {
+                                  Double[] assessmentInstanceMarks, String semesterTitle) {
         this.username = username;
         this.courseCode = courseCode;
         this.assessmentTitle = assessmentTitle;
         this.assessmentInstanceTitles = assessmentInstanceTitles;
         this.assessmentInstanceWeights = assessmentInstanceWeights;
         this.assessmentInstanceMarks = assessmentInstanceMarks;
+        this.semesterTitle = semesterTitle;
     }
 
 }

@@ -2,6 +2,7 @@ package usecases.course.ViewCourse;
 
 import entities.account.Account;
 import entities.course.Course;
+import entities.gpa.GPACalculation;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.course.viewCourse.ViewCourseInputBoundary;
@@ -24,11 +25,12 @@ public class ViewCourseUseCase implements ViewCourseInputBoundary {
         if (course == null) {
             throw new PathNotFoundError();
         }
-        return createResponse(course, account);
+        return createResponse(course, account, request.semesterTitle);
     }
 
-    private ViewCourseResponse createResponse(Course course, Account account) {
+    private ViewCourseResponse createResponse(Course course, Account account, String semesterTitle) {
         ViewCourseResponse response = new ViewCourseResponse();
+        response.semesterTitle = semesterTitle;
         response.username = account.getUsername();
         response.courseCode = course.getCourseCode();
         response.courseTitle = course.getCourseName();
@@ -39,8 +41,10 @@ public class ViewCourseUseCase implements ViewCourseInputBoundary {
         response.assessmentNumberOfInstances = course.getOutline().getAssessmentsNumberOfInstances().toArray(response.assessmentNumberOfInstances);
         response.assessmentWeights = new Double[course.getOutline().getAssessmentsWeights().size()];
         response.assessmentWeights = course.getOutline().getAssessmentsWeights().toArray(response.assessmentWeights);
-        response.runningGrade = Double.toString(course.getOutline().computeRunningGrade());
-        response.hypotheticalGrade = Double.toString(course.getOutline().computeHypotheticalGrade());
+        response.runningGrade = Double.toString(Math.round(course.getOutline().computeRunningGrade() * 100.0) / 100.0);
+        response.hypotheticalGrade = Double.toString(Math.round(course.getOutline().computeHypotheticalGrade() * 100.0) / 100.0);
+        response.runningLetteredGrade = GPACalculation.percentToGrade(course.getOutline().computeRunningGrade());
+        response.hypotheticalLetteredGrade = GPACalculation.percentToGrade(course.getOutline().computeHypotheticalGrade());
         return response;
     }
 

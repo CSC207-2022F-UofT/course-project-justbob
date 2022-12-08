@@ -8,16 +8,13 @@ import usecases.checklist.ShowChecklistUseCase;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
 
 public class ChecklistView {
 
     public ChecklistView(EntityGateway entityGateway, EntityFactory entityFactory,
                          String username){
 
-
+        Font textFont = new Font("Georgia", Font.PLAIN, 14);
 
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
@@ -34,32 +31,32 @@ public class ChecklistView {
 
         JCheckBox showTodo = new JCheckBox("Show Tasks Unfinished", true);
         showTodo.setBounds(5, 540, 200, 25);
-        showTodo.setFont(new Font("Georgia", Font.PLAIN, 14));
+        showTodo.setFont(textFont);
         panel.add(showTodo);
 
         JCheckBox showCommitted = new JCheckBox("Show Tasks Committed");
         showCommitted.setBounds(5, 570, 200, 25);
-        showCommitted.setFont(new Font("Georgia", Font.PLAIN, 14));
+        showCommitted.setFont(textFont);
         panel.add(showCommitted);
 
         JCheckBox showSubmitted = new JCheckBox("Show Tasks Submitted");
         showSubmitted.setBounds(5, 600, 200, 25);
-        showSubmitted.setFont(new Font("Georgia", Font.PLAIN, 14));
+        showSubmitted.setFont(textFont);
         panel.add(showSubmitted);
 
         JCheckBox showDetail = new JCheckBox("Show Detail");
         showDetail.setBounds(5, 630, 200, 25);
-        showDetail.setFont(new Font("Georgia", Font.PLAIN, 14));
+        showDetail.setFont(textFont);
         panel.add(showDetail);
 
         JCheckBox sortInDDL = new JCheckBox("Sort In Due Time");
         sortInDDL.setBounds(5, 660, 200, 25);
-        sortInDDL.setFont(new Font("Georgia", Font.PLAIN, 14));
+        sortInDDL.setFont(textFont);
         panel.add(sortInDDL);
 
         JCheckBox sortInMark = new JCheckBox("Sort In Due Time");
         sortInMark.setBounds(5, 690, 200, 25);
-        sortInMark.setFont(new Font("Georgia", Font.PLAIN, 14));
+        sortInMark.setFont(textFont);
         panel.add(sortInMark);
 
         ShowChecklistRequest request = new ShowChecklistRequest(username, showTodo.isSelected(),
@@ -71,6 +68,7 @@ public class ChecklistView {
 
         JTextArea checklistField = new JTextArea();
         checklistField.setBounds(0, 30, 500, 500);
+        checklistField.setFont(textFont);
         checklistField.setEditable(false);
         if (response.taskChecklist == null){
             checklistField.append("No Tasks");
@@ -81,7 +79,7 @@ public class ChecklistView {
 
         JButton refresher = new JButton("Refresh the Checklist");
         refresher.setBounds(200, 690, 200, 25);
-        refresher.setFont(new Font("Georgia", Font.PLAIN, 14));
+        refresher.setFont(textFont);
         panel.add(refresher);
 
         refresher.addActionListener(e -> {
@@ -90,38 +88,16 @@ public class ChecklistView {
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
             if (response.taskChecklist != null){
-                if (showTodo.isSelected()) {
-                    response.taskChecklist.toShowToDo();
-                } else {
-                    response.taskChecklist.toNotShowToDo();
-                }
-                if (showCommitted.isSelected()){
-                    response.taskChecklist.toShowCommitted();
-                } else {
-                    response.taskChecklist.toNotShowCommitted();
-                }
-                if (showSubmitted.isSelected()){
-                    response.taskChecklist.toShowSubmitted();
-                } else {
-                    response.taskChecklist.toShowSubmitted();
-                }
-                if (showDetail.isSelected()){
-                    response.taskChecklist.toShowDetail();
-                } else {
-                    response.taskChecklist.toNotShowDetail();
-                }
-                if (sortInDDL.isSelected()){
-                    response.taskChecklist.sortInDDL();
-                }
-                if (sortInMark.isSelected()){
-                    response.taskChecklist.sortInMark();
-                }
-            }
-            checklistField.setText("");
-            if (response.taskChecklist == null){
-                checklistField.append("No Tasks");
+                ShowChecklistRequest request2 = new ShowChecklistRequest(username, showTodo.isSelected(),
+                        showCommitted.isSelected(), showSubmitted.isSelected(), showDetail.isSelected(), sortInDDL.isSelected(),
+                        sortInMark.isSelected());
+                ShowChecklistUseCase showChecklistUseCase2 = new ShowChecklistUseCase(entityGateway);
+
+                ShowChecklistResponse response2 = showChecklistUseCase2.execute(request2);
+                checklistField.setText("");
+                checklistField.append(response2.taskChecklist.toString());
             } else {
-                checklistField.append(response.taskChecklist.toString());
+                checklistField.setText("No Tasks");
             }
         });
 

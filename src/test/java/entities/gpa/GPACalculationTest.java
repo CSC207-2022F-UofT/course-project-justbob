@@ -34,7 +34,9 @@ public class GPACalculationTest {
     }
     @Test
     public void computeOverallGPA(){
-        assertEquals(3.57, GPACalculation.overallGPA(List.of(90.0, 75.0, 73.0, 81.0), List.of(1.0, 0.5, 0.5, 1.0)));
+        Double[] grades = {90.0, 75.0, 73.0, 81.0};
+        Double[] credits = {1.0, 0.5, 0.5, 1.0};
+        assertEquals(3.57, GPACalculation.overallGPA(grades, credits));
     }
 
 

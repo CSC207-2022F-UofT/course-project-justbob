@@ -15,14 +15,14 @@ public class SubmitInstanceView {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
-        frame.setSize(400, 200);
+        frame.setSize(400, 300);
         frame.add(panel);
         frame.setVisible(true);
 
         Font textFont = new Font("Georgia", Font.PLAIN, 14);
 
         JLabel title = new JLabel("Submit Assessment");
-        title.setBounds(125, 0, 150, 25);
+        title.setBounds(100, 0, 200, 25);
         title.setFont(new Font("Georgia", Font.BOLD, 16));
         panel.add(title);
 

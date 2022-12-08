@@ -1,6 +1,7 @@
 package ports.usecases.account.loginAccount;
 
-import ports.usecases.ApplicationResponse;
+import ports.usecases.account.viewAccount.ViewAccountResponse;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
 
 public interface LoginAccountInputBoundary {
     /**
@@ -10,7 +11,7 @@ public interface LoginAccountInputBoundary {
      * @return preliminary account data
      * @throws LoginError if the username is not found or the password is incorrect.
      */
-    ApplicationResponse execute(LoginAccountRequest request) throws LoginError;
+    ViewAccountResponse execute(LoginAccountRequest request) throws LoginError;
 
 
     class LoginError extends Error {

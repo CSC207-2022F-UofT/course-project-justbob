@@ -2,19 +2,19 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.ApplicationResponse;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
 import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ApplicationView {
+public class SemesterView {
 
     public final int WIDTH = 600;
     public final int HEIGHT = 600;
 
-    public ApplicationView(EntityGateway entityGateway, EntityFactory entityFactory, ApplicationResponse response) {
+    public SemesterView(EntityGateway entityGateway, EntityFactory entityFactory, ViewSemesterResponse response, JFrame parentFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -56,12 +56,12 @@ public class ApplicationView {
         panel.add(coursesTable);
 
         // Running GPA Label
-        JLabel label2 = new JLabel("Running GPA: " /*+ response.runningGPA*/);
+        JLabel label2 = new JLabel("Running GPA: " + response.runningGPA);
         label2.setBounds(coursesTable.getX(), coursesTable.getY() + coursesTable.getHeight() - 25, 210, 100);
         panel.add(label2, BorderLayout.CENTER);
 
         // Hypo GPA Label
-        JLabel label3 = new JLabel("Hypothetical GPA: " /*+ response.hypoGPA*/);
+        JLabel label3 = new JLabel("Hypothetical GPA: " + response.hypotheticalGPA);
         label3.setBounds(label2.getX() + 210, label2.getY(), 210, 100);
         panel.add(label3);
 
@@ -88,7 +88,7 @@ public class ApplicationView {
                     int col = coursesTable.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                         String courseCode = finalCourseCodes[row];
-                        ViewCourseRequest request = new ViewCourseRequest(response.username, courseCode);
+                        ViewCourseRequest request = new ViewCourseRequest(response.username, courseCode, response.semesterTitle);
                         new ViewCourseController(request, frame, entityGateway, entityFactory, frame);
                         frame.setVisible(false);
                     }
