@@ -18,15 +18,17 @@ public class ViewCourseResponse {
     public String runningGrade;
 
     public String hypotheticalGrade;
+    public String semesterTitle;
+    public String runningLetteredGrade;
 
-    public String letteredGrade;
+    public String hypotheticalLetteredGrade;
 
     public ViewCourseResponse() {
     }
 
     public ViewCourseResponse(String username, String courseCode, String courseTitle, String credit,
                               String[] assessmentTitles, Integer[] assessmentNumberOfInstances, Double[] assessmentWeights,
-                              String runningGrade, String hypotheticalGrade, String letteredGrade) {
+                              String runningGrade, String hypotheticalGrade, String semesterTitle, String letteredGrade, String hypotheticalLetteredGrade) {
         this.username = username;
         this.courseCode = courseCode;
         this.courseTitle = courseTitle;
@@ -36,6 +38,8 @@ public class ViewCourseResponse {
         this.assessmentWeights = assessmentWeights;
         this.runningGrade = runningGrade;
         this.hypotheticalGrade = hypotheticalGrade;
-        this.letteredGrade = letteredGrade;
+        this.semesterTitle = semesterTitle;
+        this.runningLetteredGrade = letteredGrade;
+        this.hypotheticalLetteredGrade = hypotheticalLetteredGrade;
     }
 }

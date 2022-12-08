@@ -2,7 +2,7 @@ package usecases.account.AddSemesterCourse;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.ApplicationResponse;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseRequest;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ public class AddSemesterCourseController {
         AddSemesterCoursePresenter presenter = new AddSemesterCoursePresenter(frame, entityGateway, entityFactory, parentFrame);
 
         try {
-            ApplicationResponse response = usecase.execute(request);
+            ViewSemesterResponse response = usecase.execute(request);
             presenter.presentSuccess(response);
         } catch (Throwable error) {
             presenter.presentError(error);

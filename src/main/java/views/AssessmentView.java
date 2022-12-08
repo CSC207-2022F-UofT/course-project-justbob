@@ -3,7 +3,6 @@ package views;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.assessment.setMark.SetMarkWindowRequest;
-import ports.usecases.assessment.setWeightScheme.SetSimpleWeightSchemeRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
 import usecases.assessment.SetMark.SetMarkWindowController;
@@ -50,7 +49,11 @@ public class AssessmentView {
 
         JTable assessmentInstancesTable = new JTable(data, column);
         assessmentInstancesTable.setBounds((int) (0.066 * WIDTH), (int) (0.133 * HEIGHT), (int) (WIDTH - (0.133 * WIDTH)), (int) (HEIGHT * 0.533));
+        assessmentInstancesTable.getColumnModel().getColumn(0).setHeaderValue("Instance Title");
+        assessmentInstancesTable.getColumnModel().getColumn(1).setHeaderValue("Weight");
+        assessmentInstancesTable.getColumnModel().getColumn(2).setHeaderValue("Marks (Click to set, commit, or uncommit)");
         panel.add(assessmentInstancesTable);
+        panel.add(assessmentInstancesTable.getTableHeader(), BorderLayout.NORTH);
 
        Integer[] finalAssessmentInstanceIds = new Integer[assessmentInstanceTitles.length];
        IntStream.range(0, assessmentInstanceTitles.length).forEach(i -> finalAssessmentInstanceIds[i] = i);
@@ -75,10 +78,7 @@ public class AssessmentView {
         editWeightschemeButton.setBounds(assessmentInstancesTable.getX(), assessmentInstancesTable.getY() + 320 , 160, 50);
         panel.add(editWeightschemeButton);
 
-        editWeightschemeButton.addActionListener(e -> {
-            new SetSimpleWeightSchemeView(entityGateway, entityFactory, response.username, response.courseCode, response.assessmentTitle, frame);
-
-        });
+        editWeightschemeButton.addActionListener(e -> new SetSimpleWeightSchemeView(entityGateway, entityFactory, response.username, response.courseCode, response.assessmentTitle, frame));
 
 
         // back button
@@ -89,7 +89,7 @@ public class AssessmentView {
         backButton.addActionListener(e -> {
             frame.dispose();
             parentFrame.dispose(); // parentFrame.setVisible(true);
-            ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode);
+            ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode, response.semesterTitle);
             new ViewCourseController(request, frame, entityGateway, entityFactory, parentFrame);
         });
 

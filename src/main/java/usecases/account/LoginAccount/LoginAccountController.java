@@ -2,7 +2,8 @@ package usecases.account.LoginAccount;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.ApplicationResponse;
+import ports.usecases.account.viewAccount.ViewAccountResponse;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
 import ports.usecases.account.loginAccount.LoginAccountRequest;
 
 import javax.swing.*;
@@ -13,7 +14,7 @@ public class LoginAccountController {
         LoginAccountPresenter presenter = new LoginAccountPresenter(frame, entityGateway, entityFactory);
 
         try {
-            ApplicationResponse response = usecase.execute(request);
+            ViewAccountResponse response = usecase.execute(request);
             presenter.presentSuccess(response);
         } catch (Throwable error) {
             presenter.presentError(error);

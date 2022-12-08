@@ -142,21 +142,21 @@ public class GPACalculation {
      * @param courseCredits  is a list of double consisting of course credits
      * @return a double of the overall GPA to 2 decimal places
      */
-    public static double overallGPA(List<Double> markpercentage, List<Double> courseCredits) {
+    public static double overallGPA(Double[] markpercentage, Double[] courseCredits) {
         double sumGPA = 0;
         double sumCredits = 0;
         double totalGpa;
         List<Double> gpalist = new ArrayList<>();
         List<Double> overallGrade = new ArrayList<>();
 
-        for (int i = 0; i < courseCredits.size(); i++) {
-            sumCredits += courseCredits.get(i);
+        for (int i = 0; i < courseCredits.length; i++) {
+            sumCredits += courseCredits[i];
         }
-        for (int j = 0; j < markpercentage.size(); j++) {
-            gpalist.add(percentToGPA(markpercentage.get(j)));
+        for (int j = 0; j < markpercentage.length; j++) {
+            gpalist.add(percentToGPA(markpercentage[j]));
         }
         for (int s = 0; s < gpalist.size(); s++) {
-            overallGrade.add(gpalist.get(s) * courseCredits.get(s));
+            overallGrade.add(gpalist.get(s) * courseCredits[s]);
         }
         for (int v = 0; v < overallGrade.size(); v++) {
             sumGPA += overallGrade.get(v);
