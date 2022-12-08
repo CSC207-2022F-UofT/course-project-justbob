@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class SetSimpleWeightSchemeController {
     public SetSimpleWeightSchemeController(SetSimpleWeightSchemeRequest request, JFrame frame, EntityGateway entityGateway, EntityFactory entityFactory, JFrame parentFrame){
-        SetSimpleWeightSchemeUseCase usecase = new SetSimpleWeightSchemeUseCase(entityGateway, entityFactory);
+        SetSimpleWeightSchemeUseCase usecase = new SetSimpleWeightSchemeUseCase(entityGateway, entityFactory, entityFactory, entityFactory);
         SetSimpleWeightSchemePresenter presenter = new SetSimpleWeightSchemePresenter(frame, entityGateway, entityFactory, parentFrame);
 
         try {
