@@ -6,26 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class AssessmentTest {
-    private MockEntityFactory mockEntityFactory = new MockEntityFactory();
+    private final MockEntityFactory mockEntityFactory = new MockEntityFactory();
 
     Assessment testAssessment = mockEntityFactory.createAssessment(
             "Quizzes",
             mockEntityFactory.createSimpleWeight(mockEntityFactory.createWeight(4, 0.2))
             );
 
-    //TODO: implement testing for:
-    // getTotalWeight
-    // getTotalNumberOfInstances
-    // getCurrentNumberOfInstances
-    // getNumberOfCommittedInstances
-    // getNumberOfSubmittedInstances
-    // getCommittedMarks()
-    // getAllMarks
-    // getActualCommittedWeight
-    // getActualHypotheticalWeight
-    // getMaxPossibleCommittedWeight
-    // getMaxPossibleSubmittedWeight
-    // getMaxPossibleHypotheticalWeight
 
     private void setTestMarks(Assessment assessment) {
         assessment.getInstances().get(0).setMark(50.0);
