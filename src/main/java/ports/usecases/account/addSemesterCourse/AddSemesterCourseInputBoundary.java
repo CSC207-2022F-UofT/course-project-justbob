@@ -1,6 +1,6 @@
 package ports.usecases.account.addSemesterCourse;
 
-import ports.usecases.ApplicationResponse;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
 
 public interface AddSemesterCourseInputBoundary {
     /**
@@ -9,7 +9,7 @@ public interface AddSemesterCourseInputBoundary {
      * @param request a request for a new course with the course's courseCode, courseName, and credit
      * @throws AddSemesterCourseError if the course can't be added
      */
-    ApplicationResponse execute(AddSemesterCourseRequest request) throws AddSemesterCourseError;
+    ViewSemesterResponse execute(AddSemesterCourseRequest request) throws AddSemesterCourseError;
 
     class AddSemesterCourseError extends Error {
         public AddSemesterCourseError(String message) {

@@ -5,7 +5,7 @@ import entities.course.Course;
 import entities.course.Outline;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.ApplicationResponse;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseInputBoundary;
 import ports.usecases.account.addSemesterCourse.AddSemesterCourseRequest;
@@ -25,7 +25,7 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
     }
 
     @Override
-    public ApplicationResponse execute(AddSemesterCourseRequest request)
+    public ViewSemesterResponse execute(AddSemesterCourseRequest request)
             throws PathNotFoundError, AddSemesterCourseInputBoundary.AddSemesterCourseError {
         if (!entityGateway.existsAccount(request.username)) {
             throw new PathNotFoundError("Account not found.");
@@ -70,8 +70,8 @@ public class AddSemesterCourseUseCase implements AddSemesterCourseInputBoundary 
         return createResponse(account);
     }
 
-    private ApplicationResponse createResponse(Account account) {
-        ApplicationResponse response = new ApplicationResponse();
+    private ViewSemesterResponse createResponse(Account account) {
+        ViewSemesterResponse response = new ViewSemesterResponse();
         response.username = account.getUsername();
         response.semesterTitle = account.getSemester().getTitle();
         List<String> myList = new ArrayList<>();

@@ -2,19 +2,19 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.ApplicationResponse;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
 import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ApplicationView {
+public class SemesterView {
 
     public final int WIDTH = 600;
     public final int HEIGHT = 600;
 
-    public ApplicationView(EntityGateway entityGateway, EntityFactory entityFactory, ApplicationResponse response) {
+    public SemesterView(EntityGateway entityGateway, EntityFactory entityFactory, ViewSemesterResponse response, JFrame parentFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
