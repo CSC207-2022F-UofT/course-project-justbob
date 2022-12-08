@@ -88,7 +88,7 @@ public class CourseView {
                     int col = assessmentsTable.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                         String assessmentTitle = finalAssessmentTitles[row];
-                        ViewAssessmentRequest request = new ViewAssessmentRequest(response.username, response.courseCode, assessmentTitle);
+                        ViewAssessmentRequest request = new ViewAssessmentRequest(response.username, response.courseCode, assessmentTitle, response.semesterTitle);
                         new ViewAssessmentController(request, frame, entityGateway, entityFactory, parentFrame);
                         frame.setVisible(false);
                     }
