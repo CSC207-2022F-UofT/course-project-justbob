@@ -88,7 +88,7 @@ public class SemesterView {
                     int col = coursesTable.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                         String courseCode = finalCourseCodes[row];
-                        ViewCourseRequest request = new ViewCourseRequest(response.username, courseCode);
+                        ViewCourseRequest request = new ViewCourseRequest(response.username, courseCode, response.semesterTitle);
                         new ViewCourseController(request, frame, entityGateway, entityFactory, frame);
                         frame.setVisible(false);
                     }

@@ -3,9 +3,11 @@ package views;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.account.archiveCourse.ArchiveCourseRequest;
+import ports.usecases.account.viewSemester.ViewSemesterRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentRequest;
 import ports.usecases.course.viewCourse.ViewCourseResponse;
 import usecases.account.ArchiveCourse.ArchiveCourseController;
+import usecases.account.ViewSemester.ViewSemesterController;
 import usecases.assessment.ViewAssessment.ViewAssessmentController;
 
 import javax.swing.*;
@@ -101,7 +103,9 @@ public class CourseView {
 
         backButton.addActionListener(e -> {
             frame.dispose();
-            parentFrame.setVisible(true);
+            parentFrame.dispose(); // parentFrame.setVisible(true);
+            ViewSemesterRequest request = new ViewSemesterRequest(response.username, response.semesterTitle);
+            new ViewSemesterController(request, frame, entityGateway, entityFactory, frame);
         });
 
         // Archive course button
