@@ -2,9 +2,13 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
+import ports.usecases.assessment.commitMark.CommitMarkRequest;
 import ports.usecases.assessment.setMark.SetMarkRequest;
 import ports.usecases.assessment.setMark.SetMarkWindowResponse;
+import ports.usecases.assessment.submitInstance.SubmitInstanceRequest;
+import usecases.assessment.CommitMark.CommitMarkController;
 import usecases.assessment.SetMark.SetMarkController;
+import usecases.assessment.SubmitInstance.SubmitInstanceController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -43,10 +47,29 @@ public class SetMarkView {
         commitMarkButton.setBounds(100, 200, 193, 28);
         panel.add(commitMarkButton);
 
+        // back button constructor
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(100, 180, 193, 28);
+        panel.add(backButton);
+
+
         setMarkButton.addActionListener(e -> {
+            SetMarkRequest setMarkRequest = new SetMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber, mark.getText());
+            new SetMarkController(setMarkRequest, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
+        });
+
+
+        commitMarkButton.addActionListener(e -> {
+            SubmitInstanceRequest submitInstanceRequest = new SubmitInstanceRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber);
+            new SubmitInstanceController(submitInstanceRequest, frame, entityGateway, parentFrame);
             SetMarkRequest request = new SetMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber, mark.getText());
             new SetMarkController(request, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
+            CommitMarkRequest commitMarkRequest = new CommitMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber);
+            new CommitMarkController(commitMarkRequest, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
+
         });
+
+        backButton.addActionListener(e -> frame.dispose());
 
         frame.setVisible(true);
     }
