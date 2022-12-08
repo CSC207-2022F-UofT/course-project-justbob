@@ -66,7 +66,7 @@ public class CourseView {
         panel.add(label2, BorderLayout.CENTER);
 
         // Hypo Grade Label
-        JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade + " (" + response.runningLetteredGrade + ")");
+        JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade + " (" + response.hypotheticalLetteredGrade + ")");
         label3.setBounds(label2.getX() + 210, label2.getY(), 210, 100);
         panel.add(label3);
 

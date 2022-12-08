@@ -61,7 +61,7 @@ public class SemesterView {
         panel.add(label2, BorderLayout.CENTER);
 
         // Hypo GPA Label
-        JLabel label3 = new JLabel("Hypothetical GPA: " /*+ response.hypoGPA*/);
+        JLabel label3 = new JLabel("Hypothetical GPA: " + response.hypotheticalGPA);
         label3.setBounds(label2.getX() + 210, label2.getY(), 210, 100);
         panel.add(label3);
 
