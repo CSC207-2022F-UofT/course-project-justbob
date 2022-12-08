@@ -8,6 +8,7 @@ import ports.usecases.PathNotFoundError;
 import ports.usecases.course.viewCourse.ViewCourseInputBoundary;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
 import ports.usecases.course.viewCourse.ViewCourseResponse;
+import usecases.gpaTrend.GetCourseTrendUseCase;
 
 public class ViewCourseUseCase implements ViewCourseInputBoundary {
 
@@ -45,6 +46,7 @@ public class ViewCourseUseCase implements ViewCourseInputBoundary {
         response.hypotheticalGrade = Double.toString(Math.round(course.getOutline().computeHypotheticalGrade() * 100.0) / 100.0);
         response.runningLetteredGrade = GPACalculation.percentToGrade(course.getOutline().computeRunningGrade());
         response.hypotheticalLetteredGrade = GPACalculation.percentToGrade(course.getOutline().computeHypotheticalGrade());
+        response.trendModel = new GetCourseTrendUseCase(entityGateway).execute(account.getUsername(), response.courseCode);
         return response;
     }
 
