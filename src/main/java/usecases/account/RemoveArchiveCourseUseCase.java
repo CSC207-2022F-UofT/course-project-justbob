@@ -7,6 +7,7 @@ import ports.usecases.PathNotFoundError;
 import ports.usecases.account.removeAchiveCourse.RemoveArchiveCourseInputBoundary;
 import ports.usecases.account.removeAchiveCourse.RemoveArchiveCourseResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RemoveArchiveCourseUseCase implements RemoveArchiveCourseInputBoundary {
@@ -35,7 +36,11 @@ public class RemoveArchiveCourseUseCase implements RemoveArchiveCourseInputBound
 
     private RemoveArchiveCourseResponse createResponse(Account account) {
         RemoveArchiveCourseResponse response = new RemoveArchiveCourseResponse();
-        response.courseList = List.of((String[]) account.getArchive().getCourses().stream().map(Course::getCourseCode).toArray());
+        List<String> myList = new ArrayList<>();
+        for(Course course : account.getSemester().getRunningCourses()){
+            myList.add(course.getCourseCode());
+        }
+        response.courseList = myList;
         return response;
     }
 }

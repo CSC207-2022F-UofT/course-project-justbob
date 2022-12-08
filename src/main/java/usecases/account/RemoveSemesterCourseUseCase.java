@@ -8,6 +8,7 @@ import ports.usecases.account.RemoveSemesterCourse.RemoveSemesterCourseInputBoun
 import ports.usecases.account.RemoveSemesterCourse.RemoveSemesterCourseRequest;
 import ports.usecases.account.RemoveSemesterCourse.RemoveSemesterCourseResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RemoveSemesterCourseUseCase implements RemoveSemesterCourseInputBoundary {
@@ -34,7 +35,11 @@ public class RemoveSemesterCourseUseCase implements RemoveSemesterCourseInputBou
 
     private RemoveSemesterCourseResponse createResponse(Account account) {
         RemoveSemesterCourseResponse response = new RemoveSemesterCourseResponse();
-        response.courseList = List.of((String[]) account.getSemester().getRunningCourses().stream().map(Course::getCourseCode).toArray());
+        List<String> myList = new ArrayList<>();
+        for(Course course : account.getSemester().getRunningCourses()){
+            myList.add(course.getCourseCode());
+        }
+        response.courseList = myList;
         return response;
     }
 }
