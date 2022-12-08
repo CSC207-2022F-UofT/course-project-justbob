@@ -49,7 +49,11 @@ public class AssessmentView {
 
         JTable assessmentInstancesTable = new JTable(data, column);
         assessmentInstancesTable.setBounds((int) (0.066 * WIDTH), (int) (0.133 * HEIGHT), (int) (WIDTH - (0.133 * WIDTH)), (int) (HEIGHT * 0.533));
+        assessmentInstancesTable.getColumnModel().getColumn(0).setHeaderValue("Instance Title");
+        assessmentInstancesTable.getColumnModel().getColumn(1).setHeaderValue("Weight");
+        assessmentInstancesTable.getColumnModel().getColumn(2).setHeaderValue("Marks (Click to set, commit, or uncommit)");
         panel.add(assessmentInstancesTable);
+        panel.add(assessmentInstancesTable.getTableHeader(), BorderLayout.NORTH);
 
        Integer[] finalAssessmentInstanceIds = new Integer[assessmentInstanceTitles.length];
        IntStream.range(0, assessmentInstanceTitles.length).forEach(i -> finalAssessmentInstanceIds[i] = i);
