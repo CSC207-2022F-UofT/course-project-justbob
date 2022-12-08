@@ -4,9 +4,10 @@ import entities.course.Course;
 import entities.course.CourseEvent;
 import entities.course.Outline;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CourseImpl extends Course {
+public class CourseImpl extends Course implements Serializable {
     private String courseCode;
     private String courseName;
     private float credit;

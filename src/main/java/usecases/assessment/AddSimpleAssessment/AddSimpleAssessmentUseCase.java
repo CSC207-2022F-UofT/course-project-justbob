@@ -14,12 +14,18 @@ import ports.usecases.course.viewCourse.ViewCourseResponse;
 public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBoundary {
 
     private final EntityGateway entityGateway;
-
     private final Assessment.AssessmentFactory assessmentFactory;
+    private Weight.WeightFactory weightFactory;
+    private SimpleWeight.SimpleWeightFactory simpleWeightFactory;
 
-    public AddSimpleAssessmentUseCase(EntityGateway entityGateway, Assessment.AssessmentFactory assessmentFactory) {
+    public AddSimpleAssessmentUseCase(EntityGateway entityGateway,
+                                      Assessment.AssessmentFactory assessmentFactory,
+                                      Weight.WeightFactory weightFactory,
+                                      SimpleWeight.SimpleWeightFactory simpleWeightFactory) {
         this.entityGateway = entityGateway;
         this.assessmentFactory = assessmentFactory;
+        this.weightFactory = weightFactory;
+        this.simpleWeightFactory = simpleWeightFactory;
     }
 
     public ViewCourseResponse execute(AddSimpleAssessmentRequest request)
@@ -73,7 +79,9 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Adding this assessment would exceed the courses's total weight");
         }
 
-        SimpleWeight weightScheme = new SimpleWeight(new Weight(numberOfInstances, weightOfEachInstance));
+        SimpleWeight weightScheme = simpleWeightFactory.createSimpleWeight(
+                weightFactory.createWeight(numberOfInstances, weightOfEachInstance)
+        );
 
         Assessment assessment = assessmentFactory.createAssessment(request.assessmentTitle, weightScheme);
 
