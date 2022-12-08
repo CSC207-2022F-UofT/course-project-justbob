@@ -2,6 +2,7 @@ package usecases.course.ViewCourse;
 
 import entities.account.Account;
 import entities.course.Course;
+import entities.gpa.GPACalculation;
 import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.course.viewCourse.ViewCourseInputBoundary;
@@ -42,6 +43,7 @@ public class ViewCourseUseCase implements ViewCourseInputBoundary {
         response.assessmentWeights = course.getOutline().getAssessmentsWeights().toArray(response.assessmentWeights);
         response.runningGrade = Double.toString(course.getOutline().computeRunningGrade());
         response.hypotheticalGrade = Double.toString(course.getOutline().computeHypotheticalGrade());
+        response.letteredGrade = GPACalculation.percentToGrade(course.getOutline().computeRunningGrade());
         return response;
     }
 

@@ -4,12 +4,13 @@ import entities.task.Task;
 import entities.task.TaskChecklist;
 import entities.task.TaskList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TaskChecklistImpl extends TaskChecklist {
-    private List<Task> taskToDo;
-    private List<Task> taskCommitted;
-    private List<Task> taskSubmitted;
+    private List<Task> taskToDo = new ArrayList<>();
+    private List<Task> taskCommitted = new ArrayList<>();
+    private List<Task> taskSubmitted = new ArrayList<>();
     private Boolean showDetail = false;
     private Boolean showToDo = true;
     private Boolean showCommitted = false;
@@ -176,19 +177,19 @@ public class TaskChecklistImpl extends TaskChecklist {
         if (!haveTask){
             return "";
         }
-        String taskT = null;
+        String taskT = "";
         for (Task i: this.taskToDo){
             taskT += i.toString() + "\n";
         }
-        String taskC = null;
-        for (Task i: this.taskToDo){
+        String taskC = "";
+        for (Task i: this.taskCommitted){
             taskC += i.toString() + "\n";
         }
-        String taskS = null;
-        for (Task i: this.taskToDo){
+        String taskS = "";
+        for (Task i: this.taskSubmitted){
             taskS += i.toString() + "\n";
         }
-        String result = null;
+        String result = "";
         if (showCommitted){
             result += taskC;
         }
