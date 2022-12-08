@@ -11,6 +11,7 @@ import ports.usecases.account.viewSemester.ViewSemesterResponse;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ViewSemesterUseCase implements ViewSemesterInputBoundary {
@@ -51,12 +52,15 @@ public class ViewSemesterUseCase implements ViewSemesterInputBoundary {
             index += 1;
         }
         List<Double> myCredits = new ArrayList<>();
-        response.courseCredits = myCredits.toArray(new Double[0]);
-        for(Course course : account.getSemester().getRunningCourses()){
+        for (Course course : account.getSemester().getRunningCourses()) {
             float credit = course.getCredit();
             myCredits.add((double) credit);
         }
+        response.courseCredits = myCredits.toArray(new Double[0]);
         response.runningGPA = Double.toString(GPACalculation.overallGPA(response.courseGrades, response.courseCredits));
+        System.out.println(String.join("\n", Arrays.toString(response.courseGrades)));
+        System.out.println(String.join("\n", Arrays.toString(response.courseCredits)));
+
         response.trendModel = new GetAccountTrendUseCase(entityGateway).execute(account.getUsername());
         return response;
     }
