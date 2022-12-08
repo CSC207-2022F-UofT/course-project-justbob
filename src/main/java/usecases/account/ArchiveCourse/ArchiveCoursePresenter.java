@@ -2,8 +2,8 @@ package usecases.account.ArchiveCourse;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
-import ports.usecases.ApplicationResponse;
-import views.ApplicationView;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
+import views.SemesterView;
 
 import javax.swing.*;
 
@@ -24,10 +24,10 @@ public class ArchiveCoursePresenter {
         JOptionPane.showMessageDialog(null, "unknown error", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public void presentSuccess(ApplicationResponse response) {
+    public void presentSuccess(ViewSemesterResponse response) {
         JOptionPane.showMessageDialog(null, "Course Archived", "Success", JOptionPane.INFORMATION_MESSAGE);
         this.frame.dispose();
         this.parentFrame.dispose();
-        new ApplicationView(entityGateway, entityFactory, response);
+        new SemesterView(entityGateway, entityFactory, response, parentFrame);
     }
 }

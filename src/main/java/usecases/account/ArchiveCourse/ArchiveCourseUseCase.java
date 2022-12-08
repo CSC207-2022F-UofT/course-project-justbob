@@ -3,7 +3,7 @@ package usecases.account.ArchiveCourse;
 import entities.account.Account;
 import entities.course.Course;
 import ports.database.EntityGateway;
-import ports.usecases.ApplicationResponse;
+import ports.usecases.account.viewSemester.ViewSemesterResponse;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
 import usecases.gpaTrend.GetAccountTrendUseCase;
@@ -17,7 +17,7 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
     }
 
     @Override
-    public ApplicationResponse execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
+    public ViewSemesterResponse execute(String username, String courseCode) throws PathNotFoundError, CourseNotCompletedError {
         if (!entityGateway.existsAccount(username)) {
             throw new PathNotFoundError("Username: " + username);
         }
@@ -35,8 +35,8 @@ public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
         return createResponse(account);
     }
 
-    private ApplicationResponse createResponse(Account account) {
-        ApplicationResponse response = new ApplicationResponse();
+    private ViewSemesterResponse createResponse(Account account) {
+        ViewSemesterResponse response = new ViewSemesterResponse();
         response.username = account.getUsername();
         response.courseCodes = account.getSemester().getRunningCourses().stream().map(Course::getCourseCode).toArray(String[]::new);
         response.courseTitles = account.getSemester().getRunningCourses().stream().map(Course::getCourseName).toArray(String[]::new);
