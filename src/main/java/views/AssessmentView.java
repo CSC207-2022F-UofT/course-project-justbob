@@ -79,7 +79,7 @@ public class AssessmentView {
                     frame.dispose();
                     parentFrame.dispose(); // parentFrame.setVisible(true);
                     ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode);
-                    new ViewCourseController(request, frame, entityGateway, entityFactory, frame);
+                    new ViewCourseController(request, frame, entityGateway, entityFactory, parentFrame);
                 });
 
                 frame.setVisible(true);
