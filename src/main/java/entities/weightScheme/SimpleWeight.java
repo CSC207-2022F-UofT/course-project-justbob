@@ -2,27 +2,24 @@ package entities.weightScheme;
 
 import java.util.stream.DoubleStream;
 
-public class SimpleWeight implements WeightScheme {
-    private Weight weight;
-
-    public SimpleWeight(Weight weight) {
-        this.weight = weight;
-    }
+public abstract class SimpleWeight implements WeightScheme {
+    public abstract Weight getWeight();
+    public abstract void setWeight(Weight weight);
 
     @Override
     public double computeWeighted(double[] marks) {
         return DoubleStream.of(marks)
-                .map(mark -> mark * weight.getWeightOfEachInstance())
+                .map(mark -> mark * getWeight().getWeightOfEachInstance())
                 .sum();
     }
 
     @Override
     public double getTotalWeight() {
-        return weight.getTotalWeight();
+        return getWeight().getTotalWeight();
     }
 
     @Override
     public int getNumberOfInstances() {
-        return weight.getNumberOfInstances();
+        return getWeight().getNumberOfInstances();
     }
 }

@@ -1,6 +1,8 @@
-package inMemoryDB.entities;
+package inMemoryDB.entities.weightScheme;
 
-public class WeightImpl {
+import entities.weightScheme.Weight;
+
+public class WeightImpl extends Weight {
     private int numberOfInstances;
     private double weightOfEachInstance;
 
