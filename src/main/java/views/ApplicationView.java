@@ -114,6 +114,11 @@ public class ApplicationView {
             panel.add(showTrendButton);
             showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
         }
+        else{
+            JButton showTrendButton = new JButton("No Trend");
+            showTrendButton.setBounds(calendarButton.getX() + 180, calendarButton.getY(), 160, 50);
+            panel.add(showTrendButton);
+        }
 
 
         frame.setVisible(true);

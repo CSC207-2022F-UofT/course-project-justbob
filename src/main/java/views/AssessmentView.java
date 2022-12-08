@@ -48,7 +48,7 @@ public class AssessmentView {
 
         // back button
         JButton backButton = new JButton("Back");
-        backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 300, 160, 50);
+        backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 320, 160, 50);
         panel.add(backButton);
 
         backButton.addActionListener(e -> {
