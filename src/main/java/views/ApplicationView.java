@@ -8,6 +8,7 @@ import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class ApplicationView {
 
@@ -106,7 +107,13 @@ public class ApplicationView {
         JButton calendarButton = new JButton("Calendar");
         calendarButton.setBounds(checklistButton.getX() + 180, checklistButton.getY(), 160, 50);
         panel.add(calendarButton);
-
+        calendarButton.addActionListener(e -> {
+            try {
+                new CalendarView();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
         if (!isEmpty) {
             // showTrend button
