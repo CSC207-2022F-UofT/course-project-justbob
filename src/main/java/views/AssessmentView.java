@@ -3,7 +3,6 @@ package views;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.assessment.setMark.SetMarkWindowRequest;
-import ports.usecases.assessment.setWeightScheme.SetSimpleWeightSchemeRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
 import ports.usecases.course.viewCourse.ViewCourseRequest;
 import usecases.assessment.SetMark.SetMarkWindowController;
@@ -79,10 +78,7 @@ public class AssessmentView {
         editWeightschemeButton.setBounds(assessmentInstancesTable.getX(), assessmentInstancesTable.getY() + 320 , 160, 50);
         panel.add(editWeightschemeButton);
 
-        editWeightschemeButton.addActionListener(e -> {
-            new SetSimpleWeightSchemeView(entityGateway, entityFactory, response.username, response.courseCode, response.assessmentTitle, frame);
-
-        });
+        editWeightschemeButton.addActionListener(e -> new SetSimpleWeightSchemeView(entityGateway, entityFactory, response.username, response.courseCode, response.assessmentTitle, frame));
 
 
         // back button
@@ -93,7 +89,7 @@ public class AssessmentView {
         backButton.addActionListener(e -> {
             frame.dispose();
             parentFrame.dispose(); // parentFrame.setVisible(true);
-            ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode);
+            ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode, response.semesterTitle);
             new ViewCourseController(request, frame, entityGateway, entityFactory, parentFrame);
         });
 

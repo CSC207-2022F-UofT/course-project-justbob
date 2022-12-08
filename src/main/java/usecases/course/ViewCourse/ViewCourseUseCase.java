@@ -25,11 +25,12 @@ public class ViewCourseUseCase implements ViewCourseInputBoundary {
         if (course == null) {
             throw new PathNotFoundError();
         }
-        return createResponse(course, account);
+        return createResponse(course, account, request.semesterTitle);
     }
 
-    private ViewCourseResponse createResponse(Course course, Account account) {
+    private ViewCourseResponse createResponse(Course course, Account account, String semesterTitle) {
         ViewCourseResponse response = new ViewCourseResponse();
+        response.semesterTitle = semesterTitle;
         response.username = account.getUsername();
         response.courseCode = course.getCourseCode();
         response.courseTitle = course.getCourseName();
