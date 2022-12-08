@@ -33,7 +33,7 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
         Course course = account.getSemester().getCourseByCode(request.courseCode);
 
         if (course == null) {
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Course is null");
         }
 
         if (course.getOutline().getAssessmentsTitles().contains(request.assessmentTitle)){
