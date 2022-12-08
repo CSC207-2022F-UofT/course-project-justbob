@@ -96,6 +96,8 @@ public class CourseView {
             });
         }
 
+
+
         // back button
         JButton backButton = new JButton("Back");
         backButton.setBounds(label2.getX() + 360, label2.getY() + 100, 160, 50);
@@ -118,9 +120,24 @@ public class CourseView {
             new ArchiveCourseController(request, frame, entityGateway, entityFactory, frame);
         });
 
+        if (!isEmpty) {
+            // showTrend button
+            JButton showCourseTrendButton = new JButton("Show Course Trend");
+            showCourseTrendButton.setBounds(archiveCourseButton.getX() + 180, archiveCourseButton.getY(), 160, 50);
+            panel.add(showCourseTrendButton);
+            showCourseTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
+        }
+        else{
+            JButton showTrendButton = new JButton("No Course Trend");
+            showTrendButton.setBounds(archiveCourseButton.getX() + 180, archiveCourseButton.getY(), 160, 50);
+            panel.add(showTrendButton);
+        }
+
         frame.setVisible(true);
 
     }
+
+
 
     private static String[][] transpose(String[][] matrix) {
         int m = matrix.length;
