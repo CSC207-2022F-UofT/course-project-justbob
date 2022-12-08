@@ -11,15 +11,22 @@
     - Users can edit information within their accounts only after a successful login. 
 - Archive
     - This is where all past courses are stored. 
-    - The user can add courses to the archive or remove courses from the archive
+    - The user can archive semester courses and those courses would be removed from the semester and be added to the archive. This is done by clicking the "archive course" button in the course view.
+    - There are use cases for adding and removing courses from the archive directly, but they are considered as extensions and not added to the current user interface.
 - Semester
-    - This is where all current courses that the user takes are stored.
-    - The user can add or remove courses just like in Archive.
-    - The user can also archive a course, which will move the course from Semester to Archive.
-- Course: handles a single course’s logic.
-    - All assessment logic is handled by the outline
+    - This is where all current courses that the user takes are stored. On the UI, click the green "+" button to add a new course to the semester. The user is required to enter the courseCode, courseName, and credit. 
+    - There is a use case for removing archived courses, but it is not added to the UI.
+- Courses represent courses that the User is enrolled in. Each course contains a list of all of its assessments, along with other data including 
+  - The course code (e.g. "Csc207.") Must be unique.
+  - The course name (e.g. "Introduction to Software Design")
+  - The semester the course is in (e.g. "Winter")
+  - How many credits the course is worth (either 0.5 or 1.0)
 - CourseEvent
 - Assessment
+  - Assessments represent a group of marks that are weighed together. This can be a set of 10 quizzes worth 2% each, or a set of term tests where the lowest is dropped, and anything similar.
+  - Each assessment needs a `WeightScheme` with instructions on how to weigh each mark. Currently, there are 2 types of weight schemes supported
+    1. Ordered Weights: For situations where marks are weighed differently based on performance.
+    2. Simple Weights: For situations where all marks in the assessment are always worth exactly the same.
 - AssessmentInstance
 - Calculation
 - InstanceList 
@@ -35,12 +42,6 @@
 
 
 ## Use Cases:
-# Courses #
-Courses represent courses that the User is enrolled in. Each course contains a list of all of its assessments, along with other data including
-1. The course code (e.g. "Csc207.") Must be unique.
-2. The course name (e.g. "Introduction to Software Design")
-3. The semester the course is in (e.g. "Winter")
-4. How many credits the course is worth (either 0.5 or 1.0)
 
 # Assessments #
 Assessments represent a group of marks that are weighed together. This can be a set of 10 quizzes worth 2% each, or a set of term tests where the lowest is dropped, and anything similar. 
@@ -124,4 +125,7 @@ checkList
         - Allow users to sort the assessments in different ways, like due date or weight of the task.
     - checkListView
         - Use java GUI to generate an interface showing the existing checklist. The interface provides functions including choosing ways of sorting, whether to show details of the assessments, and whether to show the submitted and committed assessments.
-- todo…
+      
+##Test Coverage##
+- The AccountTest covers the use cases for account registration and account login. 
+- The SemesterTest covers the use cases for adding courses to the semester and removing courses from the semester.

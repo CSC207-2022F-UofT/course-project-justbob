@@ -1,4 +1,5 @@
 import entities.account.Account;
+import entities.account.Semester;
 import inMemoryDB.InMemoryEntityFactory;
 import inMemoryDB.InMemoryEntityGateway;
 import org.junit.jupiter.api.Assertions;
@@ -8,6 +9,7 @@ import ports.database.EntityGateway;
 import ports.usecases.account.addAccount.AddAccountRequest;
 import ports.usecases.account.loginAccount.LoginAccountRequest;
 import usecases.account.AddAccount.AddAccountUseCase;
+import usecases.account.LoginAccount.LoginAccountUseCase;
 
 public class AccountTest {
     private EntityGateway entityGateway;
@@ -25,6 +27,17 @@ public class AccountTest {
 
     @Test
     public void LoginAccountTest(){
+        this.entityGateway = new InMemoryEntityGateway();
+        this.entityFactory = new InMemoryEntityFactory();
+        Account account = entityFactory.createAccount();
+        account.setUsername("11111111");
+        account.setPassword("12345678");
+        Semester semester = entityFactory.createSemester();
+        account.setSemester(semester);
+        entityGateway.saveAccount(account);
+        LoginAccountRequest request = new LoginAccountRequest("11111111", "12345678");
+        LoginAccountUseCase myUseCase = new LoginAccountUseCase(entityGateway);
+        myUseCase.execute(request);
     }
 }
 
