@@ -17,7 +17,7 @@ public class SetMarkView {
 
         // JFrame class
         JFrame frame = new JFrame();
-        frame.setTitle("Set Mark of" + response.instanceName);
+        frame.setTitle("Set Mark of " + response.instanceName);
         frame.setLocation(new Point(500, 300));
         frame.add(panel);
         frame.setSize(new Dimension(400, 260));
@@ -44,7 +44,6 @@ public class SetMarkView {
         panel.add(commitMarkButton);
 
         setMarkButton.addActionListener(e -> {
-
             SetMarkRequest request = new SetMarkRequest(response.username, response.courseCode, response.assessmentTitle, response.instanceNumber, mark.getText());
             new SetMarkController(request, frame, entityGateway, entityFactory, parentFrame, parentParentFrame);
         });

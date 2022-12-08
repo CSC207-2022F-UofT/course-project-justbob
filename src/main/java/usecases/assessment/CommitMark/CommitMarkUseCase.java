@@ -1,4 +1,4 @@
-package usecases.assessment;
+package usecases.assessment.CommitMark;
 
 import entities.account.Account;
 import entities.assessment.Assessment;
