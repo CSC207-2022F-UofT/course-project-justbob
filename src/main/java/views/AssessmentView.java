@@ -4,7 +4,9 @@ import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.assessment.setMark.SetMarkWindowRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
+import ports.usecases.course.viewCourse.ViewCourseRequest;
 import usecases.assessment.SetMark.SetMarkWindowController;
+import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -75,7 +77,9 @@ public class AssessmentView {
 
                 backButton.addActionListener(e -> {
                     frame.dispose();
-                    parentFrame.setVisible(true);
+                    parentFrame.dispose(); // parentFrame.setVisible(true);
+                    ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode);
+                    new ViewCourseController(request, frame, entityGateway, entityFactory, frame);
                 });
 
                 frame.setVisible(true);
