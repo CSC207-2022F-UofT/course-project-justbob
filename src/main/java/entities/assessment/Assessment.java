@@ -12,13 +12,17 @@ public abstract class Assessment {
     public abstract String getSingularTitle();
 
     public abstract String toSingular(String title);
+
     public abstract WeightScheme getWeightScheme();
+
     public abstract ArrayList<AssessmentInstance> getInstances();
 
     public abstract void setTitle(String title);
+
     public abstract void setWeightScheme(WeightScheme weightScheme);
 
     public abstract void addInstance(AssessmentInstance instance);
+
     public abstract void removeInstance(AssessmentInstance instance);
 
     public double getTotalWeight() {
@@ -86,11 +90,11 @@ public abstract class Assessment {
     public double getMaxPossibleHypotheticalWeight() {
         return getMaxWeight(getTotalNumberOfInstances());
     }
-    
+
     public String toSingular() {
         return getTitle();
     }
-    
+
     public interface AssessmentFactory {
         Assessment createAssessment(String title, WeightScheme weightScheme);
 

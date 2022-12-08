@@ -12,7 +12,10 @@ public class EditCourseDataRequest {
     public float newCredit;
 
 
-    public EditCourseDataRequest() {};
+    public EditCourseDataRequest() {
+    }
+
+    ;
 
     public EditCourseDataRequest(String username, String courseCode, String newCourseCode, String newCourseName,
                                  float newCredit) {

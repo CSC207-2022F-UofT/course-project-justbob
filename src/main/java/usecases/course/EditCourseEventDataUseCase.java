@@ -37,7 +37,7 @@ public class EditCourseEventDataUseCase {
 
         CourseEvent courseEvent = course.getCourseEventByTitle(request.eventTitle);
 
-        if (request.newTitle.equals(request.eventTitle)){
+        if (request.newTitle.equals(request.eventTitle)) {
             throw new EditCourseEventDataInputBoundary.EditCourseEventDataError("New event title cannot be the same as the old event title");
         }
 
@@ -56,7 +56,7 @@ public class EditCourseEventDataUseCase {
         return createResponse(courseEvent);
     }
 
-    private EditCourseEventDataResponse createResponse(CourseEvent courseEvent){
+    private EditCourseEventDataResponse createResponse(CourseEvent courseEvent) {
         EditCourseEventDataResponse response = new EditCourseEventDataResponse();
         response.newTitle = courseEvent.getTitle();
         response.newDay = courseEvent.getDay();

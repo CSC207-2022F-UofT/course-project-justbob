@@ -16,5 +16,5 @@ public interface EntityFactory extends
         CourseFactory,
         OutlineFactory,
         AssessmentFactory,
-        AssessmentInstanceFactory
-{}
+        AssessmentInstanceFactory {
+}

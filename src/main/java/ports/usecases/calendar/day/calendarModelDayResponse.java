@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class calendarModelDayResponse {
     LocalDate day;
 
-    public calendarModelDayResponse(LocalDate day){
+    public calendarModelDayResponse(LocalDate day) {
         this.day = day;
     }
 
@@ -13,7 +13,7 @@ public class calendarModelDayResponse {
         return day;
     }
 
-    public void day(LocalDate day){
+    public void day(LocalDate day) {
         this.day = day;
     }
 }

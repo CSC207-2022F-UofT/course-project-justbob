@@ -26,11 +26,11 @@ public class AssessmentImpl extends Assessment {
 
     @Override
     public String toSingular(String title) {
-        if (title.equals("Quizzes")){
+        if (title.equals("Quizzes")) {
             return "Quiz";
         }
-        if (title.charAt(title.length()-1) == 's'){
-            return title.substring(0, title.length()-1);
+        if (title.charAt(title.length() - 1) == 's') {
+            return title.substring(0, title.length() - 1);
         }
         return title;
     }
@@ -66,7 +66,7 @@ public class AssessmentImpl extends Assessment {
         return instances;
     }
 
-   /*not necessary anymore if constructor automatically creates instance list */
+    /*not necessary anymore if constructor automatically creates instance list */
     @Override
     public void addInstance(AssessmentInstance instance) {
         if (getCurrentNumberOfInstances() < getTotalNumberOfInstances()) {

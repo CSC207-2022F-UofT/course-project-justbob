@@ -13,7 +13,10 @@ public class AddCourseEventRequest {
     public LocalTime endTime;
     public String location;
 
-    public AddCourseEventRequest() {};
+    public AddCourseEventRequest() {
+    }
+
+    ;
 
     public AddCourseEventRequest(String username, String courseCode, String eventTitle, DayOfWeek day, LocalTime startTime,
                                  LocalTime endTime, String location) {
