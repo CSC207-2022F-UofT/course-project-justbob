@@ -63,7 +63,7 @@ public class CourseView {
         label2.setBounds(assessmentsTable.getX(), assessmentsTable.getY() + assessmentsTable.getHeight() - 25, 210, 100);
         panel.add(label2, BorderLayout.CENTER);
 
-        // Hypo GPA Label
+        // Hypo Grade Label
         JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade);
         label3.setBounds(label2.getX() + 210, label2.getY(), 210, 100);
         panel.add(label3);
