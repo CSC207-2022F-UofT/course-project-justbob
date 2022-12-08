@@ -1,4 +1,4 @@
-package usecases.assessment;
+package usecases.assessment.CommitMark;
 
 import entities.account.Account;
 import entities.assessment.Assessment;
@@ -61,9 +61,10 @@ public class CommitMarkUseCase implements CommitMarkInputBoundary {
         entityGateway.saveAccount(account);
         return createResponse(assessmentInstance);
     }
+
     private CommitMarkResponse createResponse(AssessmentInstance assessmentInstance) {
         CommitMarkResponse response = new CommitMarkResponse();
         response.commitSuccessful = true;
         return response;
     }
-    }
+}

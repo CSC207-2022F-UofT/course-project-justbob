@@ -17,6 +17,9 @@ public interface AddSimpleAssessmentInputBoundary {
 
 
     class AddAssessmentError extends Error {
+        public AddAssessmentError() {
+            super("Assessment already exists");
+        }
     }
 
     class AddWeightSchemeError extends Error {

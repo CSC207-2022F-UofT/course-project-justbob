@@ -14,12 +14,18 @@ import ports.usecases.course.viewCourse.ViewCourseResponse;
 public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBoundary {
 
     private final EntityGateway entityGateway;
-
     private final Assessment.AssessmentFactory assessmentFactory;
+    private Weight.WeightFactory weightFactory;
+    private SimpleWeight.SimpleWeightFactory simpleWeightFactory;
 
-    public AddSimpleAssessmentUseCase(EntityGateway entityGateway, Assessment.AssessmentFactory assessmentFactory) {
+    public AddSimpleAssessmentUseCase(EntityGateway entityGateway,
+                                      Assessment.AssessmentFactory assessmentFactory,
+                                      Weight.WeightFactory weightFactory,
+                                      SimpleWeight.SimpleWeightFactory simpleWeightFactory) {
         this.entityGateway = entityGateway;
         this.assessmentFactory = assessmentFactory;
+        this.weightFactory = weightFactory;
+        this.simpleWeightFactory = simpleWeightFactory;
     }
 
     public ViewCourseResponse execute(AddSimpleAssessmentRequest request)
@@ -33,10 +39,10 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
         Course course = account.getSemester().getCourseByCode(request.courseCode);
 
         if (course == null) {
-            throw new PathNotFoundError();
+            throw new PathNotFoundError("Course is null");
         }
 
-        if (course.getOutline().getAssessmentsTitles().contains(request.assessmentTitle)){
+        if (course.getOutline().getAssessmentsTitles().contains(request.assessmentTitle)) {
             throw new AddAssessmentError();
         }
 
@@ -54,26 +60,28 @@ public class AddSimpleAssessmentUseCase implements AddSimpleAssessmentInputBound
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Weight of each instance must be a number between 0 and 1");
         }
 
-        if(numberOfInstances < 1){
+        if (numberOfInstances < 1) {
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Number of instances must be greater than 0");
         }
-        if(weightOfEachInstance < 0 || weightOfEachInstance == 0){
+        if (weightOfEachInstance < 0 || weightOfEachInstance == 0) {
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Weight of each instance must be greater than 0");
         }
-        if(weightOfEachInstance > 1){
+        if (weightOfEachInstance > 1) {
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Weight of each instance must be less than or equal to 1");
         }
-        if(numberOfInstances * weightOfEachInstance > 1){
+        if (numberOfInstances * weightOfEachInstance > 1) {
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Total weight of instances must be less than or equal to 1");
         }
 
         double totalWeight = course.getOutline().getAssessmentsWeights().stream().mapToDouble(Double::doubleValue).sum();
 
-        if(numberOfInstances * weightOfEachInstance + totalWeight > 1){
+        if (numberOfInstances * weightOfEachInstance + totalWeight > 1) {
             throw new AddSimpleAssessmentInputBoundary.AddWeightSchemeError("Adding this assessment would exceed the courses's total weight");
         }
 
-        SimpleWeight weightScheme = new SimpleWeight(new Weight(numberOfInstances, weightOfEachInstance));
+        SimpleWeight weightScheme = simpleWeightFactory.createSimpleWeight(
+                weightFactory.createWeight(numberOfInstances, weightOfEachInstance)
+        );
 
         Assessment assessment = assessmentFactory.createAssessment(request.assessmentTitle, weightScheme);
 

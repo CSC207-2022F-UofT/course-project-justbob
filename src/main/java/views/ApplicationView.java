@@ -13,6 +13,7 @@ public class ApplicationView {
 
     public final int WIDTH = 600;
     public final int HEIGHT = 600;
+
     public ApplicationView(EntityGateway entityGateway, EntityFactory entityFactory, ApplicationResponse response) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -51,23 +52,23 @@ public class ApplicationView {
         String[] column = {"Course Codes", "Course Titles", "Course Grades"};
 
         JTable coursesTable = new JTable(data, column);
-        coursesTable.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT), (int) (WIDTH - (0.133*WIDTH)), (int) (HEIGHT * 0.533));
+        coursesTable.setBounds((int) (0.066 * WIDTH), (int) (0.133 * HEIGHT), (int) (WIDTH - (0.133 * WIDTH)), (int) (HEIGHT * 0.533));
         panel.add(coursesTable);
 
         // Running GPA Label
         JLabel label2 = new JLabel("Running GPA: " /*+ response.runningGPA*/);
-        label2.setBounds(coursesTable.getX(),coursesTable.getY() + coursesTable.getHeight() - 25,210,100);
+        label2.setBounds(coursesTable.getX(), coursesTable.getY() + coursesTable.getHeight() - 25, 210, 100);
         panel.add(label2, BorderLayout.CENTER);
 
         // Hypo GPA Label
         JLabel label3 = new JLabel("Hypothetical GPA: " /*+ response.hypoGPA*/);
-        label3.setBounds(label2.getX() + 210,label2.getY(),210,100);
+        label3.setBounds(label2.getX() + 210, label2.getY(), 210, 100);
         panel.add(label3);
 
         // add course button
         JButton addCourseButton = new JButton("+");
         addCourseButton.setForeground(Color.GREEN);
-        addCourseButton.setBounds(label3.getX() + 210,label3.getY() + 25,50,50);
+        addCourseButton.setBounds(label3.getX() + 210, label3.getY() + 25, 50, 50);
         panel.add(addCourseButton);
 
         addCourseButton.addActionListener(e -> new AddCourseView(entityGateway, entityFactory, response.username, frame));
@@ -113,6 +114,11 @@ public class ApplicationView {
             showTrendButton.setBounds(calendarButton.getX() + 180, calendarButton.getY(), 160, 50);
             panel.add(showTrendButton);
             showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
+        }
+        else{
+            JButton showTrendButton = new JButton("No Trend");
+            showTrendButton.setBounds(calendarButton.getX() + 180, calendarButton.getY(), 160, 50);
+            panel.add(showTrendButton);
         }
 
 

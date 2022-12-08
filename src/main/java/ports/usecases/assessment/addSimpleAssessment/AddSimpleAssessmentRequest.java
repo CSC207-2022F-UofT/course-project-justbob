@@ -12,10 +12,11 @@ public class AddSimpleAssessmentRequest {
     public String weightOfEachInstance;
 
 
-    public AddSimpleAssessmentRequest() {}
+    public AddSimpleAssessmentRequest() {
+    }
 
     public AddSimpleAssessmentRequest(String username, String courseCode,
-                                String assessmentTitle, String numberOfInstances, String weightOfEachInstance){
+                                      String assessmentTitle, String numberOfInstances, String weightOfEachInstance) {
 
         this.username = username;
         this.courseCode = courseCode;

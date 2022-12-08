@@ -8,10 +8,11 @@ public class Serializer {
     /**
      * Serialize an object to a file.
      * Precondition: object and all of its nested data members implement serializable.
-     * @param object the object to serialize
+     *
+     * @param object   the object to serialize
      * @param filename the name of the file to store data in
      * @throws FileNotFoundException if the file is not found
-     * @throws IOException if the file cannot be written to
+     * @throws IOException           if the file cannot be written to
      */
     public static void serialize(Serializable object, String filename) throws FileNotFoundException, IOException {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(filename))) {

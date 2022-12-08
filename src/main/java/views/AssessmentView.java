@@ -2,17 +2,23 @@ package views;
 
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
+import ports.usecases.assessment.setMark.SetMarkWindowRequest;
+import ports.usecases.assessment.setWeightScheme.SetSimpleWeightSchemeRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
+import ports.usecases.course.viewCourse.ViewCourseRequest;
+import usecases.assessment.SetMark.SetMarkWindowController;
+import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.stream.IntStream;
 
 public class AssessmentView {
 
     public final int WIDTH = 600;
     public final int HEIGHT = 600;
 
-    public AssessmentView(EntityGateway entityGateway, EntityFactory entityFactory, ViewAssessmentResponse response, JFrame parentFrame){
+    public AssessmentView(EntityGateway entityGateway, EntityFactory entityFactory, ViewAssessmentResponse response, JFrame parentFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -26,7 +32,7 @@ public class AssessmentView {
 
         // Title label constructor
         JLabel label1 = new JLabel(response.assessmentTitle);
-        label1.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT) - 25, 370, 20);
+        label1.setBounds((int) (0.066 * WIDTH), (int) (0.133 * HEIGHT) - 25, 370, 20);
         panel.add(label1);
 
         // Assessment Instances Table constructor
@@ -43,17 +49,48 @@ public class AssessmentView {
         String[] column = {"Title", "Weight", "Marks"};
 
         JTable assessmentInstancesTable = new JTable(data, column);
-        assessmentInstancesTable.setBounds((int) (0.066*WIDTH), (int) (0.133*HEIGHT), (int) (WIDTH - (0.133*WIDTH)), (int) (HEIGHT * 0.533));
+        assessmentInstancesTable.setBounds((int) (0.066 * WIDTH), (int) (0.133 * HEIGHT), (int) (WIDTH - (0.133 * WIDTH)), (int) (HEIGHT * 0.533));
         panel.add(assessmentInstancesTable);
+
+       Integer[] finalAssessmentInstanceIds = new Integer[assessmentInstanceTitles.length];
+       IntStream.range(0, assessmentInstanceTitles.length).forEach(i -> finalAssessmentInstanceIds[i] = i);
+
+        assessmentInstancesTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = assessmentInstancesTable.rowAtPoint(evt.getPoint());
+                int col = assessmentInstancesTable.columnAtPoint(evt.getPoint());
+                if (row >= 0 && col == 2) {
+                    Integer assessmentId = finalAssessmentInstanceIds[row];
+                    SetMarkWindowRequest request = new SetMarkWindowRequest(response.username, response.courseCode, response.assessmentTitle,
+                            response.assessmentInstanceTitles[row], assessmentId);
+                    new SetMarkWindowController(request, frame, entityGateway, entityFactory, parentFrame);
+                    frame.setVisible(false);
+                }
+            }
+        });
+
+        // Edit Weightscheme Button
+        JButton editWeightschemeButton = new JButton("Edit Weightscheme");
+        editWeightschemeButton.setBounds(assessmentInstancesTable.getX(), assessmentInstancesTable.getY() + 320 , 160, 50);
+        panel.add(editWeightschemeButton);
+
+        editWeightschemeButton.addActionListener(e -> {
+            new SetSimpleWeightSchemeView(entityGateway, entityFactory, response.username, response.courseCode, response.assessmentTitle, frame);
+
+        });
+
 
         // back button
         JButton backButton = new JButton("Back");
-        backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 300, 160, 50);
+        backButton.setBounds(assessmentInstancesTable.getX() + 360, assessmentInstancesTable.getY() + 320, 160, 50);
         panel.add(backButton);
 
         backButton.addActionListener(e -> {
             frame.dispose();
-            parentFrame.setVisible(true);
+            parentFrame.dispose(); // parentFrame.setVisible(true);
+            ViewCourseRequest request = new ViewCourseRequest(response.username, response.courseCode);
+            new ViewCourseController(request, frame, entityGateway, entityFactory, parentFrame);
         });
 
         frame.setVisible(true);

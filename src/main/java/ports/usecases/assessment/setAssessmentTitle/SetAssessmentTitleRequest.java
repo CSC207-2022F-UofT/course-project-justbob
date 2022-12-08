@@ -10,7 +10,8 @@ public class SetAssessmentTitleRequest {
     public String newAssessmentTitle;
 
 
-    public SetAssessmentTitleRequest() {}
+    public SetAssessmentTitleRequest() {
+    }
 
     public SetAssessmentTitleRequest(String username, String courseCode,
                                      String currentAssessmentTitle, String newAssessmentTitle) {

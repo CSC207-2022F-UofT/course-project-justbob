@@ -14,7 +14,7 @@ import ports.usecases.checklist.showChecklist.ShowChecklistResponse;
 public class ShowChecklistUseCase implements ShowChecklistInputBoundary {
     private final EntityGateway entityGateway;
 
-    public ShowChecklistUseCase(EntityGateway entityGateway){
+    public ShowChecklistUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
     }
 
@@ -31,32 +31,32 @@ public class ShowChecklistUseCase implements ShowChecklistInputBoundary {
         return showChecklist(taskList, request);
     }
 
-    public ShowChecklistResponse showChecklist(TaskList taskList, ShowChecklistRequest request){
+    public ShowChecklistResponse showChecklist(TaskList taskList, ShowChecklistRequest request) {
         TaskChecklist taskChecklist = new TaskChecklistImpl(taskList);
         if (request.showTodo) {
             taskChecklist.toShowToDo();
         } else {
             taskChecklist.toNotShowToDo();
         }
-        if (request.showCommitted){
+        if (request.showCommitted) {
             taskChecklist.toShowCommitted();
         } else {
             taskChecklist.toNotShowCommitted();
         }
-        if (request.showSubmitted){
+        if (request.showSubmitted) {
             taskChecklist.toShowSubmitted();
         } else {
             taskChecklist.toNotShowSubmitted();
         }
-        if (request.showDetail){
+        if (request.showDetail) {
             taskChecklist.toShowDetail();
         } else {
             taskChecklist.toNotShowDetail();
         }
-        if (request.sortInDDL){
+        if (request.sortInDDL) {
             taskChecklist.sortInDDL();
         }
-        if (request.sortInMark){
+        if (request.sortInMark) {
             taskChecklist.sortInMark();
         }
         return new ShowChecklistResponse(taskChecklist);

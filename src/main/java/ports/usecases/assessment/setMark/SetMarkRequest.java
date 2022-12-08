@@ -9,11 +9,12 @@ public class SetMarkRequest {
 
     public int instanceNumber; /*abstract to path class*/
 
-    public double mark;
+    public String mark;
 
-    public SetMarkRequest() {}
+    public SetMarkRequest() {
+    }
 
-    public SetMarkRequest(String username, String courseCode, String assessmentTitle, int instanceNumber, double mark) {
+    public SetMarkRequest(String username, String courseCode, String assessmentTitle, int instanceNumber, String mark) {
         this.username = username;
         this.courseCode = courseCode;
         this.assessmentTitle = assessmentTitle;

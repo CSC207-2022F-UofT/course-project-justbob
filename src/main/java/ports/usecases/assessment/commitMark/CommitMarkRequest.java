@@ -9,7 +9,8 @@ public class CommitMarkRequest {
 
     public int instanceNumber; /*abstract to path class*/
 
-    public CommitMarkRequest() {}
+    public CommitMarkRequest() {
+    }
 
     public CommitMarkRequest(String username, String courseCode, String assessmentTitle, int instanceNumber) {
         this.username = username;

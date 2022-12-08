@@ -1,4 +1,4 @@
-package usecases.assessment;
+package usecases.assessment.SetMark;
 
 import entities.account.Account;
 import entities.assessment.Assessment;
@@ -8,19 +8,19 @@ import ports.database.EntityGateway;
 import ports.usecases.PathNotFoundError;
 import ports.usecases.assessment.setMark.SetMarkInputBoundary;
 import ports.usecases.assessment.setMark.SetMarkRequest;
-import ports.usecases.assessment.setMark.SetMarkResponse;
+import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
 
 import java.util.ArrayList;
 
 public class SetMarkUseCase implements SetMarkInputBoundary {
 
-    private EntityGateway entityGateway;
+    private final EntityGateway entityGateway;
 
     public SetMarkUseCase(EntityGateway entityGateway) {
         this.entityGateway = entityGateway;
     }
 
-    public SetMarkResponse execute(SetMarkRequest request)
+    public ViewAssessmentResponse execute(SetMarkRequest request)
             throws ports.usecases.PathNotFoundError, SetMarkInputBoundary.SetMarkError {
 
         if (!entityGateway.existsAccount(request.username)) {
@@ -46,22 +46,44 @@ public class SetMarkUseCase implements SetMarkInputBoundary {
 
         AssessmentInstance assessmentInstance = assessment.getInstances().get(request.instanceNumber);
 
-        if (request.mark < 0 || request.mark > 100) {
+        double markValue;
+        try {
+            markValue = Double.parseDouble(request.mark);
+        } catch (NumberFormatException e) {
+            throw new SetMarkError("Mark must be a number");
+        }
+
+        if (markValue < 0 || markValue > 100) {
             throw new SetMarkInputBoundary.SetMarkError("Mark must be between 0 and 100");
         }
 
         if (assessmentInstance.isCommitted()) {
             throw new SetMarkInputBoundary.SetMarkError("Cannot change mark of committed assessment");
         }
-        assessmentInstance.setMark(request.mark);
+        assessmentInstance.setMark(markValue);
         entityGateway.saveAccount(account);
-        return createResponse(assessmentInstance);
+        return createResponse(assessment, account, course);
     }
-    private SetMarkResponse createResponse(AssessmentInstance assessmentInstance) {
-        SetMarkResponse response = new SetMarkResponse();
-        response.newHypotheticalMark = assessmentInstance.getMark();
+
+    private ViewAssessmentResponse createResponse(Assessment assessment, Account account, Course course) {
+        ViewAssessmentResponse response = new ViewAssessmentResponse();
+        response.username = account.getUsername();
+        response.courseCode = course.getCourseCode();
+        response.assessmentTitle = assessment.getTitle();
+        response.assessmentInstanceTitles = new String[assessment.getInstances().size()];
+        for (int i = 0; i < assessment.getInstances().size(); i++) {
+            response.assessmentInstanceTitles[i] = assessment.getInstances().get(i).getTitle();
+        }
+        response.assessmentInstanceWeights = new Double[assessment.getInstances().size()];
+        for (int i = 0; i < assessment.getInstances().size(); i++) {
+            response.assessmentInstanceWeights[i] = assessment.getWeightScheme().getTotalWeight() / assessment.getInstances().size();
+        }
+        response.assessmentInstanceMarks = new Double[assessment.getInstances().size()];
+        for (int i = 0; i < assessment.getInstances().size(); i++) {
+            response.assessmentInstanceMarks[i] = assessment.getInstances().get(i).getMark();
+        }
         return response;
     }
-    }
+}
 
 
