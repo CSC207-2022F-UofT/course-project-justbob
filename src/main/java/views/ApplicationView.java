@@ -99,6 +99,7 @@ public class ApplicationView {
         JButton checklistButton = new JButton("Checklist");
         checklistButton.setBounds(label2.getX(), label2.getY() + 100, 160, 50);
         panel.add(checklistButton);
+        checklistButton.addActionListener(e -> new ChecklistView(entityGateway, entityFactory, response.username));
 
         // calendar button
         JButton calendarButton = new JButton("Calendar");
