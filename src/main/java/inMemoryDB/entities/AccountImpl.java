@@ -4,7 +4,9 @@ import entities.account.Account;
 import entities.account.Archive;
 import entities.account.Semester;
 
-public class AccountImpl extends Account {
+import java.io.Serializable;
+
+public class AccountImpl extends Account implements Serializable {
     private String username;
     private String password;
     private Semester semester;

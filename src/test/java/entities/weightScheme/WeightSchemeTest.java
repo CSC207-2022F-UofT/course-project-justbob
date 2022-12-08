@@ -1,5 +1,6 @@
 package entities.weightScheme;
 
+import entities.MockEntityFactory;
 import entities.weightScheme.OrderedWeight;
 import entities.weightScheme.SimpleWeight;
 import entities.weightScheme.Weight;
@@ -9,42 +10,44 @@ import org.junit.jupiter.api.Test;
 
 
 class WeightSchemeTest {
+    MockEntityFactory mockEntityFactory = new MockEntityFactory();
+
     private double[] marks = {100, 95, 80, 75.2, 64, 0, 99.5};
 
     private Weight[] weights = {
-            new Weight(1, 0.05),
-            new Weight(2, 0.30),
-            new Weight(4, 0.025)
+            mockEntityFactory.createWeight(1, 0.05),
+            mockEntityFactory.createWeight(2, 0.30),
+            mockEntityFactory.createWeight(4, 0.025)
     };
 
     @Test
     public void SimpleWeightComputation() {
-        Weight weight = new Weight(marks.length, 0.05);
-        WeightScheme simpleWeight = new SimpleWeight(weight);
+        Weight weight = mockEntityFactory.createWeight(marks.length, 0.05);
+        WeightScheme simpleWeight = mockEntityFactory.createSimpleWeight(weight);
         Assertions.assertEquals(25.68, simpleWeight.computeWeighted(marks), 0.01);
     }
 
     @Test
     public void SimpleWeightRunningComputation() {
         double[] test_marks = {75, 50};
-        Weight weight = new Weight(3, 0.10);
-        WeightScheme simpleWeight = new SimpleWeight(weight);
+        Weight weight = mockEntityFactory.createWeight(3, 0.10);
+        WeightScheme simpleWeight = mockEntityFactory.createSimpleWeight(weight);
         Assertions.assertEquals(12.5, simpleWeight.computeWeighted(test_marks), 0.001);
     }
 
     @Test
     public void OrderedWeightNumberOfInstances() {
-        Assertions.assertEquals(new OrderedWeight(weights).getNumberOfInstances(), 7);
+        Assertions.assertEquals(mockEntityFactory.createOrderedWeight(weights).getNumberOfInstances(), 7);
     }
 
     @Test
     public void OrderedWeightTotalWeight() {
-        Assertions.assertEquals(new OrderedWeight(weights).getTotalWeight(), 0.75);
+        Assertions.assertEquals(mockEntityFactory.createOrderedWeight(weights).getTotalWeight(), 0.75);
     }
 
     @Test
     public void OrderedWeightComputation() {
-        Assertions.assertEquals(51.1225, new OrderedWeight(weights).computeWeighted(marks), 0.001);
+        Assertions.assertEquals(51.1225, mockEntityFactory.createOrderedWeight(weights).computeWeighted(marks), 0.001);
     }
 
     @Test
@@ -54,11 +57,14 @@ class WeightSchemeTest {
         };
         // Top Mark: 20%, Next 3 highest: each 10%, Lowest mark: 5%. Total marks: 5. Total Weight: 55%.
         Weight[] test_weights = {
-                new Weight(1, 0.05),
-                new Weight(3, 0.1),
-                new Weight(1, 0.2),
+                mockEntityFactory.createWeight(1, 0.05),
+                mockEntityFactory.createWeight(3, 0.1),
+                mockEntityFactory.createWeight(1, 0.2),
         };
-        Assertions.assertEquals(33, new OrderedWeight(test_weights).computeWeighted(test_marks), 0.001);
+        Assertions.assertEquals(
+                33,
+                mockEntityFactory.createOrderedWeight(test_weights).computeWeighted(test_marks),
+                0.001);
 
     }
 }
