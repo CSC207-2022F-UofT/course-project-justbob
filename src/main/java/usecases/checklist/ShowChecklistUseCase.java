@@ -25,6 +25,9 @@ public class ShowChecklistUseCase implements ShowChecklistInputBoundary {
         }
         Account account = entityGateway.loadAccount(request.username);
         TaskList taskList = new TaskListImpl(account);
+        if (taskList.getTaskList().size() == 0){
+            return new ShowChecklistResponse();
+        }
         return showChecklist(taskList, request);
     }
 

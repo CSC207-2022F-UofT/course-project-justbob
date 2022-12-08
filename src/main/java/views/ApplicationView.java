@@ -100,17 +100,21 @@ public class ApplicationView {
         JButton checklistButton = new JButton("Checklist");
         checklistButton.setBounds(label2.getX(), label2.getY() + 100, 160, 50);
         panel.add(checklistButton);
+        checklistButton.addActionListener(e -> new ChecklistView(entityGateway, entityFactory, response.username));
 
         // calendar button
         JButton calendarButton = new JButton("Calendar");
         calendarButton.setBounds(checklistButton.getX() + 180, checklistButton.getY(), 160, 50);
         panel.add(calendarButton);
 
-        // showTrend button
-        JButton showTrendButton = new JButton("Show Trend");
-        showTrendButton.setBounds(calendarButton.getX() + 180, calendarButton.getY(), 160, 50);
-        panel.add(showTrendButton);
-        showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
+
+        if (!isEmpty) {
+            // showTrend button
+            JButton showTrendButton = new JButton("Show Trend");
+            showTrendButton.setBounds(calendarButton.getX() + 180, calendarButton.getY(), 160, 50);
+            panel.add(showTrendButton);
+            showTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, "Overall"));
+        }
 
 
         frame.setVisible(true);
