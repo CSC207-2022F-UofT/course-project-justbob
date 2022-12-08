@@ -1,6 +1,9 @@
 package ports.usecases.assessment.setWeightScheme;
 
 import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentInputBoundary;
+import ports.usecases.assessment.addSimpleAssessment.AddSimpleAssessmentRequest;
+import ports.usecases.assessment.viewAssessment.ViewAssessmentResponse;
+import ports.usecases.course.viewCourse.ViewCourseResponse;
 
 public interface SetSimpleWeightSchemeInputBoundary {
     /**
@@ -12,8 +15,8 @@ public interface SetSimpleWeightSchemeInputBoundary {
      * @throws ports.usecases.PathNotFoundError                              if the path to the Assessment does not exist
      */
 
-    public SetSimpleWeightSchemeResponse execute(SetSimpleWeightSchemeRequest request)
-            throws AddSimpleAssessmentInputBoundary.AddWeightSchemeError, ports.usecases.PathNotFoundError;
+    ViewAssessmentResponse execute(SetSimpleWeightSchemeRequest request)
+            throws AddSimpleAssessmentInputBoundary.AddAssessmentError, AddSimpleAssessmentInputBoundary.AddWeightSchemeError;
 
     public class SetSimpleWeightSchemeError extends Error {
         public SetSimpleWeightSchemeError(String message) {
