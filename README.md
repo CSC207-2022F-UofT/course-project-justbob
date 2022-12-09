@@ -1,7 +1,7 @@
  
 
 
-
+Link to Presentation: https://youtu.be/AnlUHmIfL20
 # Structure
 ## Entities:
 - Account
