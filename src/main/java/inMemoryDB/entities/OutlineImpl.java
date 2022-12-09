@@ -52,18 +52,6 @@ public class OutlineImpl extends Outline implements Serializable {
     }
 
     @Override
-    public int getIndexByTitle(String assessmentTitle) {
-        int index = 0;
-        for (Assessment assessment : assessments) {
-            if (assessment.getTitle().equals(assessmentTitle)) {
-                return index;
-            }
-            index++;
-        }
-        return -1;
-    }
-
-    @Override
     public Assessment getAssessmentByTitle(String assessmentTitle) {
         for (Assessment assessment : assessments) {
             if (assessment.getTitle().equals(assessmentTitle)) {
@@ -84,14 +72,5 @@ public class OutlineImpl extends Outline implements Serializable {
     @Override
     public void removeAssessment(Assessment assessment) {
         assessments.remove(assessment);
-    }
-
-    @Override
-    public Assessment getAssessment(int index) throws IndexOutOfBoundsException {
-        try {
-            return assessments.get(index);
-        } catch (IndexOutOfBoundsException e) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
-        }
     }
 }

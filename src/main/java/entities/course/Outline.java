@@ -15,10 +15,6 @@ public abstract class Outline {
 
     public abstract ArrayList<Double> getAssessmentsWeights();
 
-    public abstract Assessment getAssessment(int index) throws IndexOutOfBoundsException;
-
-    public abstract int getIndexByTitle(String assessmentTitle);
-
     public abstract Assessment getAssessmentByTitle(String assessmentTitle);
 
     public abstract void addAssessment(Assessment assessment);
