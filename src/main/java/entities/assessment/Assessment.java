@@ -11,8 +11,6 @@ public abstract class Assessment {
 
     public abstract String getSingularTitle();
 
-    public abstract String toSingular(String title);
-
     public abstract WeightScheme getWeightScheme();
 
     public abstract ArrayList<AssessmentInstance> getInstances();
@@ -94,8 +92,14 @@ public abstract class Assessment {
         return getMaxWeight(getNumberOfMarkedInstances());
     }
 
-    public String toSingular() {
-        return getTitle();
+    public String toSingular(String title) {
+        if (title.equals("Quizzes") || title.equals("quizzes")){
+            return "Quiz";
+        }
+        if (title.charAt(title.length()-1) == 's'){
+            return title.substring(0, title.length()-1);
+        }
+        return title;
     }
 
     public interface AssessmentFactory {

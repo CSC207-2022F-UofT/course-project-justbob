@@ -24,6 +24,6 @@ public abstract class SimpleWeight implements WeightScheme {
     }
 
     public interface SimpleWeightFactory {
-        public SimpleWeight createSimpleWeight(Weight weight);
+        SimpleWeight createSimpleWeight(Weight weight);
     }
 }
