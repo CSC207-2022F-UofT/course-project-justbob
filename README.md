@@ -97,6 +97,9 @@
 # Test Coverage #
 - The AccountTest covers the use cases for account registration and account login.
 - The SemesterTest covers the use cases for adding courses to the semester and removing courses from the semester.
+- The CourseTest, CourseEventTest, OutlineTest and AssessmentTest implement tests for courses, course events, course outlines and assessments, respectively.
+- GPACalculationTest covers tests for the GPACalculator class.
+- WeightSchemeTest covers tests for SimpleWeight and OrderedWeight
 
 # DataStorage #
 The program is saved to a file called “database_file.json”. Changes are saved as the program is used, so there is no need to save manually.
