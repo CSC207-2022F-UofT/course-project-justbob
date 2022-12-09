@@ -1,4 +1,4 @@
-package screens;
+package calendarScreens;
 
 import ports.usecases.calendar.month.calendarModelMonthOutputBoundary;
 import ports.usecases.calendar.month.calendarModelResponseMonth;

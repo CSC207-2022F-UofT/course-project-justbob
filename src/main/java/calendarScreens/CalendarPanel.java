@@ -1,4 +1,4 @@
-package screens;
+package calendarScreens;
 
 import entities.calendarSystem.CalendarFactory;
 import entities.calendarSystem.CommonStickyNoteFactory;
@@ -6,11 +6,9 @@ import entities.calendarSystem.StickyNoteCalendarFactory;
 import entities.calendarSystem.StickyNoteFactory;
 import ports.usecases.calendar.goToSeekedDateUseCase.GoToSeekedDateInteractor;
 import ports.usecases.calendar.goToSeekedDateUseCase.GoToSeekedDateOutputBoundary;
-import ports.usecases.calendar.goToSeekedDateUseCase.GoToSeekedDateRequestModel;
 import ports.usecases.calendar.removeStickyNoteUseCase.RemoveStickyNoteInteractor;
 import ports.usecases.calendar.removeStickyNoteUseCase.RemoveStickyNoteOutputBoundary;
 import ports.usecases.calendar.week.calendarModelWeekRequest;
-import ports.usecases.calendar.week.calendarModelWeekResponse;
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteDsGateway;
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteInteractor;
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteOutputBoundary;

@@ -1,4 +1,4 @@
-package screens;
+package calendarScreens;
 
 import ports.usecases.calendar.week.calendarModelWeekOutputBoundary;
 import ports.usecases.calendar.week.calendarModelWeekResponse;

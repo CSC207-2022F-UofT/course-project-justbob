@@ -1,8 +1,7 @@
-package screens;
+package calendarScreens;
 
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteInputBoundary;
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteRequestModel;
-import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteResponseModel;
 
 import java.io.IOException;
 import java.time.*;

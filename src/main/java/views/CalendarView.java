@@ -1,6 +1,6 @@
 package views;
 
-import screens.CalendarPanel;
+import calendarScreens.CalendarPanel;
 
 import javax.swing.*;
 import java.io.IOException;

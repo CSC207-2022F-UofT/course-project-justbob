@@ -1,4 +1,4 @@
-package screens;
+package calendarScreens;
 
 public class MonthScreen {
 }

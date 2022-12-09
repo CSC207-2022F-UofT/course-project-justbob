@@ -1,4 +1,4 @@
-package screens;
+package calendarScreens;
 
 import ports.usecases.calendar.goToSeekedDateUseCase.GoToSeekedDateOutputBoundary;
 import ports.usecases.calendar.goToSeekedDateUseCase.GoToSeekedDateRequestModel;

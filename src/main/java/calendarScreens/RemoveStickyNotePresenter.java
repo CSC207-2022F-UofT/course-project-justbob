@@ -1,4 +1,4 @@
-package screens;
+package calendarScreens;
 
 import ports.usecases.calendar.removeStickyNoteUseCase.RemoveStickyNoteOutputBoundary;
 import ports.usecases.calendar.removeStickyNoteUseCase.RemoveStickyNoteRequestModel;

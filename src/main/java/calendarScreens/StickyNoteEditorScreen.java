@@ -1,4 +1,4 @@
-package screens;
+package calendarScreens;
 
 import javax.swing.*;
 import java.awt.*;

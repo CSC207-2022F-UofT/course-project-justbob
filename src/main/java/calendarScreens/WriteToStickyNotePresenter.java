@@ -1,7 +1,6 @@
-package screens;
+package calendarScreens;
 
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteOutputBoundary;
-import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteRequestModel;
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteResponseModel;
 
 public class WriteToStickyNotePresenter implements WriteToStickyNoteOutputBoundary {

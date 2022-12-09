@@ -1,4 +1,4 @@
-package screens;
+package calendarScreens;
 
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteDsGateway;
 import ports.usecases.calendar.writeToStickyNoteUseCase.WriteToStickyNoteRequestModel;
