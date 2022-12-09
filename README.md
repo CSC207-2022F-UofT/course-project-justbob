@@ -1,4 +1,5 @@
-# Demo: https://www.youtube.com/watch?v=AnlUHmIfL20
+# Presentation: https://www.youtube.com/watch?v=AnlUHmIfL20
+# Calendar GUI: https://youtu.be/ZaYfwACp36E
 
 ## Dummy Account ##
 There is a dummy account with some simple example courses.
