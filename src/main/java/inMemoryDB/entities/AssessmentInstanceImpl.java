@@ -10,7 +10,7 @@ public class AssessmentInstanceImpl extends AssessmentInstance implements Serial
     private LocalDateTime deadline;
     private boolean isCommitted = false;
     private boolean isSubmitted = false;
-    private Double mark;
+    private Double mark = 0.0;
 
     public AssessmentInstanceImpl(String title) {
         this.title = title;
