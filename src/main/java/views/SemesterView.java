@@ -8,6 +8,7 @@ import usecases.course.ViewCourse.ViewCourseController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class SemesterView {
 
@@ -106,6 +107,13 @@ public class SemesterView {
         JButton calendarButton = new JButton("Calendar");
         calendarButton.setBounds(checklistButton.getX() + 180, checklistButton.getY(), 160, 50);
         panel.add(calendarButton);
+        calendarButton.addActionListener(e -> {
+            try {
+                new CalendarView();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
 
         if (!isEmpty) {
