@@ -8,26 +8,6 @@ public abstract class OrderedWeight implements WeightScheme {
     public abstract Weight[] getOrderedWeights();
     public abstract void setOrderedWeights(Weight[] orderedWeights);
 
-    /*
-    private double getWeightPossible(int numberOfMarks) {
-        int number_counted = 0;
-        float result = 0f;
-        int i = orderedWeights.length - 1;
-        while (numberOfMarks - number_counted > 0) {
-            Weight weight = orderedWeights[i];
-            int numberInWeight = 0;
-            if (number_counted + weight.getNumberOfInstances() <= numberOfMarks) {
-                numberInWeight = weight.getNumberOfInstances();
-            } else {
-                numberInWeight = numberOfMarks - number_counted;
-            }
-            number_counted += numberInWeight;
-            result += numberInWeight * weight.getWeightOfEachInstance();
-            --i;
-        }
-        return result;
-    }*/
-
     @Override
     public double computeWeighted(double[] marks) {
         double[] paddedMarks = Arrays.copyOf(marks, getNumberOfInstances());
@@ -49,14 +29,14 @@ public abstract class OrderedWeight implements WeightScheme {
     @Override
     public int getNumberOfInstances() {
         return Stream.of(getOrderedWeights())
-                .mapToInt(weight -> weight.getNumberOfInstances())
+                .mapToInt(Weight::getNumberOfInstances)
                 .sum();
     }
 
     @Override
     public double getTotalWeight() {
         return Stream.of(getOrderedWeights())
-                .mapToDouble(weight -> weight.getTotalWeight())
+                .mapToDouble(Weight::getTotalWeight)
                 .sum();
     }
 

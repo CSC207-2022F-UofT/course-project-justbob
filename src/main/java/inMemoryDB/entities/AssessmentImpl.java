@@ -13,27 +13,13 @@ public class AssessmentImpl extends Assessment implements Serializable {
     private WeightScheme weightScheme;
     private final ArrayList<AssessmentInstance> instances = new ArrayList<>();
 
-    private String singularTitle;
-
     public AssessmentImpl(String title, WeightScheme weightScheme) {
         this.title = title;
         this.weightScheme = weightScheme;
-        this.singularTitle = toSingular(this.title);
 
         for (int i = 0, j = 1; i < this.getTotalNumberOfInstances(); i++, j++) {
-            this.instances.add(new AssessmentInstanceImpl(this.singularTitle + " #" + j));
+            this.instances.add(new AssessmentInstanceImpl(getSingularTitle() + " #" + j));
         }
-    }
-
-    @Override
-    public String toSingular(String title) {
-        if (title.equals("Quizzes") || title.equals("quizzes")){
-            return "Quiz";
-        }
-        if (title.charAt(title.length()-1) == 's'){
-            return title.substring(0, title.length()-1);
-        }
-        return title;
     }
 
     @Override
@@ -43,7 +29,7 @@ public class AssessmentImpl extends Assessment implements Serializable {
 
     @Override
     public String getSingularTitle() {
-        return singularTitle;
+        return toSingular(this.title);
     }
 
     @Override
