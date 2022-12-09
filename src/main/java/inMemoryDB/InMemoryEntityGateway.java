@@ -3,7 +3,6 @@ package inMemoryDB;
 import entities.account.Account;
 import ports.database.EntityGateway;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,13 +11,14 @@ import java.util.HashMap;
 // of the same form.
 
 public class InMemoryEntityGateway implements EntityGateway {
-    private String databaseFilePath;
+    private final String databaseFilePath;
     private HashMap<String, Account> accountsByUsername = new HashMap<>();
 
     public InMemoryEntityGateway() {
         this.databaseFilePath = null;
     }
 
+    @SuppressWarnings("unchecked")
     public InMemoryEntityGateway(String databaseFilePath) {
         this.databaseFilePath = databaseFilePath;
         try {

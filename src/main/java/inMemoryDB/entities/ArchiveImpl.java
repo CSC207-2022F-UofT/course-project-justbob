@@ -7,10 +7,9 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class ArchiveImpl extends Archive implements Serializable {
-    private HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
+    private final HashMap<Course, Archive.ArchivedCourseData> courseToData = new HashMap<>();
 
     @Override
     public List<Course> getCourses() {

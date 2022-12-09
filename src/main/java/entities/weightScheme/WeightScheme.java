@@ -1,7 +1,5 @@
 package entities.weightScheme;
 
-import java.util.List;
-
 public interface WeightScheme {
     /**
      * Compute the average mark earned with (marks) according to this weightScheme.
@@ -10,12 +8,12 @@ public interface WeightScheme {
      * marks.length <= getNumberOfInstances()
      * for each mark in marks, 0 <= mark <= 100
      *
-     * @param marks
-     * @return
+     * @param marks a list of marks to weigh
+     * @return The average mark earned.
      */
-    public double computeWeighted(double[] marks);
+    double computeWeighted(double[] marks);
 
-    public double getTotalWeight();
+    double getTotalWeight();
 
-    public int getNumberOfInstances();
+    int getNumberOfInstances();
 }

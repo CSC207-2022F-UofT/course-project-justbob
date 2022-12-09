@@ -35,7 +35,7 @@ public class MockEntityFactory implements
         private String courseName;
         private float credit;
         private Outline outline;
-        private ArrayList<CourseEvent> courseEvents;
+        private ArrayList<CourseEvent> courseEvents = new ArrayList<>();
 
         @Override
         public String getCourseCode() {
@@ -203,18 +203,6 @@ public class MockEntityFactory implements
         }
 
         @Override
-        public int getIndexByTitle(String assessmentTitle){
-            int index = 0;
-            for (Assessment assessment : assessments) {
-                if (assessment.getTitle().equals(assessmentTitle)) {
-                    return index;
-                }
-                index++;
-            }
-            return -1;
-        }
-
-        @Override
         public Assessment getAssessmentByTitle(String assessmentTitle){
             for (Assessment assessment : assessments) {
                 if (assessment.getTitle().equals(assessmentTitle)) {
@@ -234,15 +222,6 @@ public class MockEntityFactory implements
         @Override
         public void removeAssessment(Assessment assessment) {
             assessments.remove(assessment);
-        }
-
-        @Override
-        public Assessment getAssessment(int index) throws IndexOutOfBoundsException {
-            try {
-                return assessments.get(index);
-            } catch (IndexOutOfBoundsException e) {
-                throw new IndexOutOfBoundsException("Index out of bounds");
-            }
         }
     }
 
@@ -492,7 +471,7 @@ public class MockEntityFactory implements
     public AssessmentInstance createAssessmentInstance(String title, LocalDateTime deadline, Double mark,
                                                        boolean isCommitted, boolean isSubmitted)
             throws IllegalArgumentException {
-        if (mark != null && !AssessmentInstance.isMarkValid(mark)) {
+        if (mark != null && (mark < 0 || mark > 100)) {
             throw new IllegalArgumentException(String.format("Mark %f is not valid", mark));
         }
         if (isCommitted && !isSubmitted) {
@@ -522,119 +501,4 @@ public class MockEntityFactory implements
     public OrderedWeight createOrderedWeight(Weight[] orderedWeights) {
         return new OrderedWeightMock(orderedWeights);
     }
-
-    /*
-    private class ArchiveMock extends Archive {
-        private HashMap<Course, ArchivedCourseData> courseToData = new HashMap<>();
-
-        @Override
-        public List<Course> getCourses() {
-            return List.copyOf(courseToData.keySet());
-        }
-
-        @Override
-        public Archive.ArchivedCourseData getArchivedCourseData(Course course) {
-            return courseToData.get(course);
-        }
-
-        @Override
-        public void addCourse(Course course, String semester) {
-            Archive.ArchivedCourseData data = new Archive.ArchivedCourseData();
-            data.setSemester(semester);
-            data.setDateArchived(LocalDate.now());
-            courseToData.put(course, data);
-        }
-
-        @Override
-        public void RemoveCourse(Course course) {
-            courseToData.remove(course);
-        }
-    }
-
-    private class SemesterMock extends Semester {
-        private String title;
-        private ArrayList<Course> runningCourses;
-
-        @Override
-        public String getTitle() {
-            return title;
-        }
-
-        @Override
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        @Override
-        public ArrayList<Course> getRunningCourses() {
-            return runningCourses;
-        }
-
-        @Override
-        public void setRunningCourses(ArrayList<Course> runningCourses) {
-            this.runningCourses = runningCourses;
-        }
-
-        @Override
-        public void addCourse(Course course) {
-            if (!getRunningCourses().contains(course)) {
-                getRunningCourses().add(course);
-            }
-        }
-
-        @Override
-        public void removeCourse(Course course) {
-            getRunningCourses().remove(course);
-        }
-    }
-
-    private class AccountMock extends Account {
-        private String username;
-        private String password;
-        private Semester semester;
-        private Archive archive;
-
-        @Override
-        public String getUsername() {
-            return username;
-        }
-
-        @Override
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        @Override
-        public String getPassword() {
-            return password;
-        }
-
-        @Override
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        @Override
-        public Semester getSemester() {
-            return semester;
-        }
-
-        @Override
-        public void setSemester(Semester semester) {
-            this.semester = semester;
-        }
-
-        @Override
-        public Archive getArchive() {
-            return archive;
-        }
-
-        @Override
-        public void setArchive(Archive archive) {
-            this.archive = archive;
-        }
-    }
-     */
-
-
 }

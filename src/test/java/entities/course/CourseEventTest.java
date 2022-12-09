@@ -3,7 +3,6 @@ package entities.course;
 import entities.MockEntityFactory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ports.database.EntityFactory;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
