@@ -25,28 +25,27 @@ public abstract class Outline {
 
     public abstract void removeAssessment(Assessment assessment);
 
-    // TODO: rename to getNumberOfInstancesSubmitted (more descriptive)
     public int getNumberOfAssessmentInstancesCompleted() {
         return getAssessments().stream()
-                .mapToInt(assessment -> assessment.getNumberOfSubmittedInstances())
+                .mapToInt(Assessment::getNumberOfSubmittedInstances)
                 .sum();
     }
 
     public double getPercentageCompleted() {
         return getAssessments().stream()
-                .mapToDouble(assessment -> assessment.getMaxPossibleSubmittedWeight())
+                .mapToDouble(Assessment::getMaxPossibleSubmittedWeight)
                 .sum();
     }
 
     private double getTotalCommittedWeight() {
         return getAssessments().stream()
-                .mapToDouble(assessment -> assessment.getMaxPossibleCommittedWeight())
+                .mapToDouble(Assessment::getMaxPossibleCommittedWeight)
                 .sum();
     }
 
     private double getTotalHypotheticalWeight() {
         return getAssessments().stream()
-                .mapToDouble(assessment -> assessment.getMaxPossibleHypotheticalWeight())
+                .mapToDouble(Assessment::getMaxPossibleHypotheticalWeight)
                 .sum();
     }
 
@@ -55,7 +54,7 @@ public abstract class Outline {
             return 0;
         }
         return getAssessments().stream()
-                .mapToDouble(assessment -> assessment.getActualCommittedWeight())
+                .mapToDouble(Assessment::getActualCommittedWeight)
                 .sum() / getTotalCommittedWeight();
     }
 
@@ -64,7 +63,7 @@ public abstract class Outline {
             return 0;
         }
         return getAssessments().stream()
-                .mapToDouble(assessment -> assessment.getActualHypotheticalWeight())
+                .mapToDouble(Assessment::getActualHypotheticalWeight)
                 .sum() / getTotalHypotheticalWeight();
     }
 
