@@ -23,10 +23,6 @@ public abstract class AssessmentInstance {
 
     public abstract void setSubmitted(boolean isSubmitted);
 
-    public static boolean isMarkValid(double mark) {
-        return (0 <= mark && mark <= 100);
-    }
-
     public interface AssessmentInstanceFactory {
         AssessmentInstance createAssessmentInstance(String title, LocalDateTime deadline, Double mark,
                                                     boolean isCommitted, boolean isSubmitted);
