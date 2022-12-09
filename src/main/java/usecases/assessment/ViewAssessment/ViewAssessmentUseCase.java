@@ -30,11 +30,12 @@ public class ViewAssessmentUseCase implements ViewAssessmentInputBoundary {
         if (assessment == null) {
             throw new PathNotFoundError();
         }
-        return createResponse(assessment, account, course);
+        return createResponse(assessment, account, course, request.semesterTitle);
     }
 
-    private ViewAssessmentResponse createResponse(Assessment assessment, Account account, Course course) {
+    private ViewAssessmentResponse createResponse(Assessment assessment, Account account, Course course, String semesterTitle) {
         ViewAssessmentResponse response = new ViewAssessmentResponse();
+        response.semesterTitle = semesterTitle;
         response.username = account.getUsername();
         response.courseCode = course.getCourseCode();
         response.assessmentTitle = assessment.getTitle();
@@ -44,7 +45,7 @@ public class ViewAssessmentUseCase implements ViewAssessmentInputBoundary {
         }
         response.assessmentInstanceWeights = new Double[assessment.getInstances().size()];
         for (int i = 0; i < assessment.getInstances().size(); i++) {
-            response.assessmentInstanceWeights[i] = assessment.getWeightScheme().getTotalWeight()/assessment.getInstances().size();
+            response.assessmentInstanceWeights[i] = Math.round(assessment.getWeightScheme().getTotalWeight()/assessment.getInstances().size() * 100.0) / 100.0;
         }
         response.assessmentInstanceMarks = new Double[assessment.getInstances().size()];
         for (int i = 0; i < assessment.getInstances().size(); i++) {

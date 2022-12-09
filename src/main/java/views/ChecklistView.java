@@ -54,14 +54,13 @@ public class ChecklistView {
         sortInDDL.setFont(textFont);
         panel.add(sortInDDL);
 
-        JCheckBox sortInMark = new JCheckBox("Sort In Due Time");
+        JCheckBox sortInMark = new JCheckBox("Sort In Mark");
         sortInMark.setBounds(5, 690, 200, 25);
         sortInMark.setFont(textFont);
         panel.add(sortInMark);
 
-        ShowChecklistRequest request = new ShowChecklistRequest(username, showTodo.isSelected(),
-                showCommitted.isSelected(), showSubmitted.isSelected(), showDetail.isSelected(), sortInDDL.isSelected(),
-                sortInMark.isSelected());
+        ShowChecklistRequest request = new ShowChecklistRequest(username, true, false,
+                false, false, false, false);
         ShowChecklistUseCase showChecklistUseCase = new ShowChecklistUseCase(entityGateway);
 
         ShowChecklistResponse response = showChecklistUseCase.execute(request);

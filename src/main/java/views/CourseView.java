@@ -3,9 +3,11 @@ package views;
 import ports.database.EntityFactory;
 import ports.database.EntityGateway;
 import ports.usecases.account.archiveCourse.ArchiveCourseRequest;
+import ports.usecases.account.viewSemester.ViewSemesterRequest;
 import ports.usecases.assessment.viewAssessment.ViewAssessmentRequest;
 import ports.usecases.course.viewCourse.ViewCourseResponse;
 import usecases.account.ArchiveCourse.ArchiveCourseController;
+import usecases.account.ViewSemester.ViewSemesterController;
 import usecases.assessment.ViewAssessment.ViewAssessmentController;
 
 import javax.swing.*;
@@ -59,12 +61,12 @@ public class CourseView {
         panel.add(assessmentsTable);
 
         // Running Grade Label
-        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade + "(" + response.letteredGrade + ")");
+        JLabel label2 = new JLabel("Running Grade: " + response.runningGrade + " (" + response.runningLetteredGrade + ")");
         label2.setBounds(assessmentsTable.getX(), assessmentsTable.getY() + assessmentsTable.getHeight() - 25, 210, 100);
         panel.add(label2, BorderLayout.CENTER);
 
-        // Hypo GPA Label
-        JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade);
+        // Hypo Grade Label
+        JLabel label3 = new JLabel("Hypothetical Grade: " + response.hypotheticalGrade + " (" + response.hypotheticalLetteredGrade + ")");
         label3.setBounds(label2.getX() + 210, label2.getY(), 210, 100);
         panel.add(label3);
 
@@ -86,13 +88,15 @@ public class CourseView {
                     int col = assessmentsTable.columnAtPoint(evt.getPoint());
                     if (row >= 0 && col >= 0) {
                         String assessmentTitle = finalAssessmentTitles[row];
-                        ViewAssessmentRequest request = new ViewAssessmentRequest(response.username, response.courseCode, assessmentTitle);
+                        ViewAssessmentRequest request = new ViewAssessmentRequest(response.username, response.courseCode, assessmentTitle, response.semesterTitle);
                         new ViewAssessmentController(request, frame, entityGateway, entityFactory, parentFrame);
                         frame.setVisible(false);
                     }
                 }
             });
         }
+
+
 
         // back button
         JButton backButton = new JButton("Back");
@@ -101,7 +105,9 @@ public class CourseView {
 
         backButton.addActionListener(e -> {
             frame.dispose();
-            parentFrame.setVisible(true);
+            parentFrame.dispose(); // parentFrame.setVisible(true);
+            ViewSemesterRequest request = new ViewSemesterRequest(response.username, response.semesterTitle);
+            new ViewSemesterController(request, frame, entityGateway, entityFactory, frame);
         });
 
         // Archive course button
@@ -114,9 +120,24 @@ public class CourseView {
             new ArchiveCourseController(request, frame, entityGateway, entityFactory, frame);
         });
 
+        if (!isEmpty) {
+            // showTrend button
+            JButton showCourseTrendButton = new JButton("Show Course Trend");
+            showCourseTrendButton.setBounds(archiveCourseButton.getX() + 180, archiveCourseButton.getY(), 160, 50);
+            panel.add(showCourseTrendButton);
+            showCourseTrendButton.addActionListener(e -> new TrendView(entityGateway, entityFactory, response.trendModel, response.courseTitle));
+        }
+        else{
+            JButton showTrendButton = new JButton("No Course Trend");
+            showTrendButton.setBounds(archiveCourseButton.getX() + 180, archiveCourseButton.getY(), 160, 50);
+            panel.add(showTrendButton);
+        }
+
         frame.setVisible(true);
 
     }
+
+
 
     private static String[][] transpose(String[][] matrix) {
         int m = matrix.length;

@@ -1,5 +1,7 @@
 package entities.task;
 
+import java.util.List;
+
 public abstract class TaskChecklist {
     public abstract void sortInDDL();
 
@@ -20,4 +22,10 @@ public abstract class TaskChecklist {
     public abstract void toShowSubmitted();
 
     public abstract void toNotShowSubmitted();
+
+    public abstract List<Task> getTaskToDo();
+
+    public abstract List<Task> getTaskCommitted();
+
+    public abstract List<Task> getTaskSubmitted();
 }
