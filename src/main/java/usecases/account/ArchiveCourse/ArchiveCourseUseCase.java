@@ -8,7 +8,6 @@ import ports.usecases.PathNotFoundError;
 import ports.usecases.account.archiveCourse.ArchiveCourseInputBoundary;
 import usecases.gpaTrend.GetAccountTrendUseCase;
 
-//TODO: implement testing
 public class ArchiveCourseUseCase implements ArchiveCourseInputBoundary {
     private final EntityGateway entityGateway;
 
