@@ -1,7 +1,7 @@
 ## Dummy Account ##
 There is a dummy account with some simple example courses.
-Username: bob
-Password: password1
+* Username: bob
+* Password: password1
 
 # Information for Users 
 ## Entities:
