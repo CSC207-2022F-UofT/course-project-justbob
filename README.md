@@ -1,5 +1,5 @@
 ## Recordings
-### Presentation: https://www.youtube.com/watch?v=AnlUHmIfL20
+### Presentation: https://youtu.be/AnlUHmIfL20
 ### Calendar GUI: https://youtu.be/ZaYfwACp36E
 
 ## Dummy Account ##
