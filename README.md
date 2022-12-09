@@ -102,7 +102,7 @@
 - WeightSchemeTest covers tests for SimpleWeight and OrderedWeight
 
 # DataStorage #
-The program is saved to a file called “database_file.json”. Changes are saved as the program is used, so there is no need to save manually.
+The program is saved to a file called “database.ser”. Changes are saved as the program is used, so there is no need to save manually.
 
 # Known Issues #
 - Archive View Button is dead (Archive View exists but the User cannot access it yet)
