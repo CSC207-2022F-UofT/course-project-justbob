@@ -114,7 +114,7 @@ public class SemesterView {
                 throw new RuntimeException(ex);
             }
         });
-    }
+
 
         if (!isEmpty) {
             // showTrend button
